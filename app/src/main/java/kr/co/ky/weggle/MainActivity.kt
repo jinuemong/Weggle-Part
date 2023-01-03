@@ -2,8 +2,10 @@ package kr.co.ky.weggle
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.MenuItem
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.navigation.NavigationView
 import kr.co.ky.weggle.databinding.ActivityMainBinding
@@ -37,7 +39,10 @@ class MainActivity : AppCompatActivity(),
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            android.R.id.
+            android.R.id.home->{ //menu selected
+                binding.drawLayout.openDrawer(GravityCompat.START) //left
+
+            }
         }
         return super.onOptionsItemSelected(item)
     }

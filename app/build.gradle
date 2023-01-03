@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'kr.co.ky.weggle'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "kr.co.ky.weggle"
-        minSdk 26
-        targetSdk 32
+        minSdk 25
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
