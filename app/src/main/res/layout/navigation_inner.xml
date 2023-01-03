@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="340dp"
     android:layout_height="match_parent"
+    android:padding="@dimen/margin_10"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_margin="@dimen/margin_5"
+
         android:padding="@dimen/margin_10"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_len_50">
@@ -13,15 +14,15 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_width="@dimen/item_size_30"
-            android:layout_height="@dimen/item_size_30"
+            android:layout_width="@dimen/item_size_25"
+            android:layout_height="@dimen/item_size_25"
             android:src="@drawable/ic_baseline_close_24"/>
         <ImageView
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="@dimen/item_size_30"
-            android:layout_height="@dimen/item_size_30"
+            android:layout_width="@dimen/item_size_25"
+            android:layout_height="@dimen/item_size_25"
             android:src="@drawable/ic_baseline_settings_24"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -29,19 +30,19 @@
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="@dimen/margin_10"
-        android:layout_margin="@dimen/margin_5"
+        android:layout_marginStart="@dimen/margin_5"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_len_70">
         <ImageView
             android:background="@drawable/circle"
             android:src="@drawable/ic_baseline_person_outline_24"
-            android:layout_width="@dimen/item_size_50"
-            android:layout_height="@dimen/item_size_50"/>
+            android:layout_width="@dimen/item_size_40"
+            android:layout_height="@dimen/item_size_40"/>
         <TextView
             android:layout_marginStart="@dimen/margin_10"
             android:textStyle="bold"
             android:text="username"
-            android:textSize="@dimen/text_size_20"
+            android:textSize="@dimen/text_size_15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -50,10 +51,10 @@
         android:backgroundTint="@color/black"
         android:background="@drawable/round_border"
         android:layout_marginTop="@dimen/margin_10"
-        android:layout_marginStart="@dimen/margin_20"
-        android:layout_marginEnd="@dimen/margin_20"
+        android:layout_marginStart="@dimen/margin_10"
+        android:layout_marginEnd="@dimen/margin_10"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/top_len_150">
+        android:layout_height="@dimen/top_len_140">
         <TextView
             android:gravity="bottom|center"
             android:textColor="@color/white"
@@ -62,6 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/item_size_40"/>
         <TextView
+            android:layout_marginTop="@dimen/margin_5"
             android:textSize="@dimen/text_size_20"
             android:textColor="@color/white"
             android:text="0원"
@@ -69,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/item_size_40"/>
         <View
-            android:layout_marginTop="@dimen/margin_20"
+            android:layout_marginTop="@dimen/margin_10"
             android:layout_gravity="center"
             android:alpha="0.3"
             android:background="@color/line_color"
@@ -106,12 +108,11 @@
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/margin_10"
-        android:layout_marginStart="@dimen/margin_20"
-        android:layout_marginEnd="@dimen/margin_20"
+        android:layout_margin="@dimen/margin_5"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/top_len_80">
+        android:layout_height="@dimen/top_len_100">
         <LinearLayout
+            android:gravity="center"
             android:layout_margin="@dimen/margin_5"
             android:background="@drawable/round_border"
             android:backgroundTint="@color/line_color"
@@ -119,9 +120,26 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent">
-
+            <ImageView
+                android:layout_marginBottom="@dimen/margin_10"
+                android:layout_width="@dimen/item_size_25"
+                android:layout_height="@dimen/item_size_25"
+                android:src="@drawable/ic_iconmonstr_delivery_2"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="주문/배송"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_size_12"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_size_12"/>
         </LinearLayout>
         <LinearLayout
+            android:gravity="center"
             android:layout_margin="@dimen/margin_5"
             android:background="@drawable/round_border"
             android:backgroundTint="@color/line_color"
@@ -129,9 +147,26 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent">
-
+            <ImageView
+                android:layout_marginBottom="@dimen/margin_10"
+                android:layout_width="@dimen/item_size_25"
+                android:layout_height="@dimen/item_size_25"
+                android:src="@drawable/ic_iconmonstr_coin_8"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="포인트"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_size_12"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0P"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_size_12"/>
         </LinearLayout>
         <LinearLayout
+            android:gravity="center"
             android:layout_margin="@dimen/margin_5"
             android:background="@drawable/round_border"
             android:backgroundTint="@color/line_color"
@@ -139,7 +174,124 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent">
-
+            <ImageView
+                android:layout_marginBottom="@dimen/margin_10"
+                android:layout_width="@dimen/item_size_25"
+                android:layout_height="@dimen/item_size_25"
+                android:src="@drawable/ic_iconmonstr_script_10"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="문의내역"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_size_12"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_size_12"/>
         </LinearLayout>
     </LinearLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_marginBottom="@dimen/margin_10"
+        android:padding="@dimen/margin_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="최근 본 상품"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_15"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+        <ImageView
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:layout_width="@dimen/item_size_20"
+            android:layout_height="match_parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_marginBottom="@dimen/margin_10"
+        android:padding="@dimen/margin_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="찜 목록"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_15"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+        <ImageView
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:layout_width="@dimen/item_size_20"
+            android:layout_height="match_parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_marginBottom="@dimen/margin_10"
+        android:padding="@dimen/margin_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="선물함"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_15"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+        <ImageView
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:layout_width="@dimen/item_size_20"
+            android:layout_height="match_parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_marginBottom="@dimen/margin_10"
+        android:padding="@dimen/margin_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="취소 교환 반품 목록"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_15"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+        <ImageView
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:layout_width="@dimen/item_size_20"
+            android:layout_height="match_parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_marginBottom="@dimen/margin_10"
+        android:padding="@dimen/margin_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="환경설정"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_15"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+        <ImageView
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:layout_width="@dimen/item_size_20"
+            android:layout_height="match_parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </LinearLayout>
