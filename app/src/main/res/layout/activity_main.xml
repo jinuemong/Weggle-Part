@@ -6,26 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <RelativeLayout
+    <!-- main View-->
+    <include
+        android:id="@+id/main_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/margin_10">
+        layout="@layout/main_layout"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/top_len_70"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="@dimen/item_size_30"
-                android:layout_height="@dimen/item_size_30"
-                android:layout_margin="@dimen/margin_10"
-                android:src="@drawable/ic_baseline_menu_24" />
-        </LinearLayout>
-    </RelativeLayout>
-
+    <!-- navi View-->
     <android.support.design.widget.NavigationView
+        android:id="@+id/main_navi"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"

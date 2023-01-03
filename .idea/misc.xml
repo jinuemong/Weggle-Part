@@ -15,6 +15,7 @@
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/weggler/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2025" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/weggler/app/src/main/res/drawable-v24/round_border.xml" value="0.2025" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/weggler/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24.xml" value="0.1" />
+        <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/weggler/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.1" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/weggler/app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.2025" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/weggler/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.101" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/weggler/app/src/main/res/drawable/ic_iconmonstr_coin_8.xml" value="0.101" />
@@ -22,6 +23,9 @@
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/weggler/app/src/main/res/drawable/ic_iconmonstr_script_10.xml" value="0.101" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/weggler/app/src/main/res/drawable/ic_iconmonstr_user_circle_thin.xml" value="0.101" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/weggler/app/src/main/res/drawable/ic_launcher_background.xml" value="0.101" />
+        <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/weggler/app/src/main/res/layout/activity_main.xml" value="0.24947916666666667" />
+        <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/weggler/app/src/main/res/layout/main_layout.xml" value="0.2484375" />
+        <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/weggler/app/src/main/res/layout/main_toolbar.xml" value="0.2484375" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/weggler/app/src/main/res/layout/navigation_inner.xml" value="0.2" />
       </map>
     </option>

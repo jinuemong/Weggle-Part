@@ -17,6 +17,10 @@ class MainActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         frManger = this@MainActivity.supportFragmentManager
+        setSupportActionBar(binding.mainView.mainToolbar.mainLayoutToolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true) //홈 버튼 활성화
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24) //홈 버튼 설정
+        supportActionBar?.setDisplayShowTitleEnabled(false) //타이틀 제거
     }
 
     private fun initView(){
@@ -29,6 +33,13 @@ class MainActivity : AppCompatActivity(),
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         TODO("Not yet implemented")
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            android.R.id.
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }
