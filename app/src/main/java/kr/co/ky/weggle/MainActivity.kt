@@ -2,8 +2,6 @@ package kr.co.ky.weggle
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.MenuItem
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.FragmentManager
@@ -12,7 +10,7 @@ import kr.co.ky.weggle.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(),
     NavigationView.OnNavigationItemSelectedListener{
-    private lateinit var binding :ActivityMainBinding
+    private lateinit var binding : ActivityMainBinding
     lateinit var frManger: FragmentManager
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
