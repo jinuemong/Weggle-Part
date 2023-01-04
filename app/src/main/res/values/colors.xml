@@ -8,6 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="line_color">#D3CDCD</color>
+    <color name="select_color">#C86262</color>
+
     <color name="color_type1">#7B90C6</color>
     <color name="color_type2">#B4C4EE</color>
     <color name="color_type3">#CBD4EC</color>

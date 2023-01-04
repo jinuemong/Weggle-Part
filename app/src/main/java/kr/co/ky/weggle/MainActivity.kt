@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity(),
             intArrayOf(android.R.attr.state_selected),
             intArrayOf(-android.R.attr.state_selected)
         ),
-        intArrayOf(Color.parseColor("#629CD1"), Color.parseColor("#2C608F"))
+        intArrayOf(Color.parseColor("#C86262"), Color.parseColor("#D3CDCD"))
     )
 
     //tab Icon
