@@ -5,16 +5,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:padding="@dimen/margin_10" >
+    android:orientation="vertical">
 
     <include
         android:id="@+id/main_toolbar"
         layout="@layout/main_toolbar" />
-    <TextView
-        android:gravity="center"
-        android:textSize="50dp"
-        android:text="main view "
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/main_view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_weight="9"
+        android:layout_height="0dp"/>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/main_bottom_tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.google.android.material.appbar.AppBarLayout>
 </LinearLayout>
