@@ -6,11 +6,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <com.google.android.material.tabs.TabLayout
+        android:id="@+id/weggler_tab"
         app:tabTextAppearance="@style/tab_text"
         app:tabSelectedTextColor="@color/select_tab_color"
         app:tabIndicatorColor="@color/select_tab_color"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/item_size_50">
+        android:layout_height="@dimen/top_len_70">
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,4 +25,8 @@
             android:layout_height="wrap_content"
             android:text="랭킹"/>
     </com.google.android.material.tabs.TabLayout>
+    <FrameLayout
+        android:id="@+id/mid_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>

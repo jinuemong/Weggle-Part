@@ -18,8 +18,7 @@ import com.puresoftware.bottomnavigationappbar.Home.HomeFragment
 import com.puresoftware.bottomnavigationappbar.MyAccount.MyAccountFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.WegglerFragment
 import com.puresoftware.bottomnavigationappbar.brands.BrandsFragment
-import kr.co.ky.weggle.R
-import kr.co.ky.weggle.databinding.ActivityMainBinding
+import com.puresoftware.bottomnavigationappbar.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var  binding: ActivityMainBinding
