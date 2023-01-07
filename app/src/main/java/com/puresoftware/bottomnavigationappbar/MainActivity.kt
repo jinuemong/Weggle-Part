@@ -18,7 +18,8 @@ import com.puresoftware.bottomnavigationappbar.Home.HomeFragment
 import com.puresoftware.bottomnavigationappbar.MyAccount.MyAccountFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.WegglerFragment
 import com.puresoftware.bottomnavigationappbar.brands.BrandsFragment
-import com.puresoftware.bottomnavigationappbar.databinding.ActivityMainBinding
+import kr.co.ky.weggle.R
+import kr.co.ky.weggle.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var  binding: ActivityMainBinding
@@ -184,5 +185,4 @@ class MainActivity : AppCompatActivity() {
 //        winAttr.flags = if (on) winAttr.flags or bits else winAttr.flags and bits.inv()
 //        window.attributes = winAttr
 //    }
-    // 아이돌마스터 M@sterPiece Vs 뱅드림 Kizuna Music Vs 러브라이브 Snow Halation
 }
