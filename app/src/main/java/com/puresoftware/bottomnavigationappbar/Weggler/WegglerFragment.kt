@@ -38,6 +38,8 @@ class WegglerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        midFragmentChange(FeedFragment())
         binding.wegglerTab.addOnTabSelectedListener(object :  TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when (tab?.position){

@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentFeedBinding
 
-
+// 뷰가 선택 될때마다 추천 게시물 , 위글러 변함
 class FeedFragment : Fragment() {
     private var _binding : FragmentFeedBinding? = null
     private val binding  get() = _binding!!

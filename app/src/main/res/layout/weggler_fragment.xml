@@ -26,6 +26,10 @@
             android:layout_height="wrap_content"
             android:text="랭킹"/>
     </com.google.android.material.tabs.TabLayout>
+    <LinearLayout
+        android:background="@color/line_color"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
     <FrameLayout
         android:id="@+id/mid_container"
         android:layout_width="match_parent"
