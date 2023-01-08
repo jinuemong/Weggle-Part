@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.marginTop
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.tabs.TabLayout
@@ -50,6 +51,7 @@ class WegglerFragment : Fragment() {
             override fun onTabReselected(tab: TabLayout.Tab?) {}
 
         })
+
     }
 
     override fun onDestroyView() {

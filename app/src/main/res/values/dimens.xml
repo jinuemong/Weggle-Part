@@ -25,7 +25,7 @@
     <dimen name="item_size_30">30dp</dimen>
     <dimen name="item_size_40">40dp</dimen>
     <dimen name="item_size_50">50dp</dimen>
-
+    <dimen name="item_size_60">60dp</dimen>
 
     <dimen name="text_size_25">25sp</dimen>
     <dimen name="text_size_20">20sp</dimen>

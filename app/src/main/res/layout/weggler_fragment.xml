@@ -6,12 +6,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <com.google.android.material.tabs.TabLayout
+        android:layout_marginTop="@dimen/top_len_70"
         android:id="@+id/weggler_tab"
         app:tabTextAppearance="@style/tab_text"
         app:tabSelectedTextColor="@color/select_tab_color"
         app:tabIndicatorColor="@color/select_tab_color"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/top_len_70">
+        android:layout_height="@dimen/item_size_60">
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
