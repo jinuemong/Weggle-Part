@@ -31,4 +31,34 @@
         <item name="android:textSize">@dimen/text_size_15</item>
         <item name="android:textColor">@color/line_color</item>
     </style>
+
+    <style name="popularPost">
+        <item name="android:background">@drawable/round_border_plus</item>
+        <item name="android:backgroundTint">@color/line_color</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginBottom">@dimen/margin_5</item>
+    </style>
+
+    <style name="popularTextType1">
+        <item name="android:layout_marginStart">@dimen/margin_15</item>
+        <item name="android:layout_marginEnd">@dimen/margin_15</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:backgroundTint">@color/community_1_color</item>
+        <item name="android:background">@drawable/round_border_plus</item>
+        <item name="android:padding">@dimen/margin_5</item>
+        <item name="android:textSize">@dimen/text_size_12</item>
+        <item name="android:text">공구해요</item>
+    </style>
+    <style name="popularTextType2">
+        <item name="android:layout_marginStart">@dimen/margin_15</item>
+        <item name="android:layout_marginEnd">@dimen/margin_15</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:backgroundTint">@color/community_2_color</item>
+        <item name="android:background">@drawable/round_border_plus</item>
+        <item name="android:padding">@dimen/margin_5</item>
+        <item name="android:textSize">@dimen/text_size_12</item>
+        <item name="android:text">프리토크</item>
+    </style>
+
 </resources>

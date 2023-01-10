@@ -18,6 +18,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:layout_margin="@dimen/margin_10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -41,6 +42,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_margin="@dimen/margin_10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -64,6 +66,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_margin="@dimen/margin_10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -115,15 +118,16 @@
             android:background="@color/line_color" />
 
         <LinearLayout
+            android:layout_margin="@dimen/margin_10"
             android:orientation="vertical"
             android:id="@+id/popular_post_box"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/top_len_300">
+            android:layout_height="wrap_content">
             <!--게시물 인기 순에서 상위 2개씩 뽑기 (공구 ,프리)-->
             <LinearLayout
-                android:layout_marginTop="@dimen/margin_15"
+                android:layout_marginTop="@dimen/margin_5"
+                android:layout_marginBottom="@dimen/margin_20"
                 android:gravity="center_vertical"
-                android:layout_margin="@dimen/margin_10"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -142,6 +146,44 @@
                     android:layout_width="@dimen/item_size_20"
                     android:layout_height="@dimen/item_size_20"
                     app:tint="@color/black" />
+            </LinearLayout>
+            
+            <LinearLayout
+                style="@style/popularPost"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_size_60">
+                <TextView
+                    style="@style/popularTextType1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                style="@style/popularPost"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_size_60">
+                <TextView
+                    style="@style/popularTextType1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+            <LinearLayout
+                style="@style/popularPost"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_size_60">
+                <TextView
+                    style="@style/popularTextType2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                style="@style/popularPost"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_size_60">
+                <TextView
+                    style="@style/popularTextType2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
 
         </LinearLayout>
