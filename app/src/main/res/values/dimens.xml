@@ -7,6 +7,7 @@
     <dimen name="margin_3">3dp</dimen>
     <dimen name="margin_5">5dp</dimen>
     <dimen name="margin_10">10dp</dimen>
+    <dimen name="margin_15">15dp</dimen>
     <dimen name="margin_20">20dp</dimen>
     <dimen name="margin_30">30dp</dimen>
     <dimen name="top_len_50">50dp</dimen>
@@ -31,6 +32,7 @@
 
     <dimen name="text_size_25">25sp</dimen>
     <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_17">17sp</dimen>
     <dimen name="text_size_15">15sp</dimen>
     <dimen name="text_size_12">12sp</dimen>
 

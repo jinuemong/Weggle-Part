@@ -1,14 +1,154 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/line_color"
     tools:context="com.puresoftware.bottomnavigationappbar.Weggler.MidFragment.CommunityFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_10"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/item_size_60"
+                    android:layout_height="@dimen/item_size_60"
+                    android:layout_margin="@dimen/margin_10"
+                    android:background="@drawable/round_border"
+                    android:backgroundTint="@color/community_1_color"
+                    android:padding="@dimen/margin_15"
+                    android:src="@drawable/ic_iconmonstr_christmas_37" />
+
+                <TextView
+                    android:textSize="@dimen/text_size_17"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="공구해요"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/item_size_60"
+                    android:layout_height="@dimen/item_size_60"
+                    android:layout_margin="@dimen/margin_10"
+                    android:background="@drawable/round_border"
+                    android:backgroundTint="@color/community_2_color"
+                    android:padding="@dimen/margin_15"
+                    android:src="@drawable/ic_iconmonstr_help_6" />
+
+                <TextView
+                    android:textSize="@dimen/text_size_17"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="프리토크"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/item_size_60"
+                    android:layout_height="@dimen/item_size_60"
+                    android:layout_margin="@dimen/margin_10"
+                    android:background="@drawable/round_border"
+                    android:backgroundTint="@color/community__my_color"
+                    android:padding="@dimen/margin_15"
+                    android:src="@drawable/ic_iconmonstr_pencil_square_lined" />
+
+                <TextView
+                    android:textSize="@dimen/text_size_17"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="내가쓴글"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_10"
+            android:background="@color/line_color" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_10"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_marginEnd="@dimen/margin_10"
+                android:textSize="@dimen/text_size_17"
+                android:text="커뮤니티 가이드 알아보기"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+            <ImageView
+                android:layout_width="@dimen/item_size_25"
+                android:layout_height="@dimen/item_size_25"
+                android:src="@drawable/ic_iconmonstr_error_lined"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_10"
+            android:background="@color/line_color" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/popular_post_box"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/top_len_300">
+            <!--게시물 인기 순에서 상위 2개씩 뽑기 (공구 ,프리)-->
+            <LinearLayout
+                android:layout_marginTop="@dimen/margin_15"
+                android:gravity="center_vertical"
+                android:layout_margin="@dimen/margin_10"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="@dimen/text_size_20"
+                    android:textStyle="bold"
+                    android:text="인기 게시글"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+                <ImageView
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                    android:layout_width="@dimen/item_size_20"
+                    android:layout_height="@dimen/item_size_20"
+                    app:tint="@color/black" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_10"
+            android:background="@color/line_color" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
