@@ -41,8 +41,8 @@
     </style>
 
     <style name="popularTextType1">
-        <item name="android:layout_marginStart">@dimen/margin_15</item>
-        <item name="android:layout_marginEnd">@dimen/margin_15</item>
+        <item name="android:layout_marginStart">@dimen/margin_10</item>
+        <item name="android:layout_marginEnd">@dimen/margin_10</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:backgroundTint">@color/community_1_color</item>
         <item name="android:background">@drawable/round_border_plus</item>
@@ -51,8 +51,8 @@
         <item name="android:text">공구해요</item>
     </style>
     <style name="popularTextType2">
-        <item name="android:layout_marginStart">@dimen/margin_15</item>
-        <item name="android:layout_marginEnd">@dimen/margin_15</item>
+        <item name="android:layout_marginStart">@dimen/margin_10</item>
+        <item name="android:layout_marginEnd">@dimen/margin_10</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:backgroundTint">@color/community_2_color</item>
         <item name="android:background">@drawable/round_border_plus</item>

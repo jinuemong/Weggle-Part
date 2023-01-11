@@ -153,6 +153,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/item_size_60">
                 <TextView
+
                     style="@style/popularTextType1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -192,5 +193,11 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/margin_10"
             android:background="@color/line_color" />
+
+        <include
+            layout="@layout/item_community_small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
