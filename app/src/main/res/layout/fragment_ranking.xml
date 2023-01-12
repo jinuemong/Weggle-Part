@@ -1,14 +1,33 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_700"
+    android:layout_margin="@dimen/margin_20"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.puresoftware.bottomnavigationappbar.Weggler.MidFragment.RankingFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-</FrameLayout>
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="@dimen/text_size_25"
+            android:textStyle="bold"
+            android:text="위글러 랭킹 TOP10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_marginBottom="@dimen/margin_30"
+            android:textSize="@dimen/text_size_17"
+            android:text="좋아요를 가장 많이 받은 위글러"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <androidx.recyclerview.widget.RecyclerView
+            tools:listitem="@layout/item_ranking"
+            android:layout_marginTop="@dimen/margin_20"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"/>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

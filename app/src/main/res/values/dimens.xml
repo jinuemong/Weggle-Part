@@ -4,6 +4,7 @@
 <!--    <dimen name="design_fab_image_size" tools:override="true">58dp</dimen>-->
     <dimen name="design_bottom_navigation_text_size" tools:override="true">40sp</dimen>
     <dimen name="design_bottom_navigation_active_text_size" tools:override="true">40sp</dimen>
+    <dimen name="margin_2">2dp</dimen>
     <dimen name="margin_3">3dp</dimen>
     <dimen name="margin_5">5dp</dimen>
     <dimen name="margin_10">10dp</dimen>
@@ -23,6 +24,8 @@
     <dimen name="top_len_350">350dp</dimen>
     <dimen name="top_len_400">400dp</dimen>
 
+    <dimen name="item_size_15">15dp</dimen>
+    <dimen name="item_size_17">17dp</dimen>
     <dimen name="item_size_20">20dp</dimen>
     <dimen name="item_size_25">25dp</dimen>
     <dimen name="item_size_30">30dp</dimen>
