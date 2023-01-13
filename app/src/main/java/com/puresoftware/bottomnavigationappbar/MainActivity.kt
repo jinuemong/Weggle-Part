@@ -11,6 +11,7 @@ import android.view.View
 import android.view.WindowManager
 import androidx.core.view.GravityCompat
 import androidx.core.view.get
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.puresoftware.bottomnavigationappbar.CenterWeggle.CenterWeggleFragment
@@ -22,6 +23,7 @@ import com.puresoftware.bottomnavigationappbar.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var  binding: ActivityMainBinding
+    private lateinit var fm:FragmentManager
     // fragment
     // https://aries574.tistory.com/382
     var homeFragment: HomeFragment? = null // 홈
@@ -38,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        fm = this@MainActivity.supportFragmentManager
 
         // toolbar control
         // https://youngtoad.tistory.com/21
@@ -184,4 +187,27 @@ class MainActivity : AppCompatActivity() {
 //        winAttr.flags = if (on) winAttr.flags or bits else winAttr.flags and bits.inv()
 //        window.attributes = winAttr
 //    }
+
+    fun changeFragment(goFragment:Fragment){
+        fm.beginTransaction().replace(R.id.main_frame,goFragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    fun goBackFragment(fragment: Fragment){
+        fm.beginTransaction().remove(fragment).commit()
+        fm.popBackStack()
+    }
+
+    fun setMainViewVisibility(isSet:Boolean){
+        if (isSet){
+            binding.bottomNavi.visibility = View.VISIBLE
+            binding.toolbar.visibility = View.VISIBLE
+            binding.btnCenterWeggle.visibility = View.VISIBLE
+        }else{
+            binding.bottomNavi.visibility = View.GONE
+            binding.toolbar.visibility = View.GONE
+            binding.btnCenterWeggle.visibility = View.GONE
+        }
+    }
 }

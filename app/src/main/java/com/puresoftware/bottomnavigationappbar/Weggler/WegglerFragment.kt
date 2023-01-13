@@ -65,4 +65,5 @@ class WegglerFragment : Fragment() {
         fm.beginTransaction().replace(R.id.mid_container,goFragment)
             .commit()
     }
+
 }

@@ -25,10 +25,11 @@
         android:layout_width="@dimen/top_len_70"
         android:layout_height="@dimen/top_len_70"/>
     <TextView
+        android:layout_marginTop="@dimen/margin_10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/ru_box_username"
-        app:layout_constraintTop_toBottomOf="ru_box_image"
+        app:layout_constraintTop_toBottomOf="@id/ru_box_image"
         app:layout_constraintBottom_toTopOf="@+id/ur_box_hash_tag"
         android:gravity="center"
         tools:text="위글러"

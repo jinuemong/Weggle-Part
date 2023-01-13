@@ -37,10 +37,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_marginEnd="@dimen/margin_10"
+                android:layout_marginBottom="@dimen/margin_10"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/item_size_40">
                 <TextView
-                    android:textSize="@dimen/text_size_15"
+                    android:textSize="@dimen/text_size_20"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     android:gravity="center"
@@ -48,12 +50,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"/>
                 <ImageView
+                    android:id="@+id/feed_go_rcw_button"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:src="@drawable/ic_baseline_arrow_forward_ios_24"
-                    android:layout_width="@dimen/item_size_20"
-                    android:layout_height="@dimen/item_size_20"
+                    android:layout_width="@dimen/item_size_25"
+                    android:layout_height="@dimen/item_size_25"
                     app:tint="@color/black" />
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.recyclerview.widget.RecyclerView
@@ -63,7 +66,7 @@
                 android:layout_height="wrap_content"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="horizontal"
-                tools:listitem="@layout/recommend_user_box"/>
+                tools:listitem="@layout/recommend_user_box_ho"/>
 
 <!--            <androidx.recyclerview.widget.RecyclerView-->
 <!--                android:layout_width="match_parent"-->

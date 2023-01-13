@@ -1,4 +1,4 @@
-package com.puresoftware.bottomnavigationappbar.Weggler.MidFragment
+package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment
 
 import android.content.Context
 import android.os.Bundle
@@ -8,14 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.RecommendWegglerFragment
-import com.puresoftware.bottomnavigationappbar.databinding.FragmentFeedBinding
+import com.puresoftware.bottomnavigationappbar.databinding.FragmentRecommendWegglerBinding
 
-// 뷰가 선택 될때마다 추천 게시물 , 위글러 변함
-class FeedFragment : Fragment() {
-    private var _binding : FragmentFeedBinding? = null
-    private val binding  get() = _binding!!
+class RecommendWegglerFragment : Fragment() {
+    private var _binding: FragmentRecommendWegglerBinding? = null
+    private val binding get() = _binding!!
     private lateinit var mainActivity: MainActivity
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
@@ -25,23 +24,29 @@ class FeedFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFeedBinding.inflate(inflater,container,false)
+        _binding = FragmentRecommendWegglerBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setUpListener()
-    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
-    private fun setUpListener(){
-        binding.feedGoRcwButton.setOnClickListener {
-            mainActivity.changeFragment(RecommendWegglerFragment())
-            mainActivity.setMainViewVisibility(false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
+        setUpListener()
+    }
+
+    private fun initView() {
+
+    }
+
+    private fun setUpListener() {
+        binding.backButtonRwf.setOnClickListener {
+            mainActivity.goBackFragment(this@RecommendWegglerFragment)
+            mainActivity.setMainViewVisibility(true)
         }
     }
 
