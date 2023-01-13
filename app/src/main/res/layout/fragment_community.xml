@@ -19,6 +19,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/comm_go_JointPurchase_list"
                 android:layout_margin="@dimen/margin_10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,6 +44,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/comm_go_FreeTalk_list"
                 android:layout_margin="@dimen/margin_10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -67,6 +69,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/comm_go_MyCommunityTab_list"
                 android:layout_margin="@dimen/margin_10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -143,6 +146,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1" />
                 <ImageView
+                    android:id="@+id/comm_go_PopularPost_list"
                     android:src="@drawable/ic_baseline_arrow_forward_ios_24"
                     android:layout_width="@dimen/item_size_20"
                     android:layout_height="@dimen/item_size_20"

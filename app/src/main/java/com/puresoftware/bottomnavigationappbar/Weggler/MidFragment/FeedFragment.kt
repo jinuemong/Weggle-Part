@@ -7,8 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.puresoftware.bottomnavigationappbar.MainActivity
-import com.puresoftware.bottomnavigationappbar.R
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.RecommendWegglerFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.ShellFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentFeedBinding
 
 // 뷰가 선택 될때마다 추천 게시물 , 위글러 변함
@@ -40,7 +39,7 @@ class FeedFragment : Fragment() {
 
     private fun setUpListener(){
         binding.feedGoRcwButton.setOnClickListener {
-            mainActivity.changeFragment(RecommendWegglerFragment())
+            mainActivity.changeFragment(ShellFragment("추천 위글러"))
             mainActivity.setMainViewVisibility(false)
         }
     }
