@@ -189,7 +189,7 @@ class MainActivity : AppCompatActivity() {
 //    }
 
     fun changeFragment(goFragment:Fragment){
-        fm.beginTransaction().replace(R.id.main_frame,goFragment)
+        fm.beginTransaction().add(R.id.main_frame,goFragment)
             .addToBackStack(null)
             .commit()
     }
