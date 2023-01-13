@@ -23,12 +23,14 @@
             android:background="@color/line_color"
             android:layout_width="match_parent"
             android:layout_height="1dp"/>
+
         <include
-            android:layout_margin="@dimen/margin_10"
             android:id="@+id/recommend_posting"
             layout="@layout/item_feed_posting"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_10" />
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_margin="@dimen/margin_10"
@@ -54,11 +56,14 @@
                     android:layout_height="@dimen/item_size_20"
                     app:tint="@color/black" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-            <LinearLayout
-                android:id="@+id/recommend_user_box"
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginBottom="@dimen/margin_30"
+                android:id="@+id/recommend_user_box_recycler"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/top_len_150"
-                android:orientation="vertical" />
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"
+                tools:listitem="@layout/recommend_user_box"/>
 
 <!--            <androidx.recyclerview.widget.RecyclerView-->
 <!--                android:layout_width="match_parent"-->
