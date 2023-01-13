@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             tools:text="상단 텍스트 입니다 "
-            android:textSize="@dimen/text_size_20"
+            android:textSize="@dimen/text_size_25"
             android:textStyle="bold" />
 
         <ImageView
