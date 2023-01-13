@@ -195,7 +195,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun goBackFragment(fragment: Fragment){
-        fm.beginTransaction().remove(fragment)
+        fm.beginTransaction().remove(fragment).commit()
         fm.popBackStack()
     }
 
