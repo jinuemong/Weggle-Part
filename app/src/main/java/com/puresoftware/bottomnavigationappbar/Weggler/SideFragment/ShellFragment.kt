@@ -72,8 +72,8 @@ class ShellFragment(
 
     private fun setUpListener() {
         binding.backButtonRwf.setOnClickListener {
-            mainActivity.goBackFragment(this@ShellFragment)
             mainActivity.setMainViewVisibility(true)
+            mainActivity.goBackFragment(this@ShellFragment)
         }
     }
 

@@ -189,13 +189,13 @@ class MainActivity : AppCompatActivity() {
 //    }
 
     fun changeFragment(goFragment:Fragment){
-        fm.beginTransaction().replace(R.id.draw_layout,goFragment)
+        fm.beginTransaction().replace(R.id.main_frame,goFragment)
             .addToBackStack(null)
             .commit()
     }
 
     fun goBackFragment(fragment: Fragment){
-        fm.beginTransaction().remove(fragment).commit()
+        fm.beginTransaction().remove(fragment)
         fm.popBackStack()
     }
 

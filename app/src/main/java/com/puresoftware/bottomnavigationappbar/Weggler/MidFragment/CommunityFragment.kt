@@ -45,20 +45,20 @@ class CommunityFragment : Fragment() {
     }
     private fun setUpListener() {
         binding.commGoJointPurchaseList.setOnClickListener {
-            mainActivity.changeFragment(ShellFragment("공구해요"))
             mainActivity.setMainViewVisibility(false)
+            mainActivity.changeFragment(ShellFragment("공구해요"))
         }
         binding.commGoFreeTalkList.setOnClickListener {
-            mainActivity.changeFragment(ShellFragment("프리토크"))
             mainActivity.setMainViewVisibility(false)
+            mainActivity.changeFragment(ShellFragment("프리토크"))
         }
         binding.commGoMyCommunityTabList.setOnClickListener {
-            mainActivity.changeFragment(ShellFragment("내가 쓴 글"))
             mainActivity.setMainViewVisibility(false)
+            mainActivity.changeFragment(ShellFragment("내가 쓴 글"))
         }
         binding.commGoPopularPostList.setOnClickListener {
-            mainActivity.changeFragment(ShellFragment("인기 게시글"))
             mainActivity.setMainViewVisibility(false)
+            mainActivity.changeFragment(ShellFragment("인기 게시글"))
         }
     }
 }

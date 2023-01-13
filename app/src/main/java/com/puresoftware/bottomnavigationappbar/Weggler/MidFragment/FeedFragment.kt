@@ -39,8 +39,8 @@ class FeedFragment : Fragment() {
 
     private fun setUpListener(){
         binding.feedGoRcwButton.setOnClickListener {
-            mainActivity.changeFragment(ShellFragment("추천 위글러"))
             mainActivity.setMainViewVisibility(false)
+            mainActivity.changeFragment(ShellFragment("추천 위글러"))
         }
     }
 
