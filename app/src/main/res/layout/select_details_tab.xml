@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="@dimen/margin_15"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_margin="@dimen/margin_5"
+            android:gravity="center"
+            android:text="전체"
+            android:textSize="@dimen/text_size_17"
+            android:background="@drawable/round_border_a"
+            android:layout_width="@dimen/top_len_70"
+            android:layout_height="@dimen/item_size_40"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:gravity="center"
+            android:layout_margin="@dimen/margin_5"
+            android:text="공구해요"
+            android:textSize="@dimen/text_size_17"
+            android:background="@drawable/round_border_a"
+            android:layout_width="@dimen/top_len_100"
+            android:layout_height="@dimen/item_size_40"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:gravity="center"
+            android:layout_margin="@dimen/margin_5"
+            android:text="프리토크"
+            android:textSize="@dimen/text_size_17"
+            android:background="@drawable/round_border_a"
+            android:layout_width="@dimen/top_len_100"
+            android:layout_height="@dimen/item_size_40"/>
+    </LinearLayout>
+</LinearLayout>
