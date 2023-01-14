@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:clickable="true"
     android:focusable="true"
     android:orientation="vertical"
     tools:context=".Weggler.SideFragment.ShellFragment">
@@ -36,4 +37,9 @@
             app:tint="@color/black" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <FrameLayout
+        android:id="@+id/shell_container"
+        android:layout_margin="@dimen/margin_10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>

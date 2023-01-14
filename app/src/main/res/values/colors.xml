@@ -12,4 +12,6 @@
     <color name="community_1_color">#517BEC</color>
     <color name="community_2_color">#F4C436</color>
     <color name="community__my_color">#E665C3</color>
+    <color name="my_selected_back">#F3DBEB</color>
+    <color name="my_selected_text">#E60FAB</color>
 </resources>

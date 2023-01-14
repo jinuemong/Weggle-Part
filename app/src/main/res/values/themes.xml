@@ -32,6 +32,11 @@
         <item name="android:textColor">@color/line_color</item>
     </style>
 
+    <style name="my_posting_tab_text" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">@dimen/text_size_17</item>
+        <item name="android:textColor">@color/line_color</item>
+    </style>
+
     <style name="popularPost">
         <item name="android:background">@drawable/round_border_plus</item>
         <item name="android:backgroundTint">@color/line_color</item>

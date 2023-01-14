@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import androidx.fragment.app.FragmentManager
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentShellBinding
@@ -24,10 +25,11 @@ class ShellFragment(
     private var _binding: FragmentShellBinding? = null
     private val binding get() = _binding!!
     private lateinit var mainActivity: MainActivity
-
+    private lateinit var fm: FragmentManager
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
+        fm = mainActivity.supportFragmentManager
     }
 
 
@@ -63,10 +65,10 @@ class ShellFragment(
 
             }
             "인기 게시글"->{
-                //view 연결
+
             }
-            "내가 쓴 글"->{
-                //view 연결
+            "내가 쓴 글"->{ //MyPostingTabFragment
+                setShellContainer(MyPostingTabFragment())
             }
         }
     }
@@ -78,5 +80,8 @@ class ShellFragment(
         }
     }
 
-
+    private fun setShellContainer(fragment:Fragment){
+        fm.beginTransaction().replace(R.id.shell_container,fragment)
+            .commit()
+    }
 }

@@ -1,22 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_margin="@dimen/margin_15"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/margin_20"
     android:orientation="vertical"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    
+
     <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tjf_tab_layout"
+        app:tabSelectedTextColor="@color/my_selected_text"
+        app:tabIndicatorHeight="0dp"
+        app:tabBackground="@drawable/my_posting_tab_layout_selector"
+        app:tabTextAppearance="@style/my_posting_tab_text"
+        app:tabMode="scrollable"
         android:layout_width="match_parent"
         android:layout_height="@dimen/item_size_40">
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-
+            android:text="전체"
             />
-
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" 
+            android:layout_height="match_parent"
+            android:text="공구해요"
+            />
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="프리토크"
             />
     </com.google.android.material.tabs.TabLayout>
 <!--    <LinearLayout-->

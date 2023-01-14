@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".Weggler.SideFragment.JointPurchaseFragment">
     <TextView
-        android:gravity="Joint"
+        android:gravity="center"
         android:textSize="@dimen/item_size_30"
         android:text="total"
         android:layout_width="match_parent"

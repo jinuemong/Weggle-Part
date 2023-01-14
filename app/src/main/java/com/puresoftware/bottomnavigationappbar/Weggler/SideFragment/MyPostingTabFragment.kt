@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.fragment.app.FragmentManager
+import com.google.android.material.tabs.TabLayout
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentMyPostingTabBinding
@@ -32,7 +34,7 @@ class MyPostingTabFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setTabItemMargin(binding.tjfLayout.tjfTabLayout,)
     }
 
     override fun onDestroyView() {
@@ -40,5 +42,16 @@ class MyPostingTabFragment : Fragment() {
         _binding = null
     }
 
-
+    // tab item에 margin을 주기 위함
+    // child를 불러오고 해당 데이터의 layoutParams에서 margin을 설정
+    private fun setTabItemMargin(tabLayout: TabLayout){
+        val tabs = tabLayout.getChildAt(0) as ViewGroup
+        for (i in 0 until tabs.childCount){
+            val tab = tabs.getChildAt(i)
+            val lp = tab.layoutParams as LinearLayout.LayoutParams
+            lp.marginEnd = 10
+            tab.layoutParams = lp
+            tabLayout.requestLayout()
+        }
+    }
 }
