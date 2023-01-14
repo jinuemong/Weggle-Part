@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Weggler.SideFragment.JointPurchaseFragment">
+    <TextView
+        android:gravity="Joint"
+        android:textSize="@dimen/item_size_30"
+        android:text="total"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</FrameLayout>

@@ -29,7 +29,6 @@
         android:layout_height="1dp"/>
     <include
         android:layout_margin="@dimen/margin_10"
-        android:layout_marginTop="@dimen/margin_10"
         layout="@layout/select_details_tab"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

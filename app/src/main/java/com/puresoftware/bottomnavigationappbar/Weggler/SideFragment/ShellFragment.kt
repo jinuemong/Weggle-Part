@@ -12,7 +12,7 @@ import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentShellBinding
 
 
-// 원하는 Fragment를 부착하는 곳 (중복 코드 방지 위함 )
+// 원하는 Fragment를 부착하는 곳 (중복 코드 줄이기)
 // adapter에 따라서 다른 뷰 보여주기
 // 공구해요, 프리토크 , 인기 게시글(view연결),내가쓴글(view연결) , 추천 위글러 topText 로 받아옴
 // JointPurchase, FreeTalk, PopularPost, MyCommunityTab ,RecommendWeggler
