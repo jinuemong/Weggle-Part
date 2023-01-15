@@ -9,7 +9,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/weggler_tab"
+        android:id="@+id/posting_commend_tab"
         app:tabTextAppearance="@style/tab_text"
         app:tabSelectedTextColor="@color/select_tab_color"
         app:tabIndicatorColor="@color/select_tab_color"
@@ -28,9 +28,8 @@
         android:background="@color/line_color"
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
-    <include
-        android:id="@+id/tjf_layout"
-        layout="@layout/select_details_tab"
+    <FrameLayout
+        android:id="@+id/details_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </LinearLayout>

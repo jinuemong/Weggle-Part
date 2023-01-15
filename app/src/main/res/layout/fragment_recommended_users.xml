@@ -3,11 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Weggler.SideFragment.JointPurchaseFragment">
+    tools:context=".Weggler.SideFragment.RecommendedUsersFragment">
     <TextView
+        android:textSize="@dimen/text_size_25"
         android:gravity="center"
-        android:textSize="@dimen/item_size_30"
-        android:text="JointPurchaseFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:text="RecommendedUsersFragment" />
+
+
 </FrameLayout>

@@ -55,17 +55,17 @@ class ShellFragment(
         binding.topText.text = topText
         //다른 adapter 연결 혹은 view 연결
         when (topText){
-            "공구해요"->{
-
+            "공구해요"->{ //JointPurchaseFragment
+                setShellContainer(JointPurchaseFragment())
             }
-            "프리토크"->{
-
+            "프리토크"->{ //FreeTalkFragment
+                setShellContainer(FreeTalkFragment())
             }
-            "추천 위글러"->{
-
+            "추천 위글러"->{ //RecommendedUsersFragment
+                setShellContainer(RecommendedUsersFragment())
             }
-            "인기 게시글"->{
-
+            "인기 게시글"->{ //PopularPostsFragment
+                setShellContainer(PopularPostsFragment())
             }
             "내가 쓴 글"->{ //MyPostingTabFragment
                 setShellContainer(MyPostingTabFragment())
