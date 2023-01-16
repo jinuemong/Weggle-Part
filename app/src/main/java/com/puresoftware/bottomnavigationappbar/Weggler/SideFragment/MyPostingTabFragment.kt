@@ -2,6 +2,7 @@ package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,16 +10,22 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.tabs.TabLayout
+import com.google.gson.Gson
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentMyPostingTabBinding
+import okhttp3.internal.concurrent.Task
 
+
+//내가 쓴 글
 
 class MyPostingTabFragment : Fragment() {
     private var _binding : FragmentMyPostingTabBinding? = null
     private val binding get() = _binding!!
     private lateinit var mainActivity: MainActivity
     private lateinit var fm : FragmentManager
+    private lateinit var postingFrag : SelectDetailsTabFragment
+    private lateinit var commendFrag : SelectDetailsTabFragment
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
@@ -34,14 +41,17 @@ class MyPostingTabFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        postingFrag = SelectDetailsTabFragment("게시글")
+        commendFrag = SelectDetailsTabFragment("댓글")
 
         //tab 설정
-        setDetailsContainer(SelectDetailsTabFragment("게시글"))
+        setDetailsContainer(postingFrag)
         binding.postingCommendTab.addOnTabSelectedListener(object :TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when(tab?.position){
-                    0->{SelectDetailsTabFragment("게시글")}
-                    1->{SelectDetailsTabFragment("댓글")}
+                    0->{setDetailsContainer(postingFrag)}
+                    1->{setDetailsContainer(commendFrag)}
+                    else->{setDetailsContainer(postingFrag)}
                 }
             }
 

@@ -47,4 +47,16 @@ dependencies {
 
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+
+    implementation "com.squareup.okhttp3:okhttp:4.7.2"
+
+
+    implementation 'com.squareup.retrofit2:retrofit:2.6.4'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.4'
+    //통신 라이브러리 중 가장 많이 사용되는 대표적인 라이브러리 ( Squareup 사의 라이브러리)
+
+    // Stetho 기본 라이브러리
+    implementation 'com.facebook.stetho:stetho:1.5.1'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
+    implementation 'com.facebook.stetho:stetho-js-rhino:1.5.1'
 }

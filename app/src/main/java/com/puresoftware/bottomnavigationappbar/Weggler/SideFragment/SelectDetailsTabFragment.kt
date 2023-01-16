@@ -2,6 +2,7 @@ package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import com.google.android.material.tabs.TabLayout
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.databinding.SelectDetailsTabBinding
+import kotlin.math.log
 
 //selectPosition  : 포스팅 , 댓글
 class SelectDetailsTabFragment(
@@ -38,7 +40,6 @@ class SelectDetailsTabFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         //tab layout 설정
         setPostingTabContainer(TotalFragment())
@@ -76,6 +77,7 @@ class SelectDetailsTabFragment(
             tabLayout.requestLayout()
         }
     }
+
     private fun setPostingTabContainer(fragment:Fragment){
         fm.beginTransaction().replace(R.id.sdt_main_container,fragment)
             .commit()

@@ -3,10 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Weggler.SideFragment.PopularPostsFragment">
-    <include
-        android:id="@+id/select_layout"
+    tools:context=".Weggler.MidFragment.ChallengeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        layout="@layout/select_details_tab"/>
+        android:text="@string/hello_blank_fragment" />
+
 </FrameLayout>

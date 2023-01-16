@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager
 import com.google.android.material.tabs.TabLayout
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
+import com.puresoftware.bottomnavigationappbar.Weggler.MidFragment.ChallengeFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.MidFragment.CommunityFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.MidFragment.FeedFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.MidFragment.RankingFragment
@@ -44,8 +45,9 @@ class WegglerFragment : Fragment() {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when (tab?.position){
                     0 ->{midFragmentChange(FeedFragment())}
-                    1 ->{midFragmentChange(CommunityFragment())}
-                    2 ->{midFragmentChange(RankingFragment())}
+                    1 ->{midFragmentChange(ChallengeFragment())}
+                    2 ->{midFragmentChange(CommunityFragment())}
+                    3 ->{midFragmentChange(RankingFragment())}
                     else ->{midFragmentChange(FeedFragment())}
                 }
             }
