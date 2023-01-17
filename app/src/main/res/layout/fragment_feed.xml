@@ -12,7 +12,15 @@
             android:background="@color/line_color"
             android:layout_width="match_parent"
             android:layout_height="1dp"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            tools:listitem="@layout/item_mini_profile"
+            />
         <TextView
+            android:visibility="gone"
             android:layout_margin="@dimen/margin_10"
             android:text="추천게시물"
             android:textStyle="bold"

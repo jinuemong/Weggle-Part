@@ -213,7 +213,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="vertical"
-                tools:listitem="@layout/item_community_small"
+                tools:listitem="@layout/item_community_small_free"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
