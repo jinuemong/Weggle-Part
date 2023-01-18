@@ -13,11 +13,11 @@ class ItemMiniProfileAdapter(
 ) : RecyclerView.Adapter<ItemMiniProfileAdapter.ItemMiniProfileViewHolder>() {
 
     private lateinit var binding: ItemMiniProfileBinding
-    private var itemSet  = itemList
+    var itemSet  = itemList
 
     inner class ItemMiniProfileViewHolder(private val binding:ItemMiniProfileBinding)
         :RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Profile) {
+        fun bind(profile: Profile) {
 
         }
     }
