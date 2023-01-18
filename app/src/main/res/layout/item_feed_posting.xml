@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_len_70">
         <ImageView
+            android:id="@+id/user_image"
             android:background="@drawable/circle"
             android:src="@drawable/ic_baseline_person_outline_24"
             android:layout_width="@dimen/item_size_50"
@@ -25,6 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <TextView
+                android:id="@+id/user_name"
                 android:layout_marginStart="@dimen/margin_10"
                 android:textStyle="bold"
                 android:text="username"
@@ -32,6 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:id="@+id/create_time"
                 android:layout_marginStart="@dimen/margin_10"
                 tools:text="x년 전 "
                 android:textSize="@dimen/text_size_12"
@@ -41,6 +44,7 @@
     </LinearLayout>
 
     <VideoView
+        android:id="@+id/video_view"
         android:layout_marginStart="@dimen/margin_20"
         android:layout_marginEnd="@dimen/margin_20"
         android:padding="@dimen/margin_5"
@@ -61,17 +65,20 @@
             android:layout_height="@dimen/item_size_25"
             android:src="@drawable/ic_baseline_favorite_24" />
         <TextView
+            android:id="@+id/like_num"
             android:gravity="center"
             tools:text="9999"
             android:layout_marginStart="@dimen/margin_3"
             android:layout_width="@dimen/item_size_50"
             android:layout_height="@dimen/item_size_20"/>
         <ImageView
+            android:id="@+id/comment_image"
             android:layout_marginStart="@dimen/margin_5"
             android:src="@drawable/ic_iconmonstr_speech_bubble_3"
             android:layout_width="@dimen/item_size_25"
             android:layout_height="@dimen/item_size_25"/>
         <TextView
+            android:id="@+id/comment_num"
             android:gravity="center"
             tools:text="9999"
             android:layout_marginStart="@dimen/margin_3"
@@ -79,6 +86,7 @@
             android:layout_height="@dimen/item_size_20"/>
     </LinearLayout>
     <TextView
+        android:id="@+id/body_text"
         android:layout_marginTop="@dimen/margin_10"
         tools:text="게시물 테스트 텍스트"
         android:layout_width="match_parent"

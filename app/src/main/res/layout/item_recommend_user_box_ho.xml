@@ -40,6 +40,7 @@
         android:ellipsize="end"
         android:layout_height="wrap_content"/>
     <TextView
+
         tools:text="#위글 #위글러 #패션"
         app:layout_constraintTop_toBottomOf="@id/ru_box_username"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,6 +52,7 @@
         android:layout_width="@dimen/top_len_120"
         android:layout_height="wrap_content"/>
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/follow_button"
         android:text="팔로우"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"

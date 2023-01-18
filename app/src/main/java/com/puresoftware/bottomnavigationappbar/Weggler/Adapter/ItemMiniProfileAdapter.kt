@@ -3,6 +3,7 @@ package com.puresoftware.bottomnavigationappbar.Weggler.Adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Profile
 import com.puresoftware.bottomnavigationappbar.databinding.ItemMiniProfileBinding
@@ -17,8 +18,18 @@ class ItemMiniProfileAdapter(
 
     inner class ItemMiniProfileViewHolder(private val binding:ItemMiniProfileBinding)
         :RecyclerView.ViewHolder(binding.root) {
-        fun bind(profile: Profile) {
+        fun bind() {
+            val profile = itemSet[absoluteAdapterPosition]
+            //뷰 세팅
+            binding.mpBoxUsername.text = profile.username
+            Glide.with(mainActivity)
+                .load(profile.userImage)
+                .into(binding.mpBoxImage)
 
+            //클릭 이벤트
+            binding.root.setOnClickListener {
+
+            }
         }
     }
 
@@ -28,7 +39,7 @@ class ItemMiniProfileAdapter(
     }
 
     override fun onBindViewHolder(holder: ItemMiniProfileViewHolder, position: Int) {
-        holder.bind(itemSet[position])
+        holder.bind()
     }
 
     override fun getItemCount()= itemSet.size
