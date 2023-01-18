@@ -38,6 +38,9 @@ class ItemRecommendUserHoAdapter(
                 binding.followButton.setOnClickListener {
 
                 }
+                binding.delData.setOnClickListener {
+
+                }
             }
         }
 

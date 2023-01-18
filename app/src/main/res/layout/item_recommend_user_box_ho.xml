@@ -8,6 +8,7 @@
     android:layout_width="@dimen/top_len_140"
     android:layout_height="@dimen/top_len_180">
     <ImageView
+        android:id="@+id/del_data"
         android:layout_margin="@dimen/margin_5"
         android:layout_width="@dimen/item_size_20"
         android:layout_height="@dimen/item_size_20"
