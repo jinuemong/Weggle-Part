@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/add_free_talk"
+        android:title="프리토크"/>
+    <item
+        android:id="@+id/add_joint"
+        android:title="공구해요"/>
+
+</menu>

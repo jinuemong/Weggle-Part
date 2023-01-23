@@ -1,20 +1,17 @@
-package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment
+package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.Community
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.tabs.TabLayout
-import com.google.gson.Gson
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.SelectDetailsTabFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentMyPostingTabBinding
-import okhttp3.internal.concurrent.Task
 
 
 //내가 쓴 글

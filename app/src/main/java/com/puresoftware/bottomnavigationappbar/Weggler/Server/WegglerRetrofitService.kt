@@ -22,4 +22,6 @@ interface WegglerRetrofitService {
     fun addCommunityPost(
         @Field("body")body: MultiCommunityData
     ): Call<MultiCommunityData>
+
+
 }

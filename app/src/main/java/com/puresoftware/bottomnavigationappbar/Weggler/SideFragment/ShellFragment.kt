@@ -6,10 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import androidx.fragment.app.FragmentManager
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.Community.FreeTalkFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.Community.JointPurchaseFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.Community.MyPostingTabFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentShellBinding
 
 

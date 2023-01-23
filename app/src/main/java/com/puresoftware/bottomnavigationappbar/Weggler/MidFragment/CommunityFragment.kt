@@ -5,12 +5,15 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityPostManager
 import com.puresoftware.bottomnavigationappbar.Weggler.Server.WegglerApplication
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.AddCommunity.AddFreeTalkFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.AddCommunity.AddJointPurchaseFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.ShellFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentCommunityBinding
 
@@ -43,6 +46,20 @@ class CommunityFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initView()
         setUpListener()
+        registerForContextMenu(binding.addButton)
+    }
+
+    //메뉴 클릭 add 버튼
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.add_free_talk->{
+                mainActivity.changeFragment(AddFreeTalkFragment())
+            }
+            R.id.add_joint->{
+                mainActivity.changeFragment(AddJointPurchaseFragment())
+            }
+        }
+        return false
     }
 
     private fun initView() {
@@ -74,5 +91,6 @@ class CommunityFragment : Fragment() {
             mainActivity.setMainViewVisibility(false)
             mainActivity.changeFragment(ShellFragment("인기 게시글"))
         }
+
     }
 }

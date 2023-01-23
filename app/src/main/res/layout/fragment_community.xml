@@ -201,6 +201,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
+                android:id="@+id/add_button"
                 android:layout_marginEnd="@dimen/margin_10"
                 android:layout_marginTop="@dimen/top_len_80"
                 app:layout_constraintEnd_toEndOf="parent"
