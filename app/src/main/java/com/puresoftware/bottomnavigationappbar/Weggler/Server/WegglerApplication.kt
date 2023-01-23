@@ -10,7 +10,7 @@ import retrofit2.create
 
 class WegglerApplication : Application() {
     lateinit var service: WegglerRetrofitService
-    val baseUrl = ""
+    private val baseUrl = "http://dev-api.kooru.be/api/v1"
     override fun onCreate() {
         super.onCreate()
         Stetho.initializeWithDefaults(this)
