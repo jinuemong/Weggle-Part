@@ -12,6 +12,7 @@ class CommunityPostManager (
 ){
     private val masterApp = masterApplication
 
+    //전체 post list 얻기
     fun getCommunityPostList(page:Int,size:Int,paramFunc:(Community?)->Unit){
         masterApp.service.getCommunityPostList(page,size)
             .enqueue(object : Callback<Community>{
@@ -29,4 +30,7 @@ class CommunityPostManager (
 
             })
     }
+
+    //community 데이터 전송
+
 }

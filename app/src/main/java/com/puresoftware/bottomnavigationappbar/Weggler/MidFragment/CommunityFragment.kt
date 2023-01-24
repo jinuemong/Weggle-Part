@@ -1,13 +1,12 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.MidFragment
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.*
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityPostManager
@@ -46,16 +45,48 @@ class CommunityFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initView()
         setUpListener()
-        registerForContextMenu(binding.addButton)
+
+        binding.addButton.setOnClickListener(object :View.OnClickListener{
+            @RequiresApi(Build.VERSION_CODES.N)
+            override fun onClick(v: View?) {
+                if (v != null) {
+                    registerForContextMenu(v)
+                    v.showContextMenu((v.x),(v.y) )
+                }
+            }
+
+        })
+//        binding.addButton.setOnClickListener {
+//            this.registerForContextMenu(it)
+//            mainActivity.
+//            mainActivity.openContextMenu(it,)
+//
+//        }
     }
 
+    // 메뉴 생성
+    override fun onCreateContextMenu(
+        menu: ContextMenu,
+        v: View,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+
+        when (v.id){
+            R.id.add_button->{
+                mainActivity.menuInflater.inflate(R.menu.pop_up_in_community,menu)
+            }
+        }
+    }
     //메뉴 클릭 add 버튼
     override fun onContextItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.add_free_talk->{
+                mainActivity.setMainViewVisibility(false)
                 mainActivity.changeFragment(ShellFragment("프리토크 글쓰기"))
             }
             R.id.add_joint->{
+                mainActivity.setMainViewVisibility(false)
                 mainActivity.changeFragment(ShellFragment("공구해요 글쓰기"))
             }
         }
