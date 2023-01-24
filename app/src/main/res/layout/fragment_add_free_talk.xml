@@ -137,4 +137,35 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_10"/>
     </LinearLayout>
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:id="@+id/upload_linear"
+        android:background="@drawable/round_border_plus"
+        android:layout_marginTop="@dimen/margin_20"
+        android:layout_marginBottom="@dimen/margin_20"
+        android:layout_width="@dimen/top_len_70"
+        android:layout_height="@dimen/top_len_70">
+        <ImageView
+            android:src="@drawable/ic_iconmonstr_picture_thin"
+            android:layout_width="@dimen/item_size_30"
+            android:layout_height="@dimen/item_size_30"/>
+        <TextView
+            android:id="@+id/upload_text"
+            android:layout_marginTop="@dimen/margin_3"
+            android:textColor="@color/line_color"
+            android:text="0/6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <TextView
+        android:textColor="@color/white"
+        android:background="@drawable/round_border_plus"
+        android:backgroundTint="@color/line_color"
+        android:gravity="center"
+        android:text="게시글 업로드"
+        style="@style/tab_text"
+        android:id="@+id/upload_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_size_40"/>
 </LinearLayout>

@@ -21,6 +21,7 @@
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/ic_baseline_add_circle_outline_24.xml" value="0.241" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.181" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.241" />
+        <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/ic_baseline_image_24.xml" value="0.1" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/ic_baseline_keyboard_arrow_down_24.xml" value="0.1585" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/ic_baseline_keyboard_arrow_up_24.xml" value="0.1585" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/ic_baseline_play_arrow_24.xml" value="0.1585" />
@@ -31,6 +32,7 @@
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/ic_iconmonstr_error_lined.xml" value="0.1055" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/ic_iconmonstr_help_6.xml" value="0.1055" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/ic_iconmonstr_pencil_square_lined.xml" value="0.1055" />
+        <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/ic_iconmonstr_picture_thin.xml" value="0.166" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/ic_iconmonstr_speech_bubble_3.xml" value="0.2515" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/ic_iconmonstr_speech_bubble_comment_thin.xml" value="0.241" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/ic_outline_account_circle_24.xml" value="0.241" />
@@ -42,13 +44,14 @@
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/my_posting_tab_layout_selector_one.xml" value="0.1" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/my_posting_tab_layout_selector_two.xml" value="0.1" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/planet_svgrepo_com.xml" value="0.1" />
+        <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/weggle.xml" value="0.166" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/activity_main.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/brands_fragment.xml" value="0.22327898550724637" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/center_weggle_fragment.xml" value="0.22327898550724637" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/community_type_1.xml" value="0.24479166666666666" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/community_type_2.xml" value="0.24479166666666666" />
-        <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/fragment_add_free_talk.xml" value="0.152" />
-        <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/fragment_add_joint_purchase.xml" value="0.109375" />
+        <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/fragment_add_free_talk.xml" value="0.2" />
+        <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/fragment_add_joint_purchase.xml" value="0.176" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/fragment_community.xml" value="0.2" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/fragment_feed.xml" value="0.2" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/fragment_free_talk.xml" value="0.24947916666666667" />

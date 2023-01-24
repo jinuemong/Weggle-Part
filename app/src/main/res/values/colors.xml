@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="line_color">#D3CDCD</color>
+    <color name="line_color_dark">#AAA3A3</color>
     <color name="select_tab_color">#E665C3</color>
     <color name="community_1_color">#517BEC</color>
     <color name="community_2_color">#F4C436</color>

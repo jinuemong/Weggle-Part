@@ -1,14 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/margin_20"
     tools:context=".Weggler.SideFragment.AddCommunity.AddJointPurchaseFragment">
-
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:layout_marginTop="@dimen/margin_10"
+        android:text="제목"
+        style="@style/text_style_for_add"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="AddJointPurchaseFragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_10"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:padding="@dimen/margin_5"
+        android:background="@drawable/round_border_plus"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_size_50">
+        <EditText
+            android:id="@+id/typ_subject"
+            android:maxLength="28"
+            android:background="@null"
+            android:hint="제목을 입력해주세요 :)"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <ImageView
+            android:id="@+id/del_subject"
+            android:layout_marginEnd="@dimen/margin_20"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/ic_baseline_close_24"
+            android:layout_width="@dimen/item_size_25"
+            android:layout_height="@dimen/item_size_25"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_margin="@dimen/margin_5"
+        android:textColor="@color/line_color"
+        android:layout_gravity="end"
+        android:text="0/28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_marginTop="@dimen/margin_10"
+        android:text="내용"
+        style="@style/text_style_for_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_10"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:padding="@dimen/margin_10"
+        android:background="@drawable/round_border_plus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:gravity="top"
+            android:id="@+id/typ_content"
+            android:maxLength="200"
+            android:background="@null"
+            android:lines="7"
+            android:hint="내용을 입력해주세요. (최소 10자 이상)"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</FrameLayout>
+    <TextView
+        android:layout_margin="@dimen/margin_5"
+        android:textColor="@color/line_color"
+        android:layout_gravity="end"
+        android:text="0/200"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_marginTop="@dimen/margin_15"
+        android:text="공동구매 상품 태그"
+        style="@style/text_style_for_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_15"/>
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:backgroundTint="@color/line_color"
+        android:padding="@dimen/margin_5"
+        android:background="@drawable/round_border_plus"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_size_50">
+        <ImageView
+            android:layout_marginEnd="@dimen/margin_10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/ic_baseline_search_24"
+            android:layout_width="@dimen/margin_30"
+            android:layout_height="@dimen/margin_30"/>
+        <TextView
+            android:textSize="@dimen/text_size_17"
+            android:textColor="@color/line_color_dark"
+            android:text="브랜드명,상품명,상품번호 등"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+
+    <TextView
+        android:layout_marginTop="@dimen/top_len_100"
+        android:textColor="@color/white"
+        android:background="@drawable/round_border_plus"
+        android:backgroundTint="@color/line_color"
+        android:gravity="center"
+        android:text="게시글 업로드"
+        style="@style/tab_text"
+        android:id="@+id/upload_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_size_40"/>
+</LinearLayout>
