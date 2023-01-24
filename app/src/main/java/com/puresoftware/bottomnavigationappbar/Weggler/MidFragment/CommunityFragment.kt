@@ -53,10 +53,10 @@ class CommunityFragment : Fragment() {
     override fun onContextItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.add_free_talk->{
-                mainActivity.changeFragment(AddFreeTalkFragment())
+                mainActivity.changeFragment(ShellFragment("프리토크 글쓰기"))
             }
             R.id.add_joint->{
-                mainActivity.changeFragment(AddJointPurchaseFragment())
+                mainActivity.changeFragment(ShellFragment("공구해요 글쓰기"))
             }
         }
         return false

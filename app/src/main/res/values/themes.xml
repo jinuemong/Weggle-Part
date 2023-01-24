@@ -66,4 +66,9 @@
         <item name="android:text">프리토크</item>
     </style>
 
+    <style name="text_style_for_add">
+        <item name="android:textSize">@dimen/text_size_20</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

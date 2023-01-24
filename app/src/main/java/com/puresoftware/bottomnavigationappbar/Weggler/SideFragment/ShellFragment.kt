@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.AddCommunity.AddFreeTalkFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.AddCommunity.AddJointPurchaseFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.Community.FreeTalkFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.Community.JointPurchaseFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.Community.MyPostingTabFragment
@@ -71,6 +73,12 @@ class ShellFragment(
             }
             "내가 쓴 글"->{ //MyPostingTabFragment
                 setShellContainer(MyPostingTabFragment())
+            }
+            "프리토크 글쓰기"->{
+                setShellContainer(AddFreeTalkFragment())
+            }
+            "공구해요 글쓰기"->{
+                setShellContainer(AddJointPurchaseFragment())
             }
         }
     }
