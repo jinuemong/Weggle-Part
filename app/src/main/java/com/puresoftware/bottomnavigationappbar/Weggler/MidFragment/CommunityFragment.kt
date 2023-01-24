@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.puresoftware.bottomnavigationappbar.MainActivity
@@ -51,17 +52,14 @@ class CommunityFragment : Fragment() {
             override fun onClick(v: View?) {
                 if (v != null) {
                     registerForContextMenu(v)
-                    v.showContextMenu((v.x),(v.y) )
+
+                    v.showContextMenu(((v.x-v.x/2)),((v.y-v.y*2.5).toFloat()) )
+
                 }
             }
 
         })
-//        binding.addButton.setOnClickListener {
-//            this.registerForContextMenu(it)
-//            mainActivity.
-//            mainActivity.openContextMenu(it,)
-//
-//        }
+
     }
 
     // 메뉴 생성
@@ -75,6 +73,7 @@ class CommunityFragment : Fragment() {
         when (v.id){
             R.id.add_button->{
                 mainActivity.menuInflater.inflate(R.menu.pop_up_in_community,menu)
+
             }
         }
     }

@@ -21,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:textColor="@color/black"
             android:textSize="@dimen/text_size_25"
             android:textStyle="bold"
             tools:text="상단 텍스트 입니다 " />
