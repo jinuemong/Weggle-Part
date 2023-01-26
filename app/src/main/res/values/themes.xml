@@ -13,7 +13,6 @@
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <item name="android:statusBarColor">@color/white</item>
         <!-- Customize your theme here. -->
-
     </style>
 
 
@@ -79,4 +78,5 @@
         <item name="android:textColor">@color/community__my_color</item>
         <item name="android:gravity">center</item>
     </style>
+
 </resources>

@@ -69,7 +69,6 @@ class CommunityFragment : Fragment() {
         menuInfo: ContextMenu.ContextMenuInfo?
     ) {
         super.onCreateContextMenu(menu, v, menuInfo)
-
         when (v.id){
             R.id.add_button->{
                 mainActivity.menuInflater.inflate(R.menu.pop_up_in_community,menu)
@@ -79,6 +78,7 @@ class CommunityFragment : Fragment() {
     }
     //메뉴 클릭 add 버튼
     override fun onContextItemSelected(item: MenuItem): Boolean {
+
         when(item.itemId){
             R.id.add_free_talk->{
                 mainActivity.setMainViewVisibility(false)

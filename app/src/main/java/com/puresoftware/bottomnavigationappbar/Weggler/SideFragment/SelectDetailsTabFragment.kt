@@ -13,6 +13,7 @@ import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.Community.FreeTalkFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.Community.JointPurchaseFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.Community.TotalFragment
 import com.puresoftware.bottomnavigationappbar.databinding.SelectDetailsTabBinding
 
 //selectPosition  : 포스팅 , 댓글
