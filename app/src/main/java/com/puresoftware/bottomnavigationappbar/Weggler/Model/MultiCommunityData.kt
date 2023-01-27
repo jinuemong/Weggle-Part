@@ -5,6 +5,8 @@ data class MultiCommunityData (
     val mainImage : String,
     val subject:String,
     val text : String,
+    val urlList : ArrayList<String>, //free
+    val jointProduct : String, //joint
     val totalLike : Int,
     val totalComment : Int,
 )

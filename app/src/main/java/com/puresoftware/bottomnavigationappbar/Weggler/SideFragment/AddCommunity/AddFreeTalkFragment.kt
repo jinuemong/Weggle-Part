@@ -13,6 +13,13 @@ import com.puresoftware.bottomnavigationappbar.databinding.FragmentAddFreeTalkBi
 class AddFreeTalkFragment : Fragment() {
     private var _binding : FragmentAddFreeTalkBinding? = null
     private val binding get()=_binding!!
+    private val type = 2
+    private var mainImage =""
+    var subject = ""
+    var text  = ""
+    var urlList  = ArrayList<String>()
+    val totalLike =0
+    val totalComment =0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
