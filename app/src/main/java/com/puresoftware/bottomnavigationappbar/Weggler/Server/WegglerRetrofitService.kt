@@ -19,7 +19,6 @@ interface WegglerRetrofitService {
 
     //post community post data (type 1: joint , type 2 : free)
     @POST("boards/community/posts/")
-    @FormUrlEncoded
     fun addCommunityPost(
         @Field("body")body: MultiCommunityData,
     ): Call<CommunityContent>
