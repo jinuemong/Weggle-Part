@@ -99,7 +99,7 @@ class CommunityFragment : Fragment() {
         community.getCommunityPostList(0,10, paramFunc = {
             if(it!=null){
                 for ( item in it.content){
-                    Log.d("test////////////////",item.body.toString())
+                    item.body.toString().let { it1 -> Log.d("test////////////////", it1) }
                 }
             }
         })

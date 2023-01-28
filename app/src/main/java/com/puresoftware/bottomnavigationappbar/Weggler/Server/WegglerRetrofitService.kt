@@ -1,5 +1,6 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.Server
 
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.Community
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityList
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityContent
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.MultiCommunityData
@@ -18,9 +19,10 @@ interface WegglerRetrofitService {
     ): Call<CommunityList>
 
     //post community post data (type 1: joint , type 2 : free)
+
     @POST("boards/community/posts/")
     fun addCommunityPost(
-        @Field("body")body: MultiCommunityData,
+        @Body body: Community,
     ): Call<CommunityContent>
 
 

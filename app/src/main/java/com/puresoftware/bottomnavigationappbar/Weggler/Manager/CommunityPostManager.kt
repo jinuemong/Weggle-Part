@@ -1,10 +1,12 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.Manager
 
 import android.util.Log
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.Community
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityList
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityContent
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.MultiCommunityData
 import com.puresoftware.bottomnavigationappbar.Weggler.Server.WegglerApplication
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,7 +37,7 @@ class CommunityPostManager (
 
     //community  type2 : Free 데이터 전송
     fun addCommunityFreeTalk(multiCommunityData: MultiCommunityData,paramFunc: (Boolean?) -> Unit){
-        masterApp.service.addCommunityPost(body = multiCommunityData)
+        masterApp.service.addCommunityPost(Community(multiCommunityData))
             .enqueue(object :Callback<CommunityContent>{
                 override fun onResponse(
                     call: Call<CommunityContent>,
@@ -46,7 +48,8 @@ class CommunityPostManager (
                         Log.d("111231231231213 1",response.body()?.postId.toString())
                     }else{
                         paramFunc(false)
-                        Log.d("111231231231213 2",response.errorBody().toString())
+                        Log.d("111231231231213 2",response.raw().toString())
+                        Log.d("111231231231213 2",response.code().toString())
                         Log.d("111231231231213 2",response.body().toString())
                     }
                 }
