@@ -17,6 +17,9 @@
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable-xxxhdpi/round_border.xml" value="0.1" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable-xxxhdpi/round_border_a.xml" value="0.1755" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable-xxxhdpi/round_border_plus.xml" value="0.1" />
+        <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable-xxxhdpi/round_border_plus_color_select.xml" value="0.167" />
+        <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable-xxxhdpi/round_border_plus_color_selected.xml" value="0.155" />
+        <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable-xxxhdpi/round_border_unselected.xml" value="0.155" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.156" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/ic_baseline_add_circle_outline_24.xml" value="0.241" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.181" />
@@ -36,6 +39,7 @@
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/ic_iconmonstr_speech_bubble_3.xml" value="0.2515" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/ic_iconmonstr_speech_bubble_comment_thin.xml" value="0.241" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/ic_outline_account_circle_24.xml" value="0.241" />
+        <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/ic_round_card_giftcard_24.xml" value="0.167" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/ic_round_home_24.xml" value="0.1" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/ic_round_menu_24.xml" value="0.1" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable/menu_selector_color.xml" value="0.1" />
@@ -51,7 +55,8 @@
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/community_type_1.xml" value="0.24479166666666666" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/community_type_2.xml" value="0.24479166666666666" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/fragment_add_free_talk.xml" value="0.2" />
-        <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/fragment_add_joint_purchase.xml" value="0.176" />
+        <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/fragment_add_joint_purchase.xml" value="0.2" />
+        <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/fragment_challenge.xml" value="0.1453125" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/fragment_community.xml" value="0.2" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/fragment_feed.xml" value="0.2" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/fragment_free_talk.xml" value="0.24947916666666667" />

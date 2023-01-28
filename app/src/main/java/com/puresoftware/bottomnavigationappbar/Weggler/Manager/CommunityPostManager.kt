@@ -31,6 +31,8 @@ class CommunityPostManager (
             })
     }
 
-    //community 데이터 전송
+    //community  type2 : Free 데이터 전송
+    fun addCommunityFreeTalk(){
 
+    }
 }

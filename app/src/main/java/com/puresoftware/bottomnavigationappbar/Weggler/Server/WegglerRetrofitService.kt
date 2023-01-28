@@ -16,7 +16,7 @@ interface WegglerRetrofitService {
         @Query(value = "size",encoded=true)size:Int,
     ): Call<Community>
 
-    //post community post data
+    //post community post data (type 1: joint , type 2 : free)
     @POST("boards/community/posts/")
     @FormUrlEncoded
     fun addCommunityPost(

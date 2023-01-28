@@ -207,11 +207,10 @@
 
         <TextView
             android:id="@+id/upload_button"
-            style="@style/tab_text"
+            android:textSize="@dimen/text_size_17"
             android:layout_width="match_parent"
             android:layout_height="@dimen/item_size_50"
-            android:background="@drawable/round_border_plus"
-            android:backgroundTint="@color/line_color"
+            android:background="@drawable/round_border_unselected"
             android:gravity="center"
             android:text="게시글 업로드"
             android:textColor="@color/white" />
