@@ -88,11 +88,13 @@ class AddJointPurchaseFragment : Fragment() {
         }
 
         // 게시물 작성 가능 : Post
-        if (subject!="" && text.length>=10 && jointProduct!=""){
-            binding.uploadButton.setOnClickListener {
+
+        binding.uploadButton.setOnClickListener {
+            if (subject != "" && text.length >= 10 && jointProduct != "") {
                 mainActivity.goBackFragment(this@AddJointPurchaseFragment)
             }
         }
+
     }
     @SuppressLint("ResourceAsColor")
     private fun setButtonColor(){

@@ -1,6 +1,7 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.Server
 
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.Community
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityList
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityContent
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.MultiCommunityData
 import retrofit2.Call
 import retrofit2.http.*
@@ -14,14 +15,14 @@ interface WegglerRetrofitService {
     fun getCommunityPostList(
         @Query(value = "page",encoded=true)page:Int,
         @Query(value = "size",encoded=true)size:Int,
-    ): Call<Community>
+    ): Call<CommunityList>
 
     //post community post data (type 1: joint , type 2 : free)
     @POST("boards/community/posts/")
     @FormUrlEncoded
     fun addCommunityPost(
-        @Field("body")body: MultiCommunityData
-    ): Call<MultiCommunityData>
+        @Field("body")body: MultiCommunityData,
+    ): Call<CommunityContent>
 
 
 }

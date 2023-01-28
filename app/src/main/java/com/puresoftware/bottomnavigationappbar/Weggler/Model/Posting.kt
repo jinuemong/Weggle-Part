@@ -2,6 +2,7 @@ package com.puresoftware.bottomnavigationappbar.Weggler.Model
 
 import java.io.Serializable
 
+//수정해야함 ! Posting이  CommunityContent로 변경
 class Posting (
     var profile : Profile,
     var videoUrl : String,

@@ -9,8 +9,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
+import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityPostManager
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.MultiCommunityData
+import com.puresoftware.bottomnavigationappbar.Weggler.Server.WegglerApplication
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentAddFreeTalkBinding
 
 
@@ -95,9 +99,20 @@ class AddFreeTalkFragment : Fragment() {
             linkUrl = ""
         }
         // 게시물 작성 가능 : Post
-        if (subject!="" && text.length>=10){
-            binding.uploadButton.setOnClickListener {
-                mainActivity.goBackFragment(this@AddFreeTalkFragment)
+        binding.uploadButton.setOnClickListener {
+            if (subject != "" && text.length >= 10) {
+                val multiCommunityData = MultiCommunityData(
+                    type, mainImage, subject, text, linkUrl, arrayListOf(),
+                "",0,0)
+                CommunityPostManager(mainActivity.application as WegglerApplication)
+                    .addCommunityFreeTalk(multiCommunityData, paramFunc = {
+                        if (it==null){
+                            Toast.makeText(mainActivity,"NetworkErr", Toast.LENGTH_SHORT)
+                                .show()
+                        }else{
+                            mainActivity.goBackFragment(this@AddFreeTalkFragment)
+                        }
+                    })
             }
         }
     }
