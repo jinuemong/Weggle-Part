@@ -45,12 +45,8 @@ class CommunityPostManager (
                 ) {
                     if(response.isSuccessful){
                         paramFunc(true)
-                        Log.d("111231231231213 1",response.body()?.postId.toString())
                     }else{
                         paramFunc(false)
-                        Log.d("111231231231213 2",response.raw().toString())
-                        Log.d("111231231231213 2",response.code().toString())
-                        Log.d("111231231231213 2",response.body().toString())
                     }
                 }
                 override fun onFailure(call: Call<CommunityContent>, t: Throwable) {
