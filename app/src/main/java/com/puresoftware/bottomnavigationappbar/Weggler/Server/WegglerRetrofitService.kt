@@ -14,8 +14,9 @@ interface WegglerRetrofitService {
     //get community post List
     @GET("boards/community/posts/")
     fun getCommunityPostList(
-        @Query(value = "page",encoded=true)page:Int,
-        @Query(value = "size",encoded=true)size:Int,
+        @Query(value = "page",encoded=true)page:Int?,
+        @Query(value = "size",encoded=true)size:Int?,
+        @Query(value = "sort",encoded = true)sort:List<String>?,
     ): Call<CommunityList>
 
     //post community post data (type 1: joint , type 2 : free)

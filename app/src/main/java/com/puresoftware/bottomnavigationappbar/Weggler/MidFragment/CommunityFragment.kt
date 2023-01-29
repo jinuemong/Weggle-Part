@@ -94,13 +94,16 @@ class CommunityFragment : Fragment() {
 
     private fun initView() {
 
-        //테스트 코드
+        //커뮤니티 데이터 불러오기
         val community = CommunityPostManager(wegglerApp)
-        community.getCommunityPostList(0,10, paramFunc = {
+        community.getCommunityPostList(0, listOf("postId,DESC"), paramFunc = {
             if(it!=null){
-                for ( item in it.content){
-                    Log.d("test////////////////",item.body.subject)
-                }
+                mainActivity.communityViewModel.communityLiveData.value = it.content
+            }
+        })
+        community.getPopularCommunityPostList(10, listOf("body,DESC"), paramFunc = {
+            if(it!=null){
+
             }
         })
     }

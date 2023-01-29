@@ -17,13 +17,35 @@ class CommunityPostManager (
     private val masterApp = masterApplication
 
     //전체 post list 얻기
-    fun getCommunityPostList(page:Int,size:Int,paramFunc:(CommunityList?)->Unit){
-        masterApp.service.getCommunityPostList(page,size)
+    fun getCommunityPostList(page:Int,sort:List<String>,paramFunc:(CommunityList?)->Unit){
+        masterApp.service.getCommunityPostList(page,null,sort)
             .enqueue(object : Callback<CommunityList>{
                 override fun onResponse(call: Call<CommunityList>, response: Response<CommunityList>) {
                     if(response.isSuccessful){
                         paramFunc(response.body())
                     }else{
+                        paramFunc(null)
+                    }
+                }
+
+                override fun onFailure(call: Call<CommunityList>, t: Throwable) {
+                    paramFunc(null)
+                }
+
+            })
+    }
+
+    //인기 post list 얻기
+    fun getPopularCommunityPostList(size: Int,sort:List<String>,paramFunc: (CommunityList?) -> Unit){
+        masterApp.service.getCommunityPostList(null,size,sort)
+            .enqueue(object :Callback<CommunityList>{
+                override fun onResponse(
+                    call: Call<CommunityList>,
+                    response: Response<CommunityList>
+                ) {
+                    if (response.isSuccessful){
+                        paramFunc(response.body())
+                    }else {
                         paramFunc(null)
                     }
                 }
