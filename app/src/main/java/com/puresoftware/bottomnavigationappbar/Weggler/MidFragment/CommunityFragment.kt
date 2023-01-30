@@ -14,6 +14,7 @@ import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityPostMana
 import com.puresoftware.bottomnavigationappbar.Weggler.Server.WegglerApplication
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.AddCommunity.AddFreeTalkFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.AddCommunity.AddJointPurchaseFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.Community.TotalFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.ShellFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentCommunityBinding
 
@@ -45,7 +46,6 @@ class CommunityFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
-        setUpListener()
 
         binding.addButton.setOnClickListener(object :View.OnClickListener{
             @RequiresApi(Build.VERSION_CODES.N)
@@ -101,11 +101,18 @@ class CommunityFragment : Fragment() {
                 mainActivity.communityViewModel.communityLiveData.value = it.content
             }
         })
+
+        //수정 필요
+        //인기 게시물 불러오기
         community.getPopularCommunityPostList(10, listOf("body,DESC"), paramFunc = {
             if(it!=null){
-
+                mainActivity.communityViewModel.popularPostingLiveData.value = it.content
             }
         })
+
+        //후처리 코드
+        val startThread = GetThread()
+        startThread.start()
     }
     private fun setUpListener() {
         binding.commGoJointPurchaseList.setOnClickListener {
@@ -125,5 +132,22 @@ class CommunityFragment : Fragment() {
             mainActivity.changeFragment(ShellFragment("인기 게시글"))
         }
 
+    }
+
+    inner class GetThread(): Thread(){
+        override fun run() {
+            super.run()
+            try {
+                sleep(500)
+                //하단 뷰 교체
+                mainActivity.fragmentManager!!.beginTransaction()
+                    .replace(R.id.total_com_list_container,TotalFragment())
+                    .commit()
+                //클릭 리스너 (뷰가 그려진 후에 호출)
+                setUpListener()
+            } catch (e: InterruptedException) {
+                e.printStackTrace()
+            }
+        }
     }
 }

@@ -15,6 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
+            android:id="@+id/time_text"
             android:layout_marginStart="@dimen/margin_10"
             tools:text="x년 전 "
             android:textSize="@dimen/text_size_15"
@@ -28,6 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
+            android:id="@+id/main_image"
             android:layout_marginEnd="@dimen/margin_10"
             android:background="@drawable/round_border"
             android:backgroundTint="@color/community_2_color"
@@ -40,6 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <TextView
+                android:id="@+id/suject_text"
                 android:textStyle="bold"
                 android:textSize="@dimen/text_size_17"
                 tools:text="제목"
@@ -48,6 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:id="@+id/content_text"
                 tools:text="내용"
                 android:lines="2"
                 android:ellipsize="end"
@@ -71,6 +75,7 @@
             android:layout_height="@dimen/item_size_25"
             android:src="@drawable/ic_baseline_favorite_24" />
         <TextView
+            android:id="@+id/like_num"
             android:gravity="center"
             tools:text="9999"
             android:layout_marginStart="@dimen/margin_3"
@@ -82,6 +87,7 @@
             android:layout_width="@dimen/item_size_25"
             android:layout_height="@dimen/item_size_25"/>
         <TextView
+            android:id="@+id/comment_num"
             android:gravity="center"
             tools:text="9999"
             android:layout_marginStart="@dimen/margin_3"

@@ -211,10 +211,8 @@
                 android:backgroundTint="@android:color/transparent"
                 android:layout_width="@dimen/item_size_60"
                 android:layout_height="@dimen/item_size_60"/>
-            <androidx.recyclerview.widget.RecyclerView
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:orientation="vertical"
-                tools:listitem="@layout/item_community_small_free"
+            <FrameLayout
+                android:id="@+id/total_com_list_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 

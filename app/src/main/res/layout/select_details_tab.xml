@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="@dimen/margin_20"
     android:orientation="vertical"
     android:background="@color/white"
     android:clickable="true"
@@ -10,6 +9,7 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.tabs.TabLayout
+        android:layout_margin="@dimen/margin_20"
         android:id="@+id/tjf_tab_layout"
         app:tabSelectedTextColor="@color/my_selected_text"
         app:tabIndicatorHeight="0dp"
