@@ -1,4 +1,4 @@
-package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment
+package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityFragment
 
 import android.content.Context
 import android.os.Bundle
@@ -11,9 +11,9 @@ import androidx.fragment.app.FragmentManager
 import com.google.android.material.tabs.TabLayout
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.Community.FreeTalkFragment
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.Community.JointPurchaseFragment
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.Community.TotalFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.FreeTalkFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.JointPurchaseFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.TotalFragment
 import com.puresoftware.bottomnavigationappbar.databinding.SelectDetailsTabBinding
 
 //selectPosition  : 포스팅 , 댓글
@@ -43,16 +43,16 @@ class SelectDetailsTabFragment(
         super.onViewCreated(view, savedInstanceState)
 
         //tab layout 설정
-        setPostingTabContainer(TotalFragment())
+        setPostingTabContainer(TotalFragment(selectPosition))
         binding.tjfTabLayout.apply {
             setTabItemMargin(this)
             addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
                 override fun onTabSelected(tab: TabLayout.Tab?) {
                     when(tab?.position){
-                        0->{setPostingTabContainer(TotalFragment())}
-                        1->{setPostingTabContainer(JointPurchaseFragment())}
-                        2->{setPostingTabContainer(FreeTalkFragment())}
-                        else->{setPostingTabContainer(TotalFragment())}
+                        0->{setPostingTabContainer(TotalFragment(selectPosition))}
+                        1->{setPostingTabContainer(JointPurchaseFragment(selectPosition))}
+                        2->{setPostingTabContainer(FreeTalkFragment(selectPosition))}
+                        else->{setPostingTabContainer(TotalFragment(selectPosition))}
                     }
                 }
                 override fun onTabUnselected(tab: TabLayout.Tab?) {}

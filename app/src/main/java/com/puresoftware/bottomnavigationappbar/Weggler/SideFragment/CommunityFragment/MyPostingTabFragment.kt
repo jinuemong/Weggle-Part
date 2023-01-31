@@ -1,4 +1,4 @@
-package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.Community
+package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityFragment
 
 import android.content.Context
 import android.os.Bundle
@@ -10,7 +10,6 @@ import androidx.fragment.app.FragmentManager
 import com.google.android.material.tabs.TabLayout
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.SelectDetailsTabFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentMyPostingTabBinding
 
 
@@ -38,8 +37,8 @@ class MyPostingTabFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        postingFrag = SelectDetailsTabFragment("게시글")
-        commendFrag = SelectDetailsTabFragment("댓글")
+        postingFrag = SelectDetailsTabFragment("My Posting")
+        commendFrag = SelectDetailsTabFragment("My Comment")
 
         //tab 설정
         setDetailsContainer(postingFrag)

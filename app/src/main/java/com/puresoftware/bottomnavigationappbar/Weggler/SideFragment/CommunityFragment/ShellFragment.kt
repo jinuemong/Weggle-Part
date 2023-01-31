@@ -1,4 +1,4 @@
-package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment
+package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityFragment
 
 import android.content.Context
 import android.os.Bundle
@@ -11,9 +11,8 @@ import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.AddCommunity.AddFreeTalkFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.AddCommunity.AddJointPurchaseFragment
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.Community.FreeTalkFragment
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.Community.JointPurchaseFragment
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.Community.MyPostingTabFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.FreeTalkFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.JointPurchaseFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentShellBinding
 
 
@@ -60,10 +59,10 @@ class ShellFragment(
         //다른 adapter 연결 혹은 view 연결
         when (topText){
             "공구해요"->{ //JointPurchaseFragment
-                setShellContainer(JointPurchaseFragment())
+                setShellContainer(JointPurchaseFragment("Main Posting"))
             }
             "프리토크"->{ //FreeTalkFragment
-                setShellContainer(FreeTalkFragment())
+                setShellContainer(FreeTalkFragment("Main Posting"))
             }
             "추천 위글러"->{ //RecommendedUsersFragment
                 setShellContainer(RecommendedUsersFragment())

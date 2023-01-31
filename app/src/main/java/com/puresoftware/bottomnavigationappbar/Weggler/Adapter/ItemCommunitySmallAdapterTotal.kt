@@ -20,16 +20,14 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 //프리 or 공구 or 통합
-class ItemCommunitySmallAdapter(
+class ItemCommunitySmallAdapterTotal(
     private val mainActivity: MainActivity,
-    private val dataSet : ArrayList<CommunityContent>,
+    private var dataSet : ArrayList<CommunityContent>,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var jointBinding: ItemCommunitySmallJointBinding
     private lateinit var freeBinding: ItemCommunitySmallFreeBinding
-    val dataType = 0 //0 : total , 1: joint , 2: Free
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view: View?
         return when (viewType) {
             //type 공구해요
             type_joint -> {

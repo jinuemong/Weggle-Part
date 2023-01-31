@@ -1,4 +1,4 @@
-package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment
+package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityFragment
 
 import android.content.Context
 import android.os.Bundle

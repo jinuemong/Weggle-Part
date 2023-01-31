@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/details_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Weggler.SideFragment.PopularPostsFragment">
-    <include
-        android:id="@+id/select_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        layout="@layout/select_details_tab"/>
+    tools:context=".Weggler.SideFragment.CommunityFragment.PopularPostsFragment">
+
 </FrameLayout>

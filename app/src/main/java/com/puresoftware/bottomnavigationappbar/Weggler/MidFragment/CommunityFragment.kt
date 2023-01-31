@@ -3,19 +3,15 @@ package com.puresoftware.bottomnavigationappbar.Weggler.MidFragment
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityPostManager
 import com.puresoftware.bottomnavigationappbar.Weggler.Server.WegglerApplication
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.AddCommunity.AddFreeTalkFragment
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.AddCommunity.AddJointPurchaseFragment
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.Community.TotalFragment
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.ShellFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.TotalFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityFragment.ShellFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentCommunityBinding
 
 
@@ -99,6 +95,8 @@ class CommunityFragment : Fragment() {
         community.getCommunityPostList(0, listOf("postId,DESC"), paramFunc = {
             if(it!=null){
                 mainActivity.communityViewModel.communityLiveData.value = it.content
+                //아래는 나중에 수정
+                mainActivity.communityViewModel.myPostingLiveData.value = it.content
             }
         })
 
@@ -141,7 +139,7 @@ class CommunityFragment : Fragment() {
                 sleep(500)
                 //하단 뷰 교체
                 mainActivity.fragmentManager!!.beginTransaction()
-                    .replace(R.id.total_com_list_container,TotalFragment())
+                    .replace(R.id.total_com_list_container,TotalFragment("Main Posting"))
                     .commit()
                 //클릭 리스너 (뷰가 그려진 후에 호출)
                 setUpListener()

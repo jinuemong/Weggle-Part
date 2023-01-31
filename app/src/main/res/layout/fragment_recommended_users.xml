@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Weggler.SideFragment.RecommendedUsersFragment">
+    tools:context=".Weggler.SideFragment.CommunityFragment.RecommendedUsersFragment">
     <TextView
         android:textSize="@dimen/text_size_25"
         android:gravity="center"
