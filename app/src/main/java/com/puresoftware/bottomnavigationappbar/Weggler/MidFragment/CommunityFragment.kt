@@ -14,7 +14,7 @@ import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPos
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityFragment.ShellFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentCommunityBinding
 
-
+//커뮤니티 게시판 : 공동 구매 , 프리 토크 구현
 class CommunityFragment : Fragment() {
     private var _binding : FragmentCommunityBinding?= null
     private val binding get() = _binding!!
@@ -100,7 +100,7 @@ class CommunityFragment : Fragment() {
             }
         })
 
-        //수정 필요
+        //수정 필요 -> 좋아요 순으로
         //인기 게시물 불러오기
         community.getPopularCommunityPostList(10, listOf("body,DESC"), paramFunc = {
             if(it!=null){

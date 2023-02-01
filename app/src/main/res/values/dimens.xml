@@ -20,6 +20,7 @@
     <dimen name="top_len_140">140dp</dimen>
     <dimen name="top_len_150">150dp</dimen>
     <dimen name="top_len_180">180dp</dimen>
+    <dimen name="top_len_200">200dp</dimen>
     <dimen name="top_len_260">260dp</dimen>
     <dimen name="top_len_300">300dp</dimen>
     <dimen name="top_len_350">350dp</dimen>

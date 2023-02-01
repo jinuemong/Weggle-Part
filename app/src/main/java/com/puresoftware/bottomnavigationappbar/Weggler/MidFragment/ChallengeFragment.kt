@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.puresoftware.bottomnavigationappbar.R
 
+// 새로 추가 된 기능
+
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"

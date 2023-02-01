@@ -9,6 +9,8 @@ import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Posting
 import com.puresoftware.bottomnavigationappbar.databinding.ItemFeedPostingBinding
 
+//리뷰 데이터 불러오기
+
 class ItemFeedPostingAdapter(
     private val mainActivity: MainActivity,
     dataList : ArrayList<Posting>

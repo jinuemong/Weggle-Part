@@ -8,6 +8,8 @@ import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.databinding.ItemRankingVideoThumbnailBinding
 import org.mozilla.javascript.ast.ReturnStatement
 
+// 리뷰 데이터의 썸네일
+
 class ItemRankingVideoThumbnailAdapter(
     private val mainActivity: MainActivity,
     private val dataList : ArrayList<String>,

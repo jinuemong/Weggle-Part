@@ -11,6 +11,7 @@ import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.AddCommunity.AddFreeTalkFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.AddCommunity.AddJointPurchaseFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.DetailCommunityPostingFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.FreeTalkFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.JointPurchaseFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentShellBinding
@@ -78,6 +79,10 @@ class ShellFragment(
             }
             "공구해요 글쓰기"->{
                 setShellContainer(AddJointPurchaseFragment())
+            }
+            "포스팅 디테일"->{
+                setShellContainer(DetailCommunityPostingFragment())
+                binding.commentTypeBox.visibility = View.VISIBLE
             }
         }
     }

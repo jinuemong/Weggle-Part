@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentRankingBinding
 
+//랭킹 사용자 리스트 보기
 
 class RankingFragment : Fragment() {
     private var _binding : FragmentRankingBinding? = null

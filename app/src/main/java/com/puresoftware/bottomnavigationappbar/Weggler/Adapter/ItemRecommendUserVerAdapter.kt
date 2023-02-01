@@ -8,6 +8,8 @@ import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Profile
 import com.puresoftware.bottomnavigationappbar.databinding.ItemRecommendUserBoxVerBinding
 
+//추천 유저 어댑터 (세로 적립)
+
 class ItemRecommendUserVerAdapter(
     private val mainActivity: MainActivity,
     itemList : ArrayList<Profile>

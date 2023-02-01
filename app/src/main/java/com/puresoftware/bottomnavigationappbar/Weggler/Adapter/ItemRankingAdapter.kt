@@ -10,6 +10,8 @@ import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.RankingUser
 import com.puresoftware.bottomnavigationappbar.databinding.ItemRankingBinding
 
+//랭킹 데이터 - 밑에 리뷰 썸네일  연결 (ItemRankingVideoThumbnailAdapter)
+
 class ItemRankingAdapter(
     private val mainActivity: MainActivity,
     itemList:ArrayList<RankingUser>
