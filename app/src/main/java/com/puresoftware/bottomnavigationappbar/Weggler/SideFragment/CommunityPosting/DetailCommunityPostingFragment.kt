@@ -6,18 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.puresoftware.bottomnavigationappbar.R
-import com.puresoftware.bottomnavigationappbar.databinding.FragmentDetailPostingBinding
+import com.puresoftware.bottomnavigationappbar.databinding.FragmentDetailCommunityPostingBinding
 
 class DetailCommunityPostingFragment : Fragment() {
 
-    private var _binding : FragmentDetailPostingBinding? = null
+    private var _binding : FragmentDetailCommunityPostingBinding? = null
     private val binding  get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View{
-        _binding = FragmentDetailPostingBinding.inflate(inflater,container,false)
+        _binding = FragmentDetailCommunityPostingBinding.inflate(inflater,container,false)
         return binding.root
     }
 

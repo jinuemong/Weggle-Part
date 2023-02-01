@@ -10,6 +10,7 @@
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable-xxxhdpi/ic_baseline_home_24.xml" value="0.241" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable-xxxhdpi/ic_baseline_person_outline_24.xml" value="0.1185" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable-xxxhdpi/ic_baseline_podcasts_24.xml" value="0.1585" />
+        <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable-xxxhdpi/ic_baseline_settings_24.xml" value="0.2295" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable-xxxhdpi/ic_iconmonstr_coin_8.xml" value="0.241" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable-xxxhdpi/ic_iconmonstr_delivery_2.xml" value="0.241" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/drawable-xxxhdpi/ic_iconmonstr_script_10.xml" value="0.241" />
@@ -61,7 +62,7 @@
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/fragment_add_joint_purchase.xml" value="0.2" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/fragment_challenge.xml" value="0.1453125" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/fragment_community.xml" value="0.2" />
-        <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/fragment_detail_community_posting.xml" value="0.264" />
+        <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/fragment_detail_community_posting.xml" value="0.1" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/fragment_detail_posting.xml" value="0.264" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/fragment_feed.xml" value="0.2" />
         <entry key="..\:/Users/jinwo/desktopss/codingJM/AndroidStudioProjects/Weggle-Weggler/app/src/main/res/layout/fragment_free_talk.xml" value="0.24947916666666667" />

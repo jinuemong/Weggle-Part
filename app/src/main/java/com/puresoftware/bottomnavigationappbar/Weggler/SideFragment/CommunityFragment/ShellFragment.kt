@@ -80,7 +80,7 @@ class ShellFragment(
             "공구해요 글쓰기"->{
                 setShellContainer(AddJointPurchaseFragment())
             }
-            "포스팅 디테일"->{
+            " "->{ //세부 포스팅
                 setShellContainer(DetailCommunityPostingFragment())
                 binding.commentTypeBox.visibility = View.VISIBLE
             }

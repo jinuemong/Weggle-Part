@@ -26,6 +26,14 @@ class ItemCommunitySmallAdapterJoint(
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var jointBinding: ItemCommunitySmallJointBinding
 
+    private var onItemClickListener : OnItemClickListener? = null
+
+    interface OnItemClickListener{
+        fun onItemClick(item:CommunityContent)
+    }
+    fun setOnItemClickListener(listener : OnItemClickListener){
+        this.onItemClickListener =listener
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
         jointBinding = ItemCommunitySmallJointBinding.inflate(
@@ -54,6 +62,11 @@ class ItemCommunitySmallAdapterJoint(
                 Glide.with(mainActivity)
                     .load(data.body.mainImage)
                     .into(jointBinding.mainImage)
+
+                //클릭 이벤트
+                jointBinding.root.setOnClickListener {
+                    onItemClickListener?.onItemClick(data)
+                }
             }else{
                 jointBinding.root.layoutParams.height=0
             }

@@ -26,6 +26,15 @@ class ItemCommunitySmallAdapterFree(
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var freeBinding: ItemCommunitySmallFreeBinding
 
+    private var onItemClickListener : OnItemClickListener? = null
+
+    interface OnItemClickListener{
+        fun onItemClick(item:CommunityContent)
+    }
+    fun setOnItemClickListener(listener : OnItemClickListener){
+        this.onItemClickListener =listener
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
         freeBinding = ItemCommunitySmallFreeBinding.inflate(
@@ -55,6 +64,11 @@ class ItemCommunitySmallAdapterFree(
                 Glide.with(mainActivity)
                     .load(data.body.mainImage)
                     .into(freeBinding.mainImage)
+
+                //클릭 이벤트
+                freeBinding.root.setOnClickListener {
+                    onItemClickListener?.onItemClick(data)
+                }
             }else{
                 freeBinding.root.layoutParams.height=0
             }

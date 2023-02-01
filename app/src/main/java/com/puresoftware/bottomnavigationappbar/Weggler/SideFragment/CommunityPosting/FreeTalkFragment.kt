@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemCommunitySmallAdapterFree
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemCommunitySmallAdapterTotal
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityContent
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentFreeTalkBinding
 
 //프리 토크
@@ -20,6 +21,8 @@ class FreeTalkFragment(
     private var _binding : FragmentFreeTalkBinding? = null
     private val binding get()=_binding!!
     private lateinit var mainActivity: MainActivity
+
+    var data : ArrayList<CommunityContent> = arrayListOf()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -40,33 +43,32 @@ class FreeTalkFragment(
             // 메인 포스팅
             if (selectPosition == "Main Posting") {
                 if (this.communityLiveData.value != null) {
-                    val data  =
-                        if(communityLiveData.value==null) arrayListOf() else  communityLiveData.value!!
-                    val adapter =
-                        ItemCommunitySmallAdapterFree(mainActivity, data)
-                    binding.totalRecycler.adapter = adapter
+                    data  = if(communityLiveData.value==null) arrayListOf() else  communityLiveData.value!!
                 }
 
             // 인기 게시물
             } else if (selectPosition == "Popular Posting") {
                 if (this.popularPostingLiveData.value!=null){
-                    val data  =
-                        if(popularPostingLiveData.value==null) arrayListOf() else  popularPostingLiveData.value!!
-                    val adapter =
-                        ItemCommunitySmallAdapterFree(mainActivity,data)
-                    binding.totalRecycler.adapter = adapter
+                    data  = if(popularPostingLiveData.value==null) arrayListOf() else  popularPostingLiveData.value!!
                 }
 
             // 내 게시물
             }else if (selectPosition == "My Posting"){
                 if (this.myPostingLiveData.value != null) {
-                    val data  =
-                        if(myPostingLiveData.value==null) arrayListOf() else  myPostingLiveData.value!!
-                    val adapter =
-                        ItemCommunitySmallAdapterFree(mainActivity, data)
-                    binding.totalRecycler.adapter = adapter
+                    data  = if(myPostingLiveData.value==null) arrayListOf() else  myPostingLiveData.value!!
                 }
             }
+        }
+
+        // 어댑터 생성 + 클릭 이벤트 적용
+        val adapter = ItemCommunitySmallAdapterFree(mainActivity, data)
+        binding.totalRecycler.adapter = adapter.apply {
+            setOnItemClickListener(object : ItemCommunitySmallAdapterFree.OnItemClickListener{
+                override fun onItemClick(item: CommunityContent) {
+
+                }
+
+            })
         }
     }
 

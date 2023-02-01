@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.puresoftware.bottomnavigationappbar.MainActivity
@@ -27,6 +28,14 @@ class ItemCommunitySmallAdapterTotal(
     private lateinit var jointBinding: ItemCommunitySmallJointBinding
     private lateinit var freeBinding: ItemCommunitySmallFreeBinding
 
+    private var onItemClickListener : OnItemClickListener? = null
+
+    interface OnItemClickListener{
+        fun onItemClick(item:CommunityContent)
+    }
+    fun setOnItemClickListener(listener : OnItemClickListener){
+        this.onItemClickListener =listener
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             //type 공구해요
@@ -76,6 +85,10 @@ class ItemCommunitySmallAdapterTotal(
                 .load(data.body.mainImage)
                 .into(jointBinding.mainImage)
 
+            //클릭 이벤트
+            jointBinding.root.setOnClickListener {
+                onItemClickListener?.onItemClick(data)
+            }
         }
     }
 
@@ -91,6 +104,11 @@ class ItemCommunitySmallAdapterTotal(
             Glide.with(mainActivity)
                 .load(data.body.mainImage)
                 .into(freeBinding.mainImage)
+
+            //클릭 이벤트
+            freeBinding.root.setOnClickListener {
+                onItemClickListener?.onItemClick(data)
+            }
         }
     }
 

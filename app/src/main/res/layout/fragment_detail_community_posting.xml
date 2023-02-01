@@ -173,5 +173,5 @@
         layout="@layout/comment_list_view"
         android:layout_margin="@dimen/margin_10"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"/>
 </androidx.core.widget.NestedScrollView>
