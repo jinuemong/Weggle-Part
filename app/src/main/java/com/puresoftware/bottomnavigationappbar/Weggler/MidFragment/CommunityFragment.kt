@@ -3,7 +3,10 @@ package com.puresoftware.bottomnavigationappbar.Weggler.MidFragment
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.*
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.puresoftware.bottomnavigationappbar.MainActivity
@@ -12,7 +15,9 @@ import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityPostMana
 import com.puresoftware.bottomnavigationappbar.Weggler.Server.WegglerApplication
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.TotalFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityFragment.ShellFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.DetailCommunityPostingFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentCommunityBinding
+import org.w3c.dom.Text
 
 //커뮤니티 게시판 : 공동 구매 , 프리 토크 구현
 class CommunityFragment : Fragment() {
@@ -24,6 +29,12 @@ class CommunityFragment : Fragment() {
         super.onAttach(context)
         mainActivity = context as MainActivity
         wegglerApp = mainActivity.application as WegglerApplication
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mainActivity.setMainViewVisibility(true)
+        Log.d("리쥼","")
     }
 
     override fun onCreateView(
@@ -147,5 +158,17 @@ class CommunityFragment : Fragment() {
                 e.printStackTrace()
             }
         }
+    }
+
+    private fun initPopularData(){
+        val dataList = mainActivity.communityViewModel.popularPostingLiveData.value
+        val pList:ArrayList<LinearLayout> = arrayListOf(binding.p1,binding.p2,binding.p3,binding.p4)
+        val pTypeList : ArrayList<TextView> = arrayListOf(binding.type1,binding.type2,binding.type3,binding.type4)
+        val pTextList : ArrayList<TextView> = arrayListOf(binding.p1Text,binding.p2Text,binding.p3Text,binding.p4Text)
+        for (i in pList){
+            if (dataList!![])
+        }
+            mainActivity.changeFragment(DetailCommunityPostingFragment("main"))
+
     }
 }

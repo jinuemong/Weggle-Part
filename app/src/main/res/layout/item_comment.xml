@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true"
     android:layout_marginTop="@dimen/margin_10"
     android:layout_marginBottom="@dimen/margin_10"
     xmlns:app="http://schemas.android.com/apk/res-auto"

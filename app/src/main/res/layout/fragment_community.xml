@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context="com.puresoftware.bottomnavigationappbar.Weggler.MidFragment.CommunityFragment">
 
 
@@ -154,41 +155,80 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/p1"
                 style="@style/popularPost"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/item_size_60">
                 <TextView
-                    style="@style/popularTextType1"
+                    android:id="@+id/type1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
+                <TextView
+                    android:gravity="center_vertical"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_20"
+                    android:id="@+id/p1_text"
+                    android:layout_width="@dimen/top_len_260"
+                    android:layout_height="match_parent"
+                    android:ellipsize="end"
+                    android:lines="1" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/p2"
                 style="@style/popularPost"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/item_size_60">
                 <TextView
-                    style="@style/popularTextType1"
+                    android:id="@+id/type2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
+                <TextView
+                    android:gravity="center_vertical"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_20"
+                    android:id="@+id/p2_text"
+                    android:layout_width="@dimen/top_len_260"
+                    android:layout_height="match_parent"
+                    android:ellipsize="end"
+                    android:lines="1" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/p3"
                 style="@style/popularPost"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/item_size_60">
                 <TextView
-                    style="@style/popularTextType2"
+                    android:id="@+id/type3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
+                <TextView
+                    android:gravity="center_vertical"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_20"
+                    android:id="@+id/p3_text"
+                    android:layout_width="@dimen/top_len_260"
+                    android:layout_height="match_parent"
+                    android:ellipsize="end"
+                    android:lines="1" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/p4"
                 style="@style/popularPost"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/item_size_60">
                 <TextView
-                    style="@style/popularTextType2"
+                    android:id="@+id/type4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
+                <TextView
+                    android:gravity="center_vertical"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_20"
+                    android:id="@+id/p4_text"
+                    android:layout_width="@dimen/top_len_260"
+                    android:layout_height="match_parent"
+                    android:ellipsize="end"
+                    android:lines="1" />
             </LinearLayout>
 
         </LinearLayout>

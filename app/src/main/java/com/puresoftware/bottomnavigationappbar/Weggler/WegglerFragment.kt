@@ -23,6 +23,11 @@ class WegglerFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var mainActivity:MainActivity
     private lateinit var fm : FragmentManager
+    private var feedFragment: FeedFragment? = null
+    private var challengeFragment: ChallengeFragment? = null
+    private var communityFragment: CommunityFragment? = null
+    private var rankingFragment: RankingFragment? = null
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity  = context as MainActivity
@@ -39,16 +44,20 @@ class WegglerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        feedFragment = FeedFragment()
+        challengeFragment = ChallengeFragment()
+        communityFragment = CommunityFragment()
+        rankingFragment = RankingFragment()
 
-        midFragmentChange(FeedFragment())
+        midFragmentChange(feedFragment!!)
         binding.wegglerTab.addOnTabSelectedListener(object :  TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when (tab?.position){
-                    0 ->{midFragmentChange(FeedFragment())}
-                    1 ->{midFragmentChange(ChallengeFragment())}
-                    2 ->{midFragmentChange(CommunityFragment())}
-                    3 ->{midFragmentChange(RankingFragment())}
-                    else ->{midFragmentChange(FeedFragment())}
+                    0 ->{midFragmentChange(feedFragment!!)}
+                    1 ->{midFragmentChange(challengeFragment!!)}
+                    2 ->{midFragmentChange(communityFragment!!)}
+                    3 ->{midFragmentChange(rankingFragment!!)}
+                    else ->{midFragmentChange(feedFragment!!)}
                 }
             }
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
@@ -61,6 +70,10 @@ class WegglerFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        feedFragment = null
+        challengeFragment = null
+        communityFragment = null
+        rankingFragment = null
     }
 
     private fun midFragmentChange(goFragment:Fragment){

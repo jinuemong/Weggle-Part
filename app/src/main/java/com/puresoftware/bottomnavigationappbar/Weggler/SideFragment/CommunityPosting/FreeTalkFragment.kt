@@ -6,10 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import com.puresoftware.bottomnavigationappbar.MainActivity
+import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemCommunitySmallAdapterFree
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemCommunitySmallAdapterTotal
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityContent
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityFragment.ShellFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentFreeTalkBinding
 
 //프리 토크
@@ -21,12 +24,14 @@ class FreeTalkFragment(
     private var _binding : FragmentFreeTalkBinding? = null
     private val binding get()=_binding!!
     private lateinit var mainActivity: MainActivity
+    private lateinit var fm: FragmentManager
 
     var data : ArrayList<CommunityContent> = arrayListOf()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
+        fm = mainActivity.supportFragmentManager
     }
 
     override fun onCreateView(
@@ -66,6 +71,7 @@ class FreeTalkFragment(
             setOnItemClickListener(object : ItemCommunitySmallAdapterFree.OnItemClickListener{
                 override fun onItemClick(item: CommunityContent) {
 
+                    mainActivity.changeFragment(DetailCommunityPostingFragment("sub"))
                 }
 
             })

@@ -41,43 +41,7 @@
     <FrameLayout
         android:id="@+id/shell_container"
         android:layout_margin="@dimen/margin_10"
-        android:layout_weight="7"
         android:layout_width="match_parent"
-        android:layout_height="0dp"/>
-    <LinearLayout
-        android:background="@color/line_color"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"/>
-    <LinearLayout
-        android:visibility="gone"
-        android:padding="@dimen/margin_10"
-        android:orientation="horizontal"
-        android:layout_weight="1"
-        android:id="@+id/comment_type_box"
-        android:layout_width="match_parent"
-        android:layout_height="0dp">
-        <ImageView
-            android:layout_marginTop="@dimen/margin_5"
-            android:id="@+id/ranking_user_image"
-            android:layout_width="@dimen/item_size_40"
-            android:layout_height="@dimen/item_size_40"
-            android:layout_marginEnd="@dimen/margin_5"
-            android:background="@drawable/circle"
-            android:src="@drawable/ic_baseline_person_outline_24" />
-        <EditText
-            android:padding="@dimen/margin_5"
-            android:hint="댓글을 작성해보세요."
-            android:background="@drawable/round_border_plus"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/top_len_50"/>
-        <TextView
-            android:layout_marginEnd="@dimen/margin_5"
-            android:layout_marginStart="@dimen/margin_5"
-            android:textSize="@dimen/text_size_15"
-            android:textColor="@color/community__my_color"
-            android:text="완료"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+        android:layout_height="match_parent"/>
+
 </LinearLayout>

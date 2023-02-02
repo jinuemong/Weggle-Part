@@ -207,6 +207,7 @@ class MainActivity : AppCompatActivity() {
         if (fragmentManager!=null) {
             fragmentManager!!.beginTransaction().remove(fragment).commit()
             fragmentManager!!.popBackStack()
+
         }
     }
 

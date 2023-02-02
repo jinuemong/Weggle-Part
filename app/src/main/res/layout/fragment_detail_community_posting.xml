@@ -7,15 +7,33 @@
     android:background="@color/white"
     android:clickable="true"
     android:focusable="true"
+    android:fillViewport="true"
     tools:context=".Weggler.SideFragment.CommunityPosting.DetailCommunityPostingFragment">
 
     <LinearLayout
+        android:padding="@dimen/margin_10"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="@dimen/item_size_30"
+            android:layout_height="@dimen/item_size_30"
             android:layout_margin="@dimen/margin_10"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black" />
+        <TextView
+            android:layout_marginTop="@dimen/margin_20"
+            style="@style/popularTextType2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_marginEnd="@dimen/margin_10"
+            android:layout_marginStart="@dimen/margin_10"
             android:layout_width="match_parent"
             android:layout_height="@dimen/top_len_70"
             android:gravity="center_vertical"
@@ -167,11 +185,13 @@
                 android:layout_width="@dimen/item_size_50"
                 android:layout_height="@dimen/item_size_20"/>
         </LinearLayout>
+
+        <include
+            android:id="@+id/comment_view"
+            layout="@layout/comment_list_view"
+            android:layout_margin="@dimen/margin_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
-    <include
-        android:id="@+id/comment_view"
-        layout="@layout/comment_list_view"
-        android:layout_margin="@dimen/margin_10"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+
 </androidx.core.widget.NestedScrollView>
