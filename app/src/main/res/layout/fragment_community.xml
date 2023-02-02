@@ -3,10 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context="com.puresoftware.bottomnavigationappbar.Weggler.MidFragment.CommunityFragment">
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,7 +11,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="@dimen/margin_10"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -103,6 +100,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_15"
             android:layout_margin="@dimen/margin_10"
             android:orientation="horizontal">
 
@@ -123,12 +121,11 @@
             android:background="@color/line_color" />
 
         <LinearLayout
-            android:layout_margin="@dimen/margin_10"
+            android:layout_margin="@dimen/margin_15"
             android:orientation="vertical"
             android:id="@+id/popular_post_box"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <!--게시물 인기 순에서 상위 2개씩 뽑기 (공구 ,프리)-->
+            android:layout_height="@dimen/top_len_300">
             <LinearLayout
                 android:layout_marginTop="@dimen/margin_5"
                 android:layout_marginBottom="@dimen/margin_20"
@@ -154,82 +151,14 @@
                     app:tint="@color/black" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/p1"
-                style="@style/popularPost"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/pop_list"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/item_size_60">
-                <TextView
-                    android:id="@+id/type1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:gravity="center_vertical"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/text_size_20"
-                    android:id="@+id/p1_text"
-                    android:layout_width="@dimen/top_len_260"
-                    android:layout_height="match_parent"
-                    android:ellipsize="end"
-                    android:lines="1" />
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/p2"
-                style="@style/popularPost"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/item_size_60">
-                <TextView
-                    android:id="@+id/type2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:gravity="center_vertical"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/text_size_20"
-                    android:id="@+id/p2_text"
-                    android:layout_width="@dimen/top_len_260"
-                    android:layout_height="match_parent"
-                    android:ellipsize="end"
-                    android:lines="1" />
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/p3"
-                style="@style/popularPost"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/item_size_60">
-                <TextView
-                    android:id="@+id/type3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:gravity="center_vertical"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/text_size_20"
-                    android:id="@+id/p3_text"
-                    android:layout_width="@dimen/top_len_260"
-                    android:layout_height="match_parent"
-                    android:ellipsize="end"
-                    android:lines="1" />
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/p4"
-                style="@style/popularPost"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/item_size_60">
-                <TextView
-                    android:id="@+id/type4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:gravity="center_vertical"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/text_size_20"
-                    android:id="@+id/p4_text"
-                    android:layout_width="@dimen/top_len_260"
-                    android:layout_height="match_parent"
-                    android:ellipsize="end"
-                    android:lines="1" />
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_mini_community_popular"
+                tools:itemCount="4"
+                />
 
         </LinearLayout>
 
@@ -243,7 +172,7 @@
             <ImageView
                 android:id="@+id/add_button"
                 android:layout_marginEnd="@dimen/margin_10"
-                android:layout_marginTop="@dimen/top_len_80"
+                android:layout_marginTop="@dimen/top_len_100"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:src="@drawable/ic_baseline_add_circle_24"
@@ -252,6 +181,7 @@
                 android:layout_width="@dimen/item_size_60"
                 android:layout_height="@dimen/item_size_60"/>
             <FrameLayout
+                android:layout_margin="@dimen/margin_5"
                 android:id="@+id/total_com_list_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>

@@ -92,6 +92,7 @@ class AddJointPurchaseFragment : Fragment() {
         binding.uploadButton.setOnClickListener {
             if (subject != "" && text.length >= 10 && jointProduct != "") {
                 mainActivity.goBackFragment(this@AddJointPurchaseFragment)
+                mainActivity.setMainViewVisibility(true)
             }
         }
 

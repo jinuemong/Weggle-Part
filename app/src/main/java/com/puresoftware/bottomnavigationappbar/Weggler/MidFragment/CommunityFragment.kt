@@ -5,19 +5,20 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
+import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemPopularPostingTabAdapter
 import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityPostManager
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityContent
 import com.puresoftware.bottomnavigationappbar.Weggler.Server.WegglerApplication
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.TotalFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityFragment.ShellFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.DetailCommunityPostingFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentCommunityBinding
-import org.w3c.dom.Text
+import java.util.stream.LongStream
 
 //커뮤니티 게시판 : 공동 구매 , 프리 토크 구현
 class CommunityFragment : Fragment() {
@@ -31,11 +32,6 @@ class CommunityFragment : Fragment() {
         wegglerApp = mainActivity.application as WegglerApplication
     }
 
-    override fun onResume() {
-        super.onResume()
-        mainActivity.setMainViewVisibility(true)
-        Log.d("리쥼","")
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,7 +56,7 @@ class CommunityFragment : Fragment() {
                 if (v != null) {
                     registerForContextMenu(v)
 
-                    v.showContextMenu(((v.x-v.x/2)),((v.y-v.y*2.5).toFloat()) )
+                    v.showContextMenu(((v.x-v.x/2)),((v.y-v.y*2)) )
 
                 }
             }
@@ -119,9 +115,21 @@ class CommunityFragment : Fragment() {
             }
         })
 
+        //인기 게시물 설정
+        binding.popList.adapter = ItemPopularPostingTabAdapter(listOf(),mainActivity).apply {
+            setOnItemClickListener(object : ItemPopularPostingTabAdapter.OnItemClickListener{
+                override fun onItemClick(item: CommunityContent) {
+                    mainActivity.changeFragment(DetailCommunityPostingFragment("main"))
+                    mainActivity.setMainViewVisibility(false)
+                }
+            })
+        }
+
         //후처리 코드
         val startThread = GetThread()
         startThread.start()
+
+        initPopularData()
     }
     private fun setUpListener() {
         binding.commGoJointPurchaseList.setOnClickListener {
@@ -146,12 +154,16 @@ class CommunityFragment : Fragment() {
     inner class GetThread(): Thread(){
         override fun run() {
             super.run()
+
             try {
                 sleep(500)
+
                 //하단 뷰 교체
                 mainActivity.fragmentManager!!.beginTransaction()
                     .replace(R.id.total_com_list_container,TotalFragment("Main Posting"))
                     .commit()
+
+
                 //클릭 리스너 (뷰가 그려진 후에 호출)
                 setUpListener()
             } catch (e: InterruptedException) {
@@ -161,14 +173,12 @@ class CommunityFragment : Fragment() {
     }
 
     private fun initPopularData(){
-        val dataList = mainActivity.communityViewModel.popularPostingLiveData.value
-        val pList:ArrayList<LinearLayout> = arrayListOf(binding.p1,binding.p2,binding.p3,binding.p4)
-        val pTypeList : ArrayList<TextView> = arrayListOf(binding.type1,binding.type2,binding.type3,binding.type4)
-        val pTextList : ArrayList<TextView> = arrayListOf(binding.p1Text,binding.p2Text,binding.p3Text,binding.p4Text)
-        for (i in pList){
-            if (dataList!![])
-        }
-            mainActivity.changeFragment(DetailCommunityPostingFragment("main"))
-
+        mainActivity.communityViewModel.popularPostingLiveData.observe(mainActivity, Observer {
+            if (it!=null && it.size>0){
+                val data = mainActivity.communityViewModel.popularPostingLiveData.value
+                val dataList =if (data!!.size>=4)  data.subList(0,4).toList() else data.toList()
+                (binding.popList.adapter as ItemPopularPostingTabAdapter).setData(dataList)
+            }
+        })
     }
 }

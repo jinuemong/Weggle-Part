@@ -134,7 +134,4 @@ class ItemCommunitySmallAdapterTotal(
         } else { "" }
     }
 
-    fun setType() {
-
-    }
 }

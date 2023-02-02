@@ -111,6 +111,8 @@ class AddFreeTalkFragment : Fragment() {
                                 .show()
                         }else{
                             mainActivity.goBackFragment(this@AddFreeTalkFragment)
+                            mainActivity.setMainViewVisibility(true)
+
                         }
                     })
             }

@@ -70,7 +70,6 @@ class FreeTalkFragment(
         binding.totalRecycler.adapter = adapter.apply {
             setOnItemClickListener(object : ItemCommunitySmallAdapterFree.OnItemClickListener{
                 override fun onItemClick(item: CommunityContent) {
-
                     mainActivity.changeFragment(DetailCommunityPostingFragment("sub"))
                 }
 
