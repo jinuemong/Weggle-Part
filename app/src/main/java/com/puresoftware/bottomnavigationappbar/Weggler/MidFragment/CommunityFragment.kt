@@ -3,7 +3,6 @@ package com.puresoftware.bottomnavigationappbar.Weggler.MidFragment
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
@@ -18,7 +17,6 @@ import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPos
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityFragment.ShellFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.DetailCommunityPostingFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentCommunityBinding
-import java.util.stream.LongStream
 
 //커뮤니티 게시판 : 공동 구매 , 프리 토크 구현
 class CommunityFragment : Fragment() {
@@ -26,6 +24,7 @@ class CommunityFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var mainActivity: MainActivity
     private lateinit var wegglerApp : WegglerApplication
+    private lateinit var popularAdapter: ItemPopularPostingTabAdapter
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
@@ -55,9 +54,7 @@ class CommunityFragment : Fragment() {
             override fun onClick(v: View?) {
                 if (v != null) {
                     registerForContextMenu(v)
-
                     v.showContextMenu(((v.x-v.x/2)),((v.y-v.y*2)) )
-
                 }
             }
 
@@ -116,20 +113,26 @@ class CommunityFragment : Fragment() {
         })
 
         //인기 게시물 설정
-        binding.popList.adapter = ItemPopularPostingTabAdapter(listOf(),mainActivity).apply {
+        popularAdapter = ItemPopularPostingTabAdapter(listOf(),mainActivity).apply {
             setOnItemClickListener(object : ItemPopularPostingTabAdapter.OnItemClickListener{
                 override fun onItemClick(item: CommunityContent) {
-                    mainActivity.changeFragment(DetailCommunityPostingFragment("main"))
+                    mainActivity.changeFragment(DetailCommunityPostingFragment("main",item))
                     mainActivity.setMainViewVisibility(false)
                 }
             })
         }
+        binding.popList.adapter = popularAdapter
 
-        //후처리 코드
-        val startThread = GetThread()
-        startThread.start()
+        //하단 뷰 설정
+        mainActivity.fragmentManager!!.beginTransaction()
+            .replace(R.id.total_com_list_container,TotalFragment("Main Posting"))
+            .commit()
 
-        initPopularData()
+        //클릭 리스너 (뷰가 그려진 후에 호출)
+        setUpListener()
+
+        //observer
+        initData()
     }
     private fun setUpListener() {
         binding.commGoJointPurchaseList.setOnClickListener {
@@ -172,12 +175,12 @@ class CommunityFragment : Fragment() {
         }
     }
 
-    private fun initPopularData(){
+    private fun initData(){
         mainActivity.communityViewModel.popularPostingLiveData.observe(mainActivity, Observer {
             if (it!=null && it.size>0){
                 val data = mainActivity.communityViewModel.popularPostingLiveData.value
                 val dataList =if (data!!.size>=4)  data.subList(0,4).toList() else data.toList()
-                (binding.popList.adapter as ItemPopularPostingTabAdapter).setData(dataList)
+                popularAdapter.setData(dataList)
             }
         })
     }

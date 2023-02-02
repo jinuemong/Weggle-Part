@@ -9,6 +9,7 @@ class CommunityContent (
     val boardName : String,
     val userId : String,
     val body : MultiCommunityData,
+    val resourcePath : String,
     val createTime : String,
     val updateTime : String,
 ):Serializable

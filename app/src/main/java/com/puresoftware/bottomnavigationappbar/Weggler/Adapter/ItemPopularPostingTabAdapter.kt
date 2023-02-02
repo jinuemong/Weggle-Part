@@ -3,6 +3,7 @@ package com.puresoftware.bottomnavigationappbar.Weggler.Adapter
 import android.annotation.SuppressLint
 import android.os.Build
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
@@ -67,10 +68,15 @@ class ItemPopularPostingTabAdapter (
         notifyDataSetChanged()
     }
     @RequiresApi(Build.VERSION_CODES.M)
-    private fun setType1() =
-        binding.type.setTextAppearance(R.style.popularTextType1)
+    private fun setType1() {
+        binding.type1.visibility =View.VISIBLE
+        binding.type2.visibility =View.GONE
+    }
 
     @RequiresApi(Build.VERSION_CODES.M)
-    private fun setType2() =
-        binding.type.setTextAppearance(R.style.popularTextType2)
+    private fun setType2() {
+        binding.type2.visibility =View.VISIBLE
+        binding.type1.visibility =View.GONE
+
+    }
 }

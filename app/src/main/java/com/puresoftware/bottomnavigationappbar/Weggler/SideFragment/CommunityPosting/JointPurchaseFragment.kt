@@ -71,7 +71,7 @@ class JointPurchaseFragment(
             setOnItemClickListener(object : ItemCommunitySmallAdapterJoint.OnItemClickListener{
                 override fun onItemClick(item: CommunityContent) {
                     mainActivity.setMainViewVisibility(false)
-                    mainActivity.changeFragment(DetailCommunityPostingFragment("sub"))
+                    mainActivity.changeFragment(DetailCommunityPostingFragment("sub",item))
                 }
 
             })

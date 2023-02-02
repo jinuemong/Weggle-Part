@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Observer
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemCommunitySmallAdapterTotal
@@ -46,29 +47,6 @@ class TotalFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // 게시물 데이터 설정
-
-        mainActivity.communityViewModel.apply {
-            // 메인 포스팅
-            if (selectPosition == "Main Posting") {
-                if (this.communityLiveData.value != null) {
-                    data  = if(communityLiveData.value==null) arrayListOf() else  communityLiveData.value!!
-                }
-            // 인기 게시물
-            } else if (selectPosition == "Popular Posting") {
-                if (this.popularPostingLiveData.value!=null){
-                    data  = if(popularPostingLiveData.value==null) arrayListOf() else  popularPostingLiveData.value!!
-
-                }
-
-            // 내 게시물
-            } else if (selectPosition == "My Posting"){
-                if (this.myPostingLiveData.value != null) {
-                    data  = if(myPostingLiveData.value==null) arrayListOf() else  myPostingLiveData.value!!
-
-                }
-            }
-        }
 
         //어댑터 적용, 클릭 이벤트 구현
         val adapter = ItemCommunitySmallAdapterTotal(mainActivity, data)
@@ -77,14 +55,40 @@ class TotalFragment(
                 override fun onItemClick(item: CommunityContent) {
                     mainActivity.setMainViewVisibility(false)
                     if (selectPosition =="Main Posting"){
-                        mainActivity.changeFragment(DetailCommunityPostingFragment("main"))
+                        mainActivity.changeFragment(DetailCommunityPostingFragment("main",item))
                     }else {
-                        mainActivity.changeFragment(DetailCommunityPostingFragment("sub"))
+                        mainActivity.changeFragment(DetailCommunityPostingFragment("sub",item))
                     }
                 }
 
             })
         }
+
+        // 게시물 데이터 설정
+        mainActivity.communityViewModel.apply {
+            // 메인 포스팅
+            if (selectPosition == "Main Posting") {
+                data  = if(communityLiveData.value==null) arrayListOf() else  communityLiveData.value!!
+                communityLiveData.observe(mainActivity, Observer {
+                    adapter.setData(it)
+                })
+
+            // 인기 게시물
+            } else if (selectPosition == "Popular Posting") {
+                data  = if(popularPostingLiveData.value==null) arrayListOf() else  popularPostingLiveData.value!!
+                communityLiveData.observe(mainActivity, Observer {
+                    adapter.setData(it)
+                })
+
+            // 내 게시물
+            } else if (selectPosition == "My Posting"){
+                data  = if(myPostingLiveData.value==null) arrayListOf() else  myPostingLiveData.value!!
+                communityLiveData.observe(mainActivity, Observer {
+                    adapter.setData(it)
+                })
+            }
+        }
+
     }
 
 }
