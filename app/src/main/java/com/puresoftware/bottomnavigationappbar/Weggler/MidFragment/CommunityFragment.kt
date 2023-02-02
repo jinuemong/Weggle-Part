@@ -154,27 +154,6 @@ class CommunityFragment : Fragment() {
 
     }
 
-    inner class GetThread(): Thread(){
-        override fun run() {
-            super.run()
-
-            try {
-                sleep(500)
-
-                //하단 뷰 교체
-                mainActivity.fragmentManager!!.beginTransaction()
-                    .replace(R.id.total_com_list_container,TotalFragment("Main Posting"))
-                    .commit()
-
-
-                //클릭 리스너 (뷰가 그려진 후에 호출)
-                setUpListener()
-            } catch (e: InterruptedException) {
-                e.printStackTrace()
-            }
-        }
-    }
-
     private fun initData(){
         mainActivity.communityViewModel.popularPostingLiveData.observe(mainActivity, Observer {
             if (it!=null && it.size>0){

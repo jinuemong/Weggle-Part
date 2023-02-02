@@ -4,6 +4,8 @@ import com.puresoftware.bottomnavigationappbar.Weggler.Model.Community
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityList
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityContent
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.MultiCommunityData
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -20,10 +22,11 @@ interface WegglerRetrofitService {
     ): Call<CommunityList>
 
     //post community post data (type 1: joint , type 2 : free)
-
+    @Multipart
     @POST("boards/community/posts/")
     fun addCommunityPost(
-        @Body body: Community,
+        @Part param: RequestBody, //Community
+        @Part multipartFile: MultipartBody.Part? //image
     ): Call<CommunityContent>
 
 

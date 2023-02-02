@@ -66,11 +66,14 @@ class CommunityPostManager (
                     response: Response<CommunityContent>
                 ) {
                     if(response.isSuccessful){
-                        Log.d("body",response.body().toString())
+                        Log.d("body 0",response.body().toString())
                         paramFunc(true)
                     }else{
                         paramFunc(false)
-                        Log.d("body",response.body().toString())
+                        Log.d("body 1",response.body().toString())
+                        Log.d("body 2",response.message().toString())
+                        Log.d("body 3",response.errorBody().toString())
+                        Log.d("body 4",response.raw().toString())
                     }
                 }
                 override fun onFailure(call: Call<CommunityContent>, t: Throwable) {
