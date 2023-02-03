@@ -3,12 +3,9 @@ package com.puresoftware.bottomnavigationappbar.Weggler.Model
 // 리싸이클러에 2가지 종류 데이터 담기 위해서  투 타입 선언
 class MultiCommunityData (
     val type : Int, //type 1: joint , type 2 : free
-    val mainImage : String,
     val subject:String,
     val text : String,
+    var resourcePath : String?, //free
     var linkUrl: String, //free
-    val urlList : ArrayList<String>, //free
     val jointProduct : String, //joint
-    val totalLike : Int,
-    val totalComment : Int,
 )

@@ -2,6 +2,7 @@ package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.AddCommunit
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -23,13 +24,11 @@ class AddFreeTalkFragment : Fragment() {
     private val binding get()=_binding!!
     private lateinit var mainActivity:MainActivity
     private val type = 2 //free
-    private var mainImage =""
     private var subject = ""
     private var text  = ""
+    private var filePath : Uri?=null //이미지 파일
+    private var resourcePath = ""
     private var linkUrl = ""
-    private var urlList  = ArrayList<String>()
-    private val totalLike =0
-    private  val totalComment =0
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -102,10 +101,11 @@ class AddFreeTalkFragment : Fragment() {
         binding.uploadButton.setOnClickListener {
             if (subject != "" && text.length >= 10) {
                 val multiCommunityData = MultiCommunityData(
-                    type, mainImage, subject, text, linkUrl, arrayListOf(),
-                "",0,0)
+                    type, subject, text,resourcePath, linkUrl, "")
+
                 CommunityPostManager(mainActivity.application as WegglerApplication)
-                    .addCommunityFreeTalk(multiCommunityData, paramFunc = {
+                    .addCommunityData(multiCommunityData,filePath,
+                        mainActivity,paramFunc = {
                         if (it==null){
                             Toast.makeText(mainActivity,"NetworkErr", Toast.LENGTH_SHORT)
                                 .show()

@@ -18,7 +18,6 @@ class AddJointPurchaseFragment : Fragment() {
     private val binding get()=_binding!!
     private lateinit var mainActivity:MainActivity
     private val type = 1 //joint
-    private var mainImage = ""
     private var subject=""
     private var text = ""
     private var jointProduct = ""
