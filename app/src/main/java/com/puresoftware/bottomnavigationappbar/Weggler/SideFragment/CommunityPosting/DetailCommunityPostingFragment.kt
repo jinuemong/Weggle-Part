@@ -62,4 +62,18 @@ class DetailCommunityPostingFragment(
             }
         }
     }
+
+    private fun addComment(){
+        binding.commentEdit.apply {
+            if (text.toString()!=""){
+                //comment 추가
+            }
+            setText("")
+        }
+    }
+
+    private fun delComment(){
+
+    }
+
 }

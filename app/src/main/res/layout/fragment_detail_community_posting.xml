@@ -234,6 +234,7 @@
             android:background="@drawable/circle"
             android:src="@drawable/ic_baseline_person_outline_24" />
         <EditText
+            android:id="@+id/comment_edit"
             android:padding="@dimen/margin_5"
             android:hint="댓글을 작성해보세요."
             android:background="@drawable/round_border_plus"
@@ -241,6 +242,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/top_len_50"/>
         <TextView
+            android:id="@+id/post_comment"
             android:layout_marginEnd="@dimen/margin_5"
             android:layout_marginStart="@dimen/margin_10"
             android:textSize="@dimen/text_size_15"

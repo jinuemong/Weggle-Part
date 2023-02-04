@@ -3,9 +3,10 @@ package com.puresoftware.bottomnavigationappbar.Weggler.Model
 import java.io.Serializable
 
 class Comment(
-    var profile: Profile,
+    val commentId: Int,
+    var postId : Int,
+    var userId : String,
     var body : String,
     var createTime : String,
-    var likeCount : Int=0,
-    var replyCommentList: ArrayList<Comment>?
+    var updateTime: String
 ):Serializable
