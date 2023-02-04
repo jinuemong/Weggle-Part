@@ -61,7 +61,7 @@ class ItemCommunitySmallAdapterJoint(
                 jointBinding.sujectText.text = data.body.subject
                 jointBinding.contentText.text = data.body.text
                 Glide.with(mainActivity)
-                    .load(data.body.mainImage)
+                    .load(data.body.resourcePath)
                     .into(jointBinding.mainImage)
 
 

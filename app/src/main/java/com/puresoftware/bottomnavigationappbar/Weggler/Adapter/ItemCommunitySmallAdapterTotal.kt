@@ -85,7 +85,7 @@ class ItemCommunitySmallAdapterTotal(
             jointBinding.sujectText.text = data.body.subject
             jointBinding.contentText.text = data.body.text
             Glide.with(mainActivity)
-                .load(data.body.mainImage)
+                .load(data.body.resourcePath)
                 .into(jointBinding.mainImage)
 
             //클릭 이벤트
@@ -105,7 +105,7 @@ class ItemCommunitySmallAdapterTotal(
             freeBinding.sujectText.text = data.body.subject
             freeBinding.contentText.text = data.body.text
             Glide.with(mainActivity)
-                .load(data.body.mainImage)
+                .load(data.body.resourcePath)
                 .into(freeBinding.mainImage)
 
             //클릭 이벤트

@@ -63,7 +63,7 @@ class ItemCommunitySmallAdapterFree(
                 freeBinding.sujectText.text = data.body.subject
                 freeBinding.contentText.text = data.body.text
                 Glide.with(mainActivity)
-                    .load(data.body.mainImage)
+                    .load(data.body.resourcePath)
                     .into(freeBinding.mainImage)
 
                 freeBinding.likeNum.text = "0"
