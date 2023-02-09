@@ -10,23 +10,22 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import com.bumptech.glide.Glide
 import com.puresoftware.bottomnavigationappbar.MainActivity
-import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityContent
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.type_free
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getTimeText
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.isVideo
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentDetailCommunityPostingBinding
 
 class DetailCommunityPostingFragment(
     val type:String,
-    data : CommunityContent
+    postingData : CommunityContent,
+    commentData : Comment
 ) : Fragment() {
 
     private var _binding : FragmentDetailCommunityPostingBinding? = null
     private val binding  get() = _binding!!
     private lateinit var mainActivity: MainActivity
 
-    val posting = data
+    val posting = postingData
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -66,10 +65,25 @@ class DetailCommunityPostingFragment(
             setType2()
         }
 
+        //비디오인지 이미지인지 판별
         if (isVideo(posting.resource)){
-
+            setVideo()
+            binding.videoView.setVideoPath(posting.resource)
         }else{
+            setImage()
+            Glide.with(mainActivity)
+                .load(posting.resource)
+                .into(binding.imageView)
+        }
 
+        //Url 구분
+        if (posting.body.linkUrl==""){
+            binding.linkView.visibility = View.GONE
+        }else{
+            binding.linkUrl.text = posting.body.linkUrl
+            binding.linkUrl.setOnClickListener {
+
+            }
         }
     }
     private fun setUpListener(){

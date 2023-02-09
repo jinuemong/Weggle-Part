@@ -161,6 +161,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/link_url"
                     android:layout_width="@dimen/top_len_260"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_15"
