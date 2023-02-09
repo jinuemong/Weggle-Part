@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -31,7 +32,7 @@ class DetailCommunityPostingFragment(
     private lateinit var wegglerApp : WegglerApplication
     private lateinit var commentAdapter:ItemCommentAdapter
     val posting = postingData
-
+    private lateinit var community : CommunityPostManager
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
@@ -53,6 +54,7 @@ class DetailCommunityPostingFragment(
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        community = CommunityPostManager(wegglerApp)
         initView()
         setUpListener()
     }
@@ -71,14 +73,19 @@ class DetailCommunityPostingFragment(
         }
 
         //비디오인지 이미지인지 판별
-        if (isVideo(posting.resource)){
-            setVideo()
-            binding.videoView.setVideoPath(posting.resource)
-        }else{
-            setImage()
-            Glide.with(mainActivity)
-                .load(posting.resource)
-                .into(binding.imageView)
+        //posting.resource==null -> 수정
+        if (posting.resource==null || isVideo(posting.resource)==null){
+            setNotRe()
+        }else {
+            if (isVideo(posting.resource) == true) {
+                setVideo()
+                binding.videoView.setVideoPath(posting.resource)
+            } else {
+                setImage()
+                Glide.with(mainActivity)
+                    .load(posting.resource)
+                    .into(binding.imageView)
+            }
         }
 
         //Url 구분
@@ -88,7 +95,6 @@ class DetailCommunityPostingFragment(
             binding.linkUrl.text = posting.body.linkUrl
         }
 
-        val community = CommunityPostManager(wegglerApp)
         commentAdapter = ItemCommentAdapter(mainActivity,community, arrayListOf())
         binding.commentView.commentList.adapter = commentAdapter
 
@@ -111,12 +117,22 @@ class DetailCommunityPostingFragment(
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(posting.body.linkUrl))
             startActivity(intent)
         }
+
+        //comment 추가 버튼
+        binding.postComment.setOnClickListener {
+            addComment()
+        }
     }
 
     private fun addComment(){
         binding.commentEdit.apply {
             if (text.toString()!=""){
                 //comment 추가
+                community.addComment(posting.postId,text.toString(), paramFunc = {
+                    if(it!=null) {
+                        commentAdapter.addData(it)
+                    }
+                })
             }
             setText("")
         }
@@ -142,6 +158,11 @@ class DetailCommunityPostingFragment(
     }
     private fun setVideo(){
         binding.videoView.visibility =View.VISIBLE
+        binding.imageView.visibility =View.GONE
+    }
+
+    private fun setNotRe(){
+        binding.videoView.visibility =View.GONE
         binding.imageView.visibility =View.GONE
     }
 }

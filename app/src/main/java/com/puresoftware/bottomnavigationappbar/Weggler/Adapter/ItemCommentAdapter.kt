@@ -53,4 +53,13 @@ class ItemCommentAdapter (
         itemSet = dataList
         notifyDataSetChanged()
     }
+
+    fun addData(comment:Comment){
+        itemSet.add(comment)
+        notifyItemInserted(itemCount-1)
+    }
+
+    fun delData(){
+
+    }
 }

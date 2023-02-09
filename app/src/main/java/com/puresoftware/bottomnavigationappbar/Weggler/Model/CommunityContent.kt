@@ -9,7 +9,7 @@ class CommunityContent (
     val boardName : String,
     val userId : String,
     val thumbnail:String="", //자동
-    val resource : String="", //자동
+    var resource : String="", //자동
     var body : MultiCommunityData,
     var likeCount : Int = 0,
     val createTime : String,

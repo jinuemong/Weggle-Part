@@ -4,10 +4,12 @@ import android.R.attr.path
 import android.util.Log
 
 
-fun isVideo(url : String): Boolean{
+fun isVideo(url : String): Boolean?{
+    if(url=="") return null
     val lastIndex = url.lastIndexOf('.')
     val extension: String = url.substring(lastIndex+1)
     Log.d("extension : ",extension.toString())
+
 
     return extension == "mp4" || extension == "MP4" ||
             extension == "MOV" || extension == "mov" ||

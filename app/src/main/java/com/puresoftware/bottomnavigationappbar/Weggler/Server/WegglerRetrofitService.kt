@@ -44,22 +44,20 @@ interface WegglerRetrofitService {
     // Comment 데이터 가져오기
     @GET("posts/{postId}/comments/")
     fun getCommentList(
-        @Path("postId")postId: Int
+        @Path("postId")postId:Int,
     ): Call<ArrayList<Comment>>
 
     //Comment 추가
-    @Multipart
     @POST("posts/{postId}/comments/")
     fun addComment(
-        @Path("postId")postId: Int,
+        @Path(value = "postId",encoded = true)postId:Int,
         @Body body :String
     ): Call<Comment>
 
     //Comment 제거
-    @Multipart
-    @POST("posts/{postId}/comments/{commentId}")
+    @DELETE("posts/{postId}/comments/{commentId}/")
     fun delComment(
-        @Path("postId")postId: Int,
-        @Path("commentId")commentId: Int,
+        @Path("postId")postId:Int,
+        @Path("commentId")commentId:Int
     ): Call<Comment>
 }

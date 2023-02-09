@@ -2,6 +2,7 @@ package com.puresoftware.bottomnavigationappbar.Weggler.Manager
 
 import android.app.Activity
 import android.net.Uri
+import android.util.Log
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Comment
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityContent
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityList
@@ -94,8 +95,10 @@ class CommunityPostManager (
             .enqueue(object : Callback<Comment>{
                 override fun onResponse(call: Call<Comment>, response: Response<Comment>) {
                     if (response.isSuccessful){
+                        Log.d("it",response.body()?.body.toString())
                         paramFunc(response.body())
-                    }else{paramFunc(null)}
+                    }else{paramFunc(null)
+                        Log.d("it",response.errorBody()!!.string())}
                 }
 
                 override fun onFailure(call: Call<Comment>, t: Throwable) {
