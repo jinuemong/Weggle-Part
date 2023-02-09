@@ -7,6 +7,7 @@ class Comment(
     var postId: Int,
     var userId: String,
     var body: String,
+    var likeCount : Int = 0,
     var createTime: String,
     var updateTime: String
 ) : Serializable

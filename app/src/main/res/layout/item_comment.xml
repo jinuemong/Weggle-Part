@@ -13,7 +13,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/ranking_user_image"
+        android:id="@+id/user_image"
         android:layout_width="@dimen/item_size_50"
         android:layout_height="@dimen/item_size_50"
         android:layout_margin="@dimen/margin_10"
@@ -25,12 +25,14 @@
         android:layout_width="@dimen/top_len_260"
         android:layout_height="wrap_content">
         <TextView
+            android:id="@+id/user_name"
             tools:text="username"
             android:textStyle="bold"
             android:textSize="@dimen/text_size_20"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <TextView
+            android:id="@+id/text"
             android:maxLines="5"
             android:ellipsize="end"
             tools:text="text"
@@ -53,6 +55,9 @@
                 android:layout_width="@dimen/item_size_60"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:lines="1"
+                android:ellipsize="end"
+                android:id="@+id/like_num"
                 android:text="좋아요 x개"
                 android:textSize="@dimen/text_size_12"
                 android:layout_marginStart="@dimen/margin_2"
@@ -60,7 +65,8 @@
                 android:layout_height="wrap_content"/>
 
             <TextView
-                android:id="@+id/ranking_play_num"
+
+                android:id="@+id/re_comment"
                 android:textSize="@dimen/text_size_12"
                 android:text="답글 달기"
                 android:layout_marginStart="@dimen/margin_2"

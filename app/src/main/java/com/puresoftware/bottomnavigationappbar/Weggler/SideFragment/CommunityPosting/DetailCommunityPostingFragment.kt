@@ -1,6 +1,8 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,7 +12,10 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import com.bumptech.glide.Glide
 import com.puresoftware.bottomnavigationappbar.MainActivity
+import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemCommentAdapter
+import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityPostManager
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityContent
+import com.puresoftware.bottomnavigationappbar.Weggler.Server.WegglerApplication
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getTimeText
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.isVideo
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentDetailCommunityPostingBinding
@@ -18,19 +23,19 @@ import com.puresoftware.bottomnavigationappbar.databinding.FragmentDetailCommuni
 class DetailCommunityPostingFragment(
     val type:String,
     postingData : CommunityContent,
-    commentData : Comment
 ) : Fragment() {
 
     private var _binding : FragmentDetailCommunityPostingBinding? = null
     private val binding  get() = _binding!!
     private lateinit var mainActivity: MainActivity
-
+    private lateinit var wegglerApp : WegglerApplication
+    private lateinit var commentAdapter:ItemCommentAdapter
     val posting = postingData
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
-
+        wegglerApp = mainActivity.application as WegglerApplication
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -81,10 +86,17 @@ class DetailCommunityPostingFragment(
             binding.linkView.visibility = View.GONE
         }else{
             binding.linkUrl.text = posting.body.linkUrl
-            binding.linkUrl.setOnClickListener {
-
-            }
         }
+
+        val community = CommunityPostManager(wegglerApp)
+        commentAdapter = ItemCommentAdapter(mainActivity,community, arrayListOf())
+        binding.commentView.commentList.adapter = commentAdapter
+
+        community.getCommentList(posting.postId, paramFunc = {
+            if (it!=null){
+                commentAdapter.setData(it)
+            }
+        })
     }
     private fun setUpListener(){
         binding.backButton.setOnClickListener {
@@ -92,6 +104,12 @@ class DetailCommunityPostingFragment(
             if (type=="main"){
                 mainActivity.setMainViewVisibility(true)
             }
+        }
+
+        //링크 클릭
+        binding.linkUrl.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(posting.body.linkUrl))
+            startActivity(intent)
         }
     }
 
