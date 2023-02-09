@@ -37,12 +37,12 @@ class CommunityPostManager (
     }
 
     //인기 post list 얻기
-    fun getPopularCommunityPostList(size: Int,sort:List<String>,paramFunc: (CommunityList?) -> Unit){
-        masterApp.service.getCommunityPostList(null,size,sort)
-            .enqueue(object :Callback<CommunityList>{
+    fun getPopularCommunityPostList(paramFunc: (ArrayList<CommunityContent>?) -> Unit){
+        masterApp.service.getCommunityPostByLike()
+            .enqueue(object :Callback<ArrayList<CommunityContent>>{
                 override fun onResponse(
-                    call: Call<CommunityList>,
-                    response: Response<CommunityList>
+                    call: Call<ArrayList<CommunityContent>>,
+                    response: Response<ArrayList<CommunityContent>>
                 ) {
                     if (response.isSuccessful){
                         paramFunc(response.body())
@@ -51,7 +51,7 @@ class CommunityPostManager (
                     }
                 }
 
-                override fun onFailure(call: Call<CommunityList>, t: Throwable) {
+                override fun onFailure(call: Call<ArrayList<CommunityContent>>, t: Throwable) {
                     paramFunc(null)
                 }
 
@@ -82,6 +82,42 @@ class CommunityPostManager (
                 }
 
                 override fun onFailure(call: Call<ArrayList<Comment>>, t: Throwable) {
+                    paramFunc(null)
+                }
+
+            })
+    }
+
+    // comment 추가
+    fun addComment(postId : Int, body:String,paramFunc: (Comment?) -> Unit){
+        masterApp.service.addComment(postId,body)
+            .enqueue(object : Callback<Comment>{
+                override fun onResponse(call: Call<Comment>, response: Response<Comment>) {
+                    if (response.isSuccessful){
+                        paramFunc(response.body())
+                    }else{paramFunc(null)}
+                }
+
+                override fun onFailure(call: Call<Comment>, t: Throwable) {
+                    paramFunc(null)
+                }
+
+            })
+    }
+
+    // comment 제거
+    fun delComment(postId: Int,commentId : Int, paramFunc: (Comment?) -> Unit){
+        masterApp.service.delComment(postId,commentId)
+            .enqueue(object : Callback<Comment>{
+                override fun onResponse(call: Call<Comment>, response: Response<Comment>) {
+                    if(response.isSuccessful){
+                        paramFunc(response.body())
+                    }else{
+                        paramFunc(null)
+                    }
+                }
+
+                override fun onFailure(call: Call<Comment>, t: Throwable) {
                     paramFunc(null)
                 }
 

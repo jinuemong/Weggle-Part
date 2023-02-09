@@ -104,15 +104,15 @@ class CommunityFragment : Fragment() {
             }
         })
 
-        //수정 필요 -> 좋아요 순으로
+
         //인기 게시물 불러오기
-        community.getPopularCommunityPostList(10, listOf("body,DESC"), paramFunc = {
+        community.getPopularCommunityPostList( paramFunc = {
             if(it!=null){
-                mainActivity.communityViewModel.popularPostingLiveData.value = it.content
+                mainActivity.communityViewModel.popularPostingLiveData.value = it
             }
         })
 
-        //인기 게시물 설정
+        //인기 게시물 설정 (main 4개)
         popularAdapter = ItemPopularPostingTabAdapter(listOf(),mainActivity).apply {
             setOnItemClickListener(object : ItemPopularPostingTabAdapter.OnItemClickListener{
                 override fun onItemClick(item: CommunityContent) {

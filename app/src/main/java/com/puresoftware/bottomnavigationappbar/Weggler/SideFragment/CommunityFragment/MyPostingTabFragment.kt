@@ -1,11 +1,13 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityFragment
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.tabs.TabLayout
 import com.puresoftware.bottomnavigationappbar.MainActivity
@@ -69,4 +71,5 @@ class MyPostingTabFragment : Fragment() {
         fm.beginTransaction().replace(R.id.details_container,fragment)
             .commit()
     }
+
 }

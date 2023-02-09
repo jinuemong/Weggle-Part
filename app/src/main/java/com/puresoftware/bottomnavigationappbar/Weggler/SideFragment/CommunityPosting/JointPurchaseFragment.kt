@@ -8,11 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import com.puresoftware.bottomnavigationappbar.MainActivity
-import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemCommunitySmallAdapterJoint
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemCommunitySmallAdapterTotal
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityContent
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityFragment.ShellFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentJointPurchaseBinding
 
 //공구해요

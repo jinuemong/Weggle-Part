@@ -61,19 +61,17 @@ class ItemCommunitySmallAdapterTotal(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (dataSet[position].body.type) {
-            type_free -> {
-                val viewHolder =(holder as FreeViewHolder)
-                viewHolder.bind()
-            }
-            else -> {
-                val viewHolder = (holder as JointViewHolder)
-                viewHolder.bind()
-            }
+        if (dataSet[position].body.type == 2) {
+            (holder as FreeViewHolder).bind()
+        } else {
+            (holder as JointViewHolder).bind()
         }
+
     }
 
     override fun getItemCount() = dataSet.size
+
+    // View Init
 
     inner class JointViewHolder(private val jointBinding: ItemCommunitySmallJointBinding) :
         RecyclerView.ViewHolder(jointBinding.root) {
@@ -85,9 +83,9 @@ class ItemCommunitySmallAdapterTotal(
             jointBinding.sujectText.text = data.body.subject
             jointBinding.contentText.text = data.body.text
             Glide.with(mainActivity)
-                .load(data.body.resourcePath)
+                .load(data.thumbnail)
                 .into(jointBinding.mainImage)
-
+            jointBinding.likeNum.text = data.likeCount.toString()
             //클릭 이벤트
             jointBinding.root.setOnClickListener {
                 onItemClickListener?.onItemClick(data)
@@ -105,8 +103,9 @@ class ItemCommunitySmallAdapterTotal(
             freeBinding.sujectText.text = data.body.subject
             freeBinding.contentText.text = data.body.text
             Glide.with(mainActivity)
-                .load(data.body.resourcePath)
+                .load(data.thumbnail)
                 .into(freeBinding.mainImage)
+            freeBinding.likeNum.text = data.likeCount.toString()
 
             //클릭 이벤트
             freeBinding.root.setOnClickListener {

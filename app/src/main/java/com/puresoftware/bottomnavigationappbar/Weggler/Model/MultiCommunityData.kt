@@ -5,7 +5,6 @@ class MultiCommunityData (
     val type : Int, //type 1: joint , type 2 : free
     val subject:String,
     val text : String,
-    var resourcePath : String?, //free
-    var linkUrl: String, //free
-    val jointProduct : String, //joint
+    var linkUrl: String ="", //free
+    val jointProduct : String="", //joint
 )

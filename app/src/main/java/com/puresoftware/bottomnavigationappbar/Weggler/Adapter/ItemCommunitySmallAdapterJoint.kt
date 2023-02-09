@@ -1,5 +1,4 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.Adapter
-
 import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
@@ -61,9 +60,10 @@ class ItemCommunitySmallAdapterJoint(
                 jointBinding.sujectText.text = data.body.subject
                 jointBinding.contentText.text = data.body.text
                 Glide.with(mainActivity)
-                    .load(data.body.resourcePath)
+                    .load(data.thumbnail)
                     .into(jointBinding.mainImage)
 
+                jointBinding.likeNum.text = data.likeCount.toString()
 
 
                 //클릭 이벤트

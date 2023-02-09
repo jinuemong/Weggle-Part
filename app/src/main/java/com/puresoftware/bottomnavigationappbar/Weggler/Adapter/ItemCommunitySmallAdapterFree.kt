@@ -63,11 +63,11 @@ class ItemCommunitySmallAdapterFree(
                 freeBinding.sujectText.text = data.body.subject
                 freeBinding.contentText.text = data.body.text
                 Glide.with(mainActivity)
-                    .load(data.body.resourcePath)
+                    .load(data.thumbnail)
                     .into(freeBinding.mainImage)
 
-                freeBinding.likeNum.text = "0"
-                freeBinding.commentNum.text = "0"
+                freeBinding.likeNum.text = data.likeCount.toString()
+
 
                 //클릭 이벤트
                 freeBinding.root.setOnClickListener {

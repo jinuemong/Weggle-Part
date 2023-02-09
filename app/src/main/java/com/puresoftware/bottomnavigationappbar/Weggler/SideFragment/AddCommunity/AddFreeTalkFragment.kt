@@ -27,7 +27,6 @@ class AddFreeTalkFragment : Fragment() {
     private var subject = ""
     private var text  = ""
     private var filePath : Uri?=null //이미지 파일
-    private var resourcePath = ""
     private var linkUrl = ""
 
     override fun onAttach(context: Context) {
@@ -101,7 +100,7 @@ class AddFreeTalkFragment : Fragment() {
         binding.uploadButton.setOnClickListener {
             if (subject != "" && text.length >= 10) {
                 val multiCommunityData = MultiCommunityData(
-                    type, subject, text,resourcePath, linkUrl, "")
+                    type, subject, text, linkUrl,"")
 
                 CommunityPostManager(mainActivity.application as WegglerApplication)
                     .addCommunityData(multiCommunityData,filePath,

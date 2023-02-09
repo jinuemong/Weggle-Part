@@ -8,8 +8,10 @@ class CommunityContent (
     val postId : Int,
     val boardName : String,
     val userId : String,
+    val thumbnail:String="", //자동
+    val resource : String="", //자동
     var body : MultiCommunityData,
-    val resourcePath : String?,
+    var likeCount : Int = 0,
     val createTime : String,
     val updateTime : String,
 ):Serializable

@@ -5,188 +5,197 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     tools:context="com.puresoftware.bottomnavigationappbar.Weggler.MidFragment.CommunityFragment">
-    <LinearLayout
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_10"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/comm_go_JointPurchase_list"
-                android:layout_margin="@dimen/margin_10"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="@dimen/item_size_60"
-                    android:layout_height="@dimen/item_size_60"
-                    android:layout_margin="@dimen/margin_10"
-                    android:background="@drawable/round_border"
-                    android:backgroundTint="@color/community_1_color"
-                    android:padding="@dimen/margin_15"
-                    android:src="@drawable/ic_iconmonstr_christmas_37" />
-
-                <TextView
-                    android:textSize="@dimen/text_size_17"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="공구해요"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/comm_go_FreeTalk_list"
                 android:layout_margin="@dimen/margin_10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="@dimen/item_size_60"
-                    android:layout_height="@dimen/item_size_60"
-                    android:layout_margin="@dimen/margin_10"
-                    android:background="@drawable/round_border"
-                    android:backgroundTint="@color/community_2_color"
-                    android:padding="@dimen/margin_15"
-                    android:src="@drawable/ic_iconmonstr_help_6" />
-
-                <TextView
-                    android:textSize="@dimen/text_size_17"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="프리토크"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/comm_go_MyCommunityTab_list"
-                android:layout_margin="@dimen/margin_10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="@dimen/item_size_60"
-                    android:layout_height="@dimen/item_size_60"
-                    android:layout_margin="@dimen/margin_10"
-                    android:background="@drawable/round_border"
-                    android:backgroundTint="@color/community__my_color"
-                    android:padding="@dimen/margin_15"
-                    android:src="@drawable/ic_iconmonstr_pencil_square_lined" />
-
-                <TextView
-                    android:textSize="@dimen/text_size_17"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="내가쓴글"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_10"
-            android:background="@color/line_color" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_15"
-            android:layout_margin="@dimen/margin_10"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_marginEnd="@dimen/margin_10"
-                android:textSize="@dimen/text_size_17"
-                android:text="커뮤니티 가이드 알아보기"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-            <ImageView
-                android:layout_width="@dimen/item_size_25"
-                android:layout_height="@dimen/item_size_25"
-                android:src="@drawable/ic_iconmonstr_error_lined"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_10"
-            android:background="@color/line_color" />
-
-        <LinearLayout
-            android:layout_margin="@dimen/margin_15"
-            android:orientation="vertical"
-            android:id="@+id/popular_post_box"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/top_len_300">
-            <LinearLayout
-                android:layout_marginTop="@dimen/margin_5"
-                android:layout_marginBottom="@dimen/margin_20"
                 android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:textSize="@dimen/text_size_20"
-                    android:textStyle="bold"
-                    android:text="인기 게시글"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/comm_go_JointPurchase_list"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
-                <ImageView
-                    android:id="@+id/comm_go_PopularPost_list"
-                    android:src="@drawable/ic_baseline_arrow_forward_ios_24"
-                    android:layout_width="@dimen/item_size_20"
-                    android:layout_height="@dimen/item_size_20"
-                    app:tint="@color/black" />
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_10"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/item_size_60"
+                        android:layout_height="@dimen/item_size_60"
+                        android:layout_margin="@dimen/margin_10"
+                        android:background="@drawable/round_border"
+                        android:backgroundTint="@color/community_1_color"
+                        android:padding="@dimen/margin_15"
+                        android:src="@drawable/ic_iconmonstr_christmas_37" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="공구해요"
+                        android:textSize="@dimen/text_size_17"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/comm_go_FreeTalk_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_10"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/item_size_60"
+                        android:layout_height="@dimen/item_size_60"
+                        android:layout_margin="@dimen/margin_10"
+                        android:background="@drawable/round_border"
+                        android:backgroundTint="@color/community_2_color"
+                        android:padding="@dimen/margin_15"
+                        android:src="@drawable/ic_iconmonstr_help_6" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="프리토크"
+                        android:textSize="@dimen/text_size_17"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/comm_go_MyCommunityTab_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_10"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/item_size_60"
+                        android:layout_height="@dimen/item_size_60"
+                        android:layout_margin="@dimen/margin_10"
+                        android:background="@drawable/round_border"
+                        android:backgroundTint="@color/community__my_color"
+                        android:padding="@dimen/margin_15"
+                        android:src="@drawable/ic_iconmonstr_pencil_square_lined" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="내가쓴글"
+                        android:textSize="@dimen/text_size_17"
+                        android:textStyle="bold" />
+                </LinearLayout>
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/pop_list"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_10"
+                android:background="@color/line_color" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_mini_community_popular"
-                tools:itemCount="4"
-                />
+                android:layout_margin="@dimen/margin_10"
+                android:layout_marginStart="@dimen/margin_15"
+                android:orientation="horizontal">
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/margin_10"
+                    android:text="커뮤니티 가이드 알아보기"
+                    android:textSize="@dimen/text_size_17" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_10"
-            android:background="@color/line_color" />
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ImageView
-                android:id="@+id/add_button"
-                android:layout_marginEnd="@dimen/margin_15"
-                android:layout_marginBottom="@dimen/margin_30"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:src="@drawable/ic_baseline_add_circle_24"
-                android:elevation="@dimen/margin_10"
-                android:backgroundTint="@android:color/transparent"
-                android:layout_width="@dimen/item_size_60"
-                android:layout_height="@dimen/item_size_60"/>
+                <ImageView
+                    android:layout_width="@dimen/item_size_25"
+                    android:layout_height="@dimen/item_size_25"
+                    android:src="@drawable/ic_iconmonstr_error_lined" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_10"
+                android:background="@color/line_color" />
+
+            <LinearLayout
+                android:id="@+id/popular_post_box"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/top_len_300"
+                android:layout_margin="@dimen/margin_15"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:layout_marginBottom="@dimen/margin_20"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="인기 게시글"
+                        android:textSize="@dimen/text_size_20"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:id="@+id/comm_go_PopularPost_list"
+                        android:layout_width="@dimen/item_size_20"
+                        android:layout_height="@dimen/item_size_20"
+                        android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                        app:tint="@color/black" />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/pop_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="4"
+                    tools:listitem="@layout/item_mini_community_popular" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_10"
+                android:background="@color/line_color" />
+
             <FrameLayout
-                android:layout_margin="@dimen/margin_5"
                 android:id="@+id/total_com_list_container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/margin_5" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/add_button"
+            android:layout_width="@dimen/item_size_60"
+            android:layout_height="@dimen/item_size_60"
+            android:layout_marginEnd="@dimen/margin_15"
+            android:layout_marginBottom="@dimen/margin_30"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:backgroundTint="@android:color/transparent"
+            android:elevation="@dimen/margin_10"
+            android:src="@drawable/ic_baseline_add_circle_24" />
+    </RelativeLayout>
 </androidx.core.widget.NestedScrollView>

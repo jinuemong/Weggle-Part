@@ -74,13 +74,14 @@
             android:layout_width="@dimen/item_size_25"
             android:layout_height="@dimen/item_size_25"
             android:src="@drawable/ic_baseline_favorite_24" />
+
         <TextView
             android:id="@+id/like_num"
-            android:gravity="center"
-            tools:text="9999"
-            android:layout_marginStart="@dimen/margin_3"
             android:layout_width="@dimen/item_size_50"
-            android:layout_height="@dimen/item_size_20"/>
+            android:layout_height="25dp"
+            android:layout_marginStart="@dimen/margin_3"
+            android:gravity="center_vertical"
+            tools:text="9999" />
         <ImageView
             android:layout_marginStart="@dimen/margin_5"
             android:src="@drawable/ic_iconmonstr_speech_bubble_3"
@@ -88,7 +89,7 @@
             android:layout_height="@dimen/item_size_25"/>
         <TextView
             android:id="@+id/commend_num"
-            android:gravity="center"
+            android:gravity="center_vertical"
             tools:text="9999"
             android:layout_marginStart="@dimen/margin_3"
             android:layout_width="@dimen/item_size_50"

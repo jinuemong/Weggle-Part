@@ -23,6 +23,7 @@ class WegglerFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var mainActivity:MainActivity
     private lateinit var fm : FragmentManager
+
     private var feedFragment: FeedFragment? = null
     private var challengeFragment: ChallengeFragment? = null
     private var communityFragment: CommunityFragment? = null

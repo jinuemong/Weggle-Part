@@ -20,6 +20,10 @@ interface WegglerRetrofitService {
         @Query(value = "sort",encoded = true)sort:List<String>?,
     ): Call<CommunityList>
 
+    //get community post List By Like
+    @GET("boards/community/postsByLike/")
+    fun getCommunityPostByLike() :Call<ArrayList<CommunityContent>>
+
     //post community post data (type 1: joint , type 2 : free)
     @Multipart
     @POST("boards/community/posts/")

@@ -2,6 +2,7 @@ package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPo
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -68,6 +69,7 @@ class TotalFragment(
         mainActivity.communityViewModel.apply {
             // 메인 포스팅
             if (selectPosition == "Main Posting") {
+                Log.d("Main Posting","")
                 data  = if(communityLiveData.value==null) arrayListOf() else  communityLiveData.value!!
                 communityLiveData.observe(mainActivity, Observer {
                     adapter.setData(it)
@@ -75,13 +77,15 @@ class TotalFragment(
 
             // 인기 게시물
             } else if (selectPosition == "Popular Posting") {
+                Log.d("Popular Posting","")
                 data  = if(popularPostingLiveData.value==null) arrayListOf() else  popularPostingLiveData.value!!
-                communityLiveData.observe(mainActivity, Observer {
+                popularPostingLiveData.observe(mainActivity, Observer {
                     adapter.setData(it)
                 })
 
             // 내 게시물
             } else if (selectPosition == "My Posting"){
+                Log.d("My Posting","")
                 data  = if(myPostingLiveData.value==null) arrayListOf() else  myPostingLiveData.value!!
                 communityLiveData.observe(mainActivity, Observer {
                     adapter.setData(it)
