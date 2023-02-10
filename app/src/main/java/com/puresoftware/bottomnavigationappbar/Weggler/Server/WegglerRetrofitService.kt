@@ -3,6 +3,7 @@ package com.puresoftware.bottomnavigationappbar.Weggler.Server
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Comment
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityList
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityContent
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.body
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -50,8 +51,8 @@ interface WegglerRetrofitService {
     //Comment 추가
     @POST("posts/{postId}/comments/")
     fun addComment(
-        @Path(value = "postId",encoded = true)postId:Int,
-        @Body body :String
+        @Path(value = "postId")postId:Int,
+        @Body body : body
     ): Call<Comment>
 
     //Comment 제거
@@ -60,4 +61,6 @@ interface WegglerRetrofitService {
         @Path("postId")postId:Int,
         @Path("commentId")commentId:Int
     ): Call<Comment>
+
+
 }

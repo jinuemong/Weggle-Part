@@ -101,6 +101,7 @@ class DetailCommunityPostingFragment(
         community.getCommentList(posting.postId, paramFunc = {
             if (it!=null){
                 commentAdapter.setData(it)
+                binding.commentNum.text = commentAdapter.itemCount.toString()
             }
         })
     }
@@ -130,7 +131,7 @@ class DetailCommunityPostingFragment(
                 //comment 추가
                 community.addComment(posting.postId,text.toString(), paramFunc = {
                     if(it!=null) {
-                        commentAdapter.addData(it)
+                        binding.commentNum.text = commentAdapter.addData(it)
                     }
                 })
             }

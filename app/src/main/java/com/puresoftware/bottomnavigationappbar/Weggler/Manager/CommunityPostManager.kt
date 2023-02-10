@@ -3,10 +3,7 @@ package com.puresoftware.bottomnavigationappbar.Weggler.Manager
 import android.app.Activity
 import android.net.Uri
 import android.util.Log
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.Comment
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityContent
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityList
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.MultiCommunityData
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.*
 import com.puresoftware.bottomnavigationappbar.Weggler.Server.WegglerApplication
 import com.puresoftware.bottomnavigationappbar.Weggler.ViewModel.MultiPartViewModel
 import retrofit2.Call
@@ -91,14 +88,15 @@ class CommunityPostManager (
 
     // comment 추가
     fun addComment(postId : Int, body:String,paramFunc: (Comment?) -> Unit){
-        masterApp.service.addComment(postId,body)
+        masterApp.service.addComment(postId, body(body))
             .enqueue(object : Callback<Comment>{
                 override fun onResponse(call: Call<Comment>, response: Response<Comment>) {
-                    if (response.isSuccessful){
-                        Log.d("it",response.body()?.body.toString())
+                    if (response.isSuccessful) {
+                        response.body()?.body = body
                         paramFunc(response.body())
-                    }else{paramFunc(null)
-                        Log.d("it",response.errorBody()!!.string())}
+                    } else {
+                        paramFunc(null)
+                    }
                 }
 
                 override fun onFailure(call: Call<Comment>, t: Throwable) {

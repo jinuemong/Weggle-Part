@@ -1,6 +1,7 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.Adapter
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -54,9 +55,11 @@ class ItemCommentAdapter (
         notifyDataSetChanged()
     }
 
-    fun addData(comment:Comment){
+    fun addData(comment:Comment) :String{
+        Log.d("cccc",comment.body.toString())
         itemSet.add(comment)
         notifyItemInserted(itemCount-1)
+        return itemCount.toString()
     }
 
     fun delData(){
