@@ -96,6 +96,10 @@ class AddFreeTalkFragment : Fragment() {
             binding.typLink.text = null
             linkUrl = ""
         }
+        // 사진 촬영 기능
+        binding.uploadLinear.setOnClickListener {
+
+        }
         // 게시물 작성 가능 : Post
         binding.uploadButton.setOnClickListener {
             if (subject != "" && text.length >= 10) {

@@ -67,4 +67,7 @@ dependencies {
 
     //로그 기록 확인
     implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
+
+    //slide bar
+    implementation 'com.sothree.slidinguppanel:library:3.4.0'
 }
