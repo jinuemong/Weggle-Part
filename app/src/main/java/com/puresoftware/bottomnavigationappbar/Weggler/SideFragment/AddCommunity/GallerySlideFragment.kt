@@ -121,7 +121,7 @@ class GallerySlideFragment() : Fragment() {
         }
         return uriList
     }
-    private fun setUpListener(){
+    fun setUpListener(){
 
     }
 }
