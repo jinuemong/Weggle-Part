@@ -11,27 +11,31 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.FragmentManager
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityPostManager
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.MultiCommunityData
 import com.puresoftware.bottomnavigationappbar.Weggler.Server.WegglerApplication
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentAddFreeTalkBinding
+import com.sothree.slidinguppanel.SlidingUpPanelLayout
 
 
 class AddFreeTalkFragment : Fragment() {
     private var _binding : FragmentAddFreeTalkBinding? = null
     private val binding get()=_binding!!
     private lateinit var mainActivity:MainActivity
+    private lateinit var fm:FragmentManager
     private val type = 2 //free
     private var subject = ""
     private var text  = ""
     private var filePath : Uri?=null //이미지 파일
     private var linkUrl = ""
-
+    private var gallerySlideFragment  :GallerySlideFragment?=null
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
+        fm = mainActivity.fragmentManager!!
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,6 +52,7 @@ class AddFreeTalkFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        gallerySlideFragment = GallerySlideFragment()
         initView()
         setUpListener()
     }
@@ -98,8 +103,29 @@ class AddFreeTalkFragment : Fragment() {
         }
         // 사진 촬영 기능
         binding.uploadLinear.setOnClickListener {
-
+            val state = binding.mainFrame.panelState
+            // 닫힌 상태일 경우 열기
+            if (state == SlidingUpPanelLayout.PanelState.COLLAPSED) {
+                binding.mainFrame.panelState = SlidingUpPanelLayout.PanelState.ANCHORED
+                //슬라이드 레이아웃 view 설정
+                gallerySlideFragment?.let { fragment ->
+                    fm.beginTransaction()
+                        .replace(R.id.slide_layout_add_free_talk, fragment)
+                        .commit()
+                }
+            }
+            // 열린 상태일 경우 닫기
+            else if (state == SlidingUpPanelLayout.PanelState.EXPANDED) {
+                binding.mainFrame.panelState = SlidingUpPanelLayout.PanelState.COLLAPSED
+                //슬라이드 레이아웃 view 설정
+                gallerySlideFragment?.let { fragment ->
+                    fm.beginTransaction()
+                        .remove(fragment)
+                        .commit()
+                }
+            }
         }
+
         // 게시물 작성 가능 : Post
         binding.uploadButton.setOnClickListener {
             if (subject != "" && text.length >= 10) {
@@ -115,7 +141,6 @@ class AddFreeTalkFragment : Fragment() {
                         }else{
                             mainActivity.goBackFragment(this@AddFreeTalkFragment)
                             mainActivity.setMainViewVisibility(true)
-
                         }
                     })
             }

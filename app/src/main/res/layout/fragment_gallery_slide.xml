@@ -3,10 +3,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".Weggler.SideFragment.AddCommunity.GallerySlideFragment">
-    <ImageView
-        android:id="@+id/image_view"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
+        android:layout_height="@dimen/top_len_80">
+        <TextView
+            android:id="@+id/cancel_button"
+            android:textSize="@dimen/text_size_20"
+            android:text="취소"
+            android:gravity="center"
+            android:layout_marginStart="@dimen/margin_20"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/upload_button"
+            android:textSize="@dimen/text_size_20"
+            android:text="확인"
+            android:gravity="center"
+            android:layout_marginEnd="@dimen/margin_20"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_len_300">
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/select_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </FrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/image_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="3"
+        tools:listitem="@layout/item_picture"
+        android:orientation="vertical"
+        />
 </LinearLayout>
