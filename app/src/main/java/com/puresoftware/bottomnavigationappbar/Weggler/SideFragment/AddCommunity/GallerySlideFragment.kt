@@ -121,7 +121,13 @@ class GallerySlideFragment() : Fragment() {
         }
         return uriList
     }
-    fun setUpListener(){
+    private fun setUpListener(){
+        binding.cancelButton.setOnClickListener {
 
+        }
+
+        binding.uploadButton.setOnClickListener {
+
+        }
     }
 }
