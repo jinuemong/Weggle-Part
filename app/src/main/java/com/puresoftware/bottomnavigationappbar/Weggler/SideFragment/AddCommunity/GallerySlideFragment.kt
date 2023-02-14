@@ -2,15 +2,8 @@ package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.AddCommunit
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.Activity.RESULT_OK
-import android.content.ContentResolver
-import android.content.ContentValues
 import android.content.Context
-import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
-import android.nfc.NdefRecord.createUri
-import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -19,19 +12,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat.checkSelfPermission
-import com.bumptech.glide.Glide
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import com.puresoftware.bottomnavigationappbar.MainActivity
-import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.SelectPicAdapter
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentGallerySlideBinding
-import java.text.SimpleDateFormat
+import com.sothree.slidinguppanel.SlidingUpPanelLayout
 
-class GallerySlideFragment() : Fragment() {
+class GallerySlideFragment(private val mainFrame: SlidingUpPanelLayout) : Fragment() {
     private var _binding : FragmentGallerySlideBinding? = null
     private val binding get() = _binding!!
     lateinit var mainActivity: MainActivity
@@ -58,6 +46,7 @@ class GallerySlideFragment() : Fragment() {
             //권한 성공
             override fun onPermissionGranted() {
                 val uriList = getAllShownImagesPath()
+                Log.d("uriList",uriList.toString())
                 val adapter = SelectPicAdapter(mainActivity,uriList)
 
                 //어댑터 연결 후 아이템 클릭 리스너 적용
@@ -122,8 +111,9 @@ class GallerySlideFragment() : Fragment() {
         return uriList
     }
     private fun setUpListener(){
+        //뒤로가기
         binding.cancelButton.setOnClickListener {
-
+            mainFrame.panelState = SlidingUpPanelLayout.PanelState.COLLAPSED
         }
 
         binding.uploadButton.setOnClickListener {

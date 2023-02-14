@@ -241,6 +241,6 @@
     <FrameLayout
         android:id="@+id/slide_layout_add_free_talk"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent" />
 
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>

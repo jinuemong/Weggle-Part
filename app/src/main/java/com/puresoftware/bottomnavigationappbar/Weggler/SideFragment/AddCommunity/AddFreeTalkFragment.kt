@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.FragmentFactory
 import androidx.fragment.app.FragmentManager
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
@@ -52,7 +53,13 @@ class AddFreeTalkFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        gallerySlideFragment = GallerySlideFragment()
+        gallerySlideFragment = GallerySlideFragment(binding.mainFrame)
+        //슬라이드 레이아웃 view 설정
+        gallerySlideFragment?.let { fragment ->
+            fm.beginTransaction()
+                .replace(R.id.slide_layout_add_free_talk, fragment)
+                .commit()
+        }
         initView()
         setUpListener()
     }
@@ -107,22 +114,10 @@ class AddFreeTalkFragment : Fragment() {
             // 닫힌 상태일 경우 열기
             if (state == SlidingUpPanelLayout.PanelState.COLLAPSED) {
                 binding.mainFrame.panelState = SlidingUpPanelLayout.PanelState.ANCHORED
-                //슬라이드 레이아웃 view 설정
-                gallerySlideFragment?.let { fragment ->
-                    fm.beginTransaction()
-                        .replace(R.id.slide_layout_add_free_talk, fragment)
-                        .commit()
-                }
             }
             // 열린 상태일 경우 닫기
             else if (state == SlidingUpPanelLayout.PanelState.EXPANDED) {
                 binding.mainFrame.panelState = SlidingUpPanelLayout.PanelState.COLLAPSED
-                //슬라이드 레이아웃 view 설정
-                gallerySlideFragment?.let { fragment ->
-                    fm.beginTransaction()
-                        .remove(fragment)
-                        .commit()
-                }
             }
         }
 

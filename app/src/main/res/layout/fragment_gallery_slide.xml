@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/slide_view"
+    android:clickable="true"
+    android:focusable="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".Weggler.SideFragment.AddCommunity.GallerySlideFragment">
@@ -29,6 +32,12 @@
             android:layout_height="match_parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
     <FrameLayout
+        app:layout_constraintBottom_toTopOf="@id/comment_type_box"
+        android:id="@+id/line"
+        android:background="@color/line_color"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_len_300">
         <ImageView
@@ -37,6 +46,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </FrameLayout>
+    <FrameLayout
+        android:background="@color/line_color"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/image_recycler"
         android:layout_width="match_parent"
