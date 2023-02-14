@@ -86,6 +86,8 @@ class GallerySlideFragment() : Fragment() {
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
             ).check()
+
+        setUpListener()
     }
     override fun onDestroyView() {
         super.onDestroyView()
@@ -119,84 +121,7 @@ class GallerySlideFragment() : Fragment() {
         }
         return uriList
     }
-//    private fun requirePermissions(permission:Array<String>, requestCode:Int){
-//        //권한 리스트, 권한 주체 구분을 위한 Code
-//        //SDK 버전 확인
-//        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
-//            permissionGranted(requestCode)
-//        }else{
-//            // 권한이 모두 승인 되었는지 여부 저장
-//            // all 메서드로 배열 속의 모든 값 체크
-//            val isAllPermissionsGranted = permission.all {
-//                checkSelfPermission(mainActivity,it) == PackageManager.PERMISSION_GRANTED
-//            }
-//            if (isAllPermissionsGranted){
-//                permissionGranted(requestCode)
-//            }else{
-//                //사용자에 권한 승인 요청
-//                ActivityCompat.requestPermissions(mainActivity,permission,requestCode)
-//            }
-//        }
-//    }
-//
-//    //승인 시 처리
-//    private fun permissionGranted(requestCode: Int){
-//        when(requestCode){
-//            PERMISSION_CAMERA-> openCamera()
-//        }
-//    }
-//    //거절 시 처리
-//    private fun permissionDenied(requestCode: Int){
-//        when(requestCode){
-//            PERMISSION_CAMERA-> Toast.makeText(
-//                mainActivity,
-//                "카메라 권한을 승인해주세요",
-//                Toast.LENGTH_LONG
-//            ).show()
-//        }
-//    }
-//
-//    //카메라 열기
-//    private fun openCamera(){
-//        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-//
-//        createImageUri(newFileName(), "image/jpg")?.let{uri->
-//            imageUri = uri
-//            intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri)
-//            //StartActivityForResult가 departed 되어 아래 방법 사용
-//            registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-//                if (it.resultCode == RESULT_OK) {
-//                    //응답 처리
-//                    imageUri?.let { uri ->
-//                        Log.d("카메라 uri 출력 ", uri.toString())
-//                        Glide.with(mainActivity)
-//                            .load(uri)
-//                            .into(binding.imageView)
-//                    }
-//
-//                }else{
-//                    permissionDenied(it.resultCode)
-//                }
-//            }.launch(intent) //실행
-//        }
-//
-//    }
-//
-//    //새 파일 이름 설정
-//    @SuppressLint("SimpleDateFormat")
-//    private fun newFileName() : String{
-//        // 현재 날짜 데이터로 이름 설정
-//        val sdf = SimpleDateFormat("yyyyMMdd_HHmmss")
-//        return "${sdf.format(System.currentTimeMillis())}.jpg"
-//    }
-//
-//    //이미지 파일 생성 함수
-//    private fun createImageUri(filename:String, type:String): Uri?{
-//        val values = ContentValues() //빈 값 생성
-//        values.put(MediaStore.Images.Media.DISPLAY_NAME,filename)
-//        values.put(MediaStore.Images.Media.MIME_TYPE,type)
-//
-//        return mainActivity.contentResolver
-//            .insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values)
-//    }
+    fun setUpListener(){
+
+    }
 }
