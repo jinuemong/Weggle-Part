@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import com.puresoftware.bottomnavigationappbar.MainActivity
@@ -24,6 +25,7 @@ class GallerySlideFragment(private val mainFrame: SlidingUpPanelLayout) : Fragme
     private val binding get() = _binding!!
     lateinit var mainActivity: MainActivity
     private lateinit var readGalleryListener : PermissionListener
+
     var currentUri :String= ""
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -46,7 +48,6 @@ class GallerySlideFragment(private val mainFrame: SlidingUpPanelLayout) : Fragme
             //권한 성공
             override fun onPermissionGranted() {
                 val uriList = getAllShownImagesPath()
-                Log.d("uriList",uriList.toString())
                 val adapter = SelectPicAdapter(mainActivity,uriList)
 
                 //어댑터 연결 후 아이템 클릭 리스너 적용
@@ -55,6 +56,13 @@ class GallerySlideFragment(private val mainFrame: SlidingUpPanelLayout) : Fragme
                         override fun onItemClick(imageUri: String) {
                             super.onItemClick(imageUri)
                             currentUri = imageUri
+                            if(currentUri==""){
+                                binding.selectImage.setImageResource(0)
+                            }else {
+                                Glide.with(mainActivity)
+                                    .load(currentUri)
+                                    .into(binding.selectImage)
+                            }
                         }
                     })
                 }
@@ -104,6 +112,7 @@ class GallerySlideFragment(private val mainFrame: SlidingUpPanelLayout) : Fragme
                     imageId = cursor.getLong(columnIndexId)
                     val uriImage = Uri.withAppendedPath(uriExternal,""+imageId)
                     uriList.add(uriImage.toString())
+
                 }
             }
             cursor.close()

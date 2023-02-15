@@ -1,5 +1,7 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.Adapter
 
+import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,6 +10,7 @@ import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.databinding.ItemPictureBinding
 
+//사진 선택
 class SelectPicAdapter(
     private val mainActivity: MainActivity,
     private val itemList: ArrayList<String>,
@@ -25,11 +28,17 @@ class SelectPicAdapter(
     }
     inner class SelectPicViewHolder(private val binding: ItemPictureBinding) :
         RecyclerView.ViewHolder(binding.root) {
+            @SuppressLint("NotifyDataSetChanged")
             fun bind(){
                 val item = itemList[absoluteAdapterPosition]
                 Glide.with(mainActivity)
                     .load(item)
                     .into(binding.checkImage)
+                if (selectedPicNum==absoluteAdapterPosition){
+                    binding.setCheck()
+                }else{
+                    binding.setUnCheck()
+                }
                 binding.root.setOnClickListener {
                     //재 클릭 시 선택 종료
                     if (absoluteAdapterPosition==selectedPicNum){
@@ -40,12 +49,7 @@ class SelectPicAdapter(
                         onItemClickListener?.onItemClick(item) //선택 uri 전달
                         selectedPicNum = absoluteAdapterPosition
                     }
-                }
-
-                if (selectedPicNum==absoluteAdapterPosition){
-                    binding.setCheck()
-                }else{
-                    binding.setUnCheck()
+                    notifyDataSetChanged()
                 }
             }
     }
@@ -61,10 +65,10 @@ class SelectPicAdapter(
         holder.bind()
     }
 
-    private fun ItemPictureBinding.setCheck() {
-        checkImage.setImageResource(R.drawable.baseline_check_circle_24)
-    }
-    private fun ItemPictureBinding.setUnCheck() {
-        checkImage.setImageResource(R.drawable.circle)
-    }
+    private fun ItemPictureBinding.setCheck() =
+        checkBox.setBackgroundResource(R.drawable.baseline_check_circle_24)
+
+    private fun ItemPictureBinding.setUnCheck() =
+        checkBox.setBackgroundResource(R.drawable.circle)
+
 }
