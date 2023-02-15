@@ -2,6 +2,9 @@ package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.AddCommunit
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
@@ -11,8 +14,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.fragment.app.FragmentFactory
 import androidx.fragment.app.FragmentManager
+import androidx.slidingpanelayout.widget.SlidingPaneLayout
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityPostManager
@@ -22,7 +30,7 @@ import com.puresoftware.bottomnavigationappbar.databinding.FragmentAddFreeTalkBi
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
 
 
-class AddFreeTalkFragment : Fragment() {
+class AddFreeTalkFragment( private val mainFrame : SlidingUpPanelLayout) : Fragment() {
     private var _binding : FragmentAddFreeTalkBinding? = null
     private val binding get()=_binding!!
     private lateinit var mainActivity:MainActivity
@@ -30,9 +38,10 @@ class AddFreeTalkFragment : Fragment() {
     private val type = 2 //free
     private var subject = ""
     private var text  = ""
-    private var filePath : Uri?=null //이미지 파일
+    private var filePath : String?=null //이미지 파일
     private var linkUrl = ""
     private var gallerySlideFragment  :GallerySlideFragment?=null
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
@@ -53,11 +62,43 @@ class AddFreeTalkFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        gallerySlideFragment = GallerySlideFragment(binding.mainFrame)
+
+        gallerySlideFragment = GallerySlideFragment(mainFrame)
+                //클릭 이벤트 적용
+            .apply {
+                setOnItemClickListener(object :GallerySlideFragment.OnItemClickListener{
+                    override fun onItemClick(imageUri: String) {
+                        if (imageUri!=""){
+                            binding.uploadText.visibility = View.INVISIBLE
+                            binding.uploadImage.visibility = View.INVISIBLE
+                            filePath = imageUri
+                            //Linear에 이미지 넣기
+                            Glide.with(mainActivity)
+                                .load(imageUri)
+                                .into(object : CustomTarget<Drawable>(){
+                                    override fun onResourceReady(
+                                        resource: Drawable,
+                                        transition: Transition<in Drawable>?
+                                    ) {
+                                        val layout = binding.uploadLinear
+                                        layout.background = resource
+                                    }
+
+                                    override fun onLoadCleared(placeholder: Drawable?) {}
+
+                                })
+                        }else{
+                            binding.uploadText.visibility = View.VISIBLE
+                            binding.uploadImage.visibility = View.VISIBLE
+                            binding.uploadLinear.setBackgroundResource(R.drawable.round_border_plus)
+                        }
+                    }
+                })
+            }
         //슬라이드 레이아웃 view 설정
         gallerySlideFragment?.let { fragment ->
             fm.beginTransaction()
-                .replace(R.id.slide_layout_add_free_talk, fragment)
+                .replace(R.id.slide_layout_in_shell, fragment)
                 .commit()
         }
         initView()
@@ -110,14 +151,14 @@ class AddFreeTalkFragment : Fragment() {
         }
         // 사진 촬영 기능
         binding.uploadLinear.setOnClickListener {
-            val state = binding.mainFrame.panelState
+            val state = mainFrame.panelState
             // 닫힌 상태일 경우 열기
             if (state == SlidingUpPanelLayout.PanelState.COLLAPSED) {
-                binding.mainFrame.panelState = SlidingUpPanelLayout.PanelState.ANCHORED
+                mainFrame.panelState = SlidingUpPanelLayout.PanelState.ANCHORED
             }
             // 열린 상태일 경우 닫기
             else if (state == SlidingUpPanelLayout.PanelState.EXPANDED) {
-                binding.mainFrame.panelState = SlidingUpPanelLayout.PanelState.COLLAPSED
+                mainFrame.panelState = SlidingUpPanelLayout.PanelState.COLLAPSED
             }
         }
 

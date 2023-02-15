@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.slidingpanelayout.widget.SlidingPaneLayout
 import com.bumptech.glide.Glide
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
@@ -20,11 +21,20 @@ import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.SelectPicAdapter
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentGallerySlideBinding
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
 
-class GallerySlideFragment(private val mainFrame: SlidingUpPanelLayout) : Fragment() {
+class GallerySlideFragment(private val mainFrame : SlidingUpPanelLayout) : Fragment() {
     private var _binding : FragmentGallerySlideBinding? = null
     private val binding get() = _binding!!
     lateinit var mainActivity: MainActivity
     private lateinit var readGalleryListener : PermissionListener
+
+    private var onItemClickListener : OnItemClickListener?= null
+
+    interface OnItemClickListener{
+        fun onItemClick(imageUri:String){}
+    }
+    fun setOnItemClickListener(listener: OnItemClickListener){
+        this.onItemClickListener = listener
+    }
 
     var currentUri :String= ""
     override fun onAttach(context: Context) {
@@ -126,7 +136,8 @@ class GallerySlideFragment(private val mainFrame: SlidingUpPanelLayout) : Fragme
         }
 
         binding.uploadButton.setOnClickListener {
-
+            mainFrame.panelState = SlidingUpPanelLayout.PanelState.COLLAPSED
+            onItemClickListener?.onItemClick(currentUri)
         }
     }
 }

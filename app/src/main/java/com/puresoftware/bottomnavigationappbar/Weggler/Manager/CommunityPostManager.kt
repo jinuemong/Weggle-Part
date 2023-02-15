@@ -57,7 +57,7 @@ class CommunityPostManager (
     }
 
     // view model -> community data 추가
-    fun addCommunityData(multiCommunityData: MultiCommunityData, filePath: Uri?,
+    fun addCommunityData(multiCommunityData: MultiCommunityData, filePath: String?,
                          activity: Activity, paramFunc: (CommunityContent?) -> Unit){
         MultiPartViewModel().uploadCommunityPoster(multiCommunityData,filePath, activity,
             paramFunc = {

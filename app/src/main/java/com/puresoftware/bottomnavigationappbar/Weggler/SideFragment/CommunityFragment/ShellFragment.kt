@@ -75,7 +75,7 @@ class ShellFragment(
                 setShellContainer(MyPostingTabFragment())
             }
             "프리토크 글쓰기"->{
-                setShellContainer(AddFreeTalkFragment())
+                setShellContainer(AddFreeTalkFragment(binding.slideFrameInShell))
             }
             "공구해요 글쓰기"->{
                 setShellContainer(AddJointPurchaseFragment())

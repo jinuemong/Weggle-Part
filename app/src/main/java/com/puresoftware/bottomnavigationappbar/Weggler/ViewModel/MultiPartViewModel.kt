@@ -24,7 +24,7 @@ import java.lang.Exception
 //Multi Part 형식 (이미지 + body)으로 보낼 때 필요
 
 class MultiPartViewModel: ViewModel(){
-    fun uploadCommunityPoster(multiCommunityData: MultiCommunityData,filePath : Uri?,
+    fun uploadCommunityPoster(multiCommunityData: MultiCommunityData,filePath : String?,
                               activity: Activity,paramFunc:(CommunityContent?)->Unit){
         viewModelScope.launch {
             try {
@@ -50,8 +50,8 @@ class MultiPartViewModel: ViewModel(){
 
                 //이미지 처리
                 val multipartFile : MultipartBody.Part? = if (filePath!=null) {
-                    val path = getImageFilePath(activity, filePath)
-                    val file = File(path)
+//                    val path = getImageFilePath(activity, filePath)
+                    val file = File(filePath)
                     val imageRequestBody = file.asRequestBody()
                     //이미지 데이터 생성
                     MultipartBody.Part.createFormData(
