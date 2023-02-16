@@ -3,6 +3,7 @@ package com.puresoftware.bottomnavigationappbar.Weggler.ViewModel
 import android.app.Activity
 import android.net.Uri
 import android.provider.MediaStore
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityContent
@@ -70,36 +71,6 @@ class MultiPartViewModel: ViewModel(){
                             if (response.isSuccessful){
                                 val data = response.body()!!
                                 paramFunc(data)
-//                                var resourcePath:String? = data.resourcePath
-//                                // 이미지 url이 null이라면 데이터 ""로 변환
-//                                if (resourcePath==null) resourcePath = ""
-//
-//                                // resourcePath 데이터 변환 후 넣기
-//                                val resourcePathRequestBody : RequestBody = resourcePath.toPlainRequestBody()
-//                                params["resourcePath"] = resourcePathRequestBody
-
-//                                //resourcePath 수정 반영
-//                                (activity.application as WegglerApplication).service
-//                                    .updateCommunityPost(data.postId,params,multipartFile)
-//                                    .enqueue(object : Callback<CommunityContent>{
-//                                        override fun onResponse(call: Call<CommunityContent>, response: Response<CommunityContent>
-//                                        ) {
-//                                            if (response.isSuccessful){
-//                                                val paramData = response.body()!!
-//                                                paramData.body = multiCommunityData
-//                                                paramData.body.resourcePath = resourcePath
-//
-//                                                paramFunc(paramData)
-//                                            }else{
-//                                                paramFunc(null)
-//                                            }
-//                                        }
-//                                        override fun onFailure(call: Call<CommunityContent>, t: Throwable
-//                                        ) {
-//                                            paramFunc(null)
-//                                        }
-//
-//                                    })
                             }else{
                                 paramFunc(null)
                             }
