@@ -32,7 +32,6 @@
             android:layout_height="match_parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
     <FrameLayout
-        app:layout_constraintBottom_toTopOf="@id/comment_type_box"
         android:id="@+id/line"
         android:background="@color/line_color"
         android:layout_width="match_parent"
