@@ -28,7 +28,6 @@ class GallerySlideFragment(private val mainFrame : SlidingUpPanelLayout) : Fragm
     private lateinit var readGalleryListener : PermissionListener
 
     private var onItemClickListener : OnItemClickListener?= null
-
     interface OnItemClickListener{
         fun onItemClick(imageUri:String){}
     }
