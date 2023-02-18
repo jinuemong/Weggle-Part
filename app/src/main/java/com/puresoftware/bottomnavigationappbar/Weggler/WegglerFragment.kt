@@ -1,5 +1,6 @@
 package com.puresoftware.bottomnavigationappbar.Weggler
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -43,8 +44,17 @@ class WegglerFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("CommitPrefEdits")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //임의로 토큰 저장/// -나중에 삭제
+        val sp  = mainActivity.getSharedPreferences("accessToken",Context.MODE_PRIVATE)
+        val editor = sp.edit()
+        val token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0X3VzZXIiLCJpc3MiOiJkZXYtYXBpLmtvb3J1LmJlIiwiYXV0aG9yaXRpZXMiOlsiUEVSU09OQUwiXSwiY29kZSI6LTEzNzMyODA0MjgsImlhdCI6MTY3NjY4NzU2MCwiZXhwIjoxNjc2NjkxMTYwfQ.LEopiAzwBS9eJoLyMWg6MZ6ODbz2SnK41QotgO9yjOB38led6U7PsnbftB8nm1xUOHKCRRa2Vj1IOMm2ztRjUQ"
+        editor.putString("accessToken",token)
+        editor.apply()
+        /////////////////
         feedFragment = FeedFragment()
         challengeFragment = ChallengeFragment()
         communityFragment = CommunityFragment()
