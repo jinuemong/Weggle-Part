@@ -2,6 +2,7 @@ package com.puresoftware.bottomnavigationappbar.Weggler.Manager
 
 import android.app.Activity
 import android.net.Uri
+import android.util.Log
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.*
 import com.puresoftware.bottomnavigationappbar.Weggler.Server.WegglerApplication
 import com.puresoftware.bottomnavigationappbar.Weggler.ViewModel.MultiPartViewModel

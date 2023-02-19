@@ -51,7 +51,7 @@ class WegglerFragment : Fragment() {
         //임의로 토큰 저장/// -나중에 삭제
         val sp  = mainActivity.getSharedPreferences("accessToken",Context.MODE_PRIVATE)
         val editor = sp.edit()
-        val token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0X3VzZXIiLCJpc3MiOiJkZXYtYXBpLmtvb3J1LmJlIiwiaWF0IjoxNjc2ODAyODQ4LCJleHAiOjE2NzY4ODkyNDh9.Ts5V2sfscNkPf4_X68sZDb03_Ci_WMJBDx5OXX36xl5LlPsqur8PArNhS0OL9XkoI1m_I28PQ36V8UzDY3T2Rg"
+        val token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0X3VzZXIiLCJpc3MiOiJkZXYtYXBpLmtvb3J1LmJlIiwiYXV0aG9yaXRpZXMiOlsiUEVSU09OQUwiXSwiY29kZSI6LTEzNzMyODA0MjgsImlhdCI6MTY3NjgxODIzNiwiZXhwIjoxNjc2ODIxODM2fQ.h-qzGz-RajLMUSKZTfB41oJEfhFBjgz5-PI3rNUfsGltHQVaK2KR6qxU9ghS5v2v1sWsPP1Uy-Pio-23GgUlpA"
         editor.putString("accessToken",token)
         editor.apply()
         /////////////////

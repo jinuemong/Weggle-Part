@@ -54,9 +54,7 @@ class WegglerApplication : Application() {
 
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("$baseUrl/")
-//            .addConverterFactory(NullOnEmptyConverterFactory())
-            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl("$baseUrl/").addConverterFactory(GsonConverterFactory.create())
             .client(clientBuilder.build())
             .build()
         service = retrofit.create(WegglerRetrofitService::class.java)

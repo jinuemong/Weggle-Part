@@ -88,6 +88,7 @@ class AddFreeTalkFragment( private val mainFrame : SlidingUpPanelLayout) : Fragm
 
                                 })
                         }else{
+                            filePath = null
                             binding.uploadText.visibility = View.VISIBLE
                             binding.uploadImage.visibility = View.VISIBLE
                             binding.uploadLinear.setBackgroundResource(R.drawable.round_border_plus)

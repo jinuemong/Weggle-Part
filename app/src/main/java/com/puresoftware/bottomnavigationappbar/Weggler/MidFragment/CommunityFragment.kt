@@ -110,7 +110,6 @@ class CommunityFragment : Fragment() {
 
         //인기 게시물 불러오기
         community.getPopularCommunityPostList( paramFunc = {
-
             if(it!=null){
                 mainActivity.communityViewModel.popularPostingLiveData.value = it
                 //인기 게시물 설정 (main 4개)
