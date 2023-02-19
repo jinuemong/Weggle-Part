@@ -1,5 +1,6 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.ViewModel
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.net.Uri
 import android.provider.MediaStore
@@ -8,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityContent
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.MultiCommunityData
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.BodyPost
 import com.puresoftware.bottomnavigationappbar.Weggler.Server.WegglerApplication
 import kotlinx.coroutines.launch
 
@@ -25,34 +27,41 @@ import java.lang.Exception
 //Multi Part 형식 (이미지 + body)으로 보낼 때 필요
 
 class MultiPartViewModel: ViewModel(){
-    fun uploadCommunityPoster(multiCommunityData: MultiCommunityData,filePath : String?,
+    fun uploadCommunityPoster(multiCommunityData: MultiCommunityData,filePath : Uri?,
                               activity: Activity,paramFunc:(CommunityContent?)->Unit){
         viewModelScope.launch {
             try {
-                //데이터 변환
-                val typeRequestBody : RequestBody = multiCommunityData.type.toString()
-                    .toPlainRequestBody()
-                val subjectRequestBody : RequestBody = multiCommunityData.subject
-                    .toPlainRequestBody()
-                val textRequestBody : RequestBody = multiCommunityData.text
-                    .toPlainRequestBody()
-                val linkUrlRequestBody : RequestBody = multiCommunityData.linkUrl
-                    .toPlainRequestBody()
-                val jointProductRequestBody : RequestBody = multiCommunityData.jointProduct
-                    .toPlainRequestBody()
+                // 방법 1
+//                //데이터 변환
+//                val typeRequestBody : RequestBody = multiCommunityData.type.toString()
+//                    .toPlainRequestBody()
+//                val subjectRequestBody : RequestBody = multiCommunityData.subject
+//                    .toPlainRequestBody()
+//                val textRequestBody : RequestBody = multiCommunityData.text
+//                    .toPlainRequestBody()
+//                val linkUrlRequestBody : RequestBody = multiCommunityData.linkUrl
+//                    .toPlainRequestBody()
+//                val jointProductRequestBody : RequestBody = multiCommunityData.jointProduct
+//                    .toPlainRequestBody()
 
+                // 방법 2
                 // key -value 형식으로 묶음
-                val params = hashMapOf<String,RequestBody>()
-                params["type"] = typeRequestBody
-                params["subject"] = subjectRequestBody
-                params["text"] = textRequestBody
-                params["linkUrl"] = linkUrlRequestBody
-                params["jointProduct"] = jointProductRequestBody
+//                val params = hashMapOf<String,String>()
+//                params["type"] = multiCommunityData.type.toString()
+//                params["subject"] = multiCommunityData.subject
+//                params["text"] = multiCommunityData.text
+//                params["linkUrl"] = multiCommunityData.linkUrl
+//                params["jointProduct"] = multiCommunityData.jointProduct
+
+                // 방법 3
+                val body = BodyPost(multiCommunityData)
+
+
 
                 //이미지 처리
                 val multipartFile : MultipartBody.Part? = if (filePath!=null) {
-//                    val path = getImageFilePath(activity, filePath)
-                    val file = File(filePath)
+                    val path = getImageFilePath(activity, filePath)
+                    val file = File(path)
                     val imageRequestBody = file.asRequestBody()
                     //이미지 데이터 생성
                     MultipartBody.Part.createFormData(
@@ -64,22 +73,26 @@ class MultiPartViewModel: ViewModel(){
 
                 //retrofit 연결
                 (activity.application as WegglerApplication).service
-                    .addCommunityPost(params,multipartFile)
+                    .addCommunityPost(body,multipartFile)
                     .enqueue(object : Callback<CommunityContent> {
                         override fun onResponse(
                             call: Call<CommunityContent>, response: Response<CommunityContent>) {
                             if (response.isSuccessful){
                                 val data = response.body()!!
+                                Log.d("selfjsefljselefj 1",data.toString())
                                 paramFunc(data)
                             }else{
                                 paramFunc(null)
+                                Log.d("selfjsefljselefj 2",response.errorBody()!!.string())
                             }
                         }
                         override fun onFailure(call: Call<CommunityContent>, t: Throwable) {
+                            Log.d("selfjsefljselefj 3",t.message.toString())
                             paramFunc(null)
                         }
                     })
             }catch (e:Exception){
+                Log.d("selfjsefljselefj 4", e.message.toString())
                 paramFunc(null)
             }
         }
@@ -91,7 +104,8 @@ class MultiPartViewModel: ViewModel(){
         requireNotNull(this).toRequestBody("text/plain".toMediaTypeOrNull())
 
     //Uri를 String으로 전환
-    private fun getImageFilePath(activity:Activity,contentUri:Uri):String{
+    @SuppressLint("Recycle")
+    private fun getImageFilePath(activity:Activity, contentUri:Uri):String{
         var columnIndex = 0
         val projection = arrayOf(MediaStore.Images.Media.DATA)
         val cursor = activity.contentResolver.query(contentUri,projection,

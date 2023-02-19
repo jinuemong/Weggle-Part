@@ -1,6 +1,7 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.Adapter
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -13,14 +14,14 @@ import com.puresoftware.bottomnavigationappbar.databinding.ItemPictureBinding
 //사진 선택
 class SelectPicAdapter(
     private val mainActivity: MainActivity,
-    private val itemList: ArrayList<String>,
+    private val itemList: ArrayList<Uri>,
 ) : RecyclerView.Adapter<SelectPicAdapter.SelectPicViewHolder>() {
 
     private lateinit var binding: ItemPictureBinding
     private var onItemClickListener :OnItemClickListener?=null
     private var selectedPicNum = -1
     interface OnItemClickListener{
-        fun onItemClick(imageUri:String){
+        fun onItemClick(imageUri: Uri?){
         }
     }
     fun setOnItemClickListener(listener: OnItemClickListener){
@@ -42,7 +43,7 @@ class SelectPicAdapter(
                 binding.root.setOnClickListener {
                     //재 클릭 시 선택 종료
                     if (absoluteAdapterPosition==selectedPicNum){
-                        onItemClickListener?.onItemClick("") //선택 uri 전달
+                        onItemClickListener?.onItemClick(null) //선택 uri 전달
                         selectedPicNum = -1
                     //이미지 클릭 시 uri 전달
                     }else{

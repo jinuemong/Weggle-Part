@@ -1,9 +1,7 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.Server
 
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.Comment
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityList
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityContent
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.body
+import com.google.gson.annotations.SerializedName
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -29,7 +27,7 @@ interface WegglerRetrofitService {
     @Multipart
     @POST("boards/community/posts/")
     fun addCommunityPost(
-        @PartMap param: HashMap<String,RequestBody>, //Community
+        @Part("param") param: BodyPost, //Community
         @Part multipartFile: MultipartBody.Part? //image
     ): Call<CommunityContent>
 
@@ -37,7 +35,7 @@ interface WegglerRetrofitService {
     @PUT("boards/community/posts/{postId}/")
     fun updateCommunityPost(
         @Path("postId")postId:Int,
-        @PartMap param: HashMap<String,RequestBody>, //Community
+        @Part("param") param: HashMap<String,RequestBody>, //Community
         @Part multipartFile: MultipartBody.Part? //image
     ):Call<CommunityContent>
 
@@ -52,7 +50,7 @@ interface WegglerRetrofitService {
     @POST("posts/{postId}/comments/")
     fun addComment(
         @Path(value = "postId")postId:Int,
-        @Body body : body
+        @Body body : BodyComment
     ): Call<Comment>
 
     //Comment 제거

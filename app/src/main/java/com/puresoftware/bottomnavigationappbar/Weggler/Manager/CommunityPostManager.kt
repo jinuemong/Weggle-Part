@@ -2,7 +2,6 @@ package com.puresoftware.bottomnavigationappbar.Weggler.Manager
 
 import android.app.Activity
 import android.net.Uri
-import android.util.Log
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.*
 import com.puresoftware.bottomnavigationappbar.Weggler.Server.WegglerApplication
 import com.puresoftware.bottomnavigationappbar.Weggler.ViewModel.MultiPartViewModel
@@ -57,7 +56,7 @@ class CommunityPostManager (
     }
 
     // view model -> community data 추가
-    fun addCommunityData(multiCommunityData: MultiCommunityData, filePath: String?,
+    fun addCommunityData(multiCommunityData: MultiCommunityData, filePath: Uri?,
                          activity: Activity, paramFunc: (CommunityContent?) -> Unit){
         MultiPartViewModel().uploadCommunityPoster(multiCommunityData,filePath, activity,
             paramFunc = {
@@ -88,7 +87,7 @@ class CommunityPostManager (
 
     // comment 추가
     fun addComment(postId : Int, body:String,paramFunc: (Comment?) -> Unit){
-        masterApp.service.addComment(postId, body(body))
+        masterApp.service.addComment(postId, BodyComment(body))
             .enqueue(object : Callback<Comment>{
                 override fun onResponse(call: Call<Comment>, response: Response<Comment>) {
                     if (response.isSuccessful) {

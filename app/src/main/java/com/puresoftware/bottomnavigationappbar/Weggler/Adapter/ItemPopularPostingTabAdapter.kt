@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityContent
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.type_free
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.type_joint
 import com.puresoftware.bottomnavigationappbar.databinding.ItemMiniCommunityPopularBinding
 
@@ -37,10 +38,10 @@ class ItemPopularPostingTabAdapter (
 
                 binding.text.text = data.body.subject
 
-                if (data.body.type== type_joint){
-                    setType1()
-                }else{
-                    setType2()
+                when (data.body.type){
+                    type_joint->{setType1()}
+                    type_free->{setType2()}
+                    else->{setType3()}
                 }
 
                 //클릭 이벤트
@@ -78,5 +79,8 @@ class ItemPopularPostingTabAdapter (
         binding.type2.visibility =View.VISIBLE
         binding.type1.visibility =View.GONE
 
+    }
+    private fun setType3(){
+        binding.root.layoutParams.height=0
     }
 }

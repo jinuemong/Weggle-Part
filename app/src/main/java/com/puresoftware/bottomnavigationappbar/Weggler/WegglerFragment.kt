@@ -51,10 +51,11 @@ class WegglerFragment : Fragment() {
         //임의로 토큰 저장/// -나중에 삭제
         val sp  = mainActivity.getSharedPreferences("accessToken",Context.MODE_PRIVATE)
         val editor = sp.edit()
-        val token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0X3VzZXIiLCJpc3MiOiJkZXYtYXBpLmtvb3J1LmJlIiwiYXV0aG9yaXRpZXMiOlsiUEVSU09OQUwiXSwiY29kZSI6LTEzNzMyODA0MjgsImlhdCI6MTY3NjY4NzU2MCwiZXhwIjoxNjc2NjkxMTYwfQ.LEopiAzwBS9eJoLyMWg6MZ6ODbz2SnK41QotgO9yjOB38led6U7PsnbftB8nm1xUOHKCRRa2Vj1IOMm2ztRjUQ"
+        val token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0X3VzZXIiLCJpc3MiOiJkZXYtYXBpLmtvb3J1LmJlIiwiYXV0aG9yaXRpZXMiOlsiUEVSU09OQUwiXSwiY29kZSI6LTEzNzMyODA0MjgsImlhdCI6MTY3Njc3NzczMCwiZXhwIjoxNjc2NzgxMzMwfQ.UvTfi_ysma7tkmgfLllRMAmePyMGObEJAPMzw9EpOCgz4jj_d7sbbggaNN5wO_pz0x9FGqXXPvBDhtcBEggmmg"
         editor.putString("accessToken",token)
         editor.apply()
         /////////////////
+
         feedFragment = FeedFragment()
         challengeFragment = ChallengeFragment()
         communityFragment = CommunityFragment()

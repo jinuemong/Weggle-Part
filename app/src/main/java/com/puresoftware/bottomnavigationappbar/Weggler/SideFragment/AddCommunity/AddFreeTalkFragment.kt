@@ -38,7 +38,7 @@ class AddFreeTalkFragment( private val mainFrame : SlidingUpPanelLayout) : Fragm
     private val type = 2 //free
     private var subject = ""
     private var text  = ""
-    private var filePath : String?=null //이미지 파일
+    private var filePath : Uri?=null //이미지 파일
     private var linkUrl = ""
     private var gallerySlideFragment  :GallerySlideFragment?=null
 
@@ -67,8 +67,8 @@ class AddFreeTalkFragment( private val mainFrame : SlidingUpPanelLayout) : Fragm
                 //클릭 이벤트 적용
             .apply {
                 setOnItemClickListener(object :GallerySlideFragment.OnItemClickListener{
-                    override fun onItemClick(imageUri: String) {
-                        if (imageUri!=""){
+                    override fun onItemClick(imageUri: Uri?) {
+                        if (imageUri!=null){
                             binding.uploadText.visibility = View.INVISIBLE
                             binding.uploadImage.visibility = View.INVISIBLE
                             filePath = imageUri

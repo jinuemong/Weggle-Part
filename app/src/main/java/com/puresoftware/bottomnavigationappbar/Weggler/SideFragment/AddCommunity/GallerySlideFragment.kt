@@ -29,13 +29,13 @@ class GallerySlideFragment(private val mainFrame : SlidingUpPanelLayout) : Fragm
 
     private var onItemClickListener : OnItemClickListener?= null
     interface OnItemClickListener{
-        fun onItemClick(imageUri:String){}
+        fun onItemClick(imageUri:Uri?){}
     }
     fun setOnItemClickListener(listener: OnItemClickListener){
         this.onItemClickListener = listener
     }
 
-    var currentUri :String= ""
+    var currentUri :Uri? = null
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
@@ -62,10 +62,10 @@ class GallerySlideFragment(private val mainFrame : SlidingUpPanelLayout) : Fragm
                 //어댑터 연결 후 아이템 클릭 리스너 적용
                 binding.imageRecycler.adapter = adapter.apply {
                     setOnItemClickListener(object : SelectPicAdapter.OnItemClickListener{
-                        override fun onItemClick(imageUri: String) {
+                        override fun onItemClick(imageUri: Uri?) {
                             super.onItemClick(imageUri)
                             currentUri = imageUri
-                            if(currentUri==""){
+                            if(currentUri==null){
                                 binding.selectImage.setImageResource(0)
                             }else {
                                 Glide.with(mainActivity)
@@ -102,8 +102,8 @@ class GallerySlideFragment(private val mainFrame : SlidingUpPanelLayout) : Fragm
 
 
     @SuppressLint("Recycle")
-    private fun getAllShownImagesPath(): ArrayList<String>{
-        val uriList = ArrayList<String>()
+    private fun getAllShownImagesPath(): ArrayList<Uri>{
+        val uriList = ArrayList<Uri>()
         //현재 얻은 uri
         val uriExternal : Uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
         var columnIndexId : Int
@@ -117,12 +117,9 @@ class GallerySlideFragment(private val mainFrame : SlidingUpPanelLayout) : Fragm
         if (cursor!=null){
             while (cursor.moveToNext()){
                 columnIndexId = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID)
-                while(cursor.moveToNext()){
-                    imageId = cursor.getLong(columnIndexId)
-                    val uriImage = Uri.withAppendedPath(uriExternal,""+imageId)
-                    uriList.add(uriImage.toString())
-
-                }
+                imageId = cursor.getLong(columnIndexId)
+                val uriImage = Uri.withAppendedPath(uriExternal, "" + imageId)
+                uriList.add(uriImage)
             }
             cursor.close()
         }
