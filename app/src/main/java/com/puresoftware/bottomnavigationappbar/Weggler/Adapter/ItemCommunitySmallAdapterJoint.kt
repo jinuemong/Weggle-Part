@@ -64,7 +64,7 @@ class ItemCommunitySmallAdapterJoint(
                     .into(jointBinding.mainImage)
 
                 jointBinding.likeNum.text = data.likeCount.toString()
-
+                jointBinding.commendNum.text = data.commentCount.toString()
 
                 //클릭 이벤트
                 jointBinding.root.setOnClickListener {

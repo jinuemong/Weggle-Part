@@ -67,6 +67,7 @@ class ItemCommunitySmallAdapterFree(
                     .into(freeBinding.mainImage)
 
                 freeBinding.likeNum.text = data.likeCount.toString()
+                freeBinding.commentNum.text = data.commentCount.toString()
 
 
                 //클릭 이벤트

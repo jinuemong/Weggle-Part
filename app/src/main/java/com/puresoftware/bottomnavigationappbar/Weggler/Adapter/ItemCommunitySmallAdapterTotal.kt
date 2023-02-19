@@ -21,45 +21,47 @@ import kotlin.collections.ArrayList
 //프리 or 공구 or 통합
 class ItemCommunitySmallAdapterTotal(
     private val mainActivity: MainActivity,
-    dataList : ArrayList<CommunityContent>,
+    dataList: ArrayList<CommunityContent>,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private lateinit var jointBinding: ItemCommunitySmallJointBinding
-    private lateinit var freeBinding: ItemCommunitySmallFreeBinding
-    private lateinit var trashBinding : ItemCommunitySmallJointBinding
-    private var onItemClickListener : OnItemClickListener? = null
+    private var onItemClickListener: OnItemClickListener? = null
 
     var dataSet = dataList
 
-    interface OnItemClickListener{
-        fun onItemClick(item:CommunityContent)
+    interface OnItemClickListener {
+        fun onItemClick(item: CommunityContent)
     }
-    fun setOnItemClickListener(listener : OnItemClickListener){
-        this.onItemClickListener =listener
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.onItemClickListener = listener
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        // viewType은 getItemViewType의 데이터가 자동으로 들어감
         return when (viewType) {
+
             //type 공구해요
             type_joint -> {
-                jointBinding = ItemCommunitySmallJointBinding.inflate(
+                val binding = ItemCommunitySmallJointBinding.inflate(
                     LayoutInflater.from(mainActivity),
                     parent, false
                 )
-                JointViewHolder(jointBinding)
-            }
-            type_free->{
-                freeBinding = ItemCommunitySmallFreeBinding.inflate(
-                    LayoutInflater.from(mainActivity),
-                    parent, false
-                )
-                FreeViewHolder(freeBinding)
+                JointViewHolder(binding)
             }
             //type 프리토크
-            else ->{
-                trashBinding = ItemCommunitySmallJointBinding.inflate(
+            type_free -> {
+                val binding = ItemCommunitySmallFreeBinding.inflate(
                     LayoutInflater.from(mainActivity),
-                    parent,false
+                    parent, false
                 )
-                TrashViewHolder(trashBinding)
+                FreeViewHolder(binding)
+            }
+            //잘 못 들어온 타입
+            else -> {
+                val binding = ItemCommunitySmallJointBinding.inflate(
+                    LayoutInflater.from(mainActivity),
+                    parent, false
+                )
+                TrashViewHolder(binding)
             }
         }
     }
@@ -67,11 +69,8 @@ class ItemCommunitySmallAdapterTotal(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val currentItem = dataSet[position]
 
-        Log.d(
-            "lsjowgejgoiwejglew 1",
-            currentItem.body.type.toString() + ": " + currentItem.body.text
-        )
         when (currentItem.body.type) {
+
             type_trash -> {
                 (holder as TrashViewHolder).bind()
             }
@@ -81,18 +80,22 @@ class ItemCommunitySmallAdapterTotal(
             type_free -> {
                 (holder as FreeViewHolder).bind(currentItem)
             }
+
         }
 
     }
 
     override fun getItemCount() = dataSet.size
 
+    //아이템 타입 리턴
+    override fun getItemViewType(position: Int): Int {
+        return dataSet[position].body.type
+    }
     // View Init
-    inner class JointViewHolder(private val jointBinding: ItemCommunitySmallJointBinding) :
-        RecyclerView.ViewHolder(jointBinding.root) {
-        @SuppressLint("SimpleDateFormat")
-        fun bind(data:CommunityContent) {
-            jointBinding.apply {
+    inner class JointViewHolder(private val binding: ItemCommunitySmallJointBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(data: CommunityContent) {
+            binding.apply {
                 timeText.text = getTimeText(data.createTime)
                 sujectText.text = data.body.subject
                 contentText.text = data.body.text
@@ -100,6 +103,7 @@ class ItemCommunitySmallAdapterTotal(
                     .load(data.thumbnail)
                     .into(mainImage)
                 likeNum.text = data.likeCount.toString()
+                commendNum.text = data.commentCount.toString()
                 //클릭 이벤트
                 root.setOnClickListener {
                     onItemClickListener?.onItemClick(data)
@@ -108,11 +112,11 @@ class ItemCommunitySmallAdapterTotal(
         }
     }
 
-    inner class FreeViewHolder(private val freeBinding: ItemCommunitySmallFreeBinding) :
-        RecyclerView.ViewHolder(freeBinding.root) {
-        @SuppressLint("SimpleDateFormat")
-        fun bind(data:CommunityContent) {
-            freeBinding.apply {
+    inner class FreeViewHolder(private val binding: ItemCommunitySmallFreeBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(data: CommunityContent) {
+            binding.apply {
                 timeText.text = getTimeText(data.createTime)
                 sujectText.text = data.body.subject
                 contentText.text = data.body.text
@@ -120,28 +124,31 @@ class ItemCommunitySmallAdapterTotal(
                     .load(data.thumbnail)
                     .into(mainImage)
                 likeNum.text = data.likeCount.toString()
+                commentNum.text = data.commentCount.toString()
 
                 //클릭 이벤트
                 root.setOnClickListener {
                     onItemClickListener?.onItemClick(data)
                 }
+
+
             }
         }
     }
 
-    inner class TrashViewHolder(private val trashBinding : ItemCommunitySmallJointBinding) :
+    inner class TrashViewHolder(private val trashBinding: ItemCommunitySmallJointBinding) :
         RecyclerView.ViewHolder(trashBinding.root) {
-        fun bind(){
-            trashBinding.root.layoutParams.height= 0
+        fun bind() {
+            trashBinding.root.layoutParams.height = 0
+            trashBinding.root.visibility = View.GONE
         }
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(dataList : ArrayList<CommunityContent>){
+    fun setData(dataList: ArrayList<CommunityContent>) {
         dataSet = dataList
         notifyDataSetChanged()
     }
-
 
 
 }

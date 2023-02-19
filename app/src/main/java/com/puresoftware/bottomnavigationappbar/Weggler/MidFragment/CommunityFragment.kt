@@ -3,6 +3,7 @@ package com.puresoftware.bottomnavigationappbar.Weggler.MidFragment
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemPopularPostingTabAdapter
 import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityPostManager
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityContent
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityList
 import com.puresoftware.bottomnavigationappbar.Weggler.Server.WegglerApplication
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.TotalFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityFragment.ShellFragment
@@ -24,7 +26,7 @@ class CommunityFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var mainActivity: MainActivity
     private lateinit var wegglerApp : WegglerApplication
-    private lateinit var popularAdapter: ItemPopularPostingTabAdapter
+    private var popularAdapter: ItemPopularPostingTabAdapter?= null
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
@@ -98,6 +100,7 @@ class CommunityFragment : Fragment() {
         val community = CommunityPostManager(wegglerApp)
         community.getCommunityPostList(0, listOf("postId,DESC"), paramFunc = {
             if(it!=null){
+
                 mainActivity.communityViewModel.communityLiveData.value = it.content
                 //아래는 나중에 수정
                 mainActivity.communityViewModel.myPostingLiveData.value = it.content
@@ -107,21 +110,22 @@ class CommunityFragment : Fragment() {
 
         //인기 게시물 불러오기
         community.getPopularCommunityPostList( paramFunc = {
+
             if(it!=null){
                 mainActivity.communityViewModel.popularPostingLiveData.value = it
+                //인기 게시물 설정 (main 4개)
+                popularAdapter = ItemPopularPostingTabAdapter(it,mainActivity).apply {
+                    setOnItemClickListener(object : ItemPopularPostingTabAdapter.OnItemClickListener{
+                        override fun onItemClick(item: CommunityContent) {
+                            mainActivity.changeFragment(DetailCommunityPostingFragment("main",item))
+                            mainActivity.setMainViewVisibility(false)
+                        }
+                    })
+                }
+                binding.popList.adapter = popularAdapter
             }
         })
 
-        //인기 게시물 설정 (main 4개)
-        popularAdapter = ItemPopularPostingTabAdapter(listOf(),mainActivity).apply {
-            setOnItemClickListener(object : ItemPopularPostingTabAdapter.OnItemClickListener{
-                override fun onItemClick(item: CommunityContent) {
-                    mainActivity.changeFragment(DetailCommunityPostingFragment("main",item))
-                    mainActivity.setMainViewVisibility(false)
-                }
-            })
-        }
-        binding.popList.adapter = popularAdapter
 
         //하단 뷰 설정
         mainActivity.fragmentManager!!.beginTransaction()
@@ -155,11 +159,12 @@ class CommunityFragment : Fragment() {
     }
 
     private fun initData(){
+        //인기 포스팅 변화 시 갱신
         mainActivity.communityViewModel.popularPostingLiveData.observe(mainActivity, Observer {
-            if (it!=null && it.size>0){
+            if (it!=null && it.size>0 && popularAdapter!=null){
                 val data = mainActivity.communityViewModel.popularPostingLiveData.value
                 val dataList =if (data!!.size>=4)  data.subList(0,4).toList() else data.toList()
-                popularAdapter.setData(dataList)
+                popularAdapter?.setData(dataList)
             }
         })
     }
