@@ -12,7 +12,7 @@ import retrofit2.http.*
 interface WegglerRetrofitService {
 
     //get community post List
-    @GET("boards/community/posts/")
+    @GET("categories/community/products/")
     fun getCommunityPostList(
         @Query(value = "page",encoded=true)page:Int?,
         @Query(value = "size",encoded=true)size:Int?,

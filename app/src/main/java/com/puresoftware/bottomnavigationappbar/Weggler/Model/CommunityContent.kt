@@ -2,11 +2,12 @@ package com.puresoftware.bottomnavigationappbar.Weggler.Model
 
 import java.io.Serializable
 
-//데이터를 전달 받을 때
+//community 데이터
 
 class CommunityContent (
-    val postId : Int,
-    val boardName : String,
+    val productId : Int,
+    val category : String,
+    val name : String,
     val userId : String,
     val thumbnail:String="", //자동
     var resource : String="", //자동
