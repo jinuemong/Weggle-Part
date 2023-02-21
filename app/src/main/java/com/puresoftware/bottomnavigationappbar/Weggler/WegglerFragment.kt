@@ -16,7 +16,12 @@ import com.puresoftware.bottomnavigationappbar.Weggler.MidFragment.ChallengeFrag
 import com.puresoftware.bottomnavigationappbar.Weggler.MidFragment.CommunityFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.MidFragment.FeedFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.MidFragment.RankingFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.Token
+import com.puresoftware.bottomnavigationappbar.Weggler.Server.WegglerApplication
 import com.puresoftware.bottomnavigationappbar.databinding.WegglerFragmentBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class WegglerFragment : Fragment() {
@@ -48,12 +53,21 @@ class WegglerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //임의로 토큰 저장/// -나중에 삭제
-        val sp  = mainActivity.getSharedPreferences("accessToken",Context.MODE_PRIVATE)
-        val editor = sp.edit()
-        val token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaW53b28iLCJpc3MiOiJkZXYtYXBpLmtvb3J1LmJlIiwiYXV0aG9yaXRpZXMiOlsiUEVSU09OQUwiXSwiY29kZSI6LTgwNjYzODE2OSwiaWF0IjoxNjc2ODgyMTkzLCJleHAiOjE2NzY4ODU3OTN9.RtedOnqUXYH0KC_kyut3kgB3qKY1H3daylWyiMcASlqQSgz-BvBW5pPn6COcieRRzjy5hvyM42i5TufkbIGmbw"
-        editor.putString("accessToken",token)
-        editor.apply()
+        //임의로 로그인 구현 // -나중에 삭제
+        (mainActivity.application as WegglerApplication).service.loginJinwoo()
+            .enqueue(object : Callback<Token> {
+                override fun onResponse(call: Call<Token>, response: Response<Token>) {
+                    if (response.isSuccessful){
+                        val sp = mainActivity.getSharedPreferences("login_sp", Context.MODE_PRIVATE)
+                        val editor = sp.edit()
+                        editor.putString("accessToken", response.body()?.accessToken)
+                        editor.putString("refreshToken", response.body()?.refreshToken)
+                        editor.apply()
+                    }
+                }
+
+                override fun onFailure(call: Call<Token>, t: Throwable) {}
+            })
         /////////////////
 
         feedFragment = FeedFragment()

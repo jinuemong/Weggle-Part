@@ -4,12 +4,22 @@ import com.google.gson.annotations.SerializedName
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.Response
 import retrofit2.Call
 import retrofit2.http.*
 
 //레트로핏 연결 url 관리 (weggler)
 
+
+
 interface WegglerRetrofitService {
+
+    //Login jinwoo User
+    @POST("login")
+    fun loginJinwoo(
+        @Body name :String = "jinwoo",
+        @Body password : String = "jinwoo!@#123",
+    ) : Call<Token>
 
     //get community post List
     @GET("categories/community/products/")
