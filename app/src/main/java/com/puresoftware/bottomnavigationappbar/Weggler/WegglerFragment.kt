@@ -54,7 +54,7 @@ class WegglerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //임의로 로그인 구현 // -나중에 삭제
-        (mainActivity.application as WegglerApplication).service.loginJinwoo()
+        (mainActivity.wApp).service.loginJinwoo()
             .enqueue(object : Callback<Token> {
                 override fun onResponse(call: Call<Token>, response: Response<Token>) {
                     if (response.isSuccessful){

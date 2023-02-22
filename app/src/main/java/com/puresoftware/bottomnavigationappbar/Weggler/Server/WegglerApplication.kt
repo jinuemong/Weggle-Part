@@ -16,19 +16,16 @@ import retrofit2.converter.gson.GsonConverterFactory
 //http://dev-api.kooru.be/swagger-ui/index.html#/
 
 //refrofit client
-class WegglerApplication constructor(
-    private val activity: Activity,
-) : Application() {
+class WegglerApplication : Application() {
     lateinit var service: WegglerRetrofitService
     private val baseUrl = "http://dev-api.kooru.be/api/v1"
-    private lateinit var header : Interceptor
+
     override fun onCreate() {
         super.onCreate()
         Stetho.initializeWithDefaults(this)
-        createRetrofit()
     }
 
-    private fun createRetrofit(){
+    fun createRetrofit(activity: Activity){
         //토큰을 위한 인증
         //TokenAuthenticator으로 새 토큰 발행
         val authenticator = TokenAuthenticator(activity,buildTokenApi())

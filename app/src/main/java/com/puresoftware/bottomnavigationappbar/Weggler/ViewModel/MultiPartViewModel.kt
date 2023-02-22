@@ -7,6 +7,7 @@ import android.provider.MediaStore
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityContent
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.MultiCommunityData
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.BodyPost
@@ -72,7 +73,7 @@ class MultiPartViewModel: ViewModel(){
                 }else{ null } //이미지가 없다면 null 처리
 
                 //retrofit 연결
-                (activity.application as WegglerApplication).service
+                ((activity as MainActivity).wApp).service
                     .addCommunityPost(body,multipartFile)
                     .enqueue(object : Callback<CommunityContent> {
                         override fun onResponse(

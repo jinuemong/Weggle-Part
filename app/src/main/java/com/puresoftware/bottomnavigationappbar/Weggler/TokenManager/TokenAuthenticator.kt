@@ -9,9 +9,9 @@ import okhttp3.*
 //요청을 가로채서 인증 관련 오류를 탐색
 
 class TokenAuthenticator constructor(
-    private val activity: Activity,
+    private val context: Context,
     private val tokenApi: TokenRefreshApi,
-) : Authenticator, BaseRepository(tokenApi) {
+) : Authenticator , BaseRepository(){
     //BaseRepository : 인증 실패시 로그아웃 전송
 
     // authenticate :  401 에러가 발생 될 때마다 호출
@@ -20,7 +20,7 @@ class TokenAuthenticator constructor(
         return runBlocking {
             when(val token =getUpdateToken()){
                 is Resource.Success ->{
-                    val sp  =activity.getSharedPreferences("login_sp",Context.MODE_PRIVATE)
+                    val sp  =context.getSharedPreferences("login_sp",Context.MODE_PRIVATE)
                     val editor = sp.edit()
                     val tokenValue = token.value!!
                     val accessToken = tokenValue.accessToken
@@ -46,7 +46,7 @@ class TokenAuthenticator constructor(
     //토큰을 성공적으로 얻을 경우 업데이트
     //오류 발생 시 null 반환
     private suspend fun getUpdateToken() : Resource<Token?> {
-        val refreshToken = activity.getSharedPreferences("login_sp",Context.MODE_PRIVATE)
+        val refreshToken = context.getSharedPreferences("login_sp",Context.MODE_PRIVATE)
             .getString("refreshToken",null)
         //safeApiCall을 통한 api 요청
         // refresh token이 비었을 경우에는 null 전송을 통해서 에러 반환을 받음

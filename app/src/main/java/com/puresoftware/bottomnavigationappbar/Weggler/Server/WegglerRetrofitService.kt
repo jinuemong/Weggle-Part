@@ -16,9 +16,10 @@ interface WegglerRetrofitService {
 
     //Login jinwoo User
     @POST("login")
+    @FormUrlEncoded
     fun loginJinwoo(
-        @Body name :String = "jinwoo",
-        @Body password : String = "jinwoo!@#123",
+        @Field("name") name :String = "jinwoo",
+        @Field("password") password : String = "jinwoo!@#123",
     ) : Call<Token>
 
     //get community post List

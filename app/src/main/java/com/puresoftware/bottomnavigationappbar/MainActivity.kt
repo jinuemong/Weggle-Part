@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
 
     //weggler////////////////////
     val communityViewModel:CommunityViewModel by viewModels()
+    val wApp = WegglerApplication()
     /////////////////////////////
     val TAG: String = MainActivity::class.java.simpleName // 태그
 
@@ -47,6 +48,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //weggler//////////////
+        wApp.createRetrofit(this@MainActivity)
+        //////////////////////
 
         // toolbar control
         // https://youngtoad.tistory.com/21

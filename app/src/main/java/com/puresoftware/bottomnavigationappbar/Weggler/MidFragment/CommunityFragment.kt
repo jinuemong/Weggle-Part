@@ -30,7 +30,7 @@ class CommunityFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
-        wegglerApp = mainActivity.application as WegglerApplication
+        wegglerApp = mainActivity.wApp
     }
 
 

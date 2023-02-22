@@ -7,7 +7,7 @@ import retrofit2.http.POST
 
 //Refresh Api 호출을 위한 인터페이스
 // 새로운  access , refresh token 반환
-interface TokenRefreshApi :BaseApi{
+interface TokenRefreshApi {
     @FormUrlEncoded
     @POST("token")
     suspend fun patchToken(

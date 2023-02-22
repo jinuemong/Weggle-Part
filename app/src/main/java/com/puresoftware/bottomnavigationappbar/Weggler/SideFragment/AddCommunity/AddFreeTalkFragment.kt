@@ -169,7 +169,7 @@ class AddFreeTalkFragment( private val mainFrame : SlidingUpPanelLayout) : Fragm
                 val multiCommunityData = MultiCommunityData(
                     type, subject, text, linkUrl,"")
 
-                CommunityPostManager(mainActivity.application as WegglerApplication)
+                CommunityPostManager(mainActivity.wApp)
                     .addCommunityData(multiCommunityData,filePath,
                         mainActivity,paramFunc = {
                         if (it==null){

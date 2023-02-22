@@ -5,7 +5,7 @@ import java.io.Serializable
 //community 데이터
 
 class CommunityContent (
-    val productId : Int,
+    val postId : Int,
     val category : String,
     val name : String,
     val userId : String,
