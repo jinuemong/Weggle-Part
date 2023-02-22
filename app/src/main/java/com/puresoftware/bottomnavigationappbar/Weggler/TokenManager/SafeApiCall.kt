@@ -4,6 +4,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 
+//안전한 api 전송을 위한 코드
+// Resource.Success(apiCall.invoke()) 코드를 반환하는 것이 목표
+// 실패할 경우 에러 반환
 interface SafeApiCall {
     suspend fun <T> safeApiCall(
         apiCall: suspend () -> T

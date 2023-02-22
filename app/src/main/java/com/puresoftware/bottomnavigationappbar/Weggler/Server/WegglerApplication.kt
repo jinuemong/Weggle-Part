@@ -15,6 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 //http://dev-api.kooru.be/swagger-ui/index.html#/
 
+//refrofit client
 class WegglerApplication constructor(
     private val activity: Activity,
 ) : Application() {
@@ -29,6 +30,7 @@ class WegglerApplication constructor(
 
     private fun createRetrofit(){
         //토큰을 위한 인증
+        //TokenAuthenticator으로 새 토큰 발행
         val authenticator = TokenAuthenticator(activity,buildTokenApi())
 
         //레트로핏 생성
@@ -41,6 +43,7 @@ class WegglerApplication constructor(
 
     }
 
+    //TokenRefreshApi를 빌드
     private fun buildTokenApi() : TokenRefreshApi {
         return Retrofit.Builder()
             .baseUrl("$baseUrl/")
@@ -52,6 +55,8 @@ class WegglerApplication constructor(
 
     //레트로핏 클라이언트 생성 함수
     // 빌드 :  okhttp client
+    // 인터셉터를 통한 request를 보냄
+
     private fun getRetrofitClient(authenticator: Authenticator? = null): OkHttpClient{
         return OkHttpClient.Builder()
             .addInterceptor { chain->
@@ -69,4 +74,6 @@ class WegglerApplication constructor(
             }.build()
     }
 
+    // 401 에러 발생 시 인증자가 토큰을 새로 갱신하려고 시도
+    // 새로 고침에 성공하면 사용자가 로그아웃 되지 않음
 }
