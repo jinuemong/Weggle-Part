@@ -26,8 +26,8 @@ import java.lang.Exception
 //Multi Part 형식 (이미지 + body)으로 보낼 때 필요
 
 class MultiPartViewModel: ViewModel(){
-    fun uploadCommunityPoster(multiCommunityData: MultiCommunityData,filePath : Uri?,
-                              activity: Activity,paramFunc:(ReviewInCommunity?)->Unit){
+    fun uploadCommunityPoster(productId:Int,multiCommunityData: MultiCommunityData,filePath : Uri?,
+                              activity: Activity,paramFunc:(ReviewInCommunity?,String?)->Unit){
         viewModelScope.launch {
             try {
                 // 방법 1
@@ -72,27 +72,23 @@ class MultiPartViewModel: ViewModel(){
 
                 //retrofit 연결
                 ((activity as MainActivity).wApp).service
-                    .addCommunityPost(body,multipartFile)
+                    .addReView(productId,body,multipartFile)
                     .enqueue(object : Callback<ReviewInCommunity> {
                         override fun onResponse(
                             call: Call<ReviewInCommunity>, response: Response<ReviewInCommunity>) {
                             if (response.isSuccessful){
                                 val data = response.body()!!
-                                Log.d("selfjsefljselefj 1",data.toString())
-                                paramFunc(data)
+                                paramFunc(data,null)
                             }else{
-                                paramFunc(null)
-                                Log.d("selfjsefljselefj 2",response.errorBody()!!.string())
+                                paramFunc(null,response.errorBody()!!.string())
                             }
                         }
                         override fun onFailure(call: Call<ReviewInCommunity>, t: Throwable) {
-                            Log.d("selfjsefljselefj 3",t.message.toString())
-                            paramFunc(null)
+                            paramFunc(null,"error")
                         }
                     })
             }catch (e:Exception){
-                Log.d("selfjsefljselefj 4", e.message.toString())
-                paramFunc(null)
+                paramFunc(null,"error")
             }
         }
 

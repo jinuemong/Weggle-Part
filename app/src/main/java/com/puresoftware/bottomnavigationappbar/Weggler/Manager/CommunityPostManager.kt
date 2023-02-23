@@ -9,6 +9,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
+//삭제해야 함
 class CommunityPostManager (
     masterApplication:WegglerApplication
 ){

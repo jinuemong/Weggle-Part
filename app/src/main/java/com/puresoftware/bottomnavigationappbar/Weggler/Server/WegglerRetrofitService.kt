@@ -29,7 +29,7 @@ interface WegglerRetrofitService {
     ): Call<ProductList>
 
 
-    //커뮤니티 profuct 생성
+    //커뮤니티 product 생성
     @POST("categories/{category}/products/{name}")
     fun addCommunityProduct(
         @Path("category") category : String,
@@ -49,7 +49,7 @@ interface WegglerRetrofitService {
     //리뷰 추가
     @GET("productes/{productId}/reviews")
     fun addReView(
-        @Path("productId") productId: String,
+        @Path("productId") productId: Int,
         @Part("param") param : BodyReviewForPOST, //body
         @Part multipartFile : MultipartBody.Part? //image
     ): Call<ReviewInCommunity>
@@ -57,7 +57,7 @@ interface WegglerRetrofitService {
     //리뷰 좋아요 순으로 얻기
     @GET("productes/{productId}/reviewsByLike")
     fun getReviewsByLike(
-        @Path("productId") productId: String,
+        @Path("productId") productId: Int,
     ): Call<ReviewListInCommunity>
 
     //내 리뷰 조회
