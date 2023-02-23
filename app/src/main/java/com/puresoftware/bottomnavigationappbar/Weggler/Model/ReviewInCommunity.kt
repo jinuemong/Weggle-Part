@@ -4,10 +4,8 @@ import java.io.Serializable
 
 //community 데이터
 
-class CommunityContent (
-    val postId : Int,
-    val category : String,
-    val name : String,
+class ReviewInCommunity (
+    val reviewId : Int,
     val userId : String,
     val thumbnail:String="", //자동
     var resource : String="", //자동

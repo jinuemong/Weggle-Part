@@ -2,7 +2,6 @@ package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPo
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +9,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import com.puresoftware.bottomnavigationappbar.MainActivity
-import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemCommunitySmallAdapterTotal
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityContent
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityFragment.ShellFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentTotalBinding
 
 
@@ -25,7 +22,7 @@ class TotalFragment(
     private lateinit var mainActivity: MainActivity
     private lateinit var fm: FragmentManager
 
-    var data :ArrayList<CommunityContent> = arrayListOf()
+    var data :ArrayList<ReviewInCommunity> = arrayListOf()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -53,7 +50,7 @@ class TotalFragment(
         val adapter = ItemCommunitySmallAdapterTotal(mainActivity, data)
         binding.totalRecycler.adapter = adapter.apply {
             setOnItemClickListener(object : ItemCommunitySmallAdapterTotal.OnItemClickListener{
-                override fun onItemClick(item: CommunityContent) {
+                override fun onItemClick(item: ReviewInCommunity) {
                     mainActivity.setMainViewVisibility(false)
                     if (selectPosition =="Main Posting"){
                         mainActivity.changeFragment(DetailCommunityPostingFragment("main",item))

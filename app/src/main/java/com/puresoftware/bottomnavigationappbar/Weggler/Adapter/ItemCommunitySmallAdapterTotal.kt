@@ -1,34 +1,30 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.Adapter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.puresoftware.bottomnavigationappbar.MainActivity
-import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.*
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getTimeText
 import com.puresoftware.bottomnavigationappbar.databinding.ItemCommunitySmallFreeBinding
 import com.puresoftware.bottomnavigationappbar.databinding.ItemCommunitySmallJointBinding
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
 //프리 or 공구 or 통합
 class ItemCommunitySmallAdapterTotal(
     private val mainActivity: MainActivity,
-    dataList: ArrayList<CommunityContent>,
+    dataList: ArrayList<ReviewInCommunity>,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var onItemClickListener: OnItemClickListener? = null
 
     var dataSet = dataList
 
     interface OnItemClickListener {
-        fun onItemClick(item: CommunityContent)
+        fun onItemClick(item: ReviewInCommunity)
     }
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
@@ -94,7 +90,7 @@ class ItemCommunitySmallAdapterTotal(
     // View Init
     inner class JointViewHolder(private val binding: ItemCommunitySmallJointBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: CommunityContent) {
+        fun bind(data: ReviewInCommunity) {
             binding.apply {
                 timeText.text = getTimeText(data.createTime)
                 sujectText.text = data.body.subject
@@ -115,7 +111,7 @@ class ItemCommunitySmallAdapterTotal(
     inner class FreeViewHolder(private val binding: ItemCommunitySmallFreeBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(data: CommunityContent) {
+        fun bind(data: ReviewInCommunity) {
             binding.apply {
                 timeText.text = getTimeText(data.createTime)
                 sujectText.text = data.body.subject
@@ -145,7 +141,7 @@ class ItemCommunitySmallAdapterTotal(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(dataList: ArrayList<CommunityContent>) {
+    fun setData(dataList: ArrayList<ReviewInCommunity>) {
         dataSet = dataList
         notifyDataSetChanged()
     }

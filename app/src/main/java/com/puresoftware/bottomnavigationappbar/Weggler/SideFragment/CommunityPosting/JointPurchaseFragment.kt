@@ -9,8 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemCommunitySmallAdapterJoint
-import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemCommunitySmallAdapterTotal
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityContent
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentJointPurchaseBinding
 
 //공구해요
@@ -24,7 +23,7 @@ class JointPurchaseFragment(
     private lateinit var mainActivity: MainActivity
     private lateinit var fm: FragmentManager
 
-    var data : ArrayList<CommunityContent> = arrayListOf()
+    var data : ArrayList<ReviewInCommunity> = arrayListOf()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -67,7 +66,7 @@ class JointPurchaseFragment(
         val adapter = ItemCommunitySmallAdapterJoint(mainActivity, data)
         binding.totalRecycler.adapter = adapter.apply {
             setOnItemClickListener(object : ItemCommunitySmallAdapterJoint.OnItemClickListener{
-                override fun onItemClick(item: CommunityContent) {
+                override fun onItemClick(item: ReviewInCommunity) {
                     mainActivity.setMainViewVisibility(false)
                     mainActivity.changeFragment(DetailCommunityPostingFragment("sub",item))
                 }

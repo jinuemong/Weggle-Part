@@ -8,14 +8,13 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.puresoftware.bottomnavigationappbar.MainActivity
-import com.puresoftware.bottomnavigationappbar.R
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityContent
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.type_free
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.type_joint
 import com.puresoftware.bottomnavigationappbar.databinding.ItemMiniCommunityPopularBinding
 
 class ItemPopularPostingTabAdapter (
-    itemList : List<CommunityContent>,
+    itemList : List<ReviewInCommunity>,
     private val mainActivity: MainActivity,
 ): RecyclerView.Adapter<ItemPopularPostingTabAdapter.ItemMiniPopularViewHolder>() {
 
@@ -25,7 +24,7 @@ class ItemPopularPostingTabAdapter (
     private var onItemClickListener : OnItemClickListener? = null
 
     interface OnItemClickListener{
-        fun onItemClick(item:CommunityContent)
+        fun onItemClick(item:ReviewInCommunity)
     }
     fun setOnItemClickListener(listener: OnItemClickListener){
         this.onItemClickListener =listener
@@ -64,7 +63,7 @@ class ItemPopularPostingTabAdapter (
     override fun getItemCount()= itemSet.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(itemList : List<CommunityContent>){
+    fun setData(itemList : List<ReviewInCommunity>){
         itemSet = itemList
         notifyDataSetChanged()
     }

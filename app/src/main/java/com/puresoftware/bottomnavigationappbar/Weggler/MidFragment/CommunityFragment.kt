@@ -3,7 +3,6 @@ package com.puresoftware.bottomnavigationappbar.Weggler.MidFragment
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
@@ -12,8 +11,7 @@ import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemPopularPostingTabAdapter
 import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityPostManager
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityContent
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityList
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
 import com.puresoftware.bottomnavigationappbar.Weggler.Server.WegglerApplication
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.TotalFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityFragment.ShellFragment
@@ -115,7 +113,7 @@ class CommunityFragment : Fragment() {
                 //인기 게시물 설정 (main 4개)
                 popularAdapter = ItemPopularPostingTabAdapter(it,mainActivity).apply {
                     setOnItemClickListener(object : ItemPopularPostingTabAdapter.OnItemClickListener{
-                        override fun onItemClick(item: CommunityContent) {
+                        override fun onItemClick(item: ReviewInCommunity) {
                             mainActivity.changeFragment(DetailCommunityPostingFragment("main",item))
                             mainActivity.setMainViewVisibility(false)
                         }

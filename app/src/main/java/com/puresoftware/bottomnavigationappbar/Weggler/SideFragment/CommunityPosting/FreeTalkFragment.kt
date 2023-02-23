@@ -9,8 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemCommunitySmallAdapterFree
-import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemCommunitySmallAdapterTotal
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityContent
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentFreeTalkBinding
 
 //프리 토크
@@ -24,7 +23,7 @@ class FreeTalkFragment(
     private lateinit var mainActivity: MainActivity
     private lateinit var fm: FragmentManager
 
-    var data : ArrayList<CommunityContent> = arrayListOf()
+    var data : ArrayList<ReviewInCommunity> = arrayListOf()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -67,7 +66,7 @@ class FreeTalkFragment(
         val adapter = ItemCommunitySmallAdapterFree(mainActivity, data)
         binding.totalRecycler.adapter = adapter.apply {
             setOnItemClickListener(object : ItemCommunitySmallAdapterFree.OnItemClickListener{
-                override fun onItemClick(item: CommunityContent) {
+                override fun onItemClick(item: ReviewInCommunity) {
                     mainActivity.changeFragment(DetailCommunityPostingFragment("sub",item))
                 }
 

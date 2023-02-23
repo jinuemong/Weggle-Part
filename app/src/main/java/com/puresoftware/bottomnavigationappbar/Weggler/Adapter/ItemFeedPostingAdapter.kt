@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.puresoftware.bottomnavigationappbar.MainActivity
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.Posting
 import com.puresoftware.bottomnavigationappbar.databinding.ItemFeedPostingBinding
 
 //리뷰 데이터 불러오기

@@ -1,9 +1,9 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.Model
 
-import okhttp3.RequestBody
 import java.io.Serializable
 
+//post comment body
 
-class BodyComment(
+class BodyCommentForPOST(
     val body : String,
 ) : Serializable

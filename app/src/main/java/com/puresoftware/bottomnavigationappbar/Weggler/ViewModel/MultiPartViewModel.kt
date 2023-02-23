@@ -8,15 +8,13 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.puresoftware.bottomnavigationappbar.MainActivity
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommunityContent
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.MultiCommunityData
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.BodyPost
-import com.puresoftware.bottomnavigationappbar.Weggler.Server.WegglerApplication
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.BodyReviewForPOST
 import kotlinx.coroutines.launch
 
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
@@ -29,7 +27,7 @@ import java.lang.Exception
 
 class MultiPartViewModel: ViewModel(){
     fun uploadCommunityPoster(multiCommunityData: MultiCommunityData,filePath : Uri?,
-                              activity: Activity,paramFunc:(CommunityContent?)->Unit){
+                              activity: Activity,paramFunc:(ReviewInCommunity?)->Unit){
         viewModelScope.launch {
             try {
                 // 방법 1
@@ -55,7 +53,7 @@ class MultiPartViewModel: ViewModel(){
 //                params["jointProduct"] = multiCommunityData.jointProduct
 
                 // 방법 3
-                val body = BodyPost(multiCommunityData)
+                val body = BodyReviewForPOST(multiCommunityData)
 
 
 
@@ -75,9 +73,9 @@ class MultiPartViewModel: ViewModel(){
                 //retrofit 연결
                 ((activity as MainActivity).wApp).service
                     .addCommunityPost(body,multipartFile)
-                    .enqueue(object : Callback<CommunityContent> {
+                    .enqueue(object : Callback<ReviewInCommunity> {
                         override fun onResponse(
-                            call: Call<CommunityContent>, response: Response<CommunityContent>) {
+                            call: Call<ReviewInCommunity>, response: Response<ReviewInCommunity>) {
                             if (response.isSuccessful){
                                 val data = response.body()!!
                                 Log.d("selfjsefljselefj 1",data.toString())
@@ -87,7 +85,7 @@ class MultiPartViewModel: ViewModel(){
                                 Log.d("selfjsefljselefj 2",response.errorBody()!!.string())
                             }
                         }
-                        override fun onFailure(call: Call<CommunityContent>, t: Throwable) {
+                        override fun onFailure(call: Call<ReviewInCommunity>, t: Throwable) {
                             Log.d("selfjsefljselefj 3",t.message.toString())
                             paramFunc(null)
                         }
