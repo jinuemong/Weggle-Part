@@ -6,14 +6,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puresoftware.bottomnavigationappbar.MainActivity
-import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityPostManager
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Comment
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getTimeText
 import com.puresoftware.bottomnavigationappbar.databinding.ItemCommentBinding
 
 class ItemCommentAdapter (
     private val mainActivity: MainActivity,
-    private val communityPostManager: CommunityPostManager,
     itemList : ArrayList<Comment>
 ): RecyclerView.Adapter<ItemCommentAdapter.ItemCommentViewHolder>(){
     private lateinit var binding: ItemCommentBinding
@@ -56,7 +54,6 @@ class ItemCommentAdapter (
     }
 
     fun addData(comment:Comment) :String{
-        Log.d("cccc",comment.body.toString())
         itemSet.add(comment)
         notifyItemInserted(itemCount-1)
         return itemCount.toString()

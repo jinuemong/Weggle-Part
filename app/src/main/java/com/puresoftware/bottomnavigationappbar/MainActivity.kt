@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
     val communityViewModel:CommunityViewModel by viewModels()
     val wApp = WegglerApplication()
     /////////////////////////////
+
     val TAG: String = MainActivity::class.java.simpleName // 태그
 
     override fun onCreate(savedInstanceState: Bundle?) {

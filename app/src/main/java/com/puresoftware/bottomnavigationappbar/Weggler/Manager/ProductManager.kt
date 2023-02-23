@@ -56,7 +56,7 @@ class ProductManager(
         })
     }
 
-    // Community 리스트 얻기
+    // Community Product 얻기
     private fun getCommunityProduct(paramFunc:(ProductList?,message:String?)->Unit){
         wApp.service.getCommunityProduct(category = "community",null,null,null)
             .enqueue(object : Callback<ProductList>{

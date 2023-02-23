@@ -30,32 +30,8 @@ class MultiPartViewModel: ViewModel(){
                               activity: Activity,paramFunc:(ReviewInCommunity?,String?)->Unit){
         viewModelScope.launch {
             try {
-                // 방법 1
-//                //데이터 변환
-//                val typeRequestBody : RequestBody = multiCommunityData.type.toString()
-//                    .toPlainRequestBody()
-//                val subjectRequestBody : RequestBody = multiCommunityData.subject
-//                    .toPlainRequestBody()
-//                val textRequestBody : RequestBody = multiCommunityData.text
-//                    .toPlainRequestBody()
-//                val linkUrlRequestBody : RequestBody = multiCommunityData.linkUrl
-//                    .toPlainRequestBody()
-//                val jointProductRequestBody : RequestBody = multiCommunityData.jointProduct
-//                    .toPlainRequestBody()
 
-                // 방법 2
-                // key -value 형식으로 묶음
-//                val params = hashMapOf<String,String>()
-//                params["type"] = multiCommunityData.type.toString()
-//                params["subject"] = multiCommunityData.subject
-//                params["text"] = multiCommunityData.text
-//                params["linkUrl"] = multiCommunityData.linkUrl
-//                params["jointProduct"] = multiCommunityData.jointProduct
-
-                // 방법 3
                 val body = BodyReviewForPOST(multiCommunityData)
-
-
 
                 //이미지 처리
                 val multipartFile : MultipartBody.Part? = if (filePath!=null) {
