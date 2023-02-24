@@ -2,6 +2,7 @@ package com.puresoftware.bottomnavigationappbar.Weggler.ViewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.Comment
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
 
 class CommunityViewModel :ViewModel(){
@@ -12,13 +13,13 @@ class CommunityViewModel :ViewModel(){
     //인기 게시글 데이터 리스트
     var popularPostingLiveData = MutableLiveData<ArrayList<ReviewInCommunity>>()
     // 내가 쓴 댓글 데이터 리스트
-//    var myCommentLiveData = MutableLiveData<ArrayList<Comment>>()
+    var myCommentLiveData = MutableLiveData<ArrayList<Comment>>()
 
     init {
         communityLiveData.value = ArrayList()
         myPostingLiveData.value = ArrayList()
         popularPostingLiveData.value = ArrayList()
-//        myCommentLiveData.value = ArrayList()
+        myCommentLiveData.value = ArrayList()
     }
 
     //커뮤니티 데이터 전체 초기화
@@ -29,6 +30,16 @@ class CommunityViewModel :ViewModel(){
     //내 포스팅 데이터 전체 초기화
     fun setMyPostingData(data : ArrayList<ReviewInCommunity>){
         myPostingLiveData.value = data
+    }
+
+    //인기 데이터 전체 초기화
+    fun setPopularPostingData(data : ArrayList<ReviewInCommunity>){
+        popularPostingLiveData.value = data
+    }
+
+    //내 댓글 데이터 전체 초기화
+    fun setMyCommentData(data : ArrayList<Comment>){
+        myCommentLiveData.value = data
     }
 
     //커뮤니티 데이터 추가

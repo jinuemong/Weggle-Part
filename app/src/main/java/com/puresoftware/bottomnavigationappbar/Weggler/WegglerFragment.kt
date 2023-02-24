@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager
 import com.google.android.material.tabs.TabLayout
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
+import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityCommentManager
 import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityManagerWithReview
 import com.puresoftware.bottomnavigationappbar.Weggler.MidFragment.ChallengeFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.MidFragment.CommunityFragment
@@ -32,7 +33,8 @@ class WegglerFragment : Fragment() {
     private lateinit var fm : FragmentManager
 
     private lateinit var productManager : ProductManager
-    private lateinit var communityManager:  CommunityManagerWithReview
+    private lateinit var communityPostManager:  CommunityManagerWithReview
+    private lateinit var communityCommentManager : CommunityCommentManager
 
     private var feedFragment: FeedFragment? = null
     private var challengeFragment: ChallengeFragment? = null
@@ -44,7 +46,9 @@ class WegglerFragment : Fragment() {
         mainActivity  = context as MainActivity
         fm = mainActivity.supportFragmentManager
         productManager = ProductManager(mainActivity.masterApp)
-        communityManager = CommunityManagerWithReview(mainActivity.masterApp)
+        communityPostManager = CommunityManagerWithReview(mainActivity.masterApp)
+        communityCommentManager = CommunityCommentManager(mainActivity.masterApp)
+
     }
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -118,9 +122,46 @@ class WegglerFragment : Fragment() {
         productManager.initCommunityProduct { communityList, message ->
             if (message==null){
                 // 내 리뷰 리스트 불러오기 ( 공구해요 + 프리토크 내부에서 body -type으로 분류 )
-                communityManager.getCommunityReviewList(communityList!!.productId, paramFunc = { data, message2->
+                communityPostManager.getCommunityReviewList(communityList!!.productId, paramFunc = { data, message2->
                     if (message2==null){
-                        mainActivity.communityViewModel.communityLiveData.value = data
+                        if (data != null) {
+                            mainActivity.communityViewModel.setCommunityData(data)
+                        }
+                    }else{
+                        Toast.makeText(mainActivity, message2, Toast.LENGTH_SHORT).show()
+                    }
+                })
+
+                // 내 포스팅 불러오기
+                communityPostManager.getMyCommunityReviewList(paramFunc = { data, message2 ->
+                    if (message2==null){
+                        if (data != null) {
+                            mainActivity.communityViewModel.setMyPostingData(data)
+                        }
+                    }else{
+                        Toast.makeText(mainActivity, message2, Toast.LENGTH_SHORT).show()
+
+                    }
+                })
+
+                // 인기 게시물 불러오기
+                communityPostManager.getCommunityReviewListByLike(communityList.productId, paramFunc = { data,message2->
+                    if (message2 == null) {
+                        if (data != null) {
+                            mainActivity.communityViewModel.setPopularPostingData(data)
+                        }
+                    } else {
+                        Toast.makeText(mainActivity, message2, Toast.LENGTH_SHORT).show()
+
+                    }
+                })
+
+                //내 댓글 불러오기
+                communityCommentManager.getMyCommentList(paramFunc = { data,message2->
+                    if (message2==null){
+                        if( data!=null){
+                            mainActivity.communityViewModel.setMyCommentData(data)
+                        }
                     }else{
                         Toast.makeText(mainActivity, message2, Toast.LENGTH_SHORT).show()
                     }
