@@ -2,8 +2,6 @@ package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.AddCommunit
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
@@ -14,17 +12,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.net.toUri
-import androidx.fragment.app.FragmentFactory
 import androidx.fragment.app.FragmentManager
-import androidx.slidingpanelayout.widget.SlidingPaneLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.MultiCommunityData
-import com.puresoftware.bottomnavigationappbar.Weggler.Server.WegglerApplication
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentAddFreeTalkBinding
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
 

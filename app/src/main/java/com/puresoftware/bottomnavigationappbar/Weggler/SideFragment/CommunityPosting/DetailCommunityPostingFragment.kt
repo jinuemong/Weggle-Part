@@ -15,7 +15,7 @@ import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemCommentAdapter
 import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityPostManager
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
-import com.puresoftware.bottomnavigationappbar.Weggler.Server.WegglerApplication
+import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getTimeText
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.isVideo
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentDetailCommunityPostingBinding
@@ -28,7 +28,7 @@ class DetailCommunityPostingFragment(
     private var _binding : FragmentDetailCommunityPostingBinding? = null
     private val binding  get() = _binding!!
     private lateinit var mainActivity: MainActivity
-    private lateinit var wegglerApp : WegglerApplication
+    private lateinit var wegglerApp : MasterApplication
     private lateinit var commentAdapter:ItemCommentAdapter
     val posting = postingData
     private lateinit var community : CommunityPostManager

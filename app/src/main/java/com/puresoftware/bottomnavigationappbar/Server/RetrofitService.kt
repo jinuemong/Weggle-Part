@@ -1,4 +1,4 @@
-package com.puresoftware.bottomnavigationappbar.Weggler.Server
+package com.puresoftware.bottomnavigationappbar.Server
 
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.*
 import okhttp3.MultipartBody
@@ -9,7 +9,7 @@ import retrofit2.http.*
 
 
 
-interface WegglerRetrofitService {
+interface RetrofitService {
 
     //Login jinwoo User
     @POST("login")
@@ -38,12 +38,9 @@ interface WegglerRetrofitService {
     ): Call<Product>
 
     //리뷰 얻기
-    @GET("productes/{productId}/reviews")
+    @GET("productes/{productId}/reviewsByCreateTime")
     fun getReViews(
         @Path("productId") productId : Int,
-        @Query(value = "page", encoded = true) page: Int?,
-        @Query(value = "size", encoded = true) size: Int?,
-        @Query(value = "sort", encoded = true) sort: List<String>?,
     ): Call<ReviewListInCommunity>
 
     //리뷰 추가

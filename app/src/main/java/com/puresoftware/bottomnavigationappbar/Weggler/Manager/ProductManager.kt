@@ -3,55 +3,27 @@ package com.puresoftware.bottomnavigationappbar.Weggler.Manager
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.BodyProductForPOST
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Product
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.ProductList
-import com.puresoftware.bottomnavigationappbar.Weggler.Server.WegglerApplication
+import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class ProductManager(
-   private val wApp : WegglerApplication
+   private val wApp : MasterApplication
 ) {
 
     // Community Product 갱신
     // freeTalk , jointPurchase 탐색
     // 데이터가 있다면 반환 없다면 추가후 반환
-    fun initCommunityProduct(paramFunc:(HashMap<String,Product>?,message:String?)->Unit){
+    fun initCommunityProduct(paramFunc:(Product?,message:String?)->Unit){
         getCommunityProduct(paramFunc = { data,message->
             if (message!=null){ //오류 반환
                 paramFunc(null,message)
             }else{ //정상 받음
-                val productHash = HashMap<String,Product>()
                 val productList = data!!
-                var freeTalk = productList.content.find { it.name == "freeTalk" }
-                var jointPurchase = productList.content.find { it.name == "jointPurchase" }
+                val communityList = productList.content.find { it.name == "communityList" }
 
-                // 둘 중에 null 값이 있으면 새로 생성
-                if (freeTalk==null || jointPurchase==null){
-                    //프리토크 생성
-                    if (freeTalk==null){
-                        addProduct("freeTalk",paramFunc={ newFreeTalk, message2 ->
-                            if (newFreeTalk!=null &&message2==null){
-                                freeTalk = newFreeTalk
-                            }else {paramFunc(null,message2)} //freeTalk 추가 실패
-                        })
-                    }
-                    //공동구매 생성
-                    if (jointPurchase==null) {
-                        addProduct("jointPurchase", paramFunc = { newJointPurchase, message3 ->
-                            if (newJointPurchase != null && message3 == null) {
-                                jointPurchase = newJointPurchase
-                            } else {
-                                paramFunc(null, message3) //joint 추가 실패
-                            }
-                        })
-                    }
-
-                    //시간 경과후 반환
-                    Thread.sleep(500)
-                }
-                productHash["freeTalk"] = freeTalk!!
-                productHash["jointPurchase"] = jointPurchase!!
-                paramFunc(productHash,null)
+                paramFunc(communityList,null)
             }
         })
     }

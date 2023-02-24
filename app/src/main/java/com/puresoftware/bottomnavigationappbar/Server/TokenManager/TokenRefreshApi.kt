@@ -1,4 +1,4 @@
-package com.puresoftware.bottomnavigationappbar.Weggler.TokenManager
+package com.puresoftware.bottomnavigationappbar.Server.TokenManager
 
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Token
 import retrofit2.http.Body

@@ -12,7 +12,7 @@ import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemPopularPostingTabAdapter
 import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityPostManager
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
-import com.puresoftware.bottomnavigationappbar.Weggler.Server.WegglerApplication
+import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.TotalFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityFragment.ShellFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.DetailCommunityPostingFragment
@@ -23,7 +23,7 @@ class CommunityFragment : Fragment() {
     private var _binding : FragmentCommunityBinding?= null
     private val binding get() = _binding!!
     private lateinit var mainActivity: MainActivity
-    private lateinit var wegglerApp : WegglerApplication
+    private lateinit var wegglerApp : MasterApplication
     private var popularAdapter: ItemPopularPostingTabAdapter?= null
     override fun onAttach(context: Context) {
         super.onAttach(context)

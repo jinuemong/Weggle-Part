@@ -1,4 +1,4 @@
-package com.puresoftware.bottomnavigationappbar.Weggler.TokenManager
+package com.puresoftware.bottomnavigationappbar.Server.TokenManager
 
 
 //로그아웃 기능을 하는 api

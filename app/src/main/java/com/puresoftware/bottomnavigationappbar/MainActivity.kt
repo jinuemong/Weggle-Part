@@ -1,25 +1,20 @@
 package com.puresoftware.bottomnavigationappbar
 
-import android.graphics.Color
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.core.view.GravityCompat
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import androidx.lifecycle.ViewModel
 import com.puresoftware.bottomnavigationappbar.CenterWeggle.CenterWeggleFragment
 import com.puresoftware.bottomnavigationappbar.Home.HomeFragment
 import com.puresoftware.bottomnavigationappbar.MyAccount.MyAccountFragment
-import com.puresoftware.bottomnavigationappbar.Weggler.Server.WegglerApplication
+import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
 import com.puresoftware.bottomnavigationappbar.Weggler.ViewModel.CommunityViewModel
 import com.puresoftware.bottomnavigationappbar.Weggler.WegglerFragment
 import com.puresoftware.bottomnavigationappbar.brands.BrandsFragment
@@ -37,9 +32,13 @@ class MainActivity : AppCompatActivity() {
     var fragmentManager: FragmentManager? = null // Fragment
     var transaction: FragmentTransaction? = null // Fragment
 
+
+    //MaterApplication : 로그인 + API 연동////
+    val masterApp = MasterApplication()
+    ///////////////////////////////////////
+
     //weggler////////////////////
     val communityViewModel:CommunityViewModel by viewModels()
-    val wApp = WegglerApplication()
     /////////////////////////////
 
     val TAG: String = MainActivity::class.java.simpleName // 태그
@@ -49,8 +48,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //weggler//////////////
-        wApp.createRetrofit(this@MainActivity)
+        //masterApp init //////////////
+        masterApp.createRetrofit(this@MainActivity)
         //////////////////////
 
         // toolbar control

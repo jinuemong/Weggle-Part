@@ -1,4 +1,4 @@
-package com.puresoftware.bottomnavigationappbar.Weggler.TokenManager
+package com.puresoftware.bottomnavigationappbar.Server.TokenManager
 
 import okhttp3.ResponseBody
 

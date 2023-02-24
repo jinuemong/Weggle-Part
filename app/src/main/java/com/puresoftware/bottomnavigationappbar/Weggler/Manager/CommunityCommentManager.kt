@@ -3,13 +3,13 @@ package com.puresoftware.bottomnavigationappbar.Weggler.Manager
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.BodyCommentForPOST
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Comment
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommentList
-import com.puresoftware.bottomnavigationappbar.Weggler.Server.WegglerApplication
+import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class CommunityCommentManager(
-    private val wApp : WegglerApplication
+    private val wApp : MasterApplication
 ) {
 
     //내가 쓴  댓글 조회

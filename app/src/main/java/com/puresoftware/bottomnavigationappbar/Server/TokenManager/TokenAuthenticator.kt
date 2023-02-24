@@ -1,4 +1,4 @@
-package com.puresoftware.bottomnavigationappbar.Weggler.TokenManager
+package com.puresoftware.bottomnavigationappbar.Server.TokenManager
 
 import android.app.Activity
 import android.content.Context

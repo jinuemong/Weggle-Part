@@ -1,13 +1,12 @@
-package com.puresoftware.bottomnavigationappbar.Weggler.Server
+package com.puresoftware.bottomnavigationappbar.Server
 
 import android.app.Activity
 import android.app.Application
 import com.facebook.stetho.BuildConfig
 import com.facebook.stetho.Stetho
-import com.puresoftware.bottomnavigationappbar.Weggler.TokenManager.TokenAuthenticator
-import com.puresoftware.bottomnavigationappbar.Weggler.TokenManager.TokenRefreshApi
+import com.puresoftware.bottomnavigationappbar.Server.TokenManager.TokenAuthenticator
+import com.puresoftware.bottomnavigationappbar.Server.TokenManager.TokenRefreshApi
 import okhttp3.Authenticator
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -16,8 +15,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 //http://dev-api.kooru.be/swagger-ui/index.html#/
 
 //refrofit client
-class WegglerApplication : Application() {
-    lateinit var service: WegglerRetrofitService
+class MasterApplication : Application() {
+    lateinit var service: RetrofitService
     private val baseUrl = "http://dev-api.kooru.be/api/v1"
 
     override fun onCreate() {
@@ -36,7 +35,7 @@ class WegglerApplication : Application() {
             .client(getRetrofitClient(authenticator))
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        service = retrofit.create(WegglerRetrofitService::class.java)
+        service = retrofit.create(RetrofitService::class.java)
 
     }
 

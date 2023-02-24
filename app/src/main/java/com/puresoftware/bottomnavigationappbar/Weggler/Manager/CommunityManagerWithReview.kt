@@ -2,22 +2,21 @@ package com.puresoftware.bottomnavigationappbar.Weggler.Manager
 
 import android.app.Activity
 import android.net.Uri
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.BodyReviewForPOST
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.MultiCommunityData
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewListInCommunity
-import com.puresoftware.bottomnavigationappbar.Weggler.Server.WegglerApplication
+import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
 import com.puresoftware.bottomnavigationappbar.Weggler.ViewModel.MultiPartViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class CommunityManagerWithReview(
-    private val wApp : WegglerApplication
+    private val wApp : MasterApplication
 ){
 
     fun getCommunityReviewList(productId : Int,paramFunc : (ArrayList<ReviewInCommunity>?,String?) -> Unit){
-        wApp.service.getReViews(productId,null,null,null)
+        wApp.service.getReViews(productId)
             .enqueue(object : Callback<ReviewListInCommunity>{
                 override fun onResponse(
                     call: Call<ReviewListInCommunity>,
