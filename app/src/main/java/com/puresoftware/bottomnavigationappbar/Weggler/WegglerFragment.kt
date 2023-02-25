@@ -121,6 +121,8 @@ class WegglerFragment : Fragment() {
     private fun initServerData(){
         productManager.initCommunityProduct { communityList, message ->
             if (message==null){
+                mainActivity.communityViewModel.communityProduct = communityList
+
                 // 내 리뷰 리스트 불러오기 ( 공구해요 + 프리토크 내부에서 body -type으로 분류 )
                 communityPostManager.getCommunityReviewList(communityList!!.productId, paramFunc = { data, message2->
                     if (message2==null){

@@ -3,9 +3,12 @@ package com.puresoftware.bottomnavigationappbar.Weggler.ViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Comment
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.Product
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
 
 class CommunityViewModel :ViewModel(){
+    // 카뮤니티 Product
+    var communityProduct : Product? = null
     //커뮤니티 데이터 리스트
     var communityLiveData = MutableLiveData<ArrayList<ReviewInCommunity>>()
     //내가 쓴 글 데이터 리스트

@@ -47,7 +47,7 @@ class MultiPartViewModel: ViewModel(){
                 }else{ null } //이미지가 없다면 null 처리
 
                 //retrofit 연결
-                ((activity as MainActivity).wApp).service
+                ((activity as MainActivity).masterApp).service
                     .addReView(productId,body,multipartFile)
                     .enqueue(object : Callback<ReviewInCommunity> {
                         override fun onResponse(

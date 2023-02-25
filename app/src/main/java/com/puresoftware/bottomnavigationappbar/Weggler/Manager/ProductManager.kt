@@ -30,7 +30,7 @@ class ProductManager(
 
     // Community Product 얻기
     private fun getCommunityProduct(paramFunc:(ProductList?,message:String?)->Unit){
-        wApp.service.getCommunityProduct(category = "community",null,null,null)
+        wApp.service.getCommunityProduct(category = "admin",null,null,null)
             .enqueue(object : Callback<ProductList>{
                 override fun onResponse(call: Call<ProductList>, response: Response<ProductList>) {
                     if (response.isSuccessful){

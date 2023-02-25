@@ -18,6 +18,7 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
+import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityManagerWithReview
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.MultiCommunityData
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentAddFreeTalkBinding
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
@@ -159,20 +160,25 @@ class AddFreeTalkFragment( private val mainFrame : SlidingUpPanelLayout) : Fragm
         // 게시물 작성 가능 : Post
         binding.uploadButton.setOnClickListener {
             if (subject != "" && text.length >= 10) {
-                val multiCommunityData = MultiCommunityData(
-                    type, subject, text, linkUrl,"")
-
-                CommunityPostManager(mainActivity.wApp)
-                    .addCommunityData(multiCommunityData,filePath,
-                        mainActivity,paramFunc = {
-                        if (it==null){
-                            Toast.makeText(mainActivity,"NetworkErr", Toast.LENGTH_SHORT)
-                                .show()
-                        }else{
-                            mainActivity.goBackFragment(this@AddFreeTalkFragment)
-                            mainActivity.setMainViewVisibility(true)
-                        }
-                    })
+                if (mainActivity.communityViewModel.communityProduct != null) {
+                    val multiCommunityData = MultiCommunityData(
+                        type, subject, text, linkUrl, ""
+                    )
+                    CommunityManagerWithReview(mainActivity.masterApp)
+                        .addCommunityReview(
+                            mainActivity.communityViewModel.communityProduct!!.productId,multiCommunityData, filePath,
+                            mainActivity, paramFunc = { data , message ->
+                                if (message != null) {
+                                    Toast.makeText(mainActivity, message, Toast.LENGTH_SHORT)
+                                        .show()
+                                } else {
+                                    //view model에 데이터 추가
+                                    mainActivity.communityViewModel.addCommunityData(data!!)
+                                    mainActivity.goBackFragment(this@AddFreeTalkFragment)
+                                    mainActivity.setMainViewVisibility(true)
+                                }
+                            })
+                }
             }
         }
     }
