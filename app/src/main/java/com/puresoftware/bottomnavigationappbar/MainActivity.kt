@@ -1,5 +1,6 @@
 package com.puresoftware.bottomnavigationappbar
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,10 +16,14 @@ import com.puresoftware.bottomnavigationappbar.CenterWeggle.CenterWeggleFragment
 import com.puresoftware.bottomnavigationappbar.Home.HomeFragment
 import com.puresoftware.bottomnavigationappbar.MyAccount.MyAccountFragment
 import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.Token
 import com.puresoftware.bottomnavigationappbar.Weggler.ViewModel.CommunityViewModel
 import com.puresoftware.bottomnavigationappbar.Weggler.WegglerFragment
 import com.puresoftware.bottomnavigationappbar.brands.BrandsFragment
 import com.puresoftware.bottomnavigationappbar.databinding.ActivityMainBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     private lateinit var  binding: ActivityMainBinding
@@ -51,6 +56,24 @@ class MainActivity : AppCompatActivity() {
         //masterApp init //////////////
         masterApp.createRetrofit(this@MainActivity)
         //////////////////////
+
+        //임의로 로그인 구현 // - Login Activity로  이동
+        (masterApp).service.loginJinwoo()
+            .enqueue(object : Callback<Token> {
+                override fun onResponse(call: Call<Token>, response: Response<Token>) {
+                    if (response.isSuccessful){
+                        val sp = getSharedPreferences("login_sp", Context.MODE_PRIVATE)
+                        val editor = sp.edit()
+                        editor.putString("accessToken", response.body()?.accessToken)
+                        editor.putString("refreshToken", response.body()?.refreshToken)
+                        editor.apply()
+
+                    }
+                }
+
+                override fun onFailure(call: Call<Token>, t: Throwable) {}
+            })
+        /////////////////
 
         // toolbar control
         // https://youngtoad.tistory.com/21

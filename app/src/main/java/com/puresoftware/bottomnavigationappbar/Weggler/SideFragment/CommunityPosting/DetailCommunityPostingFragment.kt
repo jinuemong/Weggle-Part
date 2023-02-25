@@ -9,13 +9,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.bumptech.glide.Glide
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemCommentAdapter
-import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityPostManager
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
 import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
+import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityCommentManager
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getTimeText
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.isVideo
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentDetailCommunityPostingBinding
@@ -31,11 +32,11 @@ class DetailCommunityPostingFragment(
     private lateinit var wegglerApp : MasterApplication
     private lateinit var commentAdapter:ItemCommentAdapter
     val posting = postingData
-    private lateinit var community : CommunityPostManager
+    private lateinit var community : CommunityCommentManager
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
-        wegglerApp = mainActivity.wApp
+        wegglerApp = mainActivity.masterApp
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,7 +54,7 @@ class DetailCommunityPostingFragment(
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        community = CommunityPostManager(wegglerApp)
+        community = CommunityCommentManager(wegglerApp)
         initView()
         setUpListener()
     }
@@ -72,8 +73,7 @@ class DetailCommunityPostingFragment(
         }
 
         //비디오인지 이미지인지 판별
-        //posting.resource==null -> 수정
-        if (posting.resource==null || isVideo(posting.resource)==null){
+        if (isVideo(posting.resource)==null){
             setNotRe()
         }else {
             if (isVideo(posting.resource) == true) {
@@ -94,13 +94,15 @@ class DetailCommunityPostingFragment(
             binding.linkUrl.text = posting.body.linkUrl
         }
 
-        commentAdapter = ItemCommentAdapter(mainActivity,community, arrayListOf())
+        commentAdapter = ItemCommentAdapter(mainActivity, arrayListOf())
         binding.commentView.commentList.adapter = commentAdapter
 
-        community.getCommentList(posting.postId, paramFunc = {
-            if (it!=null){
-                commentAdapter.setData(it)
+        community.getReviewCommentList(posting.reviewId, paramFunc = { data, message->
+            if (message==null){
+                commentAdapter.setData(data!!)
                 binding.commentNum.text = commentAdapter.itemCount.toString()
+            }else{
+                Toast.makeText(mainActivity,message,Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -128,9 +130,12 @@ class DetailCommunityPostingFragment(
         binding.commentEdit.apply {
             if (text.toString()!=""){
                 //comment 추가
-                community.addComment(posting.postId,text.toString(), paramFunc = {
-                    if(it!=null) {
-                        binding.commentNum.text = commentAdapter.addData(it)
+                community.addReviewComment(posting.reviewId,text.toString(), paramFunc = { newData, message->
+                    if(message==null) {
+                        binding.commentNum.text = commentAdapter.addData(newData!!)
+                        mainActivity.communityViewModel.addMyCommentData( newData)
+                    }else{
+                        Toast.makeText(mainActivity,message,Toast.LENGTH_SHORT).show()
                     }
                 })
             }

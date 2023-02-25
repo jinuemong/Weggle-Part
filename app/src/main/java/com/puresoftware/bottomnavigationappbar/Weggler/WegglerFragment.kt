@@ -3,6 +3,7 @@ package com.puresoftware.bottomnavigationappbar.Weggler
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -62,24 +63,7 @@ class WegglerFragment : Fragment() {
     @SuppressLint("CommitPrefEdits")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        //임의로 로그인 구현 // - main으로 이동
-        (mainActivity.masterApp).service.loginJinwoo()
-            .enqueue(object : Callback<Token> {
-                override fun onResponse(call: Call<Token>, response: Response<Token>) {
-                    if (response.isSuccessful){
-                        val sp = mainActivity.getSharedPreferences("login_sp", Context.MODE_PRIVATE)
-                        val editor = sp.edit()
-                        editor.putString("accessToken", response.body()?.accessToken)
-                        editor.putString("refreshToken", response.body()?.refreshToken)
-                        editor.apply()
-                    }
-                }
-
-                override fun onFailure(call: Call<Token>, t: Throwable) {}
-            })
-        /////////////////
-
+        initServerData()
         feedFragment = FeedFragment()
         challengeFragment = ChallengeFragment()
         communityFragment = CommunityFragment()
@@ -122,7 +106,6 @@ class WegglerFragment : Fragment() {
         productManager.initCommunityProduct { communityList, message ->
             if (message==null){
                 mainActivity.communityViewModel.communityProduct = communityList
-
                 // 내 리뷰 리스트 불러오기 ( 공구해요 + 프리토크 내부에서 body -type으로 분류 )
                 communityPostManager.getCommunityReviewList(communityList!!.productId, paramFunc = { data, message2->
                     if (message2==null){

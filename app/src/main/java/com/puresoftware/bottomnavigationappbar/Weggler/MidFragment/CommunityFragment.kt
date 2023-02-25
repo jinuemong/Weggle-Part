@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemPopularPostingTabAdapter
-import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityPostManager
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
 import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.TotalFragment
@@ -28,7 +27,7 @@ class CommunityFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
-        wegglerApp = mainActivity.wApp
+        wegglerApp = mainActivity.masterApp
     }
 
 
@@ -93,36 +92,6 @@ class CommunityFragment : Fragment() {
     }
 
     private fun initView() {
-
-        //커뮤니티 데이터 불러오기
-        val community = CommunityPostManager(wegglerApp)
-        community.getCommunityPostList(0, listOf("postId,DESC"), paramFunc = {
-            if(it!=null){
-
-                mainActivity.communityViewModel.communityLiveData.value = it.content
-                //아래는 나중에 수정
-                mainActivity.communityViewModel.myPostingLiveData.value = it.content
-            }
-        })
-
-
-        //인기 게시물 불러오기
-        community.getPopularCommunityPostList( paramFunc = {
-            if(it!=null){
-                mainActivity.communityViewModel.popularPostingLiveData.value = it
-                //인기 게시물 설정 (main 4개)
-                popularAdapter = ItemPopularPostingTabAdapter(it,mainActivity).apply {
-                    setOnItemClickListener(object : ItemPopularPostingTabAdapter.OnItemClickListener{
-                        override fun onItemClick(item: ReviewInCommunity) {
-                            mainActivity.changeFragment(DetailCommunityPostingFragment("main",item))
-                            mainActivity.setMainViewVisibility(false)
-                        }
-                    })
-                }
-                binding.popList.adapter = popularAdapter
-            }
-        })
-
 
         //하단 뷰 설정
         mainActivity.fragmentManager!!.beginTransaction()

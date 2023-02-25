@@ -1,5 +1,6 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.Manager
 
+import android.util.Log
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.BodyProductForPOST
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Product
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.ProductList
@@ -22,7 +23,6 @@ class ProductManager(
             }else{ //정상 받음
                 val productList = data!!
                 val communityList = productList.content.find { it.name == "communityList" }
-
                 paramFunc(communityList,null)
             }
         })

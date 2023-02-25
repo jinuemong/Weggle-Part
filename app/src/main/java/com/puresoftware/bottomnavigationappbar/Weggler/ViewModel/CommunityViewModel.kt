@@ -55,6 +55,11 @@ class CommunityViewModel :ViewModel(){
         myPostingLiveData.value?.add(data)
     }
 
+    // 내 댓글 데이터 추가
+    fun addMyCommentData(data:Comment){
+        myCommentLiveData.value?.add(data)
+    }
+
     //내 포스팅 데이터 수정
     fun updateMyPostingData(currentData:ReviewInCommunity, newData:ReviewInCommunity){
         val index = communityLiveData.value?.indexOf(currentData)
