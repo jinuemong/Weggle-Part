@@ -66,7 +66,6 @@ class TotalFragment(
         mainActivity.communityViewModel.apply {
             // 메인 포스팅
             if (selectPosition == "Main Posting") {
-
                 data  = if(communityLiveData.value==null) arrayListOf() else  communityLiveData.value!!
                 communityLiveData.observe(mainActivity, Observer {
                     adapter.setData(it)
@@ -74,7 +73,6 @@ class TotalFragment(
 
             // 인기 게시물
             } else if (selectPosition == "Popular Posting") {
-
                 data  = if(popularPostingLiveData.value==null) arrayListOf() else  popularPostingLiveData.value!!
                 popularPostingLiveData.observe(mainActivity, Observer {
                     adapter.setData(it)
@@ -82,7 +80,6 @@ class TotalFragment(
 
             // 내 게시물
             } else if (selectPosition == "My Posting"){
-
                 data  = if(myPostingLiveData.value==null) arrayListOf() else  myPostingLiveData.value!!
                 communityLiveData.observe(mainActivity, Observer {
                     adapter.setData(it)

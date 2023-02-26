@@ -177,6 +177,7 @@ class AddFreeTalkFragment( private val mainFrame : SlidingUpPanelLayout) : Fragm
                                     //view model에 데이터 추가
                                     mainActivity.communityViewModel.addCommunityData(data!!)
                                     mainActivity.communityViewModel.addMyPostingData(data)
+                                    mainActivity.communityViewModel.addPopularPostingData(data)
                                     mainActivity.goBackFragment(this@AddFreeTalkFragment)
                                     mainActivity.setMainViewVisibility(true)
                                 }

@@ -12,7 +12,7 @@ class ReviewInCommunity (
     var resource : String="", //자동
     var body : MultiCommunityData,
     var likeCount : Int = 0,
-    val commentCount : Int = 0,
+    var commentCount : Int = 0,
     val createTime : String,
     val updateTime : String,
 ):Serializable

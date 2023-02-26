@@ -22,7 +22,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_margin="@dimen/margin_10"
-        android:layout_width="@dimen/top_len_260"
+        android:layout_width="@dimen/top_len_230"
         android:layout_height="wrap_content">
         <TextView
             android:id="@+id/user_name"

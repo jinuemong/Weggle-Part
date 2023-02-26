@@ -60,6 +60,11 @@ class CommunityViewModel :ViewModel(){
         myCommentLiveData.value?.add(data)
     }
 
+    //인기 게시글에 데이터 추가
+    fun addPopularPostingData(data:ReviewInCommunity){
+        popularPostingLiveData.value?.add(data)
+    }
+
     //내 포스팅 데이터 수정
     fun updateMyPostingData(currentData:ReviewInCommunity, newData:ReviewInCommunity){
         val index = communityLiveData.value?.indexOf(currentData)
@@ -72,5 +77,6 @@ class CommunityViewModel :ViewModel(){
     fun delMyPostingData(data: ReviewInCommunity){
         myPostingLiveData.value?.remove(data)
     }
+
 
 }

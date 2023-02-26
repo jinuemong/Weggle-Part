@@ -48,6 +48,7 @@ class CommunityFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initView()
 
+        // 버튼 위치 조정 -> 수정
         binding.addButton.setOnClickListener(object :View.OnClickListener{
             @RequiresApi(Build.VERSION_CODES.N)
             override fun onClick(v: View?) {
@@ -125,6 +126,11 @@ class CommunityFragment : Fragment() {
     }
 
     private fun initData(){
+        //어댑터 생성
+        val popularData = mainActivity.communityViewModel.popularPostingLiveData.value
+        popularAdapter = if (popularData==null){ ItemPopularPostingTabAdapter(arrayListOf(),mainActivity)
+        }else{ ItemPopularPostingTabAdapter(popularData,mainActivity) }
+
         //인기 포스팅 변화 시 갱신
         mainActivity.communityViewModel.popularPostingLiveData.observe(mainActivity, Observer {
             if (it!=null && it.size>0 && popularAdapter!=null){

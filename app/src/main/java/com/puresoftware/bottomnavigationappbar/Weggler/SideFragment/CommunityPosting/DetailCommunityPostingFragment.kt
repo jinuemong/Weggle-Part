@@ -31,7 +31,7 @@ class DetailCommunityPostingFragment(
     private lateinit var mainActivity: MainActivity
     private lateinit var wegglerApp : MasterApplication
     private lateinit var commentAdapter:ItemCommentAdapter
-    val posting = postingData
+    private val posting = postingData
     private lateinit var community : CommunityCommentManager
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -133,7 +133,10 @@ class DetailCommunityPostingFragment(
                 community.addReviewComment(posting.reviewId,text.toString(), paramFunc = { newData, message->
                     if(message==null) {
                         binding.commentNum.text = commentAdapter.addData(newData!!)
-                        mainActivity.communityViewModel.addMyCommentData( newData)
+                        mainActivity.communityViewModel.apply {
+                            addMyCommentData(newData)
+                        }
+
                     }else{
                         Toast.makeText(mainActivity,message,Toast.LENGTH_SHORT).show()
                     }

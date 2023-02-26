@@ -37,11 +37,12 @@ class MultiPartViewModel: ViewModel(){
                 val multipartFile : MultipartBody.Part? = if (filePath!=null) {
                     val path = getImageFilePath(activity, filePath)
                     val file = File(path)
-                    val imageRequestBody = file.asRequestBody()
+                    val imageRequestBody = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
                     //이미지 데이터 생성
                     MultipartBody.Part.createFormData(
                         "multipartFile",
-                        file.name, imageRequestBody
+                        file.name,
+                        imageRequestBody
                     )
 
                 }else{ null } //이미지가 없다면 null 처리
