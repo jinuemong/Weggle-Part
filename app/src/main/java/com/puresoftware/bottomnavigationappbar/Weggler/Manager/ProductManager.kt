@@ -22,8 +22,8 @@ class ProductManager(
                 paramFunc(null,message)
             }else{ //정상 받음
                 val productList = data!!
-                val communityList = productList.content.find { it.name == "communityList" }
-                paramFunc(communityList,null)
+                val communityList = productList.content
+                paramFunc(communityList[0],null)
             }
         })
     }

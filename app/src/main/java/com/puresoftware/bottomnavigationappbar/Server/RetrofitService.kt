@@ -21,7 +21,7 @@ interface RetrofitService {
 
     //2개의 데이터 (공구해요 , 프리토크)
     @GET("categories/{category}/products")
-    fun getCommunityProduct(
+    fun  getCommunityProduct(
         @Path("category") category : String,
         @Query(value = "page", encoded = true) page: Int?,
         @Query(value = "size", encoded = true) size: Int?,
@@ -38,13 +38,14 @@ interface RetrofitService {
     ): Call<Product>
 
     //리뷰 얻기
-    @GET("productes/{productId}/reviewsByCreateTime")
+    @GET("products/{productId}/reviewsByCreateTime")
     fun getReViews(
         @Path("productId") productId : Int,
-    ): Call<ReviewListInCommunity>
+    ): Call<ArrayList<ReviewInCommunity>>
 
     //리뷰 추가
-    @GET("productes/{productId}/reviews")
+    @Multipart
+    @POST("products/{productId}/reviews")
     fun addReView(
         @Path("productId") productId: Int,
         @Part("param") param : BodyReviewForPOST, //body
@@ -52,10 +53,10 @@ interface RetrofitService {
     ): Call<ReviewInCommunity>
 
     //리뷰 좋아요 순으로 얻기
-    @GET("productes/{productId}/reviewsByLike")
+    @GET("products/{productId}/reviewsByLike")
     fun getReviewsByLike(
         @Path("productId") productId: Int,
-    ): Call<ReviewListInCommunity>
+    ): Call<ArrayList<ReviewInCommunity>>
 
     //내 리뷰 조회
     @GET("reviewsByUser")

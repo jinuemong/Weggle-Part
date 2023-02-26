@@ -61,10 +61,13 @@ class MultiPartViewModel: ViewModel(){
                         }
                         override fun onFailure(call: Call<ReviewInCommunity>, t: Throwable) {
                             paramFunc(null,"error")
+
+                            Log.d("qazzxjssjsisskdkd",t.toString())
                         }
                     })
             }catch (e:Exception){
                 paramFunc(null,"error")
+                Log.d("qazzxjssjsisskdkd",e.toString())
             }
         }
 

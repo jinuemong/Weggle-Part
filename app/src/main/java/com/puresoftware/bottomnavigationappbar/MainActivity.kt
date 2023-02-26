@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
                         editor.putString("accessToken", response.body()?.accessToken)
                         editor.putString("refreshToken", response.body()?.refreshToken)
                         editor.apply()
-
+                        Log.d("token test 2",response.body()?.accessToken.toString())
                     }
                 }
 
@@ -76,7 +76,6 @@ class MainActivity : AppCompatActivity() {
         /////////////////
 
         // toolbar control
-        // https://youngtoad.tistory.com/21
         var toolbar = binding.toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.setTitle("")
@@ -100,7 +99,7 @@ class MainActivity : AppCompatActivity() {
             transaction = fragmentManager!!.beginTransaction() // 화면 전환 호출
             transaction!!.add(R.id.main_frame, centerWeggleFragment!!).commit() // 최초로 첫 화면 갱신
             binding.bottomNavi.menu.getItem(2)
-                .setChecked(true) // Item이 선택되어지는 상태 https://stackoverflow.com/questions/72132526/bottomnavigationviews-menu-not-selected-after-navigating-to-other-fragment-swi
+                .setChecked(true)
             Log.i(TAG, "Fragment Data 최초로 생성함")
         }
 
@@ -126,19 +125,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.frag3 -> {
                     transaction?.replace(R.id.main_frame, centerWeggleFragment!!)?.commit()
                     supportActionBar!!.hide()
-
-//                    // 투명 Status 만들기
-//                    // https://notepad96.tistory.com/193
-//                    if (Build.VERSION.SDK_INT >= 19) {
-//                        window.decorView.systemUiVisibility =
-//                            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-//                        if (Build.VERSION.SDK_INT < 21) {
-//                            setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true)
-//                        } else {
-//                            setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
-//                            window.statusBarColor = Color.TRANSPARENT
-//                        }
-//                    }
                     Log.i(TAG, "centerWeggle 선택됨")
                     true
                 }
@@ -167,19 +153,6 @@ class MainActivity : AppCompatActivity() {
             binding.bottomNavi.menu.getItem(2).setChecked(true) // Item이 선택되어지는 상태
 
             supportActionBar!!.hide()
-
-//            // 투명 Status 만들기
-//            // https://notepad96.tistory.com/193
-//            if (Build.VERSION.SDK_INT >= 19) {
-//                window.decorView.systemUiVisibility =
-//                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-//                if (Build.VERSION.SDK_INT < 21) {
-//                    setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true)
-//                } else {
-//                    setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
-//                    window.statusBarColor = Color.TRANSPARENT
-//                }
-//            }
             Log.i(TAG, "weggler btn 선택됨")
         }
     }
@@ -188,7 +161,7 @@ class MainActivity : AppCompatActivity() {
     // https://velog.io/@sinbee0402/AndroidKotlin-Toolbar-Custom
     // ActionBar의 Item을 누르면 되는거
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item?.itemId) {
+        when (item.itemId) {
             android.R.id.home -> {
                 Log.d(TAG, "드로블메뉴")
                 //드로어블 사이드
@@ -212,14 +185,6 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.tb_main, menu)
         return true
     }
-
-//    // 투명 Status 만들기
-//    // https://notepad96.tistory.com/193
-//    private fun setWindowFlag(bits: Int, on: Boolean) {
-//        val winAttr = window.attributes
-//        winAttr.flags = if (on) winAttr.flags or bits else winAttr.flags and bits.inv()
-//        window.attributes = winAttr
-//    }
 
     //weggler////////////////////
     fun changeFragment(goFragment:Fragment){

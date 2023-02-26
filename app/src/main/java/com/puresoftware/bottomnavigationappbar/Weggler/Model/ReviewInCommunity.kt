@@ -6,6 +6,7 @@ import java.io.Serializable
 
 class ReviewInCommunity (
     val reviewId : Int,
+    val productId : Int,
     val userId : String,
     val thumbnail:String="", //자동
     var resource : String="", //자동

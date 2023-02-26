@@ -104,51 +104,65 @@ class WegglerFragment : Fragment() {
 
     private fun initServerData(){
         productManager.initCommunityProduct { communityList, message ->
+            Log.d("sldfjowejowfe 1",communityList.toString()+","+message.toString())
             if (message==null){
                 mainActivity.communityViewModel.communityProduct = communityList
                 // 내 리뷰 리스트 불러오기 ( 공구해요 + 프리토크 내부에서 body -type으로 분류 )
                 communityPostManager.getCommunityReviewList(communityList!!.productId, paramFunc = { data, message2->
+                    Log.d("sldfjowejowfe 2",communityList.toString()+","+message2.toString())
+
                     if (message2==null){
                         if (data != null) {
                             mainActivity.communityViewModel.setCommunityData(data)
                         }
                     }else{
                         Toast.makeText(mainActivity, message2, Toast.LENGTH_SHORT).show()
+                        Log.d("sldfjowejowfe 2",communityList.toString()+","+message2.toString())
+
                     }
                 })
 
                 // 내 포스팅 불러오기
                 communityPostManager.getMyCommunityReviewList(paramFunc = { data, message2 ->
+                    Log.d("sldfjowejowfe 3",communityList.toString()+","+message2.toString())
+
                     if (message2==null){
                         if (data != null) {
                             mainActivity.communityViewModel.setMyPostingData(data)
                         }
                     }else{
                         Toast.makeText(mainActivity, message2, Toast.LENGTH_SHORT).show()
+                        Log.d("sldfjowejowfe 3",communityList.toString()+","+message2.toString())
 
                     }
                 })
 
                 // 인기 게시물 불러오기
                 communityPostManager.getCommunityReviewListByLike(communityList.productId, paramFunc = { data,message2->
+                    Log.d("sldfjowejowfe 4",communityList.toString()+","+message2.toString())
+
                     if (message2 == null) {
                         if (data != null) {
                             mainActivity.communityViewModel.setPopularPostingData(data)
                         }
                     } else {
                         Toast.makeText(mainActivity, message2, Toast.LENGTH_SHORT).show()
+                        Log.d("sldfjowejowfe 4",communityList.toString()+","+message2.toString())
 
                     }
                 })
 
                 //내 댓글 불러오기
                 communityCommentManager.getMyCommentList(paramFunc = { data,message2->
+                    Log.d("sldfjowejowfe 5",communityList.toString()+","+message.toString())
                     if (message2==null){
                         if( data!=null){
                             mainActivity.communityViewModel.setMyCommentData(data)
                         }
                     }else{
                         Toast.makeText(mainActivity, message2, Toast.LENGTH_SHORT).show()
+                        Log.d("sldfjowejowfe 5",communityList.toString()+","+message.toString())
+
                     }
                 })
             }else{

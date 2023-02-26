@@ -17,20 +17,20 @@ class CommunityManagerWithReview(
 
     fun getCommunityReviewList(productId : Int,paramFunc : (ArrayList<ReviewInCommunity>?,String?) -> Unit){
         wApp.service.getReViews(productId)
-            .enqueue(object : Callback<ReviewListInCommunity>{
+            .enqueue(object : Callback<ArrayList<ReviewInCommunity>>{
                 override fun onResponse(
-                    call: Call<ReviewListInCommunity>,
-                    response: Response<ReviewListInCommunity>
+                    call: Call<ArrayList<ReviewInCommunity>>,
+                    response: Response<ArrayList<ReviewInCommunity>>
                 ) {
                     if (response.isSuccessful){
-                        paramFunc(response.body()?.content,null)
+                        paramFunc(response.body(),null)
                     }else{
                         paramFunc(null,response.errorBody()!!.string())
                     }
 
                 }
 
-                override fun onFailure(call: Call<ReviewListInCommunity>, t: Throwable) {
+                override fun onFailure(call: Call<ArrayList<ReviewInCommunity>>, t: Throwable) {
                     paramFunc(null,"error")
                 }
 
@@ -49,19 +49,19 @@ class CommunityManagerWithReview(
     //좋아요 순으로 커뮤 데이터 얻기
     fun getCommunityReviewListByLike(productId: Int,paramFunc: (ArrayList<ReviewInCommunity>?, String?) -> Unit){
         wApp.service.getReviewsByLike(productId)
-            .enqueue(object : Callback<ReviewListInCommunity>{
+            .enqueue(object : Callback<ArrayList<ReviewInCommunity>>{
                 override fun onResponse(
-                    call: Call<ReviewListInCommunity>,
-                    response: Response<ReviewListInCommunity>
+                    call: Call<ArrayList<ReviewInCommunity>>,
+                    response: Response<ArrayList<ReviewInCommunity>>
                 ) {
                     if (response.isSuccessful){
-                        paramFunc(response.body()!!.content,null)
+                        paramFunc(response.body(),null)
                     }else{
                         paramFunc(null,response.errorBody()!!.string())
                     }
                 }
 
-                override fun onFailure(call: Call<ReviewListInCommunity>, t: Throwable) {
+                override fun onFailure(call: Call<ArrayList<ReviewInCommunity>>, t: Throwable) {
                     paramFunc(null,"error")
                 }
             })
