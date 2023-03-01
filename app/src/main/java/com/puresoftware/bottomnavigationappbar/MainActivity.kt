@@ -12,10 +12,12 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.google.android.material.navigation.NavigationView
 import com.puresoftware.bottomnavigationappbar.CenterWeggle.CenterWeggleFragment
 import com.puresoftware.bottomnavigationappbar.Home.HomeFragment
 import com.puresoftware.bottomnavigationappbar.MyAccount.MyAccountFragment
 import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
+import com.puresoftware.bottomnavigationappbar.SideMenu.SettingFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Token
 import com.puresoftware.bottomnavigationappbar.Weggler.ViewModel.CommunityViewModel
 import com.puresoftware.bottomnavigationappbar.Weggler.WegglerFragment
@@ -57,23 +59,6 @@ class MainActivity : AppCompatActivity() {
         masterApp.createRetrofit(this@MainActivity)
         //////////////////////
 
-        //임의로 로그인 구현 // - Login Activity로  이동
-        (masterApp).service.loginJinwoo()
-            .enqueue(object : Callback<Token> {
-                override fun onResponse(call: Call<Token>, response: Response<Token>) {
-                    if (response.isSuccessful){
-                        val sp = getSharedPreferences("login_sp", Context.MODE_PRIVATE)
-                        val editor = sp.edit()
-                        editor.putString("accessToken", response.body()?.accessToken)
-                        editor.putString("refreshToken", response.body()?.refreshToken)
-                        editor.apply()
-                        Log.d("token test 2",response.body()?.accessToken.toString())
-                    }
-                }
-
-                override fun onFailure(call: Call<Token>, t: Throwable) {}
-            })
-        /////////////////
 
         // toolbar control
         var toolbar = binding.toolbar
@@ -155,6 +140,17 @@ class MainActivity : AppCompatActivity() {
             supportActionBar!!.hide()
             Log.i(TAG, "weggler btn 선택됨")
         }
+
+        // 내비 뷰 클릭 이벤트 (좌측)
+        binding.mainNavi.setNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_setting -> {
+                    changeFragment(SettingFragment())
+                }
+            }
+
+            false
+        }
     }
 
     // 기능별 options
@@ -180,7 +176,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // ActionBar에 Item 뿌려주는거.
+
+    // ActionBar에 Item 넣기
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.tb_main, menu)
         return true

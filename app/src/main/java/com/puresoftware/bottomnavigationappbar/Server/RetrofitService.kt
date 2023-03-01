@@ -11,12 +11,12 @@ import retrofit2.http.*
 
 interface RetrofitService {
 
-    //Login jinwoo User
+    //Login User
     @POST("login")
     @FormUrlEncoded
-    fun loginJinwoo(
-        @Field("name") name :String = "jinwoo",
-        @Field("password") password : String = "jinwoo!@#123",
+    fun loginUser(
+        @Field("name") name :String,
+        @Field("password") password : String,
     ) : Call<Token>
 
     //2개의 데이터 (공구해요 , 프리토크)

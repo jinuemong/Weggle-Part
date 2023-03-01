@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/item_size_40"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/top_len_150"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/margin_10"
+            android:src="@drawable/weggle_logo_copy" />
+
+    </LinearLayout>
+
+    <EditText
+        android:hint="type name"
+        android:textStyle="bold"
+        android:id="@+id/user_name_input"
+        android:layout_width="@dimen/top_len_300"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/text_size_20" />
+
+    <EditText
+        android:hint="type pass"
+        android:textStyle="bold"
+        android:id="@+id/user_password_input"
+        android:layout_width="@dimen/top_len_300"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_20"
+        android:gravity="center"
+        android:inputType="textPassword"
+        android:textSize="@dimen/margin_20" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/item_size_40"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <android.widget.Button
+            android:backgroundTint="@color/community__my_color"
+            android:id="@+id/login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/item_size_40"
+            android:text="login" />
+
+        <android.widget.Button
+            android:backgroundTint="@color/community__my_color"
+            android:id="@+id/insert_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="insert"/>
+    </LinearLayout>
+</LinearLayout>
