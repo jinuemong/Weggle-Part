@@ -63,8 +63,8 @@ class ItemPopularPostingTabAdapter (
     override fun getItemCount()= itemSet.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(itemList : List<ReviewInCommunity>){
-        itemSet = itemList
+    fun setData(data : List<ReviewInCommunity>){
+        itemSet = data
         notifyDataSetChanged()
     }
     @RequiresApi(Build.VERSION_CODES.M)

@@ -13,7 +13,7 @@ import com.puresoftware.bottomnavigationappbar.databinding.ItemCommunitySmallFre
 import java.util.*
 import kotlin.collections.ArrayList
 
-//프리 or 공구 or 통합
+//프리
 class ItemCommunitySmallAdapterFree(
     private val mainActivity: MainActivity,
     private var dataSet : ArrayList<ReviewInCommunity>,
@@ -73,5 +73,10 @@ class ItemCommunitySmallAdapterFree(
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun setData(data :ArrayList<ReviewInCommunity>){
+        dataSet = data
+        notifyDataSetChanged()
+    }
 
 }

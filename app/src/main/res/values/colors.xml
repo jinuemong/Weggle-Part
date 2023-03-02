@@ -16,4 +16,10 @@
     <color name="community__my_color">#E665C3</color>
     <color name="my_selected_back">#F3DBEB</color>
     <color name="my_selected_text">#E60FAB</color>
+    <color name="light_grey">#EFECEC</color>
+    <color name="theme_pink">#FA0AEE</color>
+    <color name="background_pink">#F1A1ED</color>
+    <color name="grey">#807B7B</color>
+    <color name="kakao">#F7E600</color>
+    <color name="naver">#2DB400</color>
 </resources>

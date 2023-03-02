@@ -31,7 +31,6 @@
         <ImageView
             android:id="@+id/main_image"
             android:layout_marginEnd="@dimen/margin_10"
-            android:background="@drawable/round_border"
             android:layout_width="@dimen/top_len_70"
             android:layout_height="@dimen/top_len_70"/>
         <LinearLayout

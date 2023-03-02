@@ -21,6 +21,7 @@ import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getTimeText
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.isVideo
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentDetailCommunityPostingBinding
 
+//type : MainFragment에서 왔다면 setMainViewVisibility (뷰 감추기 )
 class DetailCommunityPostingFragment(
     val type:String,
     postingData : ReviewInCommunity,

@@ -7,7 +7,7 @@ import kotlinx.coroutines.runBlocking
 import okhttp3.*
 
 
-// 임시 코드 수정해야 함
+//  오류가 발생했을 때 처리 코드
 
 class AuthInterceptor(
     private val context: Context,

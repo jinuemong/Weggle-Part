@@ -12,7 +12,7 @@ import com.puresoftware.bottomnavigationappbar.databinding.ItemCommunitySmallJoi
 import java.util.*
 import kotlin.collections.ArrayList
 
-//프리 or 공구 or 통합
+//공구
 class ItemCommunitySmallAdapterJoint(
     private val mainActivity: MainActivity,
     private var dataSet: ArrayList<ReviewInCommunity>,
@@ -69,4 +69,9 @@ class ItemCommunitySmallAdapterJoint(
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun setData(data :ArrayList<ReviewInCommunity>){
+        dataSet = data
+        notifyDataSetChanged()
+    }
 }

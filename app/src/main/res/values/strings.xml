@@ -1,6 +1,57 @@
 <resources>
     <string name="app_name">BottomNavigationAppbar</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="add_button">add button</string>
+    <string name="kakao_app_key">0760beacf1226c510472abc1da58fd1b</string>
+    <!-- video -->
+    <string name="whole">전체</string>
+    <string name="seperate_line">|</string>
+    <string name="brand">브랜드관</string>
+    <string name="together_buy">공동구매</string>
+    <string name="number">0</string>
+    <string name="review">리뷰</string>
+    <string name="nickname">닉네임</string>
+    <string name="title">제목</string>
+    <string name="percent">22%</string>
+    <string name="price">21,000원</string>
+    <string name="video_nickname_category">식품</string>
+    <string name="month">1개월 전</string>
+
+    <!-- brands의 MainViewPager 아래에 있는 숫자 -->
+    <string name="viewpager2_banner">%1$d/%2$d</string>
+
+    <!-- my_account-->
+    <string name="shap">#인테리어</string>
+    <string name="my_info">자기소개</string>
+    <string name="post_context">게시물</string>
+    <string name="follower">팔로워</string>
+    <string name="following">팔로잉</string>
+    <string name="review_write">리뷰 작성</string>
+    <string name="challenge_write">챌린지 등록</string>
+    <string name="searching">검색</string>
+
+    <!-- review -->
+    <string name="review_explain">구매했던 비슷한 상품이 있어요!</string>
+    <string name="plus_review">추가 리뷰 상품</string>
+
+    <!-- challenge -->
+    <string name="challenge">챌린지 글쓰기</string>
+    <string name="challenge_product">챌린지 상품</string>
+    <string name="office">회사</string>
+    <string name="video_register">영상 등록</string>
+    <string name="choose_video">영상 선택</string>
+    <string name="product_info">상품 설명을 입력해 주세요. (최소 30자 이상)</string>
+    <string name="review_fee">리뷰 1건당 판매 수수료</string>
+    <string name="fee">(결제 금액의 5%)</string>
+    <string name="upload">게시글 업로드</string>
+    <string name="context">내용</string>
+
+    <!-- login -->
+    <string name="login">로그인</string>
+    <string name="kakao_right_now">카카오톡으로 시작하기</string>
+    <string name="naver_right_now">네이버로 시작하기</string>
+    <string name="google_right_now">구글이메일로 시작하기</string>
+    <string name="not_member">비회원으로 둘러보기</string>
+    <string name="agree">회원가입시 개인정보처리방침을 읽었으며, 이용약관에 동의한 것으로 간주합니다.</string>
+    <string name="social_login_info_naver_client_id">jqoiQb1rL1inuTbOt64_</string>
+    <string name="social_login_info_naver_client_secret">2und4qC_AA</string>
+    <string name="social_login_info_naver_client_name">네이버아이디 로그인</string>
 </resources>

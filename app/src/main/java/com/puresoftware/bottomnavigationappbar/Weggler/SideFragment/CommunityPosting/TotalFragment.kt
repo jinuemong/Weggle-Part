@@ -2,6 +2,7 @@ package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPo
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -62,7 +63,7 @@ class TotalFragment(
             })
         }
 
-        // 게시물 데이터 설정
+        // 게시물 데이터 설정 (옵저버로 관찰)
         mainActivity.communityViewModel.apply {
             // 메인 포스팅
             if (selectPosition == "Main Posting") {
@@ -84,6 +85,10 @@ class TotalFragment(
                 communityLiveData.observe(mainActivity, Observer {
                     adapter.setData(it)
                 })
+
+            //내 댓글
+            } else if (selectPosition== "My Comment"){
+                Log.d("dljsdlfj sdflsjdfos","내 댓글 리스트 입니다 .~~~")
             }
         }
 

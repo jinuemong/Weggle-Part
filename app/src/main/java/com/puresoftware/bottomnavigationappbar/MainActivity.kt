@@ -1,31 +1,29 @@
 package com.puresoftware.bottomnavigationappbar
 
-import android.content.Context
+
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.google.android.material.navigation.NavigationView
 import com.puresoftware.bottomnavigationappbar.CenterWeggle.CenterWeggleFragment
 import com.puresoftware.bottomnavigationappbar.Home.HomeFragment
 import com.puresoftware.bottomnavigationappbar.MyAccount.MyAccountFragment
 import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
 import com.puresoftware.bottomnavigationappbar.SideMenu.SettingFragment
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.Token
 import com.puresoftware.bottomnavigationappbar.Weggler.ViewModel.CommunityViewModel
+import com.puresoftware.bottomnavigationappbar.MyAccount.login.LoginActivity
 import com.puresoftware.bottomnavigationappbar.Weggler.WegglerFragment
 import com.puresoftware.bottomnavigationappbar.brands.BrandsFragment
 import com.puresoftware.bottomnavigationappbar.databinding.ActivityMainBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     private lateinit var  binding: ActivityMainBinding
@@ -121,6 +119,19 @@ class MainActivity : AppCompatActivity() {
                 R.id.frag5 -> {
                     transaction?.replace(R.id.main_frame, myAccountFragment!!)?.commit()
                     Log.i(TAG, "myAccount 선택됨")
+//                    UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
+//                        if (error != null) {
+//                            val intent = Intent(this, LoginActivity::class.java)
+//                            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+//                            finish()
+//                        } else if (tokenInfo != null) {
+//                            Log.d("하하하1","하하하하")
+//                            Toast.makeText(this, "토큰 정보 보기 성공", Toast.LENGTH_SHORT).show()
+//                            transaction?.replace(R.id.main_frame, myAccountFragment!!)?.commit()
+//                            Log.i(TAG, "myAccount 선택됨")
+//                        }
+//                    }
+//                    Log.d("하하하7","하하하하")
                     true
                 }
                 else -> {

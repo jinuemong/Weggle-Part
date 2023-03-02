@@ -14,8 +14,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_width="@dimen/item_size_25"
-            android:layout_height="@dimen/item_size_25"
+            android:layout_width="@dimen/item_size_30"
+            android:layout_height="@dimen/item_size_30"
             android:src="@drawable/ic_baseline_close_24"/>
         <ImageView
             android:id="@+id/nav_setting"

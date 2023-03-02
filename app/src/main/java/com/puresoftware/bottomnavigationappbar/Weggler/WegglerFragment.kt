@@ -15,16 +15,12 @@ import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityCommentManager
 import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityManagerWithReview
-import com.puresoftware.bottomnavigationappbar.Weggler.MidFragment.ChallengeFragment
-import com.puresoftware.bottomnavigationappbar.Weggler.MidFragment.CommunityFragment
-import com.puresoftware.bottomnavigationappbar.Weggler.MidFragment.FeedFragment
-import com.puresoftware.bottomnavigationappbar.Weggler.MidFragment.RankingFragment
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.Token
+import com.puresoftware.bottomnavigationappbar.Weggler.MainFragment.ChallengeFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.MainFragment.CommunityFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.MainFragment.FeedFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.MainFragment.RankingFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.Manager.ProductManager
 import com.puresoftware.bottomnavigationappbar.databinding.WegglerFragmentBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class WegglerFragment : Fragment() {
