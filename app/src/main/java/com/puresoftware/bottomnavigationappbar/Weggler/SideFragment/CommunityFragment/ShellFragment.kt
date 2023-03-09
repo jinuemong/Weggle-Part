@@ -102,8 +102,8 @@ class ShellFragment() : Fragment() {
     companion object{
         fun newInstance(topText : String) =
             ShellFragment().apply {
-                Bundle().apply {
-                    this.putString("topText",topText)
+                arguments= Bundle().apply {
+                    putString("topText",topText)
                 }
             }
     }

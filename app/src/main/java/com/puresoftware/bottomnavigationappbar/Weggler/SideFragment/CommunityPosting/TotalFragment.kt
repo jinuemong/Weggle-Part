@@ -102,8 +102,8 @@ class TotalFragment() : Fragment() {
     companion object{
         fun newInstance(selectPosition:String) =
             TotalFragment().apply {
-                Bundle().apply {
-                    this.putString("selectPosition",selectPosition)
+                arguments= Bundle().apply {
+                    putString("selectPosition",selectPosition)
                 }
             }
     }

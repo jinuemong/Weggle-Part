@@ -93,9 +93,10 @@ class SelectDetailsTabFragment() : Fragment() {
     companion object{
         fun newInstance(selectPosition:String) =
             SelectDetailsTabFragment().apply {
-                Bundle().apply {
-                    this.getString("selectPosition",selectPosition)
+                arguments= Bundle().apply {
+                    putString("selectPosition",selectPosition)
                 }
             }
+
     }
 }

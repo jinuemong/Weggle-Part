@@ -92,5 +92,11 @@ interface RetrofitService {
         @Path("reviewId")reviewId: Int,
     ):Call<ReviewInCommunity>
 
+    // like or unlike
+    @PUT("reviews/{reviewId}")
+    fun putLike(
+        @Path("reviewId")reviewId: Int,
+        @Query(value = "like") like : Boolean,
+    ):Call<String>
 
 }

@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_len_50">
         <ImageView
+            android:id="@+id/nav_close"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

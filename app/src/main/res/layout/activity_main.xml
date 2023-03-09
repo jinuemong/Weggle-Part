@@ -60,15 +60,8 @@
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/coordinatorLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent">
 
-            <!-- BottomNavigationView -->
-            <!-- 64,65번에 theme.style.적용할 View를 작성해주기 -->
-            <!-- iconColor: https://lcw126.tistory.com/330 -->
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottom_navi"
                 android:layout_width="match_parent"
@@ -79,15 +72,12 @@
                 app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
                 app:itemTextAppearanceInactive="@style/BottomNavigationView"
                 app:itemTextColor="@drawable/menu_selector_text_color"
-
                 app:labelVisibilityMode="labeled"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/main_frame"
                 app:layout_constraintTop_toTopOf="parent"
-                app:menu="@menu/nav_bottom">
-
-            </com.google.android.material.bottomnavigation.BottomNavigationView>
+                app:menu="@menu/nav_bottom" />
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -96,6 +86,5 @@
         android:id="@+id/main_navi"
         android:layout_width="@dimen/top_len_400"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/navigation_inner" />
+        android:layout_gravity="start" />
 </androidx.drawerlayout.widget.DrawerLayout>

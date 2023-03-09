@@ -2,12 +2,14 @@ package com.puresoftware.bottomnavigationappbar
 
 
 import android.content.Intent
+import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.GravityCompat
@@ -20,13 +22,16 @@ import com.puresoftware.bottomnavigationappbar.MyAccount.MyAccountFragment
 import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
 import com.puresoftware.bottomnavigationappbar.SideMenu.SettingFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.ViewModel.CommunityViewModel
+import com.kakao.sdk.user.UserApiClient
 import com.puresoftware.bottomnavigationappbar.MyAccount.login.LoginActivity
 import com.puresoftware.bottomnavigationappbar.Weggler.WegglerFragment
 import com.puresoftware.bottomnavigationappbar.brands.BrandsFragment
 import com.puresoftware.bottomnavigationappbar.databinding.ActivityMainBinding
+import com.puresoftware.bottomnavigationappbar.databinding.NavigationInnerBinding
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var  binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
+
     // fragment
     // https://aries574.tistory.com/382
     var homeFragment: HomeFragment? = null // 홈
@@ -43,7 +48,7 @@ class MainActivity : AppCompatActivity() {
     ///////////////////////////////////////
 
     //weggler////////////////////
-    val communityViewModel:CommunityViewModel by viewModels()
+    val communityViewModel: CommunityViewModel by viewModels()
     /////////////////////////////
 
     val TAG: String = MainActivity::class.java.simpleName // 태그
@@ -140,39 +145,39 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // ImageView의 Weggle Button을 누르면 발생.
+        // ImageView의 Weggle Button 동작
         binding.btnCenterWeggle.setOnClickListener {
-
-            transaction =
-                fragmentManager!!.beginTransaction() // 화면 전환 호출(이곳에서 새로 호출을 해준다는 개념으로 추가함)
+            transaction = fragmentManager!!.beginTransaction()
             transaction?.replace(R.id.main_frame, centerWeggleFragment!!)?.commit()
-            binding.bottomNavi.menu.getItem(2).setChecked(true) // Item이 선택되어지는 상태
-
+            binding.bottomNavi.menu.getItem(2).isChecked = true
             supportActionBar!!.hide()
             Log.i(TAG, "weggler btn 선택됨")
         }
 
-        // 내비 뷰 클릭 이벤트 (좌측)
-        binding.mainNavi.setNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_setting -> {
-                    changeFragment(SettingFragment())
-                }
-            }
 
-            false
+        //좌측 햄버거 뷰 동작
+        binding.mainNavi.inflateHeaderView(R.layout.navigation_inner).apply {
+            //go setting
+            this.findViewById<ImageView>(R.id.nav_setting).setOnClickListener {
+                goFrontFragment(SettingFragment())
+                it.bringToFront()
+            }
+            //go close
+            this.findViewById<ImageView>(R.id.nav_close).setOnClickListener {
+                binding.drawLayout.close()
+            }
         }
+
+
     }
 
-    // 기능별 options
-    // https://velog.io/@sinbee0402/AndroidKotlin-Toolbar-Custom
-    // ActionBar의 Item을 누르면 되는거
+    // 메뉴 선택 옵션 (상단)
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
                 Log.d(TAG, "드로블메뉴")
                 //드로어블 사이드
-                binding.drawLayout.openDrawer(GravityCompat.START) //left
+                binding.drawLayout.openDrawer(GravityCompat.START)
                 return true
             }
             R.id.search -> {
@@ -183,6 +188,7 @@ class MainActivity : AppCompatActivity() {
                 Log.d(TAG, "바스켓")
                 return true
             }
+
             else -> return super.onOptionsItemSelected(item)
         }
     }
@@ -195,28 +201,33 @@ class MainActivity : AppCompatActivity() {
     }
 
     //weggler////////////////////
-    fun changeFragment(goFragment:Fragment){
-        if (fragmentManager!=null) {
-            fragmentManager!!.beginTransaction().add(R.id.main_frame, goFragment)
-                .addToBackStack(null)
-                .commit()
-        }
+    fun changeFragment(goFragment: Fragment) {
+        fragmentManager!!.beginTransaction().add(R.id.main_frame, goFragment)
+            .addToBackStack(null)
+            .commit()
     }
 
-    fun goBackFragment(fragment: Fragment){
-        if (fragmentManager!=null) {
+    fun goFrontFragment(goFragment: Fragment){
+        fragmentManager!!.beginTransaction().replace(R.id.main_frame, goFragment)
+            .addToBackStack(null)
+            .commit()
+
+
+    }
+    fun goBackFragment(fragment: Fragment) {
+        if (fragmentManager != null) {
             fragmentManager!!.beginTransaction().remove(fragment).commit()
             fragmentManager!!.popBackStack()
 
         }
     }
 
-    fun setMainViewVisibility(isSet:Boolean){
-        if (isSet){
+    fun setMainViewVisibility(isSet: Boolean) {
+        if (isSet) {
             binding.bottomNavi.visibility = View.VISIBLE
             binding.toolbar.visibility = View.VISIBLE
             binding.btnCenterWeggle.visibility = View.VISIBLE
-        }else{
+        } else {
             binding.bottomNavi.visibility = View.GONE
             binding.toolbar.visibility = View.GONE
             binding.btnCenterWeggle.visibility = View.GONE

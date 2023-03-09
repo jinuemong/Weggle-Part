@@ -100,8 +100,8 @@ class FreeTalkFragment(
     companion object{
         fun newInstance(selectPosition:String) =
             FreeTalkFragment().apply {
-                Bundle().apply {
-                    this.putString("selectPosition",selectPosition)
+                arguments= Bundle().apply {
+                    putString("selectPosition",selectPosition)
                 }
             }
 

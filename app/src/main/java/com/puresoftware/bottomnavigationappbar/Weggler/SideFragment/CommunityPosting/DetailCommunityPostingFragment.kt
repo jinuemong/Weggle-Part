@@ -182,6 +182,10 @@ class DetailCommunityPostingFragment : Fragment() {
 
     }
 
+    // Like or UnLike
+    private fun commitLike(){
+
+    }
     private fun setType1() {
         binding.type1.visibility = View.VISIBLE
         binding.type2.visibility = View.GONE

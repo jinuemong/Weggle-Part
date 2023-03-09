@@ -101,8 +101,8 @@ class JointPurchaseFragment() : Fragment() {
     companion object{
         fun newInstance(selectPosition: String)=
             JointPurchaseFragment().apply {
-                Bundle().apply {
-                    this.putString("selectPosition",selectPosition)
+                arguments= Bundle().apply {
+                    putString("selectPosition",selectPosition)
                 }
             }
     }
