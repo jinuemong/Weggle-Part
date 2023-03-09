@@ -87,5 +87,10 @@ interface RetrofitService {
         @Body body : BodyCommentForPOST,
     ) : Call<Comment>
 
+    @GET("reviews/{reviewId}")
+    fun getCommunityReviewFromId(
+        @Path("reviewId")reviewId: Int,
+    ):Call<ReviewInCommunity>
+
 
 }

@@ -16,12 +16,10 @@ import com.puresoftware.bottomnavigationappbar.databinding.FragmentJointPurchase
 
 //공구해요
 
-class JointPurchaseFragment(
-    private val selectPosition: String,
-
-    ) : Fragment() {
+class JointPurchaseFragment() : Fragment() {
     private var _binding : FragmentJointPurchaseBinding? = null
     private val binding get()=_binding!!
+    private var selectPosition: String? = null
     private lateinit var mainActivity: MainActivity
     private lateinit var fm: FragmentManager
 
@@ -31,6 +29,13 @@ class JointPurchaseFragment(
         super.onAttach(context)
         mainActivity = context as MainActivity
         fm = mainActivity.supportFragmentManager
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            selectPosition = it.getString("selectPosition",null)
+        }
     }
 
     override fun onCreateView(
@@ -51,7 +56,7 @@ class JointPurchaseFragment(
             setOnItemClickListener(object : ItemCommunitySmallAdapterJoint.OnItemClickListener{
                 override fun onItemClick(item: ReviewInCommunity) {
                     mainActivity.setMainViewVisibility(false)
-                    mainActivity.changeFragment(DetailCommunityPostingFragment("sub",item))
+                    mainActivity.changeFragment(DetailCommunityPostingFragment.newInstance(item.reviewId,"sub"))
                 }
 
             })
@@ -91,6 +96,15 @@ class JointPurchaseFragment(
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object{
+        fun newInstance(selectPosition: String)=
+            JointPurchaseFragment().apply {
+                Bundle().apply {
+                    this.putString("selectPosition",selectPosition)
+                }
+            }
     }
 
 }

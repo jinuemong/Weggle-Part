@@ -39,8 +39,8 @@ class MyPostingTabFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        postingFrag = SelectDetailsTabFragment("My Posting")
-        commendFrag = SelectDetailsTabFragment("My Comment")
+        postingFrag = SelectDetailsTabFragment.newInstance("My Posting")
+        commendFrag = SelectDetailsTabFragment.newInstance("My Comment")
 
         //tab 설정
         setDetailsContainer(postingFrag)

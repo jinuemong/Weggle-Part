@@ -23,9 +23,8 @@ import com.puresoftware.bottomnavigationappbar.databinding.FragmentShellBinding
 // JointPurchase, FreeTalk, PopularPost, MyCommunityTab ,RecommendWeggler
 // 에 따른 다른 어댑터 연결
 
-class ShellFragment(
-    private val topText : String,
-) : Fragment() {
+class ShellFragment() : Fragment() {
+    private var topText : String? = null
     private var _binding: FragmentShellBinding? = null
     private val binding get() = _binding!!
     private lateinit var mainActivity: MainActivity
@@ -36,7 +35,12 @@ class ShellFragment(
         fm = mainActivity.supportFragmentManager
     }
 
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            topText = it.getString("topText",null)
+        }
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -60,10 +64,10 @@ class ShellFragment(
         //다른 adapter 연결 혹은 view 연결
         when (topText){
             "공구해요"->{ //JointPurchaseFragment
-                setShellContainer(JointPurchaseFragment("Main Posting"))
+                setShellContainer(JointPurchaseFragment.newInstance("Main Posting"))
             }
             "프리토크"->{ //FreeTalkFragment
-                setShellContainer(FreeTalkFragment("Main Posting"))
+                setShellContainer(FreeTalkFragment.newInstance("Main Posting"))
             }
             "추천 위글러"->{ //RecommendedUsersFragment
                 setShellContainer(RecommendedUsersFragment())
@@ -93,5 +97,14 @@ class ShellFragment(
     private fun setShellContainer(fragment:Fragment){
         fm.beginTransaction().replace(R.id.shell_container,fragment)
             .commit()
+    }
+
+    companion object{
+        fun newInstance(topText : String) =
+            ShellFragment().apply {
+                Bundle().apply {
+                    this.putString("topText",topText)
+                }
+            }
     }
 }

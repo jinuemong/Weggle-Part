@@ -75,7 +75,11 @@ class CommunityManagerWithReview(
                     response: Response<ArrayList<ReviewInCommunity>>
                 ) {
                     if(response.isSuccessful){
-                        paramFunc(response.body(),null)
+                        if (response.body()?.size==0){
+                            paramFunc(null,"No Posting")
+                        }else {
+                            paramFunc(response.body(), null)
+                        }
                     }else{
                         paramFunc(null, response.errorBody()!!.string())
                     }
@@ -83,6 +87,27 @@ class CommunityManagerWithReview(
 
                 override fun onFailure(call: Call<ArrayList<ReviewInCommunity>>, t: Throwable) {
                     paramFunc(null,"error")
+                }
+
+            })
+    }
+
+    fun getReviewFromId(reviewId : Int, paramFunc: (ReviewInCommunity?, String?) -> Unit){
+        wApp.service.getCommunityReviewFromId(reviewId)
+            .enqueue(object : Callback<ReviewInCommunity>{
+                override fun onResponse(
+                    call: Call<ReviewInCommunity>,
+                    response: Response<ReviewInCommunity>
+                ) {
+                    if (response.isSuccessful){
+                        paramFunc(response.body(),null)
+                    }else{
+                        paramFunc(null,response.errorBody()!!.string())
+                    }
+                }
+
+                override fun onFailure(call: Call<ReviewInCommunity>, t: Throwable) {
+                    paramFunc(null, "error")
                 }
 
             })

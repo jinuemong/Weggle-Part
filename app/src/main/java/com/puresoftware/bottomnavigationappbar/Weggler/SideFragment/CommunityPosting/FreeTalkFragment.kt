@@ -17,9 +17,8 @@ import com.puresoftware.bottomnavigationappbar.databinding.FragmentFreeTalkBindi
 //프리 토크
 
 class FreeTalkFragment(
-    private val selectPosition: String,
-
     ) : Fragment() {
+    private var selectPosition: String? =null
     private var _binding : FragmentFreeTalkBinding? = null
     private val binding get()=_binding!!
     private lateinit var mainActivity: MainActivity
@@ -31,6 +30,13 @@ class FreeTalkFragment(
         super.onAttach(context)
         mainActivity = context as MainActivity
         fm = mainActivity.supportFragmentManager
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            selectPosition = it.getString("selectPosition",null)
+        }
     }
 
     override fun onCreateView(
@@ -50,7 +56,7 @@ class FreeTalkFragment(
         binding.totalRecycler.adapter = adapter.apply {
             setOnItemClickListener(object : ItemCommunitySmallAdapterFree.OnItemClickListener{
                 override fun onItemClick(item: ReviewInCommunity) {
-                    mainActivity.changeFragment(DetailCommunityPostingFragment("sub",item))
+                    mainActivity.changeFragment(DetailCommunityPostingFragment.newInstance(item.reviewId,"sub"))
                 }
 
             })
@@ -91,5 +97,14 @@ class FreeTalkFragment(
         _binding = null
     }
 
+    companion object{
+        fun newInstance(selectPosition:String) =
+            FreeTalkFragment().apply {
+                Bundle().apply {
+                    this.putString("selectPosition",selectPosition)
+                }
+            }
+
+    }
 
 }

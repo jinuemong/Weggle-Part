@@ -82,11 +82,11 @@ class CommunityFragment : Fragment() {
         when(item.itemId){
             R.id.add_free_talk->{
                 mainActivity.setMainViewVisibility(false)
-                mainActivity.changeFragment(ShellFragment("프리토크 글쓰기"))
+                mainActivity.changeFragment(ShellFragment.newInstance("프리토크 글쓰기"))
             }
             R.id.add_joint->{
                 mainActivity.setMainViewVisibility(false)
-                mainActivity.changeFragment(ShellFragment("공구해요 글쓰기"))
+                mainActivity.changeFragment(ShellFragment.newInstance("공구해요 글쓰기"))
             }
         }
         return false
@@ -96,7 +96,7 @@ class CommunityFragment : Fragment() {
 
         //하단 뷰 설정
         mainActivity.fragmentManager!!.beginTransaction()
-            .replace(R.id.total_com_list_container,TotalFragment("Main Posting"))
+            .replace(R.id.total_com_list_container,TotalFragment.newInstance("Main Posting"))
             .commit()
 
         //클릭 리스너 (뷰가 그려진 후에 호출)
@@ -108,19 +108,19 @@ class CommunityFragment : Fragment() {
     private fun setUpListener() {
         binding.commGoJointPurchaseList.setOnClickListener {
             mainActivity.setMainViewVisibility(false)
-            mainActivity.changeFragment(ShellFragment("공구해요"))
+            mainActivity.changeFragment(ShellFragment.newInstance("공구해요"))
         }
         binding.commGoFreeTalkList.setOnClickListener {
             mainActivity.setMainViewVisibility(false)
-            mainActivity.changeFragment(ShellFragment("프리토크"))
+            mainActivity.changeFragment(ShellFragment.newInstance("프리토크"))
         }
         binding.commGoMyCommunityTabList.setOnClickListener {
             mainActivity.setMainViewVisibility(false)
-            mainActivity.changeFragment(ShellFragment("내가 쓴 글"))
+            mainActivity.changeFragment(ShellFragment.newInstance("내가 쓴 글"))
         }
         binding.commGoPopularPostList.setOnClickListener {
             mainActivity.setMainViewVisibility(false)
-            mainActivity.changeFragment(ShellFragment("인기 게시글"))
+            mainActivity.changeFragment(ShellFragment.newInstance("인기 게시글"))
         }
 
     }
@@ -133,7 +133,7 @@ class CommunityFragment : Fragment() {
         binding.popList.adapter = popularAdapter.apply{
             setOnItemClickListener(object : ItemPopularPostingTabAdapter.OnItemClickListener{
                 override fun onItemClick(item: ReviewInCommunity) {
-                    mainActivity.changeFragment(DetailCommunityPostingFragment("main", item))
+                    mainActivity.changeFragment(DetailCommunityPostingFragment.newInstance(item.reviewId,"main"))
                     mainActivity.setMainViewVisibility(false)
                 }
 

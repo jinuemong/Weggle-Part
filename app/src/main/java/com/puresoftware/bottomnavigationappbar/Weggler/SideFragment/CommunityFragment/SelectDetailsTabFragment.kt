@@ -17,9 +17,8 @@ import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPos
 import com.puresoftware.bottomnavigationappbar.databinding.SelectDetailsTabBinding
 
 //selectPosition  : 포스팅 , 댓글
-class SelectDetailsTabFragment(
-    private val selectPosition : String,
-) : Fragment() {
+class SelectDetailsTabFragment() : Fragment() {
+    private var selectPosition : String = ""
     private var _binding : SelectDetailsTabBinding? = null
     private val binding get() = _binding!!
     private lateinit var mainActivity: MainActivity
@@ -28,6 +27,13 @@ class SelectDetailsTabFragment(
         super.onAttach(context)
         mainActivity = context as MainActivity
         fm = mainActivity.supportFragmentManager
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            selectPosition = it.getString("selectPosition","")
+        }
     }
 
     override fun onCreateView(
@@ -43,16 +49,16 @@ class SelectDetailsTabFragment(
         super.onViewCreated(view, savedInstanceState)
 
         //tab layout 설정
-        setPostingTabContainer(TotalFragment(selectPosition))
+        setPostingTabContainer(TotalFragment.newInstance(selectPosition))
         binding.tjfTabLayout.apply {
             setTabItemMargin(this)
             addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
                 override fun onTabSelected(tab: TabLayout.Tab?) {
                     when(tab?.position){
-                        0->{setPostingTabContainer(TotalFragment(selectPosition))}
-                        1->{setPostingTabContainer(JointPurchaseFragment(selectPosition))}
-                        2->{setPostingTabContainer(FreeTalkFragment(selectPosition))}
-                        else->{setPostingTabContainer(TotalFragment(selectPosition))}
+                        0->{setPostingTabContainer(TotalFragment.newInstance(selectPosition))}
+                        1->{setPostingTabContainer(JointPurchaseFragment.newInstance(selectPosition))}
+                        2->{setPostingTabContainer(FreeTalkFragment.newInstance(selectPosition))}
+                        else->{setPostingTabContainer(TotalFragment.newInstance(selectPosition))}
                     }
                 }
                 override fun onTabUnselected(tab: TabLayout.Tab?) {}
@@ -82,5 +88,14 @@ class SelectDetailsTabFragment(
     private fun setPostingTabContainer(fragment:Fragment){
         fm.beginTransaction().replace(R.id.sdt_main_container,fragment)
             .commit()
+    }
+
+    companion object{
+        fun newInstance(selectPosition:String) =
+            SelectDetailsTabFragment().apply {
+                Bundle().apply {
+                    this.getString("selectPosition",selectPosition)
+                }
+            }
     }
 }

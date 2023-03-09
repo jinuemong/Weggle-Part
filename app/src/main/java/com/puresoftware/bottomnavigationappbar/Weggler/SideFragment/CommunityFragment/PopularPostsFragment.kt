@@ -46,7 +46,7 @@ class PopularPostsFragment : Fragment() {
     private fun initView(){
         fm.beginTransaction()
             .replace(R.id.details_container,
-                SelectDetailsTabFragment("Popular Posting"))
+                SelectDetailsTabFragment.newInstance("Popular Posting"))
             .commit()
     }
 

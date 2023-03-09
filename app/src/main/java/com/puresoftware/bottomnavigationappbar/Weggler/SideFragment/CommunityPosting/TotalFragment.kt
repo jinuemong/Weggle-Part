@@ -15,9 +15,8 @@ import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentTotalBinding
 
 
-class TotalFragment(
-    private val selectPosition: String,
-) : Fragment() {
+class TotalFragment() : Fragment() {
+    private var selectPosition: String?=null
     private var _binding: FragmentTotalBinding? = null
     private val binding get() = _binding!!
     private lateinit var mainActivity: MainActivity
@@ -31,10 +30,16 @@ class TotalFragment(
         fm = mainActivity.supportFragmentManager
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            selectPosition = it.getString("selectPosition",null)
+        }
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentTotalBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -54,9 +59,9 @@ class TotalFragment(
                 override fun onItemClick(item: ReviewInCommunity) {
                     mainActivity.setMainViewVisibility(false)
                     if (selectPosition =="Main Posting"){
-                        mainActivity.changeFragment(DetailCommunityPostingFragment("main",item))
+                        mainActivity.changeFragment(DetailCommunityPostingFragment.newInstance(item.reviewId,"main"))
                     }else {
-                        mainActivity.changeFragment(DetailCommunityPostingFragment("sub",item))
+                        mainActivity.changeFragment(DetailCommunityPostingFragment.newInstance(item.reviewId,"sub"))
                     }
                 }
 
@@ -92,6 +97,15 @@ class TotalFragment(
             }
         }
 
+    }
+
+    companion object{
+        fun newInstance(selectPosition:String) =
+            TotalFragment().apply {
+                Bundle().apply {
+                    this.putString("selectPosition",selectPosition)
+                }
+            }
     }
 
 }
