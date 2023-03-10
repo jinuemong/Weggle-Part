@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:focusable="true"
+    android:clickable="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Weggler.SideFragment.AddCommunity.SearchGroupBuyFragment">
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin_10"
+        android:orientation="horizontal"
+        android:padding="@dimen/margin_20"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_len_90">
+        <EditText
+            android:id="@+id/search_bar"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/margin_20"
+            android:hint="공동구매 상품 검색"
+            android:backgroundTint="@color/line_color"
+            android:background="@drawable/round_border"
+            android:layout_width="@dimen/top_len_300"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/cancel_button"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_20"
+            android:layout_marginStart="@dimen/margin_20"
+            android:text="@string/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        tools:listitem="@layout/item_group_buy"
+        android:layout_margin="@dimen/margin_10"
+        app:spanCount="3"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

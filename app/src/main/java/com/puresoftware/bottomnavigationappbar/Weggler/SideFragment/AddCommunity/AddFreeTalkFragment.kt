@@ -20,7 +20,7 @@ import com.bumptech.glide.request.transition.Transition
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityManagerWithReview
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.MultiCommunityData
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.MultiCommunityDataBody
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentAddFreeTalkBinding
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
 
@@ -162,7 +162,7 @@ class AddFreeTalkFragment( private val mainFrame : SlidingUpPanelLayout) : Fragm
         binding.uploadButton.setOnClickListener {
             if (subject != "" && text.length >= 10) {
                 if (mainActivity.communityViewModel.communityProduct != null) {
-                    val multiCommunityData = MultiCommunityData(
+                    val multiCommunityData = MultiCommunityDataBody(
                         type, subject, text, linkUrl, ""
                     )
                     CommunityManagerWithReview(mainActivity.masterApp)

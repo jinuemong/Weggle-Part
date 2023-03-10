@@ -7,7 +7,7 @@ class Product (
     val category : String,
     val name  : String,
     val userId : String,
-    val body : BodyProductForPOST, //원래는 string
+    val body : BodyProduct, //원래는 string
     // admin에서 object로 등록되있어서 맞춤
     val subjectFiles : List<String>,
     val contentFiles : List<String>,

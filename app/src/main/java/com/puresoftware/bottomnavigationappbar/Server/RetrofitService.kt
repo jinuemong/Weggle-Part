@@ -34,7 +34,7 @@ interface RetrofitService {
     fun addCommunityProduct(
         @Path("category") category : String,
         @Path("name") name : String,
-        @Body body : BodyProductForPOST,
+        @Body body : BodyProduct,
     ): Call<Product>
 
     //리뷰 얻기
@@ -48,7 +48,7 @@ interface RetrofitService {
     @POST("products/{productId}/reviews")
     fun addReView(
         @Path("productId") productId: Int,
-        @Part("param") param : BodyReviewForPOST, //body
+        @Part("param") param : BodyReview, //body
         @Part multipartFile : MultipartBody.Part? //image
     ): Call<ReviewInCommunity>
 
@@ -84,7 +84,7 @@ interface RetrofitService {
     @POST("reviews/{reviewId}/comments")
     fun addReviewComment(
         @Path("reviewId")reviewId: Int,
-        @Body body : BodyCommentForPOST,
+        @Body body : BodyComment,
     ) : Call<Comment>
 
     @GET("reviews/{reviewId}")

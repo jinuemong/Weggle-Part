@@ -10,7 +10,7 @@ class ReviewInCommunity (
     val userId : String,
     val thumbnail:String="", //자동
     var resource : String="", //자동
-    var body : MultiCommunityData,
+    var body : MultiCommunityDataBody,
     var likeCount : Int = 0,
     var commentCount : Int = 0,
     val createTime : String,

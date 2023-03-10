@@ -9,8 +9,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.MultiCommunityData
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.BodyReviewForPOST
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.MultiCommunityDataBody
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.BodyReview
 import kotlinx.coroutines.launch
 
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -26,12 +26,12 @@ import java.lang.Exception
 //Multi Part 형식 (이미지 + body)으로 보낼 때 필요
 
 class MultiPartViewModel: ViewModel(){
-    fun uploadCommunityPoster(productId:Int,multiCommunityData: MultiCommunityData,filePath : Uri?,
-                              activity: Activity,paramFunc:(ReviewInCommunity?,String?)->Unit){
+    fun uploadCommunityPoster(productId:Int, multiCommunityData: MultiCommunityDataBody, filePath : Uri?,
+                              activity: Activity, paramFunc:(ReviewInCommunity?,String?)->Unit){
         viewModelScope.launch {
             try {
 
-                val body = BodyReviewForPOST(multiCommunityData)
+                val body = BodyReview(multiCommunityData)
 
                 //이미지 처리
                 val multipartFile : MultipartBody.Part? = if (filePath!=null) {

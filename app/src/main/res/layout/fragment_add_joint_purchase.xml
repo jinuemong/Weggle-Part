@@ -118,6 +118,7 @@
             android:text="공동구매 상품 태그" />
 
         <LinearLayout
+            android:id="@+id/select_product"
             android:layout_width="match_parent"
             android:layout_height="@dimen/item_size_50"
             android:background="@drawable/round_border_plus"

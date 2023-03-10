@@ -1,6 +1,6 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.Manager
 
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.BodyCommentForPOST
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.BodyComment
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Comment
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.CommentList
 import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
@@ -51,7 +51,7 @@ class CommunityCommentManager(
 
     //댓글 추가하기
     fun addReviewComment(reviewId: Int, body:String,paramFunc: (Comment?, String?) -> Unit){
-        wApp.service.addReviewComment(reviewId, BodyCommentForPOST(body))
+        wApp.service.addReviewComment(reviewId, BodyComment(body))
             .enqueue(object :Callback<Comment>{
                 override fun onResponse(call: Call<Comment>, response: Response<Comment>) {
                     if (response.isSuccessful){
