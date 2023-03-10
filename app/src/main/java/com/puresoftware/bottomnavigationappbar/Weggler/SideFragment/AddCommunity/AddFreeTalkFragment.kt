@@ -163,7 +163,7 @@ class AddFreeTalkFragment( private val mainFrame : SlidingUpPanelLayout) : Fragm
             if (subject != "" && text.length >= 10) {
                 if (mainActivity.communityViewModel.communityProduct != null) {
                     val multiCommunityData = MultiCommunityDataBody(
-                        type, subject, text, linkUrl, ""
+                        type, subject, text, linkUrl, -1
                     )
                     CommunityManagerWithReview(mainActivity.masterApp)
                         .addCommunityReview(

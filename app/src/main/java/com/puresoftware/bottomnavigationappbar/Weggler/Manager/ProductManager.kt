@@ -46,22 +46,4 @@ class ProductManager(
             })
     }
 
-    //새로 프로덕트 추가
-    private fun addProduct(productName : String, paramFunc : (Product?, message:String?)->Unit){
-        wApp.service.addCommunityProduct("community",productName, BodyProduct(productName))
-            .enqueue(object : Callback<Product>{
-                override fun onResponse(call: Call<Product>, response: Response<Product>) {
-                    if (response.isSuccessful){
-                        paramFunc(response.body(),null)
-                    }else{
-                        paramFunc(null,response.errorBody()!!.string())
-                    }
-                }
-
-                override fun onFailure(call: Call<Product>, t: Throwable) {
-                    paramFunc(null,"errr")
-                }
-
-            })
-    }
 }

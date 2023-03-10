@@ -34,6 +34,7 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/product_list"
         tools:listitem="@layout/item_group_buy"
         android:layout_margin="@dimen/margin_10"
         app:spanCount="3"
