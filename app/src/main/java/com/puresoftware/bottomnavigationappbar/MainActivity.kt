@@ -11,6 +11,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
@@ -28,10 +29,12 @@ import com.puresoftware.bottomnavigationappbar.Weggler.WegglerFragment
 import com.puresoftware.bottomnavigationappbar.brands.BrandsFragment
 import com.puresoftware.bottomnavigationappbar.databinding.ActivityMainBinding
 import com.puresoftware.bottomnavigationappbar.databinding.NavigationInnerBinding
+import com.sothree.slidinguppanel.SlidingUpPanelLayout
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-
+    private var backPressTime:Long = 0
+    private lateinit var callback :OnBackPressedCallback
     // fragment
     // https://aries574.tistory.com/382
     var homeFragment: HomeFragment? = null // 홈
@@ -39,8 +42,8 @@ class MainActivity : AppCompatActivity() {
     var centerWeggleFragment: CenterWeggleFragment? = null // 메인
     var wegglerFragment: WegglerFragment? = null // 위글러
     var myAccountFragment: MyAccountFragment? = null // 내 정보
-    var fragmentManager: FragmentManager? = null // Fragment
-    var transaction: FragmentTransaction? = null // Fragment
+    var fragmentManager: FragmentManager? = null // Fragment manager
+    var transaction: FragmentTransaction? = null // Fragment transaction
 
 
     //MaterApplication : 로그인 + API 연동////
@@ -63,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         //////////////////////
 
 
-        // toolbar control
+        // toolbar control ///////////////
         var toolbar = binding.toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.setTitle("")
@@ -145,6 +148,20 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        //뒤로가기 버튼 조작 (2초 이내 연속 클릭 시 앱 종료 )
+        callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                if(System.currentTimeMillis()>backPressTime+2000){
+                    backPressTime = System.currentTimeMillis()
+                    Toast.makeText(applicationContext,"'뒤로' 버틀을 한번 더 누르시면 앱이 종료됩니다."
+                        ,Toast.LENGTH_SHORT).show()
+                }else{
+                    finishAffinity()
+                }
+            }
+        }
+        this.onBackPressedDispatcher.addCallback(this,callback)
+
         // ImageView의 Weggle Button 동작
         binding.btnCenterWeggle.setOnClickListener {
             transaction = fragmentManager!!.beginTransaction()
@@ -159,8 +176,7 @@ class MainActivity : AppCompatActivity() {
         binding.mainNavi.inflateHeaderView(R.layout.navigation_inner).apply {
             //go setting
             this.findViewById<ImageView>(R.id.nav_setting).setOnClickListener {
-                goFrontFragment(SettingFragment())
-                it.bringToFront()
+                setSubFragmentView(SettingFragment())
             }
             //go close
             this.findViewById<ImageView>(R.id.nav_close).setOnClickListener {
@@ -207,19 +223,26 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
-    fun goFrontFragment(goFragment: Fragment){
-        fragmentManager!!.beginTransaction().replace(R.id.main_frame, goFragment)
+    private fun setSubFragmentView(goFragment: Fragment){
+        fragmentManager!!.beginTransaction().replace(R.id.slide_layout, goFragment)
             .addToBackStack(null)
             .commit()
-
-
+        setSubFragment()
+    }
+    fun setSubFragment(){
+        val state = binding.frameLayout.panelState
+        // 닫힌 상태일 경우 열기
+        if (state == SlidingUpPanelLayout.PanelState.COLLAPSED) {
+            binding.frameLayout.panelState = SlidingUpPanelLayout.PanelState.ANCHORED
+        }
+        // 열린 상태일 경우 닫기
+        else if (state == SlidingUpPanelLayout.PanelState.EXPANDED) {
+            binding.frameLayout.panelState = SlidingUpPanelLayout.PanelState.COLLAPSED
+        }
     }
     fun goBackFragment(fragment: Fragment) {
-        if (fragmentManager != null) {
             fragmentManager!!.beginTransaction().remove(fragment).commit()
             fragmentManager!!.popBackStack()
-
-        }
     }
 
     fun setMainViewVisibility(isSet: Boolean) {

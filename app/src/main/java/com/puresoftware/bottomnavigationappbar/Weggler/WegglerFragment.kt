@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.tabs.TabLayout
@@ -37,7 +38,6 @@ class WegglerFragment : Fragment() {
     private var challengeFragment: ChallengeFragment? = null
     private var communityFragment: CommunityFragment? = null
     private var rankingFragment: RankingFragment? = null
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity  = context as MainActivity

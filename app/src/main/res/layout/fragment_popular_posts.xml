@@ -5,8 +5,4 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Weggler.SideFragment.CommunityFragment.PopularPostsFragment">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="sdlsdjsld"/>
 </FrameLayout>

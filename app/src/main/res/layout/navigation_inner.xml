@@ -6,7 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
     <androidx.constraintlayout.widget.ConstraintLayout
-
         android:padding="@dimen/margin_10"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_len_50">

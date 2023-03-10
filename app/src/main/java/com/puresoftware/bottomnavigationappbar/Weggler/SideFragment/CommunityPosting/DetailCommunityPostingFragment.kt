@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import com.bumptech.glide.Glide
 import com.puresoftware.bottomnavigationappbar.MainActivity
@@ -35,10 +36,20 @@ class DetailCommunityPostingFragment : Fragment() {
     private lateinit var commentAdapter: ItemCommentAdapter
     private lateinit var communityComment: CommunityCommentManager
     private lateinit var communityPost: CommunityManagerWithReview
+    private lateinit var callback:OnBackPressedCallback
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
         wegglerApp = mainActivity.masterApp
+        callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                mainActivity.goBackFragment(this@DetailCommunityPostingFragment)
+                if (type == "main") {
+                    mainActivity.setMainViewVisibility(true)
+                }
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this,callback)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

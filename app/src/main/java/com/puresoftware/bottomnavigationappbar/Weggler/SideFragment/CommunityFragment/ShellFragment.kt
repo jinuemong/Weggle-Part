@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.FragmentManager
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
@@ -29,10 +30,19 @@ class ShellFragment() : Fragment() {
     private val binding get() = _binding!!
     private lateinit var mainActivity: MainActivity
     private lateinit var fm: FragmentManager
+    private lateinit var callback:OnBackPressedCallback
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
         fm = mainActivity.supportFragmentManager
+        callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                mainActivity.setMainViewVisibility(true)
+                mainActivity.goBackFragment(this@ShellFragment)
+            }
+
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this,callback)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
