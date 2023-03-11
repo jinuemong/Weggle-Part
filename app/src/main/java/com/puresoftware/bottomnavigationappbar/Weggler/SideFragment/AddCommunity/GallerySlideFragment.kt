@@ -17,11 +17,13 @@ import com.bumptech.glide.Glide
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import com.puresoftware.bottomnavigationappbar.MainActivity
+import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.SelectPicAdapter
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityFragment.ShellFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentGallerySlideBinding
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
 
-class GallerySlideFragment(private val mainFrame : SlidingUpPanelLayout) : Fragment() {
+class GallerySlideFragment : Fragment() {
     private var _binding : FragmentGallerySlideBinding? = null
     private val binding get() = _binding!!
     lateinit var mainActivity: MainActivity
@@ -125,14 +127,14 @@ class GallerySlideFragment(private val mainFrame : SlidingUpPanelLayout) : Fragm
         }
         return uriList
     }
+    @SuppressLint("ResourceType")
     private fun setUpListener(){
         //뒤로가기
         binding.cancelButton.setOnClickListener {
-            mainFrame.panelState = SlidingUpPanelLayout.PanelState.COLLAPSED
+            onItemClickListener?.onItemClick(currentUri)
         }
 
         binding.uploadButton.setOnClickListener {
-            mainFrame.panelState = SlidingUpPanelLayout.PanelState.COLLAPSED
             onItemClickListener?.onItemClick(currentUri)
         }
     }

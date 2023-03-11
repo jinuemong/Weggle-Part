@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.PopupMenu
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -13,6 +14,8 @@ import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemPopularPostingTabAdapter
 import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.AddCommunity.AddFreeTalkFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.AddCommunity.AddJointPurchaseFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.TotalFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityFragment.ShellFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.DetailCommunityPostingFragment
@@ -48,49 +51,38 @@ class CommunityFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initView()
 
-        // 버튼 위치 조정 -> 수정
-        binding.addButton.setOnClickListener(object :View.OnClickListener{
-            @RequiresApi(Build.VERSION_CODES.N)
-            override fun onClick(v: View?) {
-                if (v != null) {
-                    registerForContextMenu(v)
-                    v.showContextMenu(((v.x-v.x/2)),((v.y-v.y*2)) )
+        // 버튼 위치 조정
+        binding.addButton.setOnClickListener {
+            val popupMenu = PopupMenu(context,it)
+
+            mainActivity.menuInflater.inflate(R.menu.pop_up_in_community,popupMenu.menu)
+            popupMenu.show()
+            popupMenu.setOnMenuItemClickListener {
+                when(it.itemId){
+                    R.id.add_free_talk->{
+                        mainActivity.setMainViewVisibility(false)
+                        mainActivity.fragmentManager!!.beginTransaction()
+                            .add(R.id.main_frame,
+                                ShellFragment.newInstance("프리토크 글쓰기")
+                                ,"add free talk")
+                            .addToBackStack(null)
+                            .commit()
+                        return@setOnMenuItemClickListener true
+                    }
+                    R.id.add_joint->{
+                        mainActivity.setMainViewVisibility(false)
+                        mainActivity.changeFragment(ShellFragment.newInstance("공구해요 글쓰기"))
+                        return@setOnMenuItemClickListener true
+                    }
+                    else->{
+                        return@setOnMenuItemClickListener  false
+                    }
                 }
             }
-
-        })
-
-    }
-
-    // 메뉴 생성
-    override fun onCreateContextMenu(
-        menu: ContextMenu,
-        v: View,
-        menuInfo: ContextMenu.ContextMenuInfo?
-    ) {
-        super.onCreateContextMenu(menu, v, menuInfo)
-        when (v.id){
-            R.id.add_button->{
-                mainActivity.menuInflater.inflate(R.menu.pop_up_in_community,menu)
-
-            }
         }
-    }
-    //메뉴 클릭 add 버튼
-    override fun onContextItemSelected(item: MenuItem): Boolean {
 
-        when(item.itemId){
-            R.id.add_free_talk->{
-                mainActivity.setMainViewVisibility(false)
-                mainActivity.changeFragment(ShellFragment.newInstance("프리토크 글쓰기"))
-            }
-            R.id.add_joint->{
-                mainActivity.setMainViewVisibility(false)
-                mainActivity.changeFragment(ShellFragment.newInstance("공구해요 글쓰기"))
-            }
-        }
-        return false
     }
+
 
     private fun initView() {
 

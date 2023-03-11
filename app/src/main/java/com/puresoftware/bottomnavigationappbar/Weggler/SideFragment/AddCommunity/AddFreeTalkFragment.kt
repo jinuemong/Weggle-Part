@@ -21,11 +21,12 @@ import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityManagerWithReview
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.MultiCommunityDataBody
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityFragment.ShellFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentAddFreeTalkBinding
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
 
 
-class AddFreeTalkFragment( private val mainFrame : SlidingUpPanelLayout) : Fragment() {
+class AddFreeTalkFragment : Fragment() {
     private var _binding : FragmentAddFreeTalkBinding? = null
     private val binding get()=_binding!!
     private lateinit var mainActivity:MainActivity
@@ -55,14 +56,17 @@ class AddFreeTalkFragment( private val mainFrame : SlidingUpPanelLayout) : Fragm
         _binding = null
     }
 
+    @SuppressLint("InflateParams", "ResourceType")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // 다른 뷰 접근
 
-        gallerySlideFragment = GallerySlideFragment(mainFrame)
+        gallerySlideFragment = GallerySlideFragment()
                 //클릭 이벤트 적용
             .apply {
                 setOnItemClickListener(object :GallerySlideFragment.OnItemClickListener{
                     override fun onItemClick(imageUri: Uri?) {
+                        setSlideView()
                         if (imageUri!=null){
                             binding.uploadText.visibility = View.INVISIBLE
                             binding.uploadImage.visibility = View.INVISIBLE
@@ -135,6 +139,7 @@ class AddFreeTalkFragment( private val mainFrame : SlidingUpPanelLayout) : Fragm
             }
         })
     }
+    @SuppressLint("ResourceType")
     private fun setUpListener(){
         binding.delSubject.setOnClickListener {
             binding.typSubject.text = null
@@ -145,17 +150,9 @@ class AddFreeTalkFragment( private val mainFrame : SlidingUpPanelLayout) : Fragm
             binding.typLink.text = null
             linkUrl = ""
         }
-        // 사진 촬영 기능
+        // 사진 불러오기
         binding.uploadLinear.setOnClickListener {
-            val state = mainFrame.panelState
-            // 닫힌 상태일 경우 열기
-            if (state == SlidingUpPanelLayout.PanelState.COLLAPSED) {
-                mainFrame.panelState = SlidingUpPanelLayout.PanelState.ANCHORED
-            }
-            // 열린 상태일 경우 닫기
-            else if (state == SlidingUpPanelLayout.PanelState.EXPANDED) {
-                mainFrame.panelState = SlidingUpPanelLayout.PanelState.COLLAPSED
-            }
+            setSlideView()
         }
 
         // 게시물 작성 가능 : Post
@@ -185,6 +182,10 @@ class AddFreeTalkFragment( private val mainFrame : SlidingUpPanelLayout) : Fragm
                 }
             }
         }
+    }
+    private fun setSlideView(){
+        (mainActivity.supportFragmentManager.findFragmentByTag("add free talk")
+                as ShellFragment).setSlide()
     }
     @SuppressLint( "ResourceType")
     private fun setButtonColor(){

@@ -2,6 +2,7 @@ package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityFr
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPos
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.FreeTalkFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.JointPurchaseFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentShellBinding
+import com.sothree.slidinguppanel.SlidingUpPanelLayout
 
 
 // 원하는 Fragment를 부착하는 곳 (중복 코드 줄이기)
@@ -89,7 +91,7 @@ class ShellFragment() : Fragment() {
                 setShellContainer(MyPostingTabFragment())
             }
             "프리토크 글쓰기"->{
-                setShellContainer(AddFreeTalkFragment(binding.slideFrameInShell))
+                setShellContainer(AddFreeTalkFragment())
             }
             "공구해요 글쓰기"->{
                 setShellContainer(AddJointPurchaseFragment())
@@ -109,6 +111,17 @@ class ShellFragment() : Fragment() {
             .commit()
     }
 
+    fun setSlide(){
+        val state = binding.slideFrameInShell.panelState
+        // 닫힌 상태일 경우 열기
+        if (state == SlidingUpPanelLayout.PanelState.COLLAPSED) {
+            binding.slideFrameInShell.panelState = SlidingUpPanelLayout.PanelState.ANCHORED
+        }
+        // 열린 상태일 경우 닫기
+        else if (state == SlidingUpPanelLayout.PanelState.EXPANDED) {
+            binding.slideFrameInShell.panelState = SlidingUpPanelLayout.PanelState.COLLAPSED
+        }
+    }
     companion object{
         fun newInstance(topText : String) =
             ShellFragment().apply {
@@ -116,5 +129,6 @@ class ShellFragment() : Fragment() {
                     putString("topText",topText)
                 }
             }
+
     }
 }
