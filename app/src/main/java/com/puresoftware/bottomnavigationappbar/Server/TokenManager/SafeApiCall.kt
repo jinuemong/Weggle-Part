@@ -15,14 +15,17 @@ interface SafeApiCall {
     ): Resource<T> {
         return withContext(Dispatchers.IO) {
             try {
+                Log.d("qazwsxedc safeapi 1","is ok ~ ")
                 // 통신에 성공하면 전달 받은 값 전송
                 Resource.Success(apiCall.invoke())
             } catch (throwable: Throwable) {
                 when (throwable) {
                     is HttpException -> {
+                        Log.d("qazwsxedc safeapi 1",throwable.response()?.errorBody()!!.string())
                         Resource.Failure(false, throwable.code(), throwable.response()?.errorBody())
                     }
                     else -> {
+                        Log.d("qazwsxedc safeapi 1","else error")
                         Resource.Failure(true, null, null)
                     }
                 }

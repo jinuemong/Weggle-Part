@@ -30,11 +30,11 @@ class GallerySlideFragment : Fragment() {
     private lateinit var readGalleryListener : PermissionListener
 
     private var onItemClickListener : OnItemClickListener?= null
-    interface OnItemClickListener{
-        fun onItemClick(imageUri:Uri?){}
-    }
     fun setOnItemClickListener(listener: OnItemClickListener){
         this.onItemClickListener = listener
+    }
+    interface OnItemClickListener{
+        fun onItemClick(imageUri:Uri?){}
     }
 
     var currentUri :Uri? = null

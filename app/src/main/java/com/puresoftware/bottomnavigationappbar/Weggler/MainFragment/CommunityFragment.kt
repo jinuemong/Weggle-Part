@@ -53,6 +53,7 @@ class CommunityFragment : Fragment() {
 
         // 버튼 위치 조정
         binding.addButton.setOnClickListener {
+
             val popupMenu = PopupMenu(context,it)
 
             mainActivity.menuInflater.inflate(R.menu.pop_up_in_community,popupMenu.menu)

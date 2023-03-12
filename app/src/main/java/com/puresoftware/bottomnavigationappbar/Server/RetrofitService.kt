@@ -19,6 +19,12 @@ interface RetrofitService {
         @Field("password") password : String,
     ) : Call<Token>
 
+//    //token reset
+//    @PATCH("token")
+//    fun patchToken(
+//        @Query("refreshToken") refreshToken:String
+//    ) : Call<Token>
+
     //2개의 데이터 (공구해요 , 프리토크)
     @GET("categories/{category}/products")
     fun  getCommunityProduct(
