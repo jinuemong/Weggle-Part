@@ -12,8 +12,7 @@ import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 
 import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.Token
-import com.puresoftware.bottomnavigationappbar.databinding.ActivityLoginBinding
+import com.puresoftware.bottomnavigationappbar.Server.TokenManager.Token
 import com.puresoftware.bottomnavigationappbar.databinding.ActivityLoginTeomporaryBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -97,8 +96,8 @@ class LoginActivityTemporary : AppCompatActivity() {
                     val sp = getSharedPreferences("login_sp", Context.MODE_PRIVATE)
                     val editor = sp.edit()
                     editor.putString("accessToken", response.body()?.accessToken)
-                    /// 임시 ! 강제로 토큰 만료 ////// - 꼭 삭제 !!
-                    editor.putString("accessToken", "qqwerasdfzxcvqweqweqwer")
+//                    /// 임시 ! 강제로 토큰 만료 ////// - 꼭 삭제 !!
+//                    editor.putString("accessToken", "qqwerasdfzxcvqweqweqwer")
                     //////////////////////////////
                     editor.putString("refreshToken", response.body()?.refreshToken)
                     editor.apply()

@@ -8,6 +8,7 @@ import com.facebook.stetho.BuildConfig
 import com.facebook.stetho.Stetho
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.puresoftware.bottomnavigationappbar.Server.TokenManager.AuthInterceptor
+import com.puresoftware.bottomnavigationappbar.Server.TokenManager.TokenAuthenticator
 import com.puresoftware.bottomnavigationappbar.Server.TokenManager.TokenRefreshApi
 import okhttp3.Authenticator
 import okhttp3.Interceptor
@@ -17,6 +18,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.create
+import java.util.concurrent.TimeUnit
 import kotlin.math.log
 
 //http://dev-api.kooru.be/swagger-ui/index.html#/
@@ -61,7 +63,7 @@ class MasterApplication : Application() {
 //            .addInterceptor(AuthInterceptor(activity,buildTokenApi(normalClient)))
 //            .build()
 //
-
+        // 레트로핏 생성 1
         val retrofit = Retrofit.Builder()
             .baseUrl("$baseUrl/")
             .addConverterFactory(ScalarsConverterFactory.create())
@@ -71,11 +73,12 @@ class MasterApplication : Application() {
 
         service = retrofit.create(RetrofitService::class.java)
 
-//        //토큰을 위한 인증
-//        //TokenAuthenticator으로 새 토큰 발행
+        //레트로핏 생성 2
+
+        //토큰을 위한 인증
+        //TokenAuthenticator으로 새 토큰 발행
 //        val authenticator = TokenAuthenticator(activity,buildTokenApi())
-//
-//        //레트로핏 생성
+
 //        val retrofit = Retrofit.Builder()
 //            .baseUrl("$baseUrl/")
 //            .client(getRetrofitClient(authenticator))
@@ -86,8 +89,10 @@ class MasterApplication : Application() {
 
     }
 
-    //TokenRefreshApi를 빌드
-    private fun buildTokenApi(client: OkHttpClient) : TokenRefreshApi {
+    //TokenRefreshApi를 빌드 1
+    private fun buildTokenApi() : TokenRefreshApi {
+        //임시 클라이언트
+        val client = OkHttpClient.Builder().build()
         return Retrofit.Builder()
             .baseUrl("$baseUrl/")
             .client(client)
@@ -96,8 +101,9 @@ class MasterApplication : Application() {
             .build()
             .create(TokenRefreshApi::class.java)
     }
-    //TokenRefreshApi를 빌드
+    //TokenRefreshApi를 빌드 2
 //    private fun buildTokenApi() : TokenRefreshApi {
+//
 //        return Retrofit.Builder()
 //            .baseUrl("$baseUrl/")
 //            .client(getRetrofitClient())
@@ -106,7 +112,7 @@ class MasterApplication : Application() {
 //            .create(TokenRefreshApi::class.java)
 //    }
 
-    //레트로핏 클라이언트 생성 함수
+    //레트로핏 클라이언트 생성 함수 1
     // 빌드 :  okhttp client
     // 인터셉터를 통한 request를 보냄
 
@@ -118,15 +124,20 @@ class MasterApplication : Application() {
                 }.build())
             }.also { client->
                 client.addInterceptor(header)
-                client.addInterceptor(AuthInterceptor(activity,buildTokenApi(client.build())))
+                client.addInterceptor(AuthInterceptor(activity,buildTokenApi()))
                 //오류 관련 인터셉터도 등록 (오류 출력 기능 )
                 val logInterceptor = HttpLoggingInterceptor()
                 logInterceptor.level = HttpLoggingInterceptor.Level.BODY
                 client.addInterceptor(logInterceptor)
             }.build()
     }
+
+    // 레트로핏 생성 2
 //    private fun getRetrofitClient(authenticator: Authenticator? = null): OkHttpClient{
 //        return OkHttpClient.Builder()
+//            .connectTimeout(1,TimeUnit.HOURS)
+//            .readTimeout(1,TimeUnit.HOURS)
+//            .writeTimeout(1,TimeUnit.HOURS)
 //            .addInterceptor { chain->
 //                chain.proceed(chain.request().newBuilder().also {
 //                    it.addHeader("Accept", "application/json")
