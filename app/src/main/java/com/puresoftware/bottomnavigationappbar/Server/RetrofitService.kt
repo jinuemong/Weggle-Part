@@ -20,6 +20,9 @@ interface RetrofitService {
         @Field("password") password : String,
     ) : Call<Token>
 
+    @GET("logout")
+    fun logoutUser():Call<String>
+
 //    //token reset
 //    @PATCH("token")
 //    fun patchToken(

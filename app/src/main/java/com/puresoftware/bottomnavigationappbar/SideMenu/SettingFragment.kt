@@ -1,5 +1,6 @@
 package com.puresoftware.bottomnavigationappbar.SideMenu
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +11,11 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import com.puresoftware.bottomnavigationappbar.LoginActivityTemporary
 import com.puresoftware.bottomnavigationappbar.MainActivity
+import com.puresoftware.bottomnavigationappbar.Weggler.Unit.MessageFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentSettingBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SettingFragment : Fragment() {
     private lateinit var mainActivity : MainActivity
@@ -51,9 +56,43 @@ class SettingFragment : Fragment() {
         }
         binding.logout.setOnClickListener {
             // 로그아웃
-            val intent = Intent(mainActivity, LoginActivityTemporary::class.java)
-            intent.putExtra("logout",true)
-            startActivity(intent)
+            mainActivity.masterApp.service.logoutUser()
+                .enqueue(object : Callback<String>{
+                    @SuppressLint("CommitPrefEdits")
+                    override fun onResponse(call: Call<String>, response: Response<String>) {
+                        if (response.isSuccessful){
+                            //토큰 데이터 삭제 후 이동
+                            val sp  =mainActivity.getSharedPreferences("login_sp",Context.MODE_PRIVATE)
+                            val editor = sp.edit()
+                            editor.remove("refreshToken")
+                            editor.remove("accessToken")
+                            editor.clear().apply()
+
+                            val intent = Intent(mainActivity, LoginActivityTemporary::class.java)
+                            intent.putExtra("logout",true)
+                            startActivity(intent)
+                        }else{
+                            getLogoutMessage()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<String>, t: Throwable) {
+                        getLogoutMessage()
+                    }
+
+                })
+        }
+    }
+
+    private fun getLogoutMessage(){
+        val messageBox = MessageFragment.newInstance("로그아웃 할 수 없습니다. 앱을 종료 하시겠습니까?")
+        messageBox.show(mainActivity.fragmentManager!!, null)
+        messageBox.apply {
+            setItemClickListener(object : MessageFragment.OnItemClickListener{
+                override fun onItemClick() {
+                    mainActivity.finishAffinity()
+                }
+            })
         }
     }
 

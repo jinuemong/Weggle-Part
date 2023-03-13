@@ -96,8 +96,8 @@ class LoginActivityTemporary : AppCompatActivity() {
                     val sp = getSharedPreferences("login_sp", Context.MODE_PRIVATE)
                     val editor = sp.edit()
                     editor.putString("accessToken", response.body()?.accessToken)
-//                    /// 임시 ! 강제로 토큰 만료 ////// - 꼭 삭제 !!
-//                    editor.putString("accessToken", "qqwerasdfzxcvqweqweqwer")
+                    /// 임시 ! 강제로 토큰 만료 ////// - 꼭 삭제 !!
+                    editor.putString("accessToken", "qqwerasdfzxcvqweqweqwer")
                     //////////////////////////////
                     editor.putString("refreshToken", response.body()?.refreshToken)
                     editor.apply()

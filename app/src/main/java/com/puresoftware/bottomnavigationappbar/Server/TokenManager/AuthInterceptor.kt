@@ -76,7 +76,7 @@ class AuthInterceptor(
                             editor.putString("refreshToken", refreshToken)
                             editor.apply()
 
-                            //기존 토큰 지우고 새로 response 반환
+                            //기존 토큰 지우고 새로 response 반환 *** 중요 /////
                             val newRequest = chain.request().newBuilder().removeHeader("Authorization")
                             newRequest.addHeader("Authorization","Bearer $accessToken")
                             Log.d("qazwsxedc response 1",newRequest.toString())
