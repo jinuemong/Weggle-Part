@@ -50,6 +50,8 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <TextView
+        android:visibility="gone"
+        android:id="@+id/category"
         android:textSize="@dimen/text_size_10"
         android:layout_marginTop="@dimen/margin_2"
         android:padding="@dimen/margin_2"

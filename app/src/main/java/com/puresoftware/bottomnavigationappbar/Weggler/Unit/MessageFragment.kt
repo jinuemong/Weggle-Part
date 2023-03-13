@@ -45,9 +45,7 @@ class MessageFragment : DialogFragment() {
         }
 
         binding.closeButton.setOnClickListener {
-            if (onItemClickListener !=null){
-                onItemClickListener?.onItemClick()
-            }
+            dismissNow()
         }
 
         binding.commitButton.setOnClickListener {

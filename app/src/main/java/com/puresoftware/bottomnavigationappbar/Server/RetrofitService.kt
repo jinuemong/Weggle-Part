@@ -23,11 +23,15 @@ interface RetrofitService {
     @GET("logout")
     fun logoutUser():Call<String>
 
-//    //token reset
-//    @PATCH("token")
-//    fun patchToken(
-//        @Query("refreshToken") refreshToken:String
-//    ) : Call<Token>
+    //유저 정보 얻기
+    @GET("users")
+    fun getUserInfo() : Call<User>
+
+    //유저 삭제
+    @DELETE("users")
+    fun deleteUser(
+        @Query("id")id : String,
+    ):Call<User>
 
     //2개의 데이터 (공구해요 , 프리토크)
     @GET("categories/{category}/products")

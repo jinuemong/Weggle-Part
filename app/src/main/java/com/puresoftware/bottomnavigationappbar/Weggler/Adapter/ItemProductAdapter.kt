@@ -5,18 +5,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puresoftware.bottomnavigationappbar.MainActivity
-import com.puresoftware.bottomnavigationappbar.MyAccount.retrofit.ProductDataClass
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Product
-import com.puresoftware.bottomnavigationappbar.databinding.ItemGroupBuyBinding
+import com.puresoftware.bottomnavigationappbar.databinding.ItemMiniProductBinding
 
-class GroupBuyProductAdapter(
+class ItemProductAdapter(
     private val mainActivity: MainActivity,
     private val itemSet : ArrayList<Product>,
-) : RecyclerView.Adapter<GroupBuyProductAdapter.ViewHolder>(){
+) : RecyclerView.Adapter<ItemProductAdapter.ViewHolder>(){
     private var itemList = itemSet
-    private lateinit var binding : ItemGroupBuyBinding
+    private lateinit var binding : ItemMiniProductBinding
 
-    inner class ViewHolder(private val binding: ItemGroupBuyBinding)
+    inner class ViewHolder(private val binding: ItemMiniProductBinding)
         :RecyclerView.ViewHolder(binding.root){
             fun bind(){
 
@@ -24,7 +23,7 @@ class GroupBuyProductAdapter(
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        binding = ItemGroupBuyBinding.inflate(LayoutInflater.from(mainActivity),parent,false)
+        binding = ItemMiniProductBinding.inflate(LayoutInflater.from(mainActivity),parent,false)
         return ViewHolder(binding)
     }
 

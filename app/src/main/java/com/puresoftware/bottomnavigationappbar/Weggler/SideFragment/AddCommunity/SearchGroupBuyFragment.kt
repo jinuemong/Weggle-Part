@@ -8,8 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import com.puresoftware.bottomnavigationappbar.MainActivity
-import com.puresoftware.bottomnavigationappbar.R
-import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.GroupBuyProductAdapter
+import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemProductAdapter
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentSearchGroupBuyBinding
 
 
@@ -18,7 +17,7 @@ class SearchGroupBuyFragment : Fragment() {
     private var _binding: FragmentSearchGroupBuyBinding? = null
     private val binding get() = _binding!!
     private lateinit var callback : OnBackPressedCallback
-    private lateinit var adapter : GroupBuyProductAdapter
+    private lateinit var adapter : ItemProductAdapter
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
@@ -39,7 +38,7 @@ class SearchGroupBuyFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = GroupBuyProductAdapter(mainActivity, arrayListOf())
+        adapter = ItemProductAdapter(mainActivity, arrayListOf())
         binding.productList.adapter = adapter.apply {
             // 클릭 시 데이터 전달
         }
