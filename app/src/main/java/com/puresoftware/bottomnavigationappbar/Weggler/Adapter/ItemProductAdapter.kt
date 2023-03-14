@@ -10,7 +10,7 @@ import com.puresoftware.bottomnavigationappbar.databinding.ItemMiniProductBindin
 
 class ItemProductAdapter(
     private val mainActivity: MainActivity,
-    private val itemSet : ArrayList<Product>,
+    itemSet : ArrayList<Product>,
 ) : RecyclerView.Adapter<ItemProductAdapter.ViewHolder>(){
     private var itemList = itemSet
     private lateinit var binding : ItemMiniProductBinding

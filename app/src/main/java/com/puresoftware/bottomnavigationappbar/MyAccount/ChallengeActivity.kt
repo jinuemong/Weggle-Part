@@ -12,11 +12,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import com.puresoftware.bottomnavigationappbar.MyAccount.retrofit.ProductDataClass
-import com.puresoftware.bottomnavigationappbar.MyAccount.retrofit.RetrofitClient
-import com.puresoftware.bottomnavigationappbar.MyAccount.retrofit.WegglerRetrofitService
 import com.puresoftware.bottomnavigationappbar.databinding.ActivityChallengeBinding
-import retrofit2.Call
 
 class ChallengeActivity : AppCompatActivity() {
     lateinit var binding:ActivityChallengeBinding

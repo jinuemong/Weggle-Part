@@ -16,30 +16,14 @@
         app:tabSelectedTextColor="@color/select_tab_color"
         app:tabIndicatorColor="@color/select_tab_color"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/item_size_60">
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="피드"/>
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="챌린지"/>
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="커뮤니티"/>
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="랭킹"/>
-    </com.google.android.material.tabs.TabLayout>
+        android:layout_height="@dimen/item_size_60"/>
+
     <LinearLayout
         android:background="@color/line_color"
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
-    <FrameLayout
-        android:id="@+id/mid_container"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/weggler_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </LinearLayout>

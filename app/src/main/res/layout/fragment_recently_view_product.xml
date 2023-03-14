@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true"
+    android:padding="@dimen/margin_5"
+    android:orientation="vertical"
+    tools:context=".SideMenu.RecentlyViewProductFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_size_40"
+        android:layout_margin="@dimen/margin_10">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="최근 본 상품"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_20"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="@dimen/item_size_30"
+            android:layout_height="@dimen/item_size_30"
+            android:layout_marginStart="@dimen/margin_5"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black" />
+        <TextView
+            android:gravity="center"
+            android:textSize="@dimen/text_size_20"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="편집"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/product_list"
+        app:spanCount="3"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:listitem="@layout/item_mini_product"
+        android:layout_margin="@dimen/margin_10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

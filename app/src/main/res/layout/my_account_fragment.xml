@@ -1,169 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/my_account_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="100dp"
-        android:src="@drawable/ic_baseline_person_outline_24"
-        app:civ_circle_background_color="@color/line_color"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <TextView
-        android:id="@+id/my_account_nickname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/nickname"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginStart="20dp"
-        app:layout_constraintStart_toEndOf="@id/my_account_image"
-        app:layout_constraintTop_toTopOf="@id/my_account_image"/>
-    <TextView
-        android:id="@+id/my_account_tag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/shap"
-        android:textSize="18sp"
-        android:padding="5dp"
-        android:layout_marginTop="15dp"
-        android:textColor="@color/theme_pink"
-        android:background="@drawable/round"
-        app:layout_constraintStart_toStartOf="@id/my_account_nickname"
-        app:layout_constraintTop_toBottomOf="@id/my_account_nickname"/>
-    <TextView
-        android:id="@+id/my_account_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/my_info"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="@id/my_account_nickname"
-        app:layout_constraintTop_toBottomOf="@id/my_account_tag"/>
-
-    <TextView
-        android:id="@+id/my_account_post"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/post_context"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/my_account_info"
-        app:layout_constraintStart_toEndOf="@id/my_account_image"/>
-
-    <TextView
-        android:id="@+id/my_account_post_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/number"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/my_account_post"
-        app:layout_constraintEnd_toEndOf="@id/my_account_post"
-        app:layout_constraintTop_toBottomOf="@id/my_account_post"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/seperate_line"
-        android:layout_marginStart="25dp"
-        app:layout_constraintStart_toEndOf="@id/my_account_post_number"
-        app:layout_constraintTop_toBottomOf="@id/my_account_post"/>
-
-    <TextView
-        android:id="@+id/my_account_follower"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/follower"
-        android:textColor="@color/black"
-        android:layout_marginStart="25dp"
-        app:layout_constraintTop_toBottomOf="@id/my_account_info"
-        app:layout_constraintStart_toEndOf="@id/my_account_post"/>
-
-    <TextView
-        android:id="@+id/my_account_follower_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/number"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/my_account_follower"
-        app:layout_constraintEnd_toEndOf="@id/my_account_follower"
-        app:layout_constraintTop_toBottomOf="@id/my_account_follower"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/seperate_line"
-        android:layout_marginStart="25dp"
-        app:layout_constraintStart_toEndOf="@id/my_account_follower_number"
-        app:layout_constraintTop_toBottomOf="@id/my_account_follower"/>
-    <TextView
-        android:id="@+id/my_account_following"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/following"
-        android:textColor="@color/black"
-        android:layout_marginStart="25dp"
-        app:layout_constraintTop_toBottomOf="@id/my_account_info"
-        app:layout_constraintStart_toEndOf="@id/my_account_follower"/>
-
-    <TextView
-        android:id="@+id/my_account_following_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/number"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/my_account_following"
-        app:layout_constraintEnd_toEndOf="@id/my_account_following"
-        app:layout_constraintTop_toBottomOf="@id/my_account_follower"/>
-    <LinearLayout
-        android:id="@+id/my_account_button_linear"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edge"
-        android:orientation="horizontal"
-        app:layout_constraintHorizontal_weight="2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/my_account_following_number">
-        <ImageButton
-            android:id="@+id/my_account_review_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_splitscreen_24"
-            android:layout_weight="1"
-            android:background="@color/white"/>
-        <ImageButton
-            android:id="@+id/my_account_challenge_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_favorite_border_black"
-            android:layout_weight="1"
-            android:background="@color/white"/>
-    </LinearLayout>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/my_account_recyclerview"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:background="@color/my_selected_back"
+                android:id="@+id/back_image"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/top_len_350"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:src="@drawable/ic_iconmonstr_user_circle_thin"
+                app:civ_circle_background_color="@color/line_color"
+                android:layout_marginTop="@dimen/margin_minus_50"
+                android:layout_marginStart="@dimen/margin_30"
+                android:layout_width="@dimen/top_len_100"
+                android:layout_height="@dimen/top_len_100"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:src="@drawable/ic_baseline_settings_24"
+                android:layout_marginTop="@dimen/margin_minus_30"
+                android:layout_marginStart="@dimen/top_len_100"
+                android:layout_width="@dimen/item_size_30"
+                android:layout_height="@dimen/margin_30"/>
+
+            <TextView
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_20"
+                android:textStyle="bold"
+                tools:text="user name "
+                android:layout_marginStart="@dimen/margin_20"
+                android:layout_marginTop="@dimen/margin_30"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:textSize="@dimen/text_size_15"
+                tools:text="user comment"
+                android:layout_margin="@dimen/margin_20"
+                android:layout_width="@dimen/top_len_300"
+                android:layout_height="wrap_content"/>
+            <androidx.recyclerview.widget.RecyclerView
+                tools:listitem="@layout/item_tag"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="4"
+                tools:itemCount="6"
+                android:id="@+id/tag_box"
+                android:layout_marginStart="@dimen/margin_20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_margin="@dimen/margin_20"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_margin="@dimen/margin_10"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textStyle="bold"
+                        android:textSize="@dimen/text_size_15"
+                        android:text="게시물"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/posting_num"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/text_size_15"
+                        android:layout_marginTop="@dimen/margin_3"
+                        android:text="0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <View
+                    android:background="@color/line_color"
+                    android:layout_margin="@dimen/margin_15"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"/>
+
+                <LinearLayout
+                    android:layout_margin="@dimen/margin_10"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textStyle="bold"
+                        android:textSize="@dimen/text_size_15"
+                        android:text="팔로워"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/follower_num"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/text_size_15"
+                        android:layout_marginTop="@dimen/margin_3"
+                        android:text="0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <View
+                    android:background="@color/line_color"
+                    android:layout_margin="@dimen/margin_15"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"/>
+
+
+                <LinearLayout
+                    android:layout_margin="@dimen/margin_10"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textStyle="bold"
+                        android:textSize="@dimen/text_size_15"
+                        android:text="팔로잉"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/following_num"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/text_size_15"
+                        android:layout_marginTop="@dimen/margin_3"
+                        android:text="0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+             <androidx.recyclerview.widget.RecyclerView
+                 android:visibility="gone"
+                 android:id="@+id/posting_list"
+                 android:layout_margin="@dimen/margin_20"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_margin="@dimen/margin_20"
+                android:id="@+id/no_posting_view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/top_len_300">
+                <ImageView
+                    android:src="@drawable/weggle_logo_copy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:tint="@color/line_color" />
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/margin_15"
+                    android:textSize="@dimen/text_size_20"
+                    android:text="피드를 꾸며보세요!"
+                    android:textColor="@color/line_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/blank"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/top_len_100"/>
+        </LinearLayout>
+
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/my_account_write_button"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/my_account_button_linear"/>
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/my_account_write_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_pencil"
-        android:backgroundTint="@color/black"
-        app:tint="@null"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="80dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="80dp"
+            android:backgroundTint="@color/black"
+            android:src="@drawable/ic_pencil"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@null" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

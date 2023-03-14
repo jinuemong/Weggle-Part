@@ -2,6 +2,8 @@ package com.puresoftware.bottomnavigationappbar.Weggler
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,7 +13,9 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityCommentManager
@@ -29,15 +33,23 @@ class WegglerFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var mainActivity:MainActivity
     private lateinit var fm : FragmentManager
-
+    private lateinit var viewPager : ViewPager2
+    private lateinit var fragmentPageAdapter: FragmentAdapter
     private lateinit var productManager : ProductManager
     private lateinit var communityPostManager:  CommunityManagerWithReview
     private lateinit var communityCommentManager : CommunityCommentManager
 
-    private var feedFragment: FeedFragment? = null
-    private var challengeFragment: ChallengeFragment? = null
-    private var communityFragment: CommunityFragment? = null
-    private var rankingFragment: RankingFragment? = null
+    private val tintColor = ColorStateList(
+        arrayOf(
+            intArrayOf(android.R.attr.state_selected),
+            intArrayOf(-android.R.attr.state_selected)
+        ),
+        intArrayOf((R.color.select_tab_color),(R.color.line_color))
+    )
+
+    private val tabText = arrayOf(
+        "피드", "챌린지","커뮤니티","랭킹"
+    )
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity  = context as MainActivity
@@ -60,43 +72,45 @@ class WegglerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initServerData()
-        feedFragment = FeedFragment()
-        challengeFragment = ChallengeFragment()
-        communityFragment = CommunityFragment()
-        rankingFragment = RankingFragment()
+        viewPager = binding.wegglerViewPager
 
-        midFragmentChange(feedFragment!!)
-        binding.wegglerTab.addOnTabSelectedListener(object :  TabLayout.OnTabSelectedListener{
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                when (tab?.position){
-                    0 ->{midFragmentChange(feedFragment!!)}
-                    1 ->{midFragmentChange(challengeFragment!!)}
-                    2 ->{midFragmentChange(communityFragment!!)}
-                    3 ->{midFragmentChange(rankingFragment!!)}
-                    else ->{midFragmentChange(feedFragment!!)}
-                }
-            }
-            override fun onTabUnselected(tab: TabLayout.Tab?) {}
-            override fun onTabReselected(tab: TabLayout.Tab?) {}
-
-        })
+        initFragmentAdapter()
+        initViewPager()
+        initTabLayout()
 
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        feedFragment = null
-        challengeFragment = null
-        communityFragment = null
-        rankingFragment = null
     }
 
-    private fun midFragmentChange(goFragment:Fragment){
-        fm.beginTransaction().replace(R.id.mid_container,goFragment)
-            .commit()
+    private fun initFragmentAdapter(){
+        fragmentPageAdapter = FragmentAdapter(mainActivity)
+        fragmentPageAdapter.apply {
+            addFragment(FeedFragment())
+            addFragment(ChallengeFragment())
+            addFragment(CommunityFragment())
+            addFragment(RankingFragment())
+        }
     }
+    private fun initViewPager(){
+        viewPager.adapter = fragmentPageAdapter
+        viewPager.registerOnPageChangeCallback(object :
+        ViewPager2.OnPageChangeCallback(){
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+            }
+        })
+    }
+    private fun initTabLayout(){
+        binding.wegglerTab.tabIconTint = tintColor
+        TabLayoutMediator(binding.wegglerTab,viewPager)
+        { tab, position ->
+            tab.text = tabText[position]
+        }.attach()
 
+    }
 
     private fun initServerData(){
         productManager.initCommunityProduct { communityList, message ->

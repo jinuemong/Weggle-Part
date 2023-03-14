@@ -130,14 +130,15 @@
             android:id="@+id/challenge_context_edit"
             android:layout_width="0dp"
             android:layout_height="300dp"
-            android:background="@drawable/white_round"
             android:layout_margin="15dp"
-            android:hint="@string/product_info"
+            android:background="@drawable/white_round"
             android:gravity="top"
+            android:hint="@string/product_info"
             android:padding="10dp"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/challenge_context"/>
+            app:layout_constraintHorizontal_bias="0.344"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/challenge_context" />
 
         <TextView
             android:id="@+id/challenge_fee"

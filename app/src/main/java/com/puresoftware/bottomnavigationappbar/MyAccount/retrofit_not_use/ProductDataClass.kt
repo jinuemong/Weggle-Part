@@ -1,6 +1,5 @@
-package com.puresoftware.bottomnavigationappbar.MyAccount.retrofit
+package com.puresoftware.bottomnavigationappbar.MyAccount.retrofit_not_use
 
-import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class ProductDataClass(
