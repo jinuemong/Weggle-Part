@@ -5,7 +5,9 @@ import java.io.Serializable
 // 유저의 프로필
 
 class Profile (
-    var username : String,
+    var name : String,
+    var userComment : String,
     var userImage : String,
-    var userTag : ArrayList<String>?
+    var backgroundPic : String,
+    var userKeyword : ArrayList<Int>?
 ) : Serializable

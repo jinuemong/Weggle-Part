@@ -3,6 +3,7 @@ package com.puresoftware.bottomnavigationappbar.Server
 import com.puresoftware.bottomnavigationappbar.Server.TokenManager.Token
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.*
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -11,7 +12,7 @@ import retrofit2.http.*
 
 
 interface RetrofitService {
-
+    // 유저 관련 ////////////////////
     //Login User
     @POST("login")
     @FormUrlEncoded
@@ -33,6 +34,18 @@ interface RetrofitService {
         @Query("id")id : String,
     ):Call<User>
 
+    //유저 수정
+    @Multipart
+    @PATCH("users")
+    fun updateUser(
+        @Part email : String,
+        @Part password: String?,
+        @Part newPassword : String?,
+        @PartMap body: HashMap<String, RequestBody>?
+    )
+    ///////////////////////////////////////////
+
+    // 커뮤니티 관련 /////////////////////////////
     //2개의 데이터 (공구해요 , 프리토크)
     @GET("categories/{category}/products")
     fun  getCommunityProduct(
@@ -113,4 +126,5 @@ interface RetrofitService {
         @Query(value = "like") like : Boolean,
     ):Call<String>
 
+    /////////////////////////////////////////////
 }

@@ -14,7 +14,7 @@
     <string name="price">21,000원</string>
     <string name="video_nickname_category">식품</string>
     <string name="month">1개월 전</string>
-    <string name ="weggle">위글</string>
+    <string name="weggle">위글</string>
     <!-- brands의 MainViewPager 아래에 있는 숫자 -->
     <string name="viewpager2_banner">%1$d/%2$d</string>
 

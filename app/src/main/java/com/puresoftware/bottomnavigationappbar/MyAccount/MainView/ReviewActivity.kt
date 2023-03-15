@@ -1,4 +1,4 @@
-package com.puresoftware.bottomnavigationappbar.MyAccount
+package com.puresoftware.bottomnavigationappbar.MyAccount.MainView
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
