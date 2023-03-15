@@ -9,8 +9,7 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import com.puresoftware.bottomnavigationappbar.MainActivity
-import com.puresoftware.bottomnavigationappbar.MyAccount.MainView.AddChallengeActivity
-import com.puresoftware.bottomnavigationappbar.MyAccount.MainView.AddReviewActivity
+import com.puresoftware.bottomnavigationappbar.MyAccount.AboutReview.AddReviewActivity
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.databinding.MyAccountFragmentBinding
 
@@ -67,6 +66,9 @@ class MyAccountFragment : Fragment() {
     }
 
     private fun setUpListener(){
-
+        binding.userImage.setOnClickListener {
+            mainActivity.setMainViewVisibility(false)
+            mainActivity.changeFragment(UpdateProfileFragment())
+        }
     }
 }

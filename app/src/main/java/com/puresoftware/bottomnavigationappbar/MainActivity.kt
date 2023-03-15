@@ -98,10 +98,9 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavi.setOnItemSelectedListener {
 
             transaction =
-                fragmentManager!!.beginTransaction() // 화면 전환 호출(이곳에서 새로 호출을 해준다는 개념으로 추가함)
+                fragmentManager!!.beginTransaction() // 화면 전환 호출
             supportActionBar!!.show()
 
-            // switch나 if랑 비슷함. 단 이 문은 type 상관업음.
             when (it.itemId) {
                 R.id.frag1 -> {
                     transaction?.replace(R.id.main_frame, homeFragment!!)?.commit()
@@ -216,19 +215,22 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    //weggler////////////////////
+    // fragment change
     fun changeFragment(goFragment: Fragment) {
         fragmentManager!!.beginTransaction().add(R.id.main_frame, goFragment)
             .addToBackStack(null)
             .commit()
     }
 
+    // sub view change
     private fun setSubFragmentView(goFragment: Fragment){
         fragmentManager!!.beginTransaction().replace(R.id.slide_layout, goFragment)
             .addToBackStack(null)
             .commit()
         setSubFragment()
     }
+
+    // side View
     fun setSubFragment(){
         val state = binding.frameLayout.panelState
         // 닫힌 상태일 경우 열기
@@ -245,6 +247,7 @@ class MainActivity : AppCompatActivity() {
             fragmentManager!!.popBackStack()
     }
 
+    // tab , bottom view 등 visibility
     fun setMainViewVisibility(isSet: Boolean) {
         if (isSet) {
             binding.bottomNavi.visibility = View.VISIBLE

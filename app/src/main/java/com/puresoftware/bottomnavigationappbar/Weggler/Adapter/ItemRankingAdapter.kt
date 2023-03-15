@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.puresoftware.bottomnavigationappbar.MainActivity
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.RankingUser
+import com.puresoftware.bottomnavigationappbar.MyAccount.Model.RankingUser
 import com.puresoftware.bottomnavigationappbar.databinding.ItemRankingBinding
 
 //랭킹 데이터 - 밑에 리뷰 썸네일  연결 (ItemRankingVideoThumbnailAdapter)

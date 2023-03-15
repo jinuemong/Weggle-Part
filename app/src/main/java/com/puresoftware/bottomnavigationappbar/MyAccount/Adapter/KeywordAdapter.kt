@@ -1,5 +1,6 @@
 package com.puresoftware.bottomnavigationappbar.MyAccount.Adapter
 
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,7 +9,7 @@ import com.puresoftware.bottomnavigationappbar.MyAccount.Unit.tagList
 import com.puresoftware.bottomnavigationappbar.databinding.ItemTagBinding
 
 class KeywordAdapter(
-    private val mainActivity: MainActivity,
+    private val activity:Activity,
     private val dataList : List<Int>
 ):RecyclerView.Adapter<KeywordAdapter.ViewHolder>() {
     private lateinit var binding:ItemTagBinding
@@ -21,7 +22,7 @@ class KeywordAdapter(
             }
         }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KeywordAdapter.ViewHolder {
-        binding = ItemTagBinding.inflate(LayoutInflater.from(mainActivity),parent,false)
+        binding = ItemTagBinding.inflate(LayoutInflater.from(activity),parent,false)
         return ViewHolder(binding)
     }
 

@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.puresoftware.bottomnavigationappbar.MainActivity
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.Profile
+import com.puresoftware.bottomnavigationappbar.MyAccount.Model.Profile
 import com.puresoftware.bottomnavigationappbar.databinding.ItemMiniProfileBinding
 
 class ItemMiniProfileAdapter(
@@ -21,7 +21,7 @@ class ItemMiniProfileAdapter(
         fun bind() {
             val profile = itemSet[absoluteAdapterPosition]
             //뷰 세팅
-            binding.mpBoxUsername.text = profile.username
+            binding.mpBoxUsername.text = profile.name
             Glide.with(mainActivity)
                 .load(profile.userImage)
                 .into(binding.mpBoxImage)

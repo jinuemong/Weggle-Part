@@ -6,16 +6,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Product
-import com.puresoftware.bottomnavigationappbar.databinding.ItemMiniProductBinding
+import com.puresoftware.bottomnavigationappbar.databinding.ItemMiniProductTypeDetailBinding
 
 class ItemProductAdapter(
     private val mainActivity: MainActivity,
     itemSet : ArrayList<Product>,
 ) : RecyclerView.Adapter<ItemProductAdapter.ViewHolder>(){
     private var itemList = itemSet
-    private lateinit var binding : ItemMiniProductBinding
+    private lateinit var binding : ItemMiniProductTypeDetailBinding
 
-    inner class ViewHolder(private val binding: ItemMiniProductBinding)
+    inner class ViewHolder(val binding: ItemMiniProductTypeDetailBinding)
         :RecyclerView.ViewHolder(binding.root){
             fun bind(){
 
@@ -23,7 +23,7 @@ class ItemProductAdapter(
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        binding = ItemMiniProductBinding.inflate(LayoutInflater.from(mainActivity),parent,false)
+        binding = ItemMiniProductTypeDetailBinding.inflate(LayoutInflater.from(mainActivity),parent,false)
         return ViewHolder(binding)
     }
 

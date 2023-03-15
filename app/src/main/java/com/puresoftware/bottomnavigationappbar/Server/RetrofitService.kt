@@ -1,5 +1,6 @@
 package com.puresoftware.bottomnavigationappbar.Server
 
+import com.puresoftware.bottomnavigationappbar.MyAccount.Model.User
 import com.puresoftware.bottomnavigationappbar.Server.TokenManager.Token
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.*
 import okhttp3.MultipartBody
@@ -45,7 +46,7 @@ interface RetrofitService {
     )
     ///////////////////////////////////////////
 
-    // 커뮤니티 관련 /////////////////////////////
+    // 프로덱트 관련 /////////////////////////////
     //2개의 데이터 (공구해요 , 프리토크)
     @GET("categories/{category}/products")
     fun  getCommunityProduct(
@@ -63,6 +64,16 @@ interface RetrofitService {
         @Path("name") name : String,
         @Body body : BodyProduct,
     ): Call<Product>
+
+    //프로덕트 조회
+    @GET("productsByName/{name}")
+    fun getProductsByName(
+        @Path("name") name:String,
+    ):Call<ArrayList<Product>>
+
+    ///////////////////////////////////
+
+    //리뷰 관련////////////////////////////
 
     //리뷰 얻기
     @GET("products/{productId}/reviewsByCreateTime")
@@ -88,6 +99,7 @@ interface RetrofitService {
     //내 리뷰 조회
     @GET("reviewsByUser")
     fun getMyReviewList() : Call<ArrayList<ReviewInCommunity>>
+
 
 
     //내 댓글 조회

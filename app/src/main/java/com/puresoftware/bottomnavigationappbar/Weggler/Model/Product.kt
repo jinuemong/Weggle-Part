@@ -7,8 +7,8 @@ class Product (
     val category : String,
     val name  : String,
     val userId : String,
-    val body : BodyProduct, //원래는 string
-    // admin에서 object로 등록되있어서 맞춤
+    val body : BodyProduct, // Body
+    // admin에서 object
     val subjectFiles : List<String>,
     val contentFiles : List<String>,
     val createTime : String,

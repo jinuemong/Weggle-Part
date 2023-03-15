@@ -1,7 +1,7 @@
 package com.puresoftware.bottomnavigationappbar.MyAccount.Manager
 
 import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.User
+import com.puresoftware.bottomnavigationappbar.MyAccount.Model.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

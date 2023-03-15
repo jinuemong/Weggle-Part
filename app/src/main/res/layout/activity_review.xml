@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MyAccount.MainView.AddReviewActivity">
+    tools:context=".MyAccount.AboutReview.AddReviewActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
@@ -44,39 +44,60 @@
         android:layout_marginTop="10dp"
         android:background="@color/line_color" />
 
-    <LinearLayout
-        android:id="@+id/search_container"
+    <com.sothree.slidinguppanel.SlidingUpPanelLayout
+        android:id="@+id/main_frame"
+        android:gravity="bottom"
+        app:umanoDragView="@id/search_container"
+        app:umanoOverlay="true"
+        app:umanoPanelHeight="0dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/review_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_20"
-            android:text="@string/review_explain"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_17"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/search_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_20"
-            android:text="@string/add_review_product"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_17"
-            android:textStyle="bold" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/review_recyclerview"
+        <LinearLayout
+            android:id="@+id/main_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_20"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="3"
-            tools:listitem="@layout/item_mini_product_type_detail" />
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/review_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_20"
+                android:text="@string/review_explain"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_20"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/search_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_20"
+                android:text="@string/add_review_product"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_20"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/review_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_20"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="3"
+                tools:listitem="@layout/item_mini_product_type_detail" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/search_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <include
+                android:id="@+id/search_view"
+                layout="@layout/fragment_search_product"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
+    </com.sothree.slidinguppanel.SlidingUpPanelLayout>
 </LinearLayout>

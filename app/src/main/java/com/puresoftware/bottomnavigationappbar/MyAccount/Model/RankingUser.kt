@@ -1,4 +1,4 @@
-package com.puresoftware.bottomnavigationappbar.Weggler.Model
+package com.puresoftware.bottomnavigationappbar.MyAccount.Model
 
 import java.io.Serializable
 

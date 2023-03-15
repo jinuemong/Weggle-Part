@@ -22,6 +22,7 @@
                 android:background="@color/my_selected_back" />
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/user_image"
                 android:layout_width="@dimen/top_len_100"
                 android:layout_height="@dimen/top_len_100"
                 android:layout_marginStart="@dimen/margin_30"

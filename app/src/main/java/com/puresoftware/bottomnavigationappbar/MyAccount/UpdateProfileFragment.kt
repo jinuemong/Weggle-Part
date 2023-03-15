@@ -1,4 +1,4 @@
-package com.puresoftware.bottomnavigationappbar.MyAccount.MainView
+package com.puresoftware.bottomnavigationappbar.MyAccount
 
 import android.content.Context
 import android.os.Bundle

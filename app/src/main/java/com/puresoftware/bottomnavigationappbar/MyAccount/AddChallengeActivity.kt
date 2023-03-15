@@ -1,4 +1,4 @@
-package com.puresoftware.bottomnavigationappbar.MyAccount.MainView
+package com.puresoftware.bottomnavigationappbar.MyAccount
 
 import android.app.AlertDialog
 import android.content.Intent
