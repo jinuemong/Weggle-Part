@@ -14,7 +14,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import com.puresoftware.bottomnavigationappbar.databinding.ActivityChallengeBinding
 
-class ChallengeActivity : AppCompatActivity() {
+class AddChallengeActivity : AppCompatActivity() {
     lateinit var binding:ActivityChallengeBinding
     var galleryUri: Uri? = null
     var launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { it ->

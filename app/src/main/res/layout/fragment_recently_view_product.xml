@@ -47,7 +47,7 @@
         android:id="@+id/product_list"
         app:spanCount="3"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        tools:listitem="@layout/item_mini_product"
+        tools:listitem="@layout/item_mini_product_type_detail"
         android:layout_margin="@dimen/margin_10"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

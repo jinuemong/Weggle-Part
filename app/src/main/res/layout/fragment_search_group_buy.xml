@@ -35,7 +35,7 @@
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/product_list"
-        tools:listitem="@layout/item_mini_product"
+        tools:listitem="@layout/item_mini_product_type_detail"
         android:layout_margin="@dimen/margin_10"
         app:spanCount="3"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

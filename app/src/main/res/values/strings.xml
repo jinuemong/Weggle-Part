@@ -59,6 +59,8 @@
     <string name="cancel">취소</string>
     <string name="group_buy">공동구매</string>
     <string name="quot_quot">입력창에 \"회원탈퇴\"를 입력해주세요</string>
+    <string name="select_keyword_ment">나를 소개하는 키워드를 선택해보세요!</string>
+    <string name="add_review_product">추가 리뷰 상품</string>
 
 
 </resources>

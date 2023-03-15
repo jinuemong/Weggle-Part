@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import com.puresoftware.bottomnavigationappbar.MainActivity
-import com.puresoftware.bottomnavigationappbar.MyAccount.MainView.ChallengeActivity
-import com.puresoftware.bottomnavigationappbar.MyAccount.MainView.ReviewActivity
+import com.puresoftware.bottomnavigationappbar.MyAccount.MainView.AddChallengeActivity
+import com.puresoftware.bottomnavigationappbar.MyAccount.MainView.AddReviewActivity
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.databinding.MyAccountFragmentBinding
 
@@ -42,12 +42,12 @@ class MyAccountFragment : Fragment() {
             popupMenu.setOnMenuItemClickListener { it2->
                 when(it2.itemId){
                     R.id.review_write -> {
-                        val intent = Intent(mainActivity.applicationContext, ReviewActivity::class.java)
+                        val intent = Intent(mainActivity.applicationContext, AddReviewActivity::class.java)
                         startActivity(intent)
                         return@setOnMenuItemClickListener true
                     }
                     R.id.challenge -> {
-                        val intent = Intent(mainActivity.applicationContext, ChallengeActivity::class.java)
+                        val intent = Intent(mainActivity.applicationContext, AddChallengeActivity::class.java)
                         startActivity(intent)
                         return@setOnMenuItemClickListener true
                     }

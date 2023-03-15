@@ -27,10 +27,10 @@
         </activity>
 
         <activity
-            android:name=".MyAccount.MainView.ChallengeActivity"
+            android:name=".MyAccount.MainView.AddChallengeActivity"
             android:exported="false"/>
         <activity
-            android:name=".MyAccount.MainView.ReviewActivity"
+            android:name=".MyAccount.MainView.AddReviewActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
