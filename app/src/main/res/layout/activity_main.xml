@@ -67,27 +67,26 @@
 
             <androidx.coordinatorlayout.widget.CoordinatorLayout
                 android:id="@+id/coordinatorLayout"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <com.google.android.material.bottomnavigation.BottomNavigationView
                     android:id="@+id/bottom_navi"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
+                    android:layout_height="match_parent"
                     android:background="#fff"
                     app:itemIconTint="@drawable/menu_selector_color"
                     app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
                     app:itemTextAppearanceInactive="@style/BottomNavigationView"
                     app:itemTextColor="@drawable/menu_selector_text_color"
                     app:labelVisibilityMode="labeled"
-
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:menu="@menu/nav_bottom" />
             </androidx.coordinatorlayout.widget.CoordinatorLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- navi View-->
+        <!-- navi View left -->
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/main_navi"
             android:layout_width="@dimen/top_len_350"
