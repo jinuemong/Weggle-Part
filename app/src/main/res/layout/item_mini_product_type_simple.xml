@@ -8,6 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <ImageView
+        android:id="@+id/image"
         android:src="@color/black"
         android:layout_width="@dimen/top_len_120"
         android:layout_height="@dimen/top_len_120"/>

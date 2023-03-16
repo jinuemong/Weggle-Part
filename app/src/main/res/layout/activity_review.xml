@@ -70,6 +70,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/search_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -78,15 +79,14 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_20"
                 android:textStyle="bold" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/review_recyclerview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_20"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="3"
-                tools:listitem="@layout/item_mini_product_type_detail" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/review_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/margin_10"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="3"
+                    tools:listitem="@layout/item_mini_product_type_detail" />
         </LinearLayout>
 
         <FrameLayout

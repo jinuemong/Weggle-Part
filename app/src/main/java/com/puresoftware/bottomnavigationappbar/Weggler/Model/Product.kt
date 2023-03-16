@@ -7,7 +7,7 @@ class Product (
     val category : String,
     val name  : String,
     val userId : String,
-    val body : BodyProduct, // Body
+    val body : ProductDataBody, // Body
     // admin에서 object
     val subjectFiles : List<String>,
     val contentFiles : List<String>,

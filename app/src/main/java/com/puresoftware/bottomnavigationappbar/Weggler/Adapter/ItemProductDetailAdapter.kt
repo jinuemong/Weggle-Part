@@ -8,10 +8,10 @@ import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Product
 import com.puresoftware.bottomnavigationappbar.databinding.ItemMiniProductTypeDetailBinding
 
-class ItemProductAdapter(
+class ItemProductDetailAdapter(
     private val mainActivity: MainActivity,
     itemSet : ArrayList<Product>,
-) : RecyclerView.Adapter<ItemProductAdapter.ViewHolder>(){
+) : RecyclerView.Adapter<ItemProductDetailAdapter.ViewHolder>(){
     private var itemList = itemSet
     private lateinit var binding : ItemMiniProductTypeDetailBinding
 
