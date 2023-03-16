@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:focusable="true"
+    android:clickable="true"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyAccount.AboutReview.VideoReviewFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_size_40"
+        android:layout_margin="@dimen/margin_20">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="동영상 리뷰 작성"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_20"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="@dimen/item_size_30"
+            android:layout_height="@dimen/item_size_30"
+            android:layout_marginStart="@dimen/margin_5"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_margin="@dimen/margin_20"
+                android:padding="@dimen/margin_5"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/top_len_90">
+                <ImageView
+                    android:layout_margin="@dimen/margin_5"
+                    android:id="@+id/product_image"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_width="@dimen/top_len_80"
+                    android:layout_height="match_parent"/>
+                <TextView
+                    android:textSize="@dimen/text_size_12"
+                    android:id="@+id/product_company"
+                    tools:text="product company"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_5"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/product_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_15"
+                    android:id="@+id/product_name"
+                    tools:text="product name"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_5"
+                    app:layout_constraintTop_toBottomOf="@id/product_company"
+                    app:layout_constraintStart_toEndOf="@id/product_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_15"
+                    android:id="@+id/product_price"
+                    tools:text="product price 원"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_5"
+                    app:layout_constraintTop_toBottomOf="@id/product_name"
+                    app:layout_constraintStart_toEndOf="@id/product_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:background="@color/line_color_light"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_10"/>
+            <TextView
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/margin_10"
+                android:layout_marginStart="@dimen/margin_20"
+                android:text="동영상 등록"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_margin="@dimen/margin_20"
+                android:background="@color/line_color_light"
+                android:orientation="horizontal"
+                android:id="@+id/select_video"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_size_50">
+                <ImageView
+                    android:layout_marginEnd="@dimen/margin_5"
+                    android:src="@drawable/ic_baseline_insert_photo_24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:textColor="@color/black"
+                    android:text="동영상 선택"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

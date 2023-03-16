@@ -7,7 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="line_color_light">#CAC8C8</color>
+    <color name="line_color_light">#EBE6E6</color>
+    <color name="line_color_mid">#CAC8C8</color>
     <color name="line_color">#D3CDCD</color>
     <color name="line_color_dark">#AAA3A3</color>
     <color name="select_tab_color">#E665C3</color>

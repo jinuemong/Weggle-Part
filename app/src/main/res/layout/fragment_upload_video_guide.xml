@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@drawable/round_border"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:layout_width="@dimen/top_len_300"
+    android:layout_height="wrap_content"
+    tools:context=".MyAccount.AboutReview.UploadVideoGuideFragment">
+    <TextView
+        android:layout_margin="@dimen/margin_20"
+        android:textSize="@dimen/text_size_17"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="영상 업로드 가이드"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_margin="@dimen/margin_5"
+        android:text="영상 등록 시 제한사항을 꼭 확인해주세요!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_margin="@dimen/margin_5"
+        android:text="영상 길이 : 30초 이내"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/margin_5"
+        android:layout_marginStart="@dimen/margin_20"
+        android:layout_marginEnd="@dimen/margin_20"
+        android:lines="2"
+        android:text="-영상은 변환 과정을 거치며 약 1분가량 소요될 수 있습니다."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin_10"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/cancel_button"
+            android:textSize="@dimen/text_size_17"
+            android:background="@drawable/round_border"
+            android:backgroundTint="@color/line_color"
+            android:layout_margin="@dimen/margin_10"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="취소"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/item_size_50"/>
+        <TextView
+            android:id="@+id/commit_button"
+            android:textSize="@dimen/text_size_17"
+            android:layout_margin="@dimen/margin_10"
+            android:background="@drawable/round_border"
+            android:backgroundTint="@color/community__my_color"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="확인"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/item_size_50"/>
+    </LinearLayout>
+</LinearLayout>

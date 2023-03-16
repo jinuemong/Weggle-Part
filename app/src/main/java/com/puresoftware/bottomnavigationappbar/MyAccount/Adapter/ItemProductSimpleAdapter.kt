@@ -15,6 +15,16 @@ class ItemProductSimpleAdapter(
 ) : RecyclerView.Adapter<ItemProductSimpleAdapter.ViewHolder>(){
     private var itemList = ArrayList<Product>()
     private lateinit var binding : ItemMiniProductTypeSimpleBinding
+
+    private var onItemClickListener : OnItemClickListener?= null
+    interface OnItemClickListener{
+        fun itemClick(id : Int)
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener){
+        this.onItemClickListener = listener
+    }
+
     inner class ViewHolder(val binding: ItemMiniProductTypeSimpleBinding)
         :RecyclerView.ViewHolder(binding.root){
             fun bind(){
@@ -24,6 +34,12 @@ class ItemProductSimpleAdapter(
                 Glide.with(activity)
                     .load(item.subjectFiles[0])
                     .into(binding.image)
+
+                binding.root.setOnClickListener {
+                    if (onItemClickListener!=null){
+                        onItemClickListener?.itemClick(item.productId)
+                    }
+                }
             }
         }
 
