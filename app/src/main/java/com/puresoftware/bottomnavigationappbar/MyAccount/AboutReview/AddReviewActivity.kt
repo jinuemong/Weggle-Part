@@ -24,23 +24,24 @@ class AddReviewActivity : AppCompatActivity() {
     private lateinit var binding: ActivityReviewBinding
     private lateinit var searchAdapter : ProductSearchTextAdapter
     private lateinit var productAdapter :ItemProductSimpleAdapter
-    private lateinit var masterApp : MasterApplication
+    lateinit var masterApp : MasterApplication
     private lateinit var fragmentManager:FragmentManager
-    private lateinit var onBackPressedCallback: OnBackPressedCallback
+//    private lateinit var onBackPressedCallback: OnBackPressedCallback
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityReviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
         fragmentManager = this@AddReviewActivity.supportFragmentManager
 
-        // 뒤로가기
-        onBackPressedCallback = object : OnBackPressedCallback(true){
-            override fun handleOnBackPressed() {
-                finish()
-                Log.d("뒤로가기 동작","")
-            }
-        }
-        this.onBackPressedDispatcher.addCallback(this,onBackPressedCallback)
+//        // 뒤로가기
+//        onBackPressedCallback = object : OnBackPressedCallback(true){
+//            override fun handleOnBackPressed() {
+//                finish()
+//                Log.d("뒤로가기 동작","")
+//            }
+//        }
+//        this.onBackPressedDispatcher.addCallback(this,onBackPressedCallback)
         //retrofit
         masterApp = MasterApplication()
         masterApp.createRetrofit(this@AddReviewActivity)

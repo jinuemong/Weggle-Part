@@ -40,7 +40,7 @@ class ProductSearchTextAdapter(
             fun bind(){
                 val item = dataSet[absoluteAdapterPosition]
 
-                if( binding.name.text =="communityList"){
+                if( item.name =="communityList"){
                     binding.root.visibility = View.GONE
                 }
 

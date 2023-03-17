@@ -71,6 +71,11 @@ interface RetrofitService {
         @Path("name") name:String,
     ):Call<ArrayList<Product>>
 
+    //프로덕트 id로 조회
+    @GET("products/{productId}")
+    fun getProductFromId(
+        @Path("productId") productId : Int,
+    ): Call<Product>
     ///////////////////////////////////
 
     //리뷰 관련////////////////////////////

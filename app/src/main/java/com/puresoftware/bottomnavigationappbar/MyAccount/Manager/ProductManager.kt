@@ -30,4 +30,22 @@ class ProductManager(
 
             })
     }
+
+    fun getProductFromProductId(productId : Int, paramFun : (Product?, String?)->Unit){
+        masterApp.service.getProductFromId(productId)
+            .enqueue(object :  Callback<Product>{
+                override fun onResponse(call: Call<Product>, response: Response<Product>) {
+                    if (response.isSuccessful){
+                        paramFun(response.body(),null)
+                    }else{
+                        paramFun(null, response.errorBody()!!.string())
+                    }
+                }
+
+                override fun onFailure(call: Call<Product>, t: Throwable) {
+                    paramFun(null,"error")
+                }
+
+            })
+    }
 }

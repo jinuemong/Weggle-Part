@@ -129,7 +129,7 @@
                 android:layout_marginEnd="@dimen/margin_20"
                 android:id="@+id/video_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="@dimen/top_len_300"/>
             <TextView
                 android:textStyle="bold"
                 android:textColor="@color/black"
@@ -192,7 +192,7 @@
                 android:id="@+id/text_len"
                 android:textColor="@color/line_color"
                 android:layout_marginTop="@dimen/margin_5"
-                tools:text="0/최대300자"
+                android:text="0/최대300자"
                 android:textSize="@dimen/text_size_12"
                 android:layout_marginEnd="@dimen/margin_20"
                 android:layout_marginBottom="@dimen/margin_20"
@@ -237,8 +237,6 @@
         android:gravity="center"
         android:text="리뷰 등록"
         android:textColor="@color/white"
-        android:backgroundTint="@color/my_selected_text"
-        android:background="@drawable/round_border"
         android:layout_margin="@dimen/margin_20"
         android:layout_width="match_parent"
         android:layout_height="@dimen/item_size_50"/>

@@ -11,6 +11,7 @@ import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.MultiCommunityDataBody
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.BodyReview
+import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getImageFilePath
 import kotlinx.coroutines.launch
 
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -78,16 +79,4 @@ class MultiPartViewModel: ViewModel(){
     private fun String?.toPlainRequestBody() =
         requireNotNull(this).toRequestBody("text/plain".toMediaTypeOrNull())
 
-    //Uri를 String으로 전환
-    @SuppressLint("Recycle")
-    private fun getImageFilePath(activity:Activity, contentUri:Uri):String{
-        var columnIndex = 0
-        val projection = arrayOf(MediaStore.Images.Media.DATA)
-        val cursor = activity.contentResolver.query(contentUri,projection,
-        null,null,null)
-        if (cursor!!.moveToFirst()){
-            columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-        }
-        return cursor.getString(columnIndex)
-    }
 }
