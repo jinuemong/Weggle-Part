@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.MediaController
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
@@ -110,8 +111,9 @@ class VideoReviewFragment : Fragment() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
+            @SuppressLint("SetTextI18n")
             override fun afterTextChanged(p0: Editable?) {
-
+                binding.textLen.text = "${p0.toString().length}/최대300자"
             }
 
         })
@@ -128,14 +130,29 @@ class VideoReviewFragment : Fragment() {
                     ,Toast.LENGTH_LONG)
                     .show()
                 activity.returnView(this@VideoReviewFragment)
+
             }else if(!checkVideoTime()){
                 Toast.makeText(activity,"영상 길이 : 10 ~ 30초"
                     ,Toast.LENGTH_LONG)
                     .show()
                 activity.returnView(this@VideoReviewFragment)
+
+            }else {
+                //비디오 뷰 설정
+                Log.d("videoUrl : ", videoUrl.toString())
+                binding.videoView.apply {
+                    layoutParams = binding.videoViewShell.layoutParams
+                    setVideoURI(videoUrl)
+                    setMediaController(MediaController(activity))
+                    setOnClickListener {
+                        binding.playButton.visibility = View.GONE
+                        start()
+                    }
+                    setOnCompletionListener {
+                        binding.playButton.visibility = View.VISIBLE
+                    }
+                }
             }
-            Log.d("videoUrl : ", videoUrl.toString())
-            binding.videoView.setVideoURI(videoUrl)
 
         }
     }
@@ -143,19 +160,25 @@ class VideoReviewFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun initView(){
+        //프로덕트 등록
         ProductManager(activity.masterApp)
             .getProductFromProductId(productId, paramFun = { product, _ ->
                 if (product != null) {
                     binding.productCompany.text = product.body.company
                     binding.productName.text = product.name
+                    //가격 변환 (컴마찍기) 등록
                     val decimal = DecimalFormat("#,###")
                     binding.productPrice.text = "${decimal.format(product.body.price)}원"
+                    //이미지 등록
                     Glide.with(activity)
                         .load(product.subjectFiles[0])
                         .into(binding.productImage)
+                    //판매 수수료 등록
+                    binding.rewardCost.text = "리워드 ${(product.body.price*0.05).toInt()}원"
                 }
             })
         setButtonColor()
+
     }
 
     private fun setUpListener(){
