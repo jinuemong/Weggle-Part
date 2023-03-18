@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Product
 import com.puresoftware.bottomnavigationappbar.databinding.ItemMiniProductTypeSimpleBinding
+import java.text.DecimalFormat
 
 class ItemProductSimpleAdapter(
     private val activity: Activity,
@@ -29,7 +30,9 @@ class ItemProductSimpleAdapter(
         :RecyclerView.ViewHolder(binding.root){
             fun bind(){
                 val item = itemList[absoluteAdapterPosition]
-                binding.priceText.text = item.body.price.toString()
+                //가격 변환 (컴마찍기) 등록
+                val decimal = DecimalFormat("#,###")
+                binding.priceText.text = decimal.format(item.body.price)
                 binding.nameText.text = item.name
                 Glide.with(activity)
                     .load(item.subjectFiles[0])

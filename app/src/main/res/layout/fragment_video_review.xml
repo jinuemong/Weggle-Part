@@ -134,6 +134,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
                 <ImageView
+                    android:backgroundTint="@color/line_color_light"
+                    android:background="@drawable/circle"
                     android:src="@drawable/baseline_play_arrow_24"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

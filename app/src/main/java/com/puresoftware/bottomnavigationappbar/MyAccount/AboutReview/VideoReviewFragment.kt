@@ -190,12 +190,15 @@ class VideoReviewFragment : Fragment() {
         }
     }
 
+    //갤러리의 비디오 얻어오기
     private fun getVideo(){
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
         intent.type = "video/*"
         activityResult.launch(intent)
+        setButtonColor()
     }
 
+    //비디오 시간 체크
     private fun checkVideoTime(): Boolean{
         if (videoUrl!=null) {
             val retriever = MediaMetadataRetriever()
@@ -214,6 +217,7 @@ class VideoReviewFragment : Fragment() {
         return false
     }
 
+    // 리뷰 등록 가능할 때 버튼 색상 변경
     private fun setButtonColor(){
         if (videoUrl!=null && binding.reviewText.text.toString()!=""){
             binding.commitButton.setBackgroundResource(R.drawable.round_border_selected)
