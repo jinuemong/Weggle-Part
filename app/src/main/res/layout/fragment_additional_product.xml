@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".MyAccount.AboutReview.AdditionalProductFragment">
@@ -53,6 +56,7 @@
         android:layout_height="wrap_content"/>
     <FrameLayout
         android:id="@+id/line"
+        android:layout_marginTop="@dimen/margin_10"
         app:layout_constraintTop_toBottomOf="@+id/image_recycler"
         android:background="@color/line_color_light"
         android:layout_width="match_parent"
@@ -68,6 +72,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <androidx.recyclerview.widget.RecyclerView
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_mini_product_type_additional"
         app:layout_constraintTop_toBottomOf="@+id/search_num"
         android:layout_margin="@dimen/margin_20"

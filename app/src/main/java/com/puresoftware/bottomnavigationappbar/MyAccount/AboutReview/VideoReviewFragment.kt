@@ -188,6 +188,11 @@ class VideoReviewFragment : Fragment() {
         binding.backButton.setOnClickListener {
             activity.returnView(this@VideoReviewFragment)
         }
+
+        // 다른 프로덕트 선택으로 이동
+        binding.selectProduct.setOnClickListener {
+            activity.changeView(AdditionalProductFragment.newInstance(productId))
+        }
     }
 
     //갤러리의 비디오 얻어오기

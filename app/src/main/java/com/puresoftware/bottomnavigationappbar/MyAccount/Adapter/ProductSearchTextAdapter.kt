@@ -23,31 +23,35 @@ import com.puresoftware.bottomnavigationappbar.databinding.ItemSearchTextBinding
 
 class ProductSearchTextAdapter(
     private val activity: Activity,
-) :RecyclerView.Adapter<ProductSearchTextAdapter.ViewHolder>(){
-    private lateinit var binding : ItemSearchTextBinding
+) : RecyclerView.Adapter<ProductSearchTextAdapter.ViewHolder>() {
+    private lateinit var binding: ItemSearchTextBinding
     var dataSet = ArrayList<Product>()
     var changeText = "changeText"
     private var onClickListener: OnItemClickListener? = null //리스너
-    interface OnItemClickListener{ //클릭 동작
-        fun onItemClick(item : Product)
+
+    interface OnItemClickListener { //클릭 동작
+        fun onItemClick(item: Product)
     }
-    fun setOnItemClickListener(listener: OnItemClickListener){ //외부 동작 함수
+
+    fun setOnItemClickListener(listener: OnItemClickListener) { //외부 동작 함수
         this.onClickListener = listener
     }
-    inner class ViewHolder(val binding: ItemSearchTextBinding)
-        :RecyclerView.ViewHolder(binding.root){
-            @SuppressLint("ResourceAsColor")
-            fun bind(){
-                val item = dataSet[absoluteAdapterPosition]
 
-                if( item.name =="communityList"){
-                    binding.root.visibility = View.GONE
-                }
+    inner class ViewHolder(val binding: ItemSearchTextBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("ResourceAsColor")
+        fun bind() {
+            val item = dataSet[absoluteAdapterPosition]
 
+            if (item.name == "communityList") {
+                binding.root.visibility = View.GONE
+            } else {
+
+                //검색 글자 변환
                 val spannableString = SpannableString(item.name)
                 val startIndex = spannableString.indexOf(changeText)
 
-                if (startIndex>=0) {
+                if (startIndex >= 0) {
                     spannableString.setSpan(
                         ForegroundColorSpan(Color.parseColor("#E60FAB")),
                         startIndex, (startIndex + changeText.length),
@@ -55,22 +59,24 @@ class ProductSearchTextAdapter(
                     )
                     spannableString.setSpan(
                         StyleSpan(Typeface.BOLD),
-                        startIndex,(startIndex+changeText.length),
+                        startIndex, (startIndex + changeText.length),
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
                     binding.name.text = spannableString
                 }
 
                 binding.root.setOnClickListener {
-                    if (onClickListener!=null){
+                    if (onClickListener != null) {
                         onClickListener?.onItemClick(item)
                     }
                 }
+
             }
         }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        binding = ItemSearchTextBinding.inflate(LayoutInflater.from(activity),parent,false)
+        binding = ItemSearchTextBinding.inflate(LayoutInflater.from(activity), parent, false)
         return ViewHolder(binding)
     }
 
@@ -81,7 +87,7 @@ class ProductSearchTextAdapter(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(data: ArrayList<Product>,text:String){
+    fun setData(data: ArrayList<Product>, text: String) {
         dataSet = data
         changeText = text
         notifyDataSetChanged()
