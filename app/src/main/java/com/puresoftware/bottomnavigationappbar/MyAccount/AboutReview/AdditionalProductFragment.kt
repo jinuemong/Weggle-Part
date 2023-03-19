@@ -38,6 +38,7 @@ class AdditionalProductFragment : Fragment() {
         onBackPressedCallback = object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
                 activity.returnView(this@AdditionalProductFragment)
+                resetData()
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(onBackPressedCallback)
@@ -82,18 +83,57 @@ class AdditionalProductFragment : Fragment() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun setUpListener(){
-        //변화 감지 시 데이터 변환
-        addReviewModel.searchData.observe(activity, Observer {
-            searchAdapter.setData()
-            imageAdapter.setData()
-        })
+        searchAdapter.apply {
+            setOnItemClickListener(object:ItemProductAdditionalAdapter.OnItemClickListener{
+                override fun delData(item:Product) {
+                    Log.d("현재 데이터를 삭제합니다,.",item.name)
+                    val index = addReviewModel.delSelectData(item)
+                    setSelectedNum(addReviewModel.getSelectNum())
+                    if (index!=-1) {
+                        imageAdapter.delSelectedData(index)
+                    }
+                    renewData()
+                }
 
-        addReviewModel.selectProductData.observe(activity, Observer {
-            searchAdapter.setData()
-            imageAdapter.setData()
-        })
+                override fun addData(item:Product) {
+                    Log.d("현재 데이터를 추가합니다,.,.",item.name)
+
+                    addReviewModel.addSelectData(item)
+                    setSelectedNum(addReviewModel.getSelectNum())
+                    imageAdapter.addSelectedData(item)
+                    renewData()
+                }
+
+            })
+        }
+
+        imageAdapter.apply {
+            setOnItemClickListener(object :AdditionalImageAdapter.OnItemClickListener{
+                override fun delData(index:Int) {
+//                    Log.d("현재 데이터를 삭ㅈ제,.,.",item.name)
+//                    for (i in addReviewModel.selectProductData.value!!){
+//                        Log.d("(전) 담겨있는 데이터 : ",i.name)
+//                    }
+//                    addReviewModel.delSelectData(item)
+//                    for (i in addReviewModel.selectProductData.value!!){
+//                        Log.d("(후) 담겨있는 데이터 : ",i.name)
+//                    }
+                    setSelectedNum(addReviewModel.getSelectNum())
+                    searchAdapter.setData()
+                    delSelectedData(index)
+                }
+
+            })
+
+        }
+
+        binding.cancelButton.setOnClickListener {
+            activity.returnView(this@AdditionalProductFragment)
+            resetData()
+        }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setSearchData(p0:String?){
         if (p0!=null && p0!="") {
             val searchData = p0.toString()
@@ -101,16 +141,35 @@ class AdditionalProductFragment : Fragment() {
             ProductManager(masterApp).searchProduct(searchData,
                 paramFun = { dataList, _ ->
                     if (dataList!=null){
+                        setSearchNum(dataList.size)
                         addReviewModel.setSearchData(dataList)
                     }else{
+                        setSearchNum(0)
                         addReviewModel.resetSearchData()
                     }
+                    searchAdapter.setData()
                 })
         }else{
+            setSearchNum(0)
             addReviewModel.resetSearchData()
+            searchAdapter.setData()
         }
     }
 
+    @SuppressLint("SetTextI18n")
+    private fun setSearchNum(num:Int){
+        binding.searchNum.text = "검색결과 ($num)"
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setSelectedNum(num:Int){
+        binding.uploadNum.text = "현재 업로드한 상품 ($num)"
+    }
+
+    private fun resetData(){
+        addReviewModel.resetSearchData()
+        addReviewModel.resetSelectData()
+    }
     companion object {
         @JvmStatic
         fun newInstance(currentId : Int) =

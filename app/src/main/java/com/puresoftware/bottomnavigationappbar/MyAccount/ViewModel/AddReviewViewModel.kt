@@ -25,7 +25,7 @@ class AddReviewViewModel : ViewModel(){
 
     //데이터 추가 시 유무 확인
     fun findIsData(data: Product): Product? {
-        return selectProductData.value?.find { it.productId == data.productId }
+        return selectProductData.value!!.find { it.productId == data.productId }
     }
     fun addSelectData(data:Product){
         //같은 값이 없을 경우 추가
@@ -34,14 +34,20 @@ class AddReviewViewModel : ViewModel(){
         }
     }
 
-    fun delSelectData(data:Product){
+    fun delSelectData(data:Product) : Int{
         //값이 있을 경우 삭제
         val pr = findIsData(data)
         if (pr !=null) {
+            val index = selectProductData.value!!.indexOf(pr)
             selectProductData.value?.remove(pr)
+            return index
         }
+        return -1
     }
 
+    fun getSelectNum():Int{
+        return selectProductData.value!!.size
+    }
     fun resetSelectData(){
         selectProductData.value?.clear()
     }

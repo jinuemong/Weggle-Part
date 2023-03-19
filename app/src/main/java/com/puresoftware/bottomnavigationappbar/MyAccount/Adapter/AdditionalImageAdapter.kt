@@ -14,12 +14,12 @@ import com.puresoftware.bottomnavigationappbar.databinding.ItemMiniProductTypeIm
 class AdditionalImageAdapter(
     val activity: Activity
 ) : RecyclerView.Adapter<AdditionalImageAdapter.ViewHolder>(){
-    var addViewModel = (activity as AddReviewActivity).addReviewModel
-    var selectData = addViewModel.selectProductData.value!!
+
+    var selectData = ArrayList<Product>()
 
     private var onItemClickListener : OnItemClickListener?= null
     interface OnItemClickListener{
-        fun delData()
+        fun delData(index: Int)
     }
     fun setOnItemClickListener(listener: OnItemClickListener){
         this.onItemClickListener = listener
@@ -29,15 +29,14 @@ class AdditionalImageAdapter(
 
     inner class ViewHolder(binding: ItemMiniProductTypeImageBinding)
         :RecyclerView.ViewHolder(binding.root){
-            fun bind(){
-                val item = selectData[absoluteAdapterPosition]
+            fun bind(item : Product){
+
                 Glide.with(activity)
                     .load(item.subjectFiles[0])
                     .into(binding.productImage)
 
                 binding.delImage.setOnClickListener {
-                    addViewModel.delSelectData(item)
-
+                    onItemClickListener?.delData(absoluteAdapterPosition)
                 }
             }
         }
@@ -48,14 +47,21 @@ class AdditionalImageAdapter(
         return ViewHolder(binding)
     }
 
-    fun setData(){
-        selectData = addViewModel.selectProductData.value!!
-        Log.d("setData","..... add image")
+    @SuppressLint("NotifyDataSetChanged")
+    fun addSelectedData(data:Product){
+        selectData.add(data)
+        notifyItemInserted(selectData.size-1)
     }
+
+    fun delSelectedData(index:Int){
+        selectData.removeAt(index)
+        notifyItemRemoved(index)
+    }
+
     override fun getItemCount(): Int  = selectData.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind()
+        holder.bind(selectData[position])
     }
 
 }

@@ -17,7 +17,7 @@
         android:layout_marginStart="@dimen/margin_10"
         android:padding="@dimen/margin_10"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/top_len_80">
+        android:layout_height="@dimen/top_len_70">
         <EditText
             android:id="@+id/search_bar"
             android:textSize="@dimen/text_size_15"
@@ -30,7 +30,7 @@
         <TextView
             android:id="@+id/cancel_button"
             android:textStyle="bold"
-            android:textSize="@dimen/text_size_17"
+            android:textSize="@dimen/text_size_15"
             android:layout_marginStart="@dimen/margin_20"
             android:text="@string/cancel"
             android:layout_width="wrap_content"
