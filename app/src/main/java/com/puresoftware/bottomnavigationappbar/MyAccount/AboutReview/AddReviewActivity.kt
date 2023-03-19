@@ -4,29 +4,30 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
-import androidx.activity.OnBackPressedCallback
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.puresoftware.bottomnavigationappbar.MyAccount.Adapter.ItemProductSimpleAdapter
 import com.puresoftware.bottomnavigationappbar.MyAccount.Adapter.ProductSearchTextAdapter
 import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.ProductManager
-import com.puresoftware.bottomnavigationappbar.MyAccount.UpdateProfileFragment
+import com.puresoftware.bottomnavigationappbar.MyAccount.ViewModel.AddReviewViewModel
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
-import com.puresoftware.bottomnavigationappbar.Weggler.MainFragment.CommunityFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Product
 import com.puresoftware.bottomnavigationappbar.databinding.ActivityReviewBinding
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
 
+//step 1 : add Product
 class AddReviewActivity : AppCompatActivity() {
     private lateinit var binding: ActivityReviewBinding
     private lateinit var searchAdapter : ProductSearchTextAdapter
     private lateinit var productAdapter :ItemProductSimpleAdapter
     lateinit var masterApp : MasterApplication
     private lateinit var fragmentManager:FragmentManager
-//    private lateinit var onBackPressedCallback: OnBackPressedCallback
+
+    // view model
+    val addReviewModel : AddReviewViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,14 +35,6 @@ class AddReviewActivity : AppCompatActivity() {
         setContentView(binding.root)
         fragmentManager = this@AddReviewActivity.supportFragmentManager
 
-//        // 뒤로가기
-//        onBackPressedCallback = object : OnBackPressedCallback(true){
-//            override fun handleOnBackPressed() {
-//                finish()
-//                Log.d("뒤로가기 동작","")
-//            }
-//        }
-//        this.onBackPressedDispatcher.addCallback(this,onBackPressedCallback)
         //retrofit
         masterApp = MasterApplication()
         masterApp.createRetrofit(this@AddReviewActivity)
@@ -50,9 +43,9 @@ class AddReviewActivity : AppCompatActivity() {
         productAdapter = ItemProductSimpleAdapter(this@AddReviewActivity)
         binding.reviewRecyclerview.adapter = productAdapter.apply {
             setOnItemClickListener(object:ItemProductSimpleAdapter.OnItemClickListener{
-                override fun itemClick(id: Int) {
+                override fun itemClick(product: Product) {
                     // 가이드에 연결
-                    getUploadGuide(id)
+                    getUploadGuide(product)
                 }
 
             })
@@ -119,14 +112,15 @@ class AddReviewActivity : AppCompatActivity() {
     }
 
     //영상 업로드 가이드 생성 + 확인 시 프래그먼트 전환
-    private fun getUploadGuide(productId : Int){
+    private fun getUploadGuide(product :Product){
         val guide  = UploadVideoGuideFragment()
         guide.show(this@AddReviewActivity.supportFragmentManager,null)
         guide.apply {
             setOnClickListener(object : UploadVideoGuideFragment.OnItemClickListener{
                 override fun itemClick() {
                     guide.dismissNow()
-                    changeView(VideoReviewFragment.newInstance(productId))
+                    addReviewModel.reviewProduct = product
+                    changeView(VideoReviewFragment())
                 }
 
             })

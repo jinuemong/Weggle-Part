@@ -14,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.puresoftware.bottomnavigationappbar.MyAccount.AboutReview.AddReviewActivity
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Product
 import com.puresoftware.bottomnavigationappbar.databinding.ItemMiniProductTypeAdditionalBinding
@@ -22,21 +23,18 @@ import java.text.DecimalFormat
 //추가 상품 업로드 시 사용 최대 6
 class ItemProductAdditionalAdapter(
     private val activity: Activity,
-    private val currentProductId: Int,
 ) : RecyclerView.Adapter<ItemProductAdditionalAdapter.ViewHolder>() {
     private lateinit var binding: ItemMiniProductTypeAdditionalBinding
-    private var dataSet = ArrayList<Product>()
-    private var addProductList = ArrayList<Product>()
+    var addViewModel = (activity as AddReviewActivity).addReviewModel
+    var searchData = addViewModel.searchData.value!!
+    var selectData = addViewModel.selectProductData.value!!
 
-    var changeText = "changeText"
-    private var onItemClickListener: OnItemClickListener? = null
-
-    interface OnItemClickListener {
-        fun addItem(data: Product)
-        fun delItem(data: Product)
+    private var onItemClickListener : OnItemClickListener?= null
+    interface OnItemClickListener{
+        fun delData()
+        fun addData()
     }
-
-    fun setOnItemClickListener(listener: OnItemClickListener) {
+    fun setOnItemClickListener(listener: OnItemClickListener){
         this.onItemClickListener = listener
     }
 
@@ -44,31 +42,28 @@ class ItemProductAdditionalAdapter(
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind() {
-            val item = dataSet[absoluteAdapterPosition]
+            val item = searchData[absoluteAdapterPosition]
 
             //검색 글자 변환
             val spannableString = SpannableString(item.name)
-            val startIndex = spannableString.indexOf(changeText)
+            val startIndex = spannableString.indexOf(addViewModel.searchText)
 
             //현재 리뷰 , community, 검색 외 데이터 제외
-            if (currentProductId == item.productId || item.name == "communityList"
+            if (addViewModel.reviewProduct?.productId == item.productId
+                || item.name == "communityList"
                 || startIndex < 0
             ) {
-                binding.root.visibility = View.GONE
-                Log.d(
-                    "search data test", item.productId.toString() + "," + item.name.toString() + ","
-                            + startIndex.toString()
-                )
+                binding.root.layoutParams.height = 0
 
             } else {
                 spannableString.setSpan(
                     ForegroundColorSpan(Color.parseColor("#E60FAB")),
-                    startIndex, (startIndex + changeText.length),
+                    startIndex, (startIndex + addViewModel.searchText.length),
                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                 )
                 spannableString.setSpan(
                     StyleSpan(Typeface.BOLD),
-                    startIndex, (startIndex + changeText.length),
+                    startIndex, (startIndex + addViewModel.searchText.length),
                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                 )
                 binding.productName.text = spannableString
@@ -85,8 +80,7 @@ class ItemProductAdditionalAdapter(
                 binding.salePrice.text = decimal.format(item.body.price)
 
                 // 재 검색 시 확인
-                val checkIndex = addProductList.indexOf(item)
-                if (checkIndex != -1) { //값 없음
+                if (addViewModel.findIsData(item) ==null) { //값 없음
                     binding.unCheckButton()
                 } else { //값 있음
                     binding.isCheckButton()
@@ -95,16 +89,14 @@ class ItemProductAdditionalAdapter(
                 //클릭 이벤트 적용
                 binding.root.setOnClickListener {
                     //체크 되어 있는지 확인
-                    if (checkIndex != -1) { //존재 - 삭제 후 색상 해제
-                        addProductList.removeAt(checkIndex)
+                    if (addViewModel.findIsData(item)!=null) { //존재 - 삭제 후 색상 해제
+                        addViewModel.delSelectData(item)
                         binding.unCheckButton()
-                        onItemClickListener?.delItem(item)
                     } else {
-                        if (addProductList.size <= 6) {
+                        if (selectData.size <= 6) {
                             // 최대 6개까지 셀렉
-                            addProductList.add(item)
+                            addViewModel.addSelectData(item)
                             binding.isCheckButton()
-                            onItemClickListener?.addItem(item)
                         }
                     }
                 }
@@ -120,31 +112,19 @@ class ItemProductAdditionalAdapter(
         return ViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = dataSet.size
+    override fun getItemCount(): Int = searchData.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind()
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(dataList: ArrayList<Product>, newText: String) {
-        dataSet = dataList
-        changeText = newText
+    fun setData(){
+        searchData = addViewModel.searchData.value!!
+        selectData = addViewModel.selectProductData.value!!
+        Log.d("setData","..... search")
         notifyDataSetChanged()
     }
-
-    // 선택한 리스트 반환
-    fun getData(): ArrayList<Product> {
-        return addProductList
-    }
-
-    //fragment로 부터 index 초기화
-    @SuppressLint("NotifyDataSetChanged")
-    fun setDataFromFragment(data: Product) {
-        addProductList.remove(data)
-        notifyDataSetChanged()
-    }
-
     private fun ItemMiniProductTypeAdditionalBinding.isCheckButton() = checkBox
         .setBackgroundResource(R.drawable.baseline_check_circle_24_selected)
 

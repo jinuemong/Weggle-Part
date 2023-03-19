@@ -1,5 +1,6 @@
 package com.puresoftware.bottomnavigationappbar.MyAccount.AboutReview
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
@@ -10,26 +11,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.lifecycle.Observer
 import com.puresoftware.bottomnavigationappbar.MyAccount.Adapter.AdditionalImageAdapter
 import com.puresoftware.bottomnavigationappbar.MyAccount.Adapter.ItemProductAdditionalAdapter
 import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.ProductManager
+import com.puresoftware.bottomnavigationappbar.MyAccount.ViewModel.AddReviewViewModel
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Product
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentAdditionalProductBinding
-
+// step 3 : product add
 class AdditionalProductFragment : Fragment() {
     private lateinit var activity: AddReviewActivity
     private lateinit var masterApp : MasterApplication
     private var _binding : FragmentAdditionalProductBinding? = null
     private val binding get() = _binding!!
     private lateinit var onBackPressedCallback: OnBackPressedCallback
-    private var reviewProductId : Int =0  //현재 등록 중인 리뷰 제외
+    private lateinit var addReviewModel : AddReviewViewModel
     private lateinit var searchAdapter : ItemProductAdditionalAdapter
     private lateinit var imageAdapter: AdditionalImageAdapter
     override fun onAttach(context: Context) {
         super.onAttach(context)
         activity = context as AddReviewActivity
+        addReviewModel = activity.addReviewModel
         masterApp = activity.masterApp
         onBackPressedCallback = object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
@@ -38,12 +42,7 @@ class AdditionalProductFragment : Fragment() {
         }
         requireActivity().onBackPressedDispatcher.addCallback(onBackPressedCallback)
     }
-   override fun onCreate(savedInstanceState: Bundle?) {
-       super.onCreate(savedInstanceState)
-       arguments?.let {
-           reviewProductId = it.getInt("productId")
-       }
-    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,50 +71,43 @@ class AdditionalProductFragment : Fragment() {
 
     private fun initView(){
         //어댑터 연결
-        searchAdapter = ItemProductAdditionalAdapter(activity,reviewProductId)
+        searchAdapter = ItemProductAdditionalAdapter(activity)
         imageAdapter = AdditionalImageAdapter(activity)
         binding.searchRecycler.adapter = searchAdapter
         binding.imageRecycler.adapter = imageAdapter
 
+
+
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun setUpListener(){
-        searchAdapter.apply {
-            setOnItemClickListener(object :ItemProductAdditionalAdapter.OnItemClickListener{
-                override fun addItem(data : Product) {
-                    imageAdapter.addData(data)
-                }
+        //변화 감지 시 데이터 변환
+        addReviewModel.searchData.observe(activity, Observer {
+            searchAdapter.setData()
+            imageAdapter.setData()
+        })
 
-                override fun delItem(data: Product) {
-                    imageAdapter.delData(data)
-                }
-
-            })
-        }
-
-        imageAdapter.apply {
-            setOnItemClickListener(object :AdditionalImageAdapter.OnItemClickListener{
-                override fun onItemClick(data: Product) {
-                    searchAdapter.setDataFromFragment(data)
-                }
-
-            })
-        }
+        addReviewModel.selectProductData.observe(activity, Observer {
+            searchAdapter.setData()
+            imageAdapter.setData()
+        })
     }
 
     private fun setSearchData(p0:String?){
         if (p0!=null && p0!="") {
             val searchData = p0.toString()
-            ProductManager(masterApp)
-                .searchProduct(searchData, paramFun = { dataSet, _ ->
-                    if (dataSet!=null){
-                        searchAdapter.setData(dataSet,searchData)
+            addReviewModel.searchText = searchData
+            ProductManager(masterApp).searchProduct(searchData,
+                paramFun = { dataList, _ ->
+                    if (dataList!=null){
+                        addReviewModel.setSearchData(dataList)
                     }else{
-                        searchAdapter.setData(ArrayList(),"changeText")
+                        addReviewModel.resetSearchData()
                     }
                 })
         }else{
-            searchAdapter.setData(ArrayList(),"changeText")
+            addReviewModel.resetSearchData()
         }
     }
 

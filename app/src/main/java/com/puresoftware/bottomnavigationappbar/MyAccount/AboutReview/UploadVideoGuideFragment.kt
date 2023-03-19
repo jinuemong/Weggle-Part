@@ -9,6 +9,7 @@ import androidx.fragment.app.DialogFragment
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentUploadVideoGuideBinding
 
+//video 등록 용 dialog
 class UploadVideoGuideFragment : DialogFragment() {
     private var _binding: FragmentUploadVideoGuideBinding? = null
     private val binding get() = _binding!!

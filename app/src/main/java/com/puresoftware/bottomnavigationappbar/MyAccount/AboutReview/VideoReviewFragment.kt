@@ -24,18 +24,20 @@ import com.bumptech.glide.Glide
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.ProductManager
+import com.puresoftware.bottomnavigationappbar.MyAccount.ViewModel.AddReviewViewModel
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getImageFilePath
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentVideoReviewBinding
 import java.text.DecimalFormat
 import java.util.jar.Manifest
 
+//step 2 : video add
 // 영상을 등록하고 리뷰 작성
 
 class VideoReviewFragment : Fragment() {
     private var _binding : FragmentVideoReviewBinding? = null
     private val binding get() = _binding!!
-    private var productId : Int = -1 //초기화
+    private lateinit var addReviewModel : AddReviewViewModel
     private var videoUrl : Uri? = null // 리뷰 비디오
     private lateinit var activity: AddReviewActivity
     private lateinit var onBackPressedCallback: OnBackPressedCallback //뒤로가기 동작 제어
@@ -44,7 +46,7 @@ class VideoReviewFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         activity = context as AddReviewActivity
-
+        addReviewModel = activity.addReviewModel
         onBackPressedCallback = object :OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
                 activity.returnView(this@VideoReviewFragment)
@@ -54,12 +56,6 @@ class VideoReviewFragment : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(onBackPressedCallback)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            productId = it.getInt("productId")
-        }
-    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -76,7 +72,7 @@ class VideoReviewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("VideoReviewFragment:Id ",productId.toString())
+        Log.d("VideoReviewFragment:Id ",addReviewModel.reviewProduct?.productId.toString())
 
         // 권한 설정
         readGalleryListener = object : PermissionListener{
@@ -143,10 +139,15 @@ class VideoReviewFragment : Fragment() {
                 binding.videoView.apply {
                     layoutParams = binding.videoViewShell.layoutParams
                     setVideoURI(videoUrl)
-                    setMediaController(MediaController(activity))
+                    setMediaController(null)
                     setOnClickListener {
-                        binding.playButton.visibility = View.GONE
-                        start()
+                        if (this.isPlaying){
+                            binding.playButton.visibility = View.VISIBLE
+                            pause()
+                        }else {
+                            binding.playButton.visibility = View.GONE
+                            start()
+                        }
                     }
                     setOnCompletionListener {
                         binding.playButton.visibility = View.VISIBLE
@@ -161,22 +162,21 @@ class VideoReviewFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun initView(){
         //프로덕트 등록
-        ProductManager(activity.masterApp)
-            .getProductFromProductId(productId, paramFun = { product, _ ->
-                if (product != null) {
-                    binding.productCompany.text = product.body.company
-                    binding.productName.text = product.name
-                    //가격 변환 (컴마찍기) 등록
-                    val decimal = DecimalFormat("#,###")
-                    binding.productPrice.text = "${decimal.format(product.body.price)}원"
-                    //이미지 등록
-                    Glide.with(activity)
-                        .load(product.subjectFiles[0])
-                        .into(binding.productImage)
-                    //판매 수수료 등록
-                    binding.rewardCost.text = "리워드 ${(product.body.price*0.05).toInt()}원"
-                }
-            })
+        val product = addReviewModel.reviewProduct
+        if (product != null) {
+            binding.productCompany.text = product.body.company
+            binding.productName.text = product.name
+            //가격 변환 (컴마찍기) 등록
+            val decimal = DecimalFormat("#,###")
+            binding.productPrice.text = "${decimal.format(product.body.price)}원"
+            //이미지 등록
+            Glide.with(activity)
+                .load(product.subjectFiles[0])
+                .into(binding.productImage)
+            //판매 수수료 등록
+            binding.rewardCost.text = "리워드 ${(product.body.price * 0.05).toInt()}원"
+        }
+
         setButtonColor()
 
     }
@@ -191,7 +191,7 @@ class VideoReviewFragment : Fragment() {
 
         // 다른 프로덕트 선택으로 이동
         binding.selectProduct.setOnClickListener {
-            activity.changeView(AdditionalProductFragment.newInstance(productId))
+            activity.changeView(AdditionalProductFragment())
         }
     }
 

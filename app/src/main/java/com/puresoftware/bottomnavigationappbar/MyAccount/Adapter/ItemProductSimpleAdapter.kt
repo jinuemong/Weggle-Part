@@ -19,7 +19,7 @@ class ItemProductSimpleAdapter(
 
     private var onItemClickListener : OnItemClickListener?= null
     interface OnItemClickListener{
-        fun itemClick(id : Int)
+        fun itemClick(product: Product)
     }
 
     fun setOnItemClickListener(listener: OnItemClickListener){
@@ -40,7 +40,7 @@ class ItemProductSimpleAdapter(
 
                 binding.root.setOnClickListener {
                     if (onItemClickListener!=null){
-                        onItemClickListener?.itemClick(item.productId)
+                        onItemClickListener?.itemClick(item)
                     }
                 }
             }

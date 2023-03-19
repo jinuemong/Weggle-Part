@@ -14,6 +14,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import com.puresoftware.bottomnavigationappbar.databinding.ActivityChallengeBinding
 
+// 챌린지 등록
 class AddChallengeActivity : AppCompatActivity() {
     lateinit var binding:ActivityChallengeBinding
     var galleryUri: Uri? = null

@@ -44,7 +44,7 @@ class ProductSearchTextAdapter(
             val item = dataSet[absoluteAdapterPosition]
 
             if (item.name == "communityList") {
-                binding.root.visibility = View.GONE
+                binding.root.layoutParams.height = 0
             } else {
 
                 //검색 글자 변환

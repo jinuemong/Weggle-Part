@@ -83,7 +83,6 @@
     <ImageView
         android:id="@+id/check_box"
         android:layout_gravity="bottom"
-        android:src="@drawable/baseline_check_circle_24"
         android:layout_width="@dimen/item_size_30"
         android:layout_height="@dimen/item_size_30"/>
 </LinearLayout>
