@@ -1,5 +1,7 @@
 package com.puresoftware.bottomnavigationappbar.Server
 
+import com.puresoftware.bottomnavigationappbar.MyAccount.Model.BodyReviewForPOST
+import com.puresoftware.bottomnavigationappbar.MyAccount.Model.ReviewData
 import com.puresoftware.bottomnavigationappbar.MyAccount.Model.User
 import com.puresoftware.bottomnavigationappbar.Server.TokenManager.Token
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.*
@@ -57,13 +59,13 @@ interface RetrofitService {
     ): Call<ProductList>
 
 
-    //커뮤니티 product 생성
-    @POST("categories/{category}/products/{name}")
-    fun addCommunityProduct(
-        @Path("category") category : String,
-        @Path("name") name : String,
-        @Body body : BodyProduct,
-    ): Call<Product>
+//    //커뮤니티 product 생성
+//    @POST("categories/{category}/products/{name}")
+//    fun addCommunityProduct(
+//        @Path("category") category : String,
+//        @Path("name") name : String,
+//        @Body body : BodyProduct,
+//    ): Call<Product>
 
     //프로덕트 조회
     @GET("productsByName/{name}")
@@ -86,14 +88,23 @@ interface RetrofitService {
         @Path("productId") productId : Int,
     ): Call<ArrayList<ReviewInCommunity>>
 
-    //리뷰 추가
+    //리뷰 추가 -커뮤니티
+    @Multipart
+    @POST("products/{productId}/reviews")
+    fun addReViewForCommunity(
+        @Path("productId") productId: Int,
+        @Part("param") param : BodyReviewForCommunityPOST, //body
+        @Part multipartFile : MultipartBody.Part? //image
+    ): Call<ReviewInCommunity>
+
+    //리뷰 추가 - 일반
     @Multipart
     @POST("products/{productId}/reviews")
     fun addReView(
         @Path("productId") productId: Int,
-        @Part("param") param : BodyReview, //body
+        @Part("param") param : BodyReviewForPOST, //body
         @Part multipartFile : MultipartBody.Part? //image
-    ): Call<ReviewInCommunity>
+    ): Call<ReviewData>
 
     //리뷰 좋아요 순으로 얻기
     @GET("products/{productId}/reviewsByLike")

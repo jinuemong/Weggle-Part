@@ -4,64 +4,63 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.puresoftware.bottomnavigationappbar.MyAccount.AboutReview.AddReviewActivity
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Product
 import com.puresoftware.bottomnavigationappbar.databinding.ItemMiniProductTypeImageBinding
+import okhttp3.internal.notifyAll
 
 class AdditionalImageAdapter(
-    val activity: Activity
-) : RecyclerView.Adapter<AdditionalImageAdapter.ViewHolder>(){
+    val activity: Activity,
+    val type : String,
+) : RecyclerView.Adapter<AdditionalImageAdapter.ViewHolder>() {
+    private val addViewModel = (activity as AddReviewActivity).addReviewModel
+    var selectData =addViewModel.selectProductData.value!!
 
-    var selectData = ArrayList<Product>()
+    private var onItemClickListener: OnItemClickListener? = null
 
-    private var onItemClickListener : OnItemClickListener?= null
-    interface OnItemClickListener{
-        fun delData(index: Int)
+    interface OnItemClickListener {
+        fun delData(item: Product)
     }
-    fun setOnItemClickListener(listener: OnItemClickListener){
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
         this.onItemClickListener = listener
     }
 
-    private lateinit var binding : ItemMiniProductTypeImageBinding
+    lateinit var binding: ItemMiniProductTypeImageBinding
 
-    inner class ViewHolder(binding: ItemMiniProductTypeImageBinding)
-        :RecyclerView.ViewHolder(binding.root){
-            fun bind(item : Product){
+    inner class ViewHolder(binding: ItemMiniProductTypeImageBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind() {
+            val item = selectData[absoluteAdapterPosition]
+            Glide.with(activity)
+                .load(item.subjectFiles[0])
+                .into(binding.productImage)
 
-                Glide.with(activity)
-                    .load(item.subjectFiles[0])
-                    .into(binding.productImage)
-
-                binding.delImage.setOnClickListener {
-                    onItemClickListener?.delData(absoluteAdapterPosition)
-                }
+            binding.delImage.setOnClickListener {
+                onItemClickListener?.delData(item)
             }
         }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        binding = ItemMiniProductTypeImageBinding.inflate(LayoutInflater.from(activity)
-        ,parent,false)
+        binding = ItemMiniProductTypeImageBinding.inflate(
+            LayoutInflater.from(activity), parent, false
+        )
         return ViewHolder(binding)
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun addSelectedData(data:Product){
-        selectData.add(data)
-        notifyItemInserted(selectData.size-1)
-    }
-
-    fun delSelectedData(index:Int){
-        selectData.removeAt(index)
-        notifyItemRemoved(index)
-    }
-
-    override fun getItemCount(): Int  = selectData.size
+    override fun getItemCount(): Int = selectData.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(selectData[position])
+        if (type=="addView") {
+            holder.bind()
+        }else {
+            binding.delImage.visibility = View.GONE
+        }
     }
 
 }

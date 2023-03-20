@@ -8,9 +8,7 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -28,7 +26,6 @@ class ItemProductAdditionalAdapter(
     private lateinit var binding: ItemMiniProductTypeAdditionalBinding
     var addViewModel = (activity as AddReviewActivity).addReviewModel
     var searchData = ArrayList<Product>()
-    var selectData = ArrayList<Product>()
 
     private var onItemClickListener: OnItemClickListener? = null
 
@@ -44,17 +41,19 @@ class ItemProductAdditionalAdapter(
     inner class ViewHolder(val binding: ItemMiniProductTypeAdditionalBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(item: Product) {
+        fun bind() {
+            val item = searchData[absoluteAdapterPosition]
 
-            // community 제외
-            if (item.name == "communityList") {
+            //검색 글자 변환
+            val spannableString = SpannableString(item.name)
+            val startIndex = spannableString.indexOf(addViewModel.searchText)
+
+            // community 제외 ,검색 외 데이터 제외
+            if (item.name == "communityList" || startIndex<0) {
                 binding.root.layoutParams.height = 0
 
             } else {
 
-                //검색 글자 변환
-                val spannableString = SpannableString(item.name)
-                val startIndex = spannableString.indexOf(addViewModel.searchText)
                 spannableString.setSpan(
                     ForegroundColorSpan(Color.parseColor("#E60FAB")),
                     startIndex, (startIndex + addViewModel.searchText.length),
@@ -88,8 +87,7 @@ class ItemProductAdditionalAdapter(
                 //클릭 이벤트 적용
                 binding.root.setOnClickListener {
                     //제외 데이터는 클릭 이벤트 안됨
-                    if (addViewModel.reviewProduct?.productId == item.productId
-                        || startIndex<0){
+                    if (addViewModel.reviewProduct?.productId == item.productId){
                         Toast.makeText(activity,"선택할 수 없는 상품입니다.",Toast.LENGTH_SHORT)
                             .show()
                     }else {
@@ -98,7 +96,7 @@ class ItemProductAdditionalAdapter(
                             binding.unCheckButton()
                             onItemClickListener?.delData(item)
                         } else {
-                            if (selectData.size <= 6) {
+                            if (addViewModel.getSelectNum() <= 6) {
                                 // 최대 6개까지 셀렉
                                 binding.isCheckButton()
                                 onItemClickListener?.addData(item)
@@ -121,22 +119,16 @@ class ItemProductAdditionalAdapter(
     override fun getItemCount(): Int = searchData.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(searchData[position])
+        holder.bind()
     }
 
     //검색 데이터 변경
     @SuppressLint("NotifyDataSetChanged")
-    fun setData() {
+    fun setSearchData() {
         searchData = addViewModel.searchData.value!!
         notifyDataSetChanged()
     }
 
-    //데이터 추가, 삭제
-    @SuppressLint("NotifyDataSetChanged")
-    fun renewData() {
-        selectData = addViewModel.selectProductData.value!!
-        notifyDataSetChanged()
-    }
 
     private fun ItemMiniProductTypeAdditionalBinding.isCheckButton() = checkBox
         .setBackgroundResource(R.drawable.baseline_check_circle_24_selected)

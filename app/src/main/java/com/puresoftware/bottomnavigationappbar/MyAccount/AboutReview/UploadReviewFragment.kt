@@ -7,7 +7,6 @@ import android.content.Intent
 import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -15,7 +14,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.MediaController
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
@@ -23,18 +21,16 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
-import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.ProductManager
+import com.puresoftware.bottomnavigationappbar.MyAccount.Adapter.AdditionalImageAdapter
 import com.puresoftware.bottomnavigationappbar.MyAccount.ViewModel.AddReviewViewModel
 import com.puresoftware.bottomnavigationappbar.R
-import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getImageFilePath
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentVideoReviewBinding
 import java.text.DecimalFormat
-import java.util.jar.Manifest
 
 //step 2 : video add
 // 영상을 등록하고 리뷰 작성
 
-class VideoReviewFragment : Fragment() {
+class UploadReviewFragment : Fragment() {
     private var _binding : FragmentVideoReviewBinding? = null
     private val binding get() = _binding!!
     private lateinit var addReviewModel : AddReviewViewModel
@@ -49,7 +45,9 @@ class VideoReviewFragment : Fragment() {
         addReviewModel = activity.addReviewModel
         onBackPressedCallback = object :OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
-                activity.returnView(this@VideoReviewFragment)
+                activity.returnView(this@UploadReviewFragment)
+                addReviewModel.resetSelectData()
+
             }
 
         }
@@ -84,7 +82,7 @@ class VideoReviewFragment : Fragment() {
             override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
                 Toast.makeText(activity,"권한 필요",Toast.LENGTH_SHORT)
                     .show()
-                activity.returnView(this@VideoReviewFragment)
+                activity.returnView(this@UploadReviewFragment)
             }
 
         }
@@ -125,13 +123,13 @@ class VideoReviewFragment : Fragment() {
                 Toast.makeText(activity,"비디오만 업로드 가능합니다."
                     ,Toast.LENGTH_LONG)
                     .show()
-                activity.returnView(this@VideoReviewFragment)
+                activity.returnView(this@UploadReviewFragment)
 
             }else if(!checkVideoTime()){
                 Toast.makeText(activity,"영상 길이 : 10 ~ 30초"
                     ,Toast.LENGTH_LONG)
                     .show()
-                activity.returnView(this@VideoReviewFragment)
+                activity.returnView(this@UploadReviewFragment)
 
             }else {
                 //비디오 뷰 설정
@@ -186,12 +184,13 @@ class VideoReviewFragment : Fragment() {
             getVideo()
         }
         binding.backButton.setOnClickListener {
-            activity.returnView(this@VideoReviewFragment)
+            activity.returnView(this@UploadReviewFragment)
+            addReviewModel.resetSelectData() // 선택 데이터 제거
         }
 
         // 다른 프로덕트 선택으로 이동
         binding.selectProduct.setOnClickListener {
-            activity.changeView(AdditionalProductFragment())
+            activity.changeView(AdditionalProductFragment(),"additional product")
         }
     }
 
@@ -230,11 +229,15 @@ class VideoReviewFragment : Fragment() {
             binding.commitButton.setBackgroundResource(R.drawable.round_border_unselected)
         }
     }
+
+    fun setSelectedData(){
+        binding.selectRecycler.adapter = AdditionalImageAdapter(activity,"")
+    }
     companion object {
 
         @JvmStatic
         fun newInstance(id : Int) =
-            VideoReviewFragment().apply {
+            UploadReviewFragment().apply {
                 arguments = Bundle().apply {
                     putInt("productId",id)
                 }

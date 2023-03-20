@@ -120,7 +120,7 @@ class AddReviewActivity : AppCompatActivity() {
                 override fun itemClick() {
                     guide.dismissNow()
                     addReviewModel.reviewProduct = product
-                    changeView(VideoReviewFragment())
+                    changeView(UploadReviewFragment(),"additional product")
                 }
 
             })
@@ -128,9 +128,9 @@ class AddReviewActivity : AppCompatActivity() {
     }
 
 
-    fun changeView(fragment: Fragment){
+    fun changeView(fragment: Fragment,tag:String?){
         fragmentManager.beginTransaction()
-            .add(R.id.main_view_in_add_review,fragment)
+            .add(R.id.main_view_in_add_review,fragment,tag)
             .addToBackStack(null)
             .commit()
     }

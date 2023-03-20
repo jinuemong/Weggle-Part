@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MyAccount.AboutReview.VideoReviewFragment">
+    tools:context=".MyAccount.AboutReview.UploadReviewFragment">
     <androidx.constraintlayout.widget.ConstraintLayout
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
@@ -182,6 +182,14 @@
                      />
             </LinearLayout>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/select_recycler"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"
+                tools:listitem="@layout/item_mini_product_type_image"
+                android:layout_margin="@dimen/margin_20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
             <TextView
                 android:textStyle="bold"
                 android:textColor="@color/black"

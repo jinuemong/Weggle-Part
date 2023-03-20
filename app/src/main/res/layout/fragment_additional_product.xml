@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,7 +12,6 @@
 
     <LinearLayout
         android:id="@+id/search_tab"
-        app:layout_constraintTop_toTopOf="parent"
         android:orientation="horizontal"
         android:layout_marginStart="@dimen/margin_10"
         android:padding="@dimen/margin_10"
@@ -37,32 +36,31 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <TextView
-        app:layout_constraintTop_toBottomOf="@+id/search_tab"
         android:textSize="@dimen/text_size_15"
-        android:layout_margin="@dimen/item_size_20"
+        android:paddingStart="@dimen/margin_10"
+        android:layout_margin="@dimen/margin_10"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:text="현재 업로드한 상품 (0)"
         android:id="@+id/upload_num"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
     <androidx.recyclerview.widget.RecyclerView
-        tools:listitem="@layout/item_mini_product_type_image"
-        app:layout_constraintTop_toBottomOf="@+id/upload_num"
+        android:layout_margin="@dimen/margin_10"
         android:id="@+id/image_recycler"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_mini_product_type_image" />
+
     <FrameLayout
-        android:id="@+id/line"
         android:layout_marginTop="@dimen/margin_10"
-        app:layout_constraintTop_toBottomOf="@+id/image_recycler"
         android:background="@color/line_color_light"
         android:layout_width="match_parent"
         android:layout_height="@dimen/margin_10"/>
     <TextView
-        app:layout_constraintTop_toBottomOf="@+id/line"
         android:textSize="@dimen/text_size_15"
         android:layout_margin="@dimen/item_size_20"
         android:textColor="@color/black"
@@ -71,29 +69,34 @@
         android:id="@+id/search_num"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <androidx.recyclerview.widget.RecyclerView
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_mini_product_type_additional"
-        app:layout_constraintTop_toBottomOf="@+id/search_num"
         android:layout_margin="@dimen/margin_20"
+        android:paddingBottom="90dp"
         android:id="@+id/search_recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <FrameLayout
-        android:background="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/commit_button"
-        android:textSize="@dimen/text_size_17"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:text="태그 완료"
-        android:background="@drawable/round_border"
-        android:backgroundTint="@color/my_selected_text"
-        android:layout_margin="@dimen/margin_20"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/item_size_50"/>
-    </FrameLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent"/>
+        <FrameLayout
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/commit_button"
+                android:textSize="@dimen/text_size_17"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:text="태그 완료"
+                android:background="@drawable/round_border"
+                android:backgroundTint="@color/my_selected_text"
+                android:layout_margin="@dimen/margin_20"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_size_50"/>
+        </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

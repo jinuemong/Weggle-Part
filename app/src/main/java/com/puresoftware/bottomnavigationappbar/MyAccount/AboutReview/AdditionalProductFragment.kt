@@ -11,34 +11,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
-import androidx.lifecycle.Observer
 import com.puresoftware.bottomnavigationappbar.MyAccount.Adapter.AdditionalImageAdapter
 import com.puresoftware.bottomnavigationappbar.MyAccount.Adapter.ItemProductAdditionalAdapter
 import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.ProductManager
 import com.puresoftware.bottomnavigationappbar.MyAccount.ViewModel.AddReviewViewModel
-import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Product
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentAdditionalProductBinding
+
 // step 3 : product add
 class AdditionalProductFragment : Fragment() {
     private lateinit var activity: AddReviewActivity
-    private lateinit var masterApp : MasterApplication
-    private var _binding : FragmentAdditionalProductBinding? = null
+    private lateinit var masterApp: MasterApplication
+    private var _binding: FragmentAdditionalProductBinding? = null
     private val binding get() = _binding!!
     private lateinit var onBackPressedCallback: OnBackPressedCallback
-    private lateinit var addReviewModel : AddReviewViewModel
-    private lateinit var searchAdapter : ItemProductAdditionalAdapter
+    private lateinit var addReviewModel: AddReviewViewModel
+    private lateinit var searchAdapter: ItemProductAdditionalAdapter
     private lateinit var imageAdapter: AdditionalImageAdapter
     override fun onAttach(context: Context) {
         super.onAttach(context)
         activity = context as AddReviewActivity
         addReviewModel = activity.addReviewModel
         masterApp = activity.masterApp
-        onBackPressedCallback = object : OnBackPressedCallback(true){
+        onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 activity.returnView(this@AdditionalProductFragment)
-                resetData()
+                addReviewModel.resetSearchData()
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(onBackPressedCallback)
@@ -49,7 +48,7 @@ class AdditionalProductFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAdditionalProductBinding.inflate(inflater,container,false)
+        _binding = FragmentAdditionalProductBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -58,7 +57,7 @@ class AdditionalProductFragment : Fragment() {
         initView()
         setUpListener()
 
-        binding.searchBar.addTextChangedListener(object :TextWatcher{
+        binding.searchBar.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -70,113 +69,100 @@ class AdditionalProductFragment : Fragment() {
         })
     }
 
-    private fun initView(){
+    private fun initView() {
         //어댑터 연결
         searchAdapter = ItemProductAdditionalAdapter(activity)
-        imageAdapter = AdditionalImageAdapter(activity)
+        imageAdapter = AdditionalImageAdapter(activity,"addView")
         binding.searchRecycler.adapter = searchAdapter
         binding.imageRecycler.adapter = imageAdapter
-
-
 
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun setUpListener(){
+    private fun setUpListener() {
         searchAdapter.apply {
-            setOnItemClickListener(object:ItemProductAdditionalAdapter.OnItemClickListener{
-                override fun delData(item:Product) {
-                    Log.d("현재 데이터를 삭제합니다,.",item.name)
-                    val index = addReviewModel.delSelectData(item)
+            setOnItemClickListener(object : ItemProductAdditionalAdapter.OnItemClickListener {
+                override fun delData(item: Product) {
+                    Log.d("현재 데이터를 삭제합니다,in frag.", item.name)
+                    addReviewModel.delSelectData(item)
+                    setNewAdapter() //새로 어댑터 생성
+                    notifyDataSetChanged() //변화 적용 : searchAdapter
                     setSelectedNum(addReviewModel.getSelectNum())
-                    if (index!=-1) {
-                        imageAdapter.delSelectedData(index)
-                    }
-                    renewData()
                 }
 
-                override fun addData(item:Product) {
-                    Log.d("현재 데이터를 추가합니다,.,.",item.name)
-
+                override fun addData(item: Product) {
+                    Log.d("현재 데이터를 추가합니다in frag.,.", item.name)
                     addReviewModel.addSelectData(item)
+                    setNewAdapter() //새로 어댑터 생성
+                    notifyDataSetChanged() //변화 적용 : searchAdapter
                     setSelectedNum(addReviewModel.getSelectNum())
-                    imageAdapter.addSelectedData(item)
-                    renewData()
                 }
 
             })
         }
 
-        imageAdapter.apply {
-            setOnItemClickListener(object :AdditionalImageAdapter.OnItemClickListener{
-                override fun delData(index:Int) {
-//                    Log.d("현재 데이터를 삭ㅈ제,.,.",item.name)
-//                    for (i in addReviewModel.selectProductData.value!!){
-//                        Log.d("(전) 담겨있는 데이터 : ",i.name)
-//                    }
-//                    addReviewModel.delSelectData(item)
-//                    for (i in addReviewModel.selectProductData.value!!){
-//                        Log.d("(후) 담겨있는 데이터 : ",i.name)
-//                    }
-                    setSelectedNum(addReviewModel.getSelectNum())
-                    searchAdapter.setData()
-                    delSelectedData(index)
-                }
-
-            })
-
-        }
 
         binding.cancelButton.setOnClickListener {
             activity.returnView(this@AdditionalProductFragment)
-            resetData()
+            addReviewModel.resetSearchData()
+        }
+
+        binding.commitButton.setOnClickListener {
+            // 부모 프래그 먼트 recycler 갱신
+            addReviewModel.resetSearchData()
+            (activity.supportFragmentManager.findFragmentByTag("additional product")
+            as UploadReviewFragment).setSelectedData()
+
         }
     }
 
+    private fun setNewAdapter(){
+        imageAdapter = AdditionalImageAdapter(activity,"addView").apply {
+            setOnItemClickListener(object : AdditionalImageAdapter.OnItemClickListener {
+                @SuppressLint("NotifyDataSetChanged")
+                override fun delData(item: Product) {
+                    addReviewModel.delSelectData(item)
+
+                    imageAdapter = AdditionalImageAdapter(activity,"addView")
+                    setNewAdapter()//다시 등록
+
+                    searchAdapter.notifyDataSetChanged() //변화 적용 : searchAdapter
+                    setSelectedNum(addReviewModel.getSelectNum())
+                }
+            })
+        }
+        binding.imageRecycler.adapter = imageAdapter
+    }
+
     @SuppressLint("SetTextI18n")
-    private fun setSearchData(p0:String?){
-        if (p0!=null && p0!="") {
+    private fun setSearchData(p0: String?) {
+        if (p0 != null && p0 != "") {
             val searchData = p0.toString()
             addReviewModel.searchText = searchData
             ProductManager(masterApp).searchProduct(searchData,
                 paramFun = { dataList, _ ->
-                    if (dataList!=null){
+                    if (dataList != null) {
                         setSearchNum(dataList.size)
                         addReviewModel.setSearchData(dataList)
-                    }else{
+                    } else {
                         setSearchNum(0)
                         addReviewModel.resetSearchData()
                     }
-                    searchAdapter.setData()
+                    searchAdapter.setSearchData()
                 })
-        }else{
-            setSearchNum(0)
-            addReviewModel.resetSearchData()
-            searchAdapter.setData()
         }
     }
 
     @SuppressLint("SetTextI18n")
-    private fun setSearchNum(num:Int){
+    private fun setSearchNum(num: Int) {
         binding.searchNum.text = "검색결과 ($num)"
     }
 
     @SuppressLint("SetTextI18n")
-    private fun setSelectedNum(num:Int){
+    private fun setSelectedNum(num: Int) {
         binding.uploadNum.text = "현재 업로드한 상품 ($num)"
     }
 
-    private fun resetData(){
-        addReviewModel.resetSearchData()
-        addReviewModel.resetSelectData()
-    }
-    companion object {
-        @JvmStatic
-        fun newInstance(currentId : Int) =
-            AdditionalProductFragment().apply {
-                arguments = Bundle().apply {
-                    putInt("productId",currentId)
-                }
-            }
-    }
+
+
 }
