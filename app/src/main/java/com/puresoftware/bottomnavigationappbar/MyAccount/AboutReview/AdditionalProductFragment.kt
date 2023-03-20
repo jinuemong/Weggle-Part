@@ -5,7 +5,6 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -36,8 +35,7 @@ class AdditionalProductFragment : Fragment() {
         masterApp = activity.masterApp
         onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                activity.returnView(this@AdditionalProductFragment)
-                addReviewModel.resetSearchData()
+                backFragment()
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(onBackPressedCallback)
@@ -72,9 +70,8 @@ class AdditionalProductFragment : Fragment() {
     private fun initView() {
         //어댑터 연결
         searchAdapter = ItemProductAdditionalAdapter(activity)
-        imageAdapter = AdditionalImageAdapter(activity,"addView")
         binding.searchRecycler.adapter = searchAdapter
-        binding.imageRecycler.adapter = imageAdapter
+        setNewImageAdapter()
 
     }
 
@@ -83,17 +80,15 @@ class AdditionalProductFragment : Fragment() {
         searchAdapter.apply {
             setOnItemClickListener(object : ItemProductAdditionalAdapter.OnItemClickListener {
                 override fun delData(item: Product) {
-                    Log.d("현재 데이터를 삭제합니다,in frag.", item.name)
                     addReviewModel.delSelectData(item)
-                    setNewAdapter() //새로 어댑터 생성
+                    setNewImageAdapter() //새로 어댑터 생성
                     notifyDataSetChanged() //변화 적용 : searchAdapter
                     setSelectedNum(addReviewModel.getSelectNum())
                 }
 
                 override fun addData(item: Product) {
-                    Log.d("현재 데이터를 추가합니다in frag.,.", item.name)
                     addReviewModel.addSelectData(item)
-                    setNewAdapter() //새로 어댑터 생성
+                    setNewImageAdapter() //새로 어댑터 생성
                     notifyDataSetChanged() //변화 적용 : searchAdapter
                     setSelectedNum(addReviewModel.getSelectNum())
                 }
@@ -103,20 +98,18 @@ class AdditionalProductFragment : Fragment() {
 
 
         binding.cancelButton.setOnClickListener {
-            activity.returnView(this@AdditionalProductFragment)
-            addReviewModel.resetSearchData()
+            backFragment()
         }
 
         binding.commitButton.setOnClickListener {
             // 부모 프래그 먼트 recycler 갱신
-            addReviewModel.resetSearchData()
             (activity.supportFragmentManager.findFragmentByTag("additional product")
             as UploadReviewFragment).setSelectedData()
-
+            backFragment()
         }
     }
 
-    private fun setNewAdapter(){
+    private fun setNewImageAdapter(){
         imageAdapter = AdditionalImageAdapter(activity,"addView").apply {
             setOnItemClickListener(object : AdditionalImageAdapter.OnItemClickListener {
                 @SuppressLint("NotifyDataSetChanged")
@@ -124,7 +117,7 @@ class AdditionalProductFragment : Fragment() {
                     addReviewModel.delSelectData(item)
 
                     imageAdapter = AdditionalImageAdapter(activity,"addView")
-                    setNewAdapter()//다시 등록
+                    setNewImageAdapter()//다시 등록
 
                     searchAdapter.notifyDataSetChanged() //변화 적용 : searchAdapter
                     setSelectedNum(addReviewModel.getSelectNum())
@@ -163,6 +156,10 @@ class AdditionalProductFragment : Fragment() {
         binding.uploadNum.text = "현재 업로드한 상품 ($num)"
     }
 
+    private fun backFragment(){
+        activity.returnView(this@AdditionalProductFragment)
+        addReviewModel.resetSearchData()
+    }
 
 
 }

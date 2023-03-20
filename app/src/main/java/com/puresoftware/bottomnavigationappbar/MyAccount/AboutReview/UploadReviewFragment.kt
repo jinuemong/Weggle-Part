@@ -21,7 +21,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
+import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.MyAccount.Adapter.AdditionalImageAdapter
+import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.ReviewManager
 import com.puresoftware.bottomnavigationappbar.MyAccount.ViewModel.AddReviewViewModel
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentVideoReviewBinding
@@ -108,6 +110,7 @@ class UploadReviewFragment : Fragment() {
             @SuppressLint("SetTextI18n")
             override fun afterTextChanged(p0: Editable?) {
                 binding.textLen.text = "${p0.toString().length}/최대300자"
+                setButtonColor() //제출 가능한 버튼으로 변형
             }
 
         })
@@ -190,7 +193,26 @@ class UploadReviewFragment : Fragment() {
 
         // 다른 프로덕트 선택으로 이동
         binding.selectProduct.setOnClickListener {
-            activity.changeView(AdditionalProductFragment(),"additional product")
+            activity.changeView(AdditionalProductFragment(),null)
+        }
+
+        binding.commitButton.setOnClickListener {
+            ReviewManager(activity.masterApp,activity.addReviewModel)
+                .addReviewData(binding.reviewText.text.toString(),
+                videoUrl,activity, paramFunc = { successData,errMessage->
+                        if (successData!=null){
+                            Toast.makeText(activity
+                                ,"Review 등록 완료 : ${successData.createTime}"
+                            ,Toast.LENGTH_SHORT).show()
+                        }else{
+                            Toast.makeText(activity
+                                ,"생성 실패 : $errMessage"
+                                ,Toast.LENGTH_SHORT).show()
+                        }
+
+                    })
+            val intent = Intent(activity.applicationContext, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 

@@ -40,8 +40,13 @@ class AdditionalImageAdapter(
                 .load(item.subjectFiles[0])
                 .into(binding.productImage)
 
-            binding.delImage.setOnClickListener {
-                onItemClickListener?.delData(item)
+            // addView type인 경우만 데이터 삭제 가능
+            if (type=="addView") {
+                binding.delImage.setOnClickListener {
+                    onItemClickListener?.delData(item)
+                }
+            }else {
+                binding.delImage.visibility = View.GONE
             }
         }
     }
@@ -56,11 +61,7 @@ class AdditionalImageAdapter(
     override fun getItemCount(): Int = selectData.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if (type=="addView") {
-            holder.bind()
-        }else {
-            binding.delImage.visibility = View.GONE
-        }
+        holder.bind()
     }
 
 }
