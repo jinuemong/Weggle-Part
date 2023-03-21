@@ -103,7 +103,7 @@ interface RetrofitService {
     fun addReView(
         @Path("productId") productId: Int,
         @Part("param") param : BodyReviewForPOST, //body
-        @Part multipartFile : MultipartBody.Part? //image
+        @Part multipartFile : MultipartBody.Part? //video
     ): Call<ReviewData>
 
     //리뷰 좋아요 순으로 얻기

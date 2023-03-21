@@ -2,6 +2,8 @@ package com.puresoftware.bottomnavigationappbar.MyAccount.Manager
 
 import android.app.Activity
 import android.net.Uri
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.puresoftware.bottomnavigationappbar.MyAccount.Model.ReviewData
 import com.puresoftware.bottomnavigationappbar.MyAccount.ViewModel.AddReviewViewModel
 import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
@@ -13,7 +15,8 @@ class ReviewManager(
     private val addReviewModel: AddReviewViewModel
 ) {
     //MultiPart
-    fun addReviewData(reviewText:String, file: Uri?,activity: Activity,
+    @RequiresApi(Build.VERSION_CODES.Q)
+    fun addReviewData(reviewText:String, file: Uri?, activity: Activity,
                       paramFunc: (ReviewData?, String?) -> Unit){
         addReviewModel.uploadReviewPoster(reviewText,file,activity,
             paramFunc = { reviewData, errorMessage ->

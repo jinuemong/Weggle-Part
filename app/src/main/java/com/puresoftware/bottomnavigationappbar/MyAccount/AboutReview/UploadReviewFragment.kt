@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.media.MediaMetadataRetriever
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -18,6 +19,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import com.bumptech.glide.Glide
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
@@ -70,6 +72,7 @@ class UploadReviewFragment : Fragment() {
         onBackPressedCallback.remove()
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.d("VideoReviewFragment:Id ",addReviewModel.reviewProduct?.productId.toString())
@@ -182,6 +185,7 @@ class UploadReviewFragment : Fragment() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     private fun setUpListener(){
         binding.selectVideo.setOnClickListener {
             getVideo()
@@ -204,10 +208,12 @@ class UploadReviewFragment : Fragment() {
                             Toast.makeText(activity
                                 ,"Review 등록 완료 : ${successData.createTime}"
                             ,Toast.LENGTH_SHORT).show()
+                            Log.d("등록성공",successData.createTime)
                         }else{
                             Toast.makeText(activity
                                 ,"생성 실패 : $errMessage"
                                 ,Toast.LENGTH_SHORT).show()
+                            Log.d("등록실패",errMessage.toString())
                         }
 
                     })

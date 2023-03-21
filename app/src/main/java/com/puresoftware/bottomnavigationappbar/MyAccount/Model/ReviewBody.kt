@@ -5,5 +5,5 @@ import java.io.Serializable
 
 class ReviewBody (
     val reviewText  : String,
-    val additionalProduct : ArrayList<Int>?,
-): Serializable
+    val additionalProduct : ArrayList<Int>,
+)

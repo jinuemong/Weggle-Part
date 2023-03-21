@@ -2,7 +2,9 @@ package com.puresoftware.bottomnavigationappbar.MyAccount.ViewModel
 
 import android.app.Activity
 import android.net.Uri
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,7 +13,6 @@ import com.puresoftware.bottomnavigationappbar.MyAccount.Model.BodyReviewForPOST
 import com.puresoftware.bottomnavigationappbar.MyAccount.Model.ReviewBody
 import com.puresoftware.bottomnavigationappbar.MyAccount.Model.ReviewData
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Product
-import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getImageFilePath
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getVideoFilePath
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -68,8 +69,9 @@ class AddReviewViewModel : ViewModel(){
         selectProductData.value?.clear()
     }
 
-    fun uploadReviewPoster( reviewText: String, filePath: Uri?,
-                           activity: Activity,paramFunc:(ReviewData?,String?)->Unit){
+    @RequiresApi(Build.VERSION_CODES.Q)
+    fun uploadReviewPoster(reviewText: String, filePath: Uri?,
+                           activity: Activity, paramFunc:(ReviewData?,String?)->Unit){
         viewModelScope.launch {
             try {
                 //현재 productId
@@ -78,22 +80,17 @@ class AddReviewViewModel : ViewModel(){
                 // id만 추출
                 val addProductIdList = ArrayList<Int>()
                 for (i in selectProductData.value!!){addProductIdList.add(i.productId)}
-
                 val reviewBody = ReviewBody(reviewText,addProductIdList)
                 val body = BodyReviewForPOST(reviewBody)
 
                 val multipartFile : MultipartBody.Part? = if (filePath!=null){
-                    Log.d("test 1",filePath.toString())
                     val path = getVideoFilePath(activity,filePath)
-                    Log.d("test 2",path.toString())
                     val file = File(path)
-                    Log.d("test 3",file.toString())
-                    val imageRequestBody = file.asRequestBody("video".toMediaTypeOrNull())
-                    Log.d("test 4",imageRequestBody.toString())
+                    val videoRequestBody = file.asRequestBody("video/mp4".toMediaTypeOrNull())
                     MultipartBody.Part.createFormData(
                         "multipartFile",
                         file.name,
-                        imageRequestBody
+                        videoRequestBody
                     )
                 }else{null}
 
