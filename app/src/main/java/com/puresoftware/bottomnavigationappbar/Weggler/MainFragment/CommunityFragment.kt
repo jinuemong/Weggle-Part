@@ -1,12 +1,9 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.MainFragment
 
 import android.content.Context
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.PopupMenu
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.puresoftware.bottomnavigationappbar.MainActivity
@@ -14,11 +11,9 @@ import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemPopularPostingTabAdapter
 import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.AddCommunity.AddFreeTalkFragment
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.AddCommunity.AddJointPurchaseFragment
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.TotalFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPostingDetail.TotalFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityFragment.ShellFragment
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.DetailCommunityPostingFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPostingDetail.DetailCommunityPostingFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentCommunityBinding
 
 //커뮤니티 게시판 : 공동 구매 , 프리 토크 구현
@@ -127,7 +122,7 @@ class CommunityFragment : Fragment() {
             setOnItemClickListener(object : ItemPopularPostingTabAdapter.OnItemClickListener{
                 override fun onItemClick(item: ReviewInCommunity) {
                     mainActivity.changeFragment(DetailCommunityPostingFragment.newInstance(item.reviewId,"main"))
-                    mainActivity.setMainViewVisibility(false)
+
                 }
 
             })

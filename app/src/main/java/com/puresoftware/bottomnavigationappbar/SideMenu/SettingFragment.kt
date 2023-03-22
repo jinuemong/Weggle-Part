@@ -85,8 +85,8 @@ class SettingFragment : Fragment() {
                 override fun onItemClick() {
                     val userManager =UserManager(mainActivity.masterApp)
                     userManager.getUser(paramFun = { user1,message1->
-                        if (user1!=null && user1.body.name!=null){
-                            userManager.userDelete(user1.body.name!!, paramFun = { user2,message2->
+                        if (user1?.name != null){
+                            userManager.userDelete(user1.name, paramFun = { user2,message2->
                                 if (user2!=null){
                                     messageBox.dismissNow()
                                     mainActivity.finishAffinity()

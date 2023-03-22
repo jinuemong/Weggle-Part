@@ -67,9 +67,9 @@ class CommunityViewModel :ViewModel(){
 
     //내 포스팅 데이터 수정
     fun updateMyPostingData(currentData:ReviewInCommunity, newData:ReviewInCommunity){
-        val index = communityLiveData.value?.indexOf(currentData)
+        val index = myPostingLiveData.value?.indexOf(currentData)
         if (index != null) {
-            communityLiveData.value?.set(index,newData)
+            myPostingLiveData.value?.set(index,newData)
         }
     }
 

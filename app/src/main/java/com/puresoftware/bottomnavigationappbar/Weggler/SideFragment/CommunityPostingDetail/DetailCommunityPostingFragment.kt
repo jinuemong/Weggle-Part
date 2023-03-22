@@ -1,11 +1,10 @@
-package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting
+package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPostingDetail
 
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Message
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -57,6 +56,9 @@ class DetailCommunityPostingFragment : Fragment() {
         arguments?.let {
             reviewId = it.getInt("reviewId", -1)
             type = it.getString("type", null)
+            if (type=="main"){
+                mainActivity.setMainViewVisibility(false)
+            }
         }
     }
 

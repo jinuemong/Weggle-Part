@@ -15,10 +15,10 @@ import kotlin.collections.ArrayList
 //공구
 class ItemCommunitySmallAdapterJoint(
     private val mainActivity: MainActivity,
-    private var dataSet: ArrayList<ReviewInCommunity>,
+    dataSet: ArrayList<ReviewInCommunity>,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var jointBinding: ItemCommunitySmallJointBinding
-
+    private var dataList = dataSet
     private var onItemClickListener : OnItemClickListener? = null
 
     interface OnItemClickListener{
@@ -41,13 +41,13 @@ class ItemCommunitySmallAdapterJoint(
         (holder as JointViewHolder).bind()
     }
 
-    override fun getItemCount() = dataSet.size
+    override fun getItemCount() = dataList.size
 
     inner class JointViewHolder(private val jointBinding: ItemCommunitySmallJointBinding) :
         RecyclerView.ViewHolder(jointBinding.root) {
         @SuppressLint("SimpleDateFormat")
         fun bind() {
-            val data = dataSet[absoluteAdapterPosition]
+            val data = dataList[absoluteAdapterPosition]
             if (data.body.type== type_joint) {
                 jointBinding.timeText.text = getTimeText(data.createTime)
                 jointBinding.sujectText.text = data.body.subject
@@ -71,7 +71,7 @@ class ItemCommunitySmallAdapterJoint(
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(data :ArrayList<ReviewInCommunity>){
-        dataSet = data
+        dataList = data
         notifyDataSetChanged()
     }
 }

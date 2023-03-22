@@ -9,7 +9,7 @@
     android:focusable="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Weggler.SideFragment.CommunityPosting.JointPurchaseFragment">
+    tools:context=".Weggler.SideFragment.CommunityPostingDetail.JointPurchaseFragment">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/total_recycler"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

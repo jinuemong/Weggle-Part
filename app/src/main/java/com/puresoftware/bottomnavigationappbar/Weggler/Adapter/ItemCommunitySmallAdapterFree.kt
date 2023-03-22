@@ -16,10 +16,10 @@ import kotlin.collections.ArrayList
 //프리
 class ItemCommunitySmallAdapterFree(
     private val mainActivity: MainActivity,
-    private var dataSet : ArrayList<ReviewInCommunity>,
+    dataSet : ArrayList<ReviewInCommunity>,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var freeBinding: ItemCommunitySmallFreeBinding
-
+    private var dataList = dataSet
     private var onItemClickListener : OnItemClickListener? = null
 
     interface OnItemClickListener{
@@ -43,14 +43,14 @@ class ItemCommunitySmallAdapterFree(
         (holder as FreeViewHolder).bind()
     }
 
-    override fun getItemCount() = dataSet.size
+    override fun getItemCount() = dataList.size
 
 
     inner class FreeViewHolder(private val freeBinding: ItemCommunitySmallFreeBinding) :
         RecyclerView.ViewHolder(freeBinding.root) {
         @SuppressLint("SimpleDateFormat")
         fun bind() {
-            val data = dataSet[absoluteAdapterPosition]
+            val data = dataList[absoluteAdapterPosition]
             if(data.body.type== type_free) {
                 freeBinding.timeText.text = getTimeText(data.createTime)
                 freeBinding.sujectText.text = data.body.subject
@@ -75,7 +75,7 @@ class ItemCommunitySmallAdapterFree(
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(data :ArrayList<ReviewInCommunity>){
-        dataSet = data
+        dataList = data
         notifyDataSetChanged()
     }
 

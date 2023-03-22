@@ -11,9 +11,9 @@ import androidx.fragment.app.FragmentManager
 import com.google.android.material.tabs.TabLayout
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.FreeTalkFragment
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.JointPurchaseFragment
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.TotalFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPostingDetail.FreeTalkFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPostingDetail.JointPurchaseFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPostingDetail.TotalFragment
 import com.puresoftware.bottomnavigationappbar.databinding.SelectDetailsTabBinding
 
 //selectPosition  : 포스팅 , 댓글

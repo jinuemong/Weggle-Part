@@ -10,5 +10,7 @@ class Comment(
     var body: String,
     var likeCount : Int = 0,
     var createTime: String,
-    var updateTime: String
+    var updateTime: String,
+    var commentPost : ReviewInCommunity?,
+    // 어떤 리뷰의 댓글인지 구분용
 ) : Serializable

@@ -2,7 +2,6 @@ package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityFr
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,9 +12,8 @@ import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.AddCommunity.AddFreeTalkFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.AddCommunity.AddJointPurchaseFragment
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.DetailCommunityPostingFragment
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.FreeTalkFragment
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPosting.JointPurchaseFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPostingDetail.FreeTalkFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPostingDetail.JointPurchaseFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentShellBinding
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
 
