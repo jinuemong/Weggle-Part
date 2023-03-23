@@ -19,14 +19,14 @@ import com.puresoftware.bottomnavigationappbar.databinding.FragmentJointPurchase
 //공구해요
 
 class JointPurchaseFragment() : Fragment() {
-    private var _binding : FragmentJointPurchaseBinding? = null
-    private val binding get()=_binding!!
+    private var _binding: FragmentJointPurchaseBinding? = null
+    private val binding get() = _binding!!
     private var selectPosition: String? = null
     private lateinit var mainActivity: MainActivity
     private lateinit var fm: FragmentManager
 
-    private lateinit var postingAdapter : ItemCommunitySmallAdapterJoint
-    private lateinit var commentAdapter : ItemMyCommentAdapter
+    private lateinit var postingAdapter: ItemCommunitySmallAdapterJoint
+    private lateinit var commentAdapter: ItemMyCommentAdapter
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
@@ -36,7 +36,7 @@ class JointPurchaseFragment() : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            selectPosition = it.getString("selectPosition",null)
+            selectPosition = it.getString("selectPosition", null)
         }
     }
 
@@ -44,14 +44,14 @@ class JointPurchaseFragment() : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding=FragmentJointPurchaseBinding.inflate(inflater,container,false)
+        _binding = FragmentJointPurchaseBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        postingAdapter  = ItemCommunitySmallAdapterJoint(mainActivity, arrayListOf())
-        commentAdapter =ItemMyCommentAdapter(mainActivity, arrayListOf())
+        postingAdapter = ItemCommunitySmallAdapterJoint(mainActivity, arrayListOf())
+        commentAdapter = ItemMyCommentAdapter(mainActivity, arrayListOf())
 
 
         // 게시물 데이터 설정 (옵저버로 관찰)
@@ -102,32 +102,43 @@ class JointPurchaseFragment() : Fragment() {
         _binding = null
     }
 
-    private fun setPostingAdapterListener(){
+    private fun setPostingAdapterListener() {
         postingAdapter.apply {
-            setOnItemClickListener(object : ItemCommunitySmallAdapterJoint.OnItemClickListener{
+            setOnItemClickListener(object : ItemCommunitySmallAdapterJoint.OnItemClickListener {
                 override fun onItemClick(item: ReviewInCommunity) {
-                    mainActivity.changeFragment(DetailCommunityPostingFragment.newInstance(item.reviewId,"sub"))
+                    mainActivity.changeFragment(
+                        DetailCommunityPostingFragment.newInstance(
+                            item.reviewId,
+                            "sub"
+                        )
+                    )
                 }
 
             })
         }
     }
-    private fun setCommentAdapterListener(){
+
+    private fun setCommentAdapterListener() {
         commentAdapter.apply {
-            setOnItemClickListener(object :ItemMyCommentAdapter.OnItemClickListener{
-                override fun itemClick(reviewId :Int) { //클릭 시 동작
-                    mainActivity.changeFragment(DetailCommunityPostingFragment.newInstance(reviewId,"sub"))
+            setOnItemClickListener(object : ItemMyCommentAdapter.OnItemClickListener {
+                override fun itemClick(reviewId: Int) { //클릭 시 동작
+                    mainActivity.changeFragment(
+                        DetailCommunityPostingFragment.newInstance(
+                            reviewId,
+                            "sub"
+                        )
+                    )
                 }
 
             })
         }
     }
 
-    companion object{
-        fun newInstance(selectPosition: String)=
+    companion object {
+        fun newInstance(selectPosition: String) =
             JointPurchaseFragment().apply {
-                arguments= Bundle().apply {
-                    putString("selectPosition",selectPosition)
+                arguments = Bundle().apply {
+                    putString("selectPosition", selectPosition)
                 }
             }
     }

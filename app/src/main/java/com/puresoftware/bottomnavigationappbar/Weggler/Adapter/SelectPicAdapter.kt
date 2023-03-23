@@ -14,7 +14,7 @@ import com.puresoftware.bottomnavigationappbar.databinding.ItemPictureBinding
 //사진 선택
 class SelectPicAdapter(
     private val mainActivity: MainActivity,
-    private val itemList: ArrayList<Uri>,
+    private val itemList:List<Uri>,
 ) : RecyclerView.Adapter<SelectPicAdapter.SelectPicViewHolder>() {
 
     private lateinit var binding: ItemPictureBinding
@@ -32,6 +32,7 @@ class SelectPicAdapter(
             @SuppressLint("NotifyDataSetChanged")
             fun bind(){
                 val item = itemList[absoluteAdapterPosition]
+                Log.d("item",item.toString())
                 Glide.with(mainActivity)
                     .load(item)
                     .into(binding.checkImage)

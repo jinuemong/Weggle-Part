@@ -6,22 +6,17 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.slidingpanelayout.widget.SlidingPaneLayout
 import com.bumptech.glide.Glide
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import com.puresoftware.bottomnavigationappbar.MainActivity
-import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.SelectPicAdapter
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityFragment.ShellFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentGallerySlideBinding
-import com.sothree.slidinguppanel.SlidingUpPanelLayout
 
 class GallerySlideFragment : Fragment() {
     private var _binding : FragmentGallerySlideBinding? = null
@@ -58,7 +53,7 @@ class GallerySlideFragment : Fragment() {
 
             //권한 성공
             override fun onPermissionGranted() {
-                val uriList = getAllShownImagesPath()
+                val uriList = openFileList()
                 val adapter = SelectPicAdapter(mainActivity,uriList)
 
                 //어댑터 연결 후 아이템 클릭 리스너 적용
@@ -102,12 +97,17 @@ class GallerySlideFragment : Fragment() {
         _binding = null
     }
 
-
+    private fun openFileList(): List<Uri> {
+        val image = getAllShownImagesPath()
+        val video = getAllShownVideosPath()
+        return image.plus(video)
+    }
     @SuppressLint("Recycle")
     private fun getAllShownImagesPath(): ArrayList<Uri>{
         val uriList = ArrayList<Uri>()
         //현재 얻은 uri
         val uriExternal : Uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+
         var columnIndexId : Int
         var imageId : Long
         val cursor = mainActivity.contentResolver.query(
@@ -127,6 +127,34 @@ class GallerySlideFragment : Fragment() {
         }
         return uriList
     }
+
+    @SuppressLint("Recycle")
+    private fun getAllShownVideosPath(): ArrayList<Uri>{
+        val uriList = ArrayList<Uri>()
+        //현재 얻은 uri
+        val uriExternal : Uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI
+
+        var columnIndexId : Int
+        var videoId : Long
+        val cursor = mainActivity.contentResolver.query(
+            MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
+            null,null,null,
+            MediaStore.Video.VideoColumns.DATE_TAKEN + " DESC"
+        )
+        //사진 경로 하나씩 가져오기
+        if (cursor!=null){
+            while (cursor.moveToNext()){
+                columnIndexId = cursor.getColumnIndexOrThrow(MediaStore.Video.Media._ID)
+                videoId = cursor.getLong(columnIndexId)
+                val uriImage = Uri.withAppendedPath(uriExternal, "" + videoId)
+                uriList.add(uriImage)
+            }
+            cursor.close()
+        }
+        return uriList
+    }
+
+
     @SuppressLint("ResourceType")
     private fun setUpListener(){
         //뒤로가기

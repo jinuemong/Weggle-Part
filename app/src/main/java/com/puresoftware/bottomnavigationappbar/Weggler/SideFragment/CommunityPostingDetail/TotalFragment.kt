@@ -23,7 +23,7 @@ class TotalFragment() : Fragment() {
     private val binding get() = _binding!!
     private lateinit var mainActivity: MainActivity
     private lateinit var fm: FragmentManager
-    private lateinit var postingAdapter : ItemCommunitySmallAdapterFree
+    private lateinit var postingAdapter : ItemCommunitySmallAdapterTotal
     private lateinit var commentAdapter : ItemMyCommentAdapter
 
     override fun onAttach(context: Context) {
@@ -53,7 +53,7 @@ class TotalFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        postingAdapter  =ItemCommunitySmallAdapterFree(mainActivity, arrayListOf())
+        postingAdapter  =ItemCommunitySmallAdapterTotal(mainActivity, arrayListOf())
         commentAdapter =ItemMyCommentAdapter(mainActivity, arrayListOf())
 
 
@@ -101,7 +101,7 @@ class TotalFragment() : Fragment() {
 
     private fun setPostingAdapterListener(){
         postingAdapter.apply {
-            setOnItemClickListener(object : ItemCommunitySmallAdapterFree.OnItemClickListener{
+            setOnItemClickListener(object : ItemCommunitySmallAdapterTotal.OnItemClickListener{
                 override fun onItemClick(item: ReviewInCommunity) {
                     if (selectPosition =="Main Posting"){
                         mainActivity.changeFragment(DetailCommunityPostingFragment.newInstance(item.reviewId,"main"))

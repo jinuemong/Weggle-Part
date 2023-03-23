@@ -1,6 +1,7 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.Manager
 
 import android.app.Activity
+import android.graphics.Bitmap
 import android.net.Uri
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.MultiCommunityDataBody
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
@@ -37,14 +38,20 @@ class CommunityManagerWithReview(
     }
 
     //MultiPart로 데이터 추가
-    fun addCommunityReview(productId: Int, multiCommunityData: MultiCommunityDataBody, file: Uri?,
-                           activity: Activity, paramFunc: (ReviewInCommunity?,String?) -> Unit){
-        MultiPartViewModel().uploadCommunityPoster(productId,multiCommunityData,
+    fun addCommunityReviewTypeFree(productId: Int, multiCommunityData: MultiCommunityDataBody, file: Uri?,
+                                   activity: Activity, paramFunc: (ReviewInCommunity?,String?) -> Unit){
+        MultiPartViewModel().uploadCommunityFreeTalk(productId,multiCommunityData,
             file, activity, paramFunc = {  data,message->
                 paramFunc(data,message)
         })
     }
-
+    fun addCommunityReviewTypeGroup(productId: Int, multiCommunityData: MultiCommunityDataBody, file: Bitmap?,
+                                    fileName:String,activity: Activity, paramFunc: (ReviewInCommunity?,String?) -> Unit){
+        MultiPartViewModel().uploadCommunityGroupBuy(productId,multiCommunityData,
+            file, fileName,activity, paramFunc = {  data,message->
+                paramFunc(data,message)
+            })
+    }
     //좋아요 순으로 커뮤 데이터 얻기
     fun getCommunityReviewListByLike(productId: Int,paramFunc: (ArrayList<ReviewInCommunity>?, String?) -> Unit){
         wApp.service.getReviewsByLike(productId)

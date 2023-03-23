@@ -1,6 +1,12 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.Adapter
 
 import android.annotation.SuppressLint
+import android.graphics.Color
+import android.graphics.Typeface
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,12 +39,29 @@ class ItemProductDetailAdapter(
             fun bind(){
                 val item = itemList[absoluteAdapterPosition]
 
+                //검색 글자 변환
+                val spannableString = SpannableString(item.name)
+                val startIndex = spannableString.indexOf(changeText)
+
+                if (startIndex >= 0) {
+                    spannableString.setSpan(
+                        ForegroundColorSpan(Color.parseColor("#E60FAB")),
+                        startIndex, (startIndex + changeText.length),
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                    spannableString.setSpan(
+                        StyleSpan(Typeface.BOLD),
+                        startIndex, (startIndex + changeText.length),
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                    binding.name.text = spannableString
+                }
+
                 if (type=="no category"){binding.category.visibility = View.GONE}
                 Glide.with(mainActivity)
                     .load(item.subjectFiles[0])
                     .into(binding.image)
                 binding.company.text = item.body.company
-                binding.name.text = item.name
                 binding.salePer.text = "${item.body.discount}%"
                 val decimal = DecimalFormat("#,###")
                 binding.salePrice.text = "${decimal.format(item.body.price)}원"

@@ -1,7 +1,9 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPostingDetail
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.LocusId
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -12,8 +14,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.puresoftware.bottomnavigationappbar.MainActivity
+import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.ProductManager
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemCommentAdapter
 import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
 import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityCommentManager
@@ -23,6 +27,9 @@ import com.puresoftware.bottomnavigationappbar.Weggler.Unit.MessageFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getTimeText
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.isVideo
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentDetailCommunityPostingBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.text.DecimalFormat
 
 //type : MainFragment에서 왔다면 setMainViewVisibility (뷰 감추기 )
 class DetailCommunityPostingFragment : Fragment() {
@@ -56,7 +63,7 @@ class DetailCommunityPostingFragment : Fragment() {
         arguments?.let {
             reviewId = it.getInt("reviewId", -1)
             type = it.getString("type", null)
-            if (type=="main"){
+            if (type=="main"){ //main에서 왔다면 뷰 숨기기
                 mainActivity.setMainViewVisibility(false)
             }
         }
@@ -93,23 +100,28 @@ class DetailCommunityPostingFragment : Fragment() {
                     binding.createTime.text = getTimeText(posting.createTime)
                     binding.likeNum.text = posting.likeCount.toString()
 
-                    if (posting.body.type == 1) { setType1()
-                    } else { setType2() }
-
-                    //비디오인지 이미지인지 판별
-                    if (isVideo(posting.resource) == null) {
-                        setNotRe()
+                    if (posting.body.type == 1) {
+                        setType1()
+                        setNotRe() // 프로덕트는 이미지 x
                     } else {
-                        if (isVideo(posting.resource) == true) {
-                            setVideo()
-                            binding.videoView.setVideoPath(posting.resource)
+                        setType2()
+                        //비디오인지 이미지인지 판별
+                        if (isVideo(posting.resource) == null) {
+                            setNotRe()
                         } else {
-                            setImage()
-                            Glide.with(mainActivity)
-                                .load(posting.resource)
-                                .into(binding.imageView)
+                            if (isVideo(posting.resource) == true) {
+                                setVideo()
+                                binding.videoView.setVideoPath(posting.resource)
+
+                            } else {
+                                setImage()
+                                Glide.with(mainActivity)
+                                    .load(posting.resource)
+                                    .into(binding.imageView)
+                            }
                         }
                     }
+
 
                     //Url 구분
                     if (posting.body.linkUrl == "") {
@@ -118,19 +130,14 @@ class DetailCommunityPostingFragment : Fragment() {
                         binding.linkUrl.text = posting.body.linkUrl
                     }
 
-                    commentAdapter = ItemCommentAdapter(mainActivity, arrayListOf())
-                    binding.commentView.commentList.adapter = commentAdapter
+                    //product 구분
+                    if (posting.body.jointProductId>=0){
+                        setJointProduct(posting.body.jointProductId)
+                    }else{
+                        binding.groupBuyProduct.visibility = View.GONE
+                    }
 
-                    communityComment.getReviewCommentList(
-                        posting.reviewId,
-                        paramFunc = { data, message ->
-                            if (message == null) {
-                                commentAdapter.setData(data!!)
-                                binding.commentNum.text = commentAdapter.itemCount.toString()
-                            } else {
-                                Toast.makeText(mainActivity, message, Toast.LENGTH_SHORT).show()
-                            }
-                        })
+                    initComment(posting.reviewId)
                     setUpListener(posting)
                 } else {
                     // 존재하지 않는 경우
@@ -156,7 +163,7 @@ class DetailCommunityPostingFragment : Fragment() {
             }
         }
 
-        //링크 클릭
+        //링크 클릭 - 외부로 연결
         binding.linkUrl.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(posting.body.linkUrl))
             startActivity(intent)
@@ -168,6 +175,49 @@ class DetailCommunityPostingFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
+    private fun setJointProduct(productId: Int){
+        ProductManager(mainActivity.masterApp)
+            .getProductFromProductId(productId, paramFun = {item,_->
+                if (item!=null){
+                    //view visible 세팅
+                    binding.groupBuyProduct.visibility = View.VISIBLE
+
+                    item.subjectFiles[0].let {
+                        Glide.with(mainActivity)
+                            .load(it)
+                            .into(binding.productImage)
+                    }
+                    binding.productCompany.text = item.body.company
+                    binding.productName.text = item.name
+                    binding.salePer.text = "${item.body.discount}%"
+                    val decimal = DecimalFormat("#,###")
+                    binding.salePrice.text = "${decimal.format(item.body.price)}원"
+
+                    binding.groupBuyProduct.setOnClickListener {
+                        //프로덕트 뷰로 이동
+                    }
+                }else{
+                    binding.groupBuyProduct.visibility = View.GONE
+                }
+            })
+    }
+
+    private fun initComment(reviewId: Int){
+        commentAdapter = ItemCommentAdapter(mainActivity, arrayListOf())
+        binding.commentView.commentList.adapter = commentAdapter
+
+        communityComment.getReviewCommentList(
+            reviewId,
+            paramFunc = { data, message ->
+                if (message == null) {
+                    commentAdapter.setData(data!!)
+                    binding.commentNum.text = commentAdapter.itemCount.toString()
+                } else {
+                    Toast.makeText(mainActivity, message, Toast.LENGTH_SHORT).show()
+                }
+            })
+    }
     private fun addComment() {
         binding.commentEdit.apply {
             if (text.toString() != "") {

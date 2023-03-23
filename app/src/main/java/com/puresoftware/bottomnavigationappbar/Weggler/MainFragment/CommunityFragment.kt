@@ -46,7 +46,7 @@ class CommunityFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initView()
 
-        // 버튼 위치 조정
+        // 커뮤니티 추가 기능
         binding.addButton.setOnClickListener {
 
             val popupMenu = PopupMenu(context,it)
@@ -130,9 +130,21 @@ class CommunityFragment : Fragment() {
 
         //인기 포스팅 변화 시 갱신
         mainActivity.communityViewModel.popularPostingLiveData.observe(mainActivity, Observer {
-            val data = mainActivity.communityViewModel.popularPostingLiveData.value
-            val dataList = if (data!!.size >= 4) data.subList(0, 4) else data
-            popularAdapter.setData(dataList)
+            val data = mainActivity.communityViewModel.popularPostingLiveData.value!!
+            val freeData = ArrayList<ReviewInCommunity>()
+            val joinData = ArrayList<ReviewInCommunity>()
+            for (i in data){
+                if(i.body.type==1 && joinData.size<2){
+                    joinData.add(i)
+                }
+                if (i.body.type==2 && freeData.size<2){
+                    freeData.add(i)
+                }
+                if (freeData.size+joinData.size==4){
+                    break
+                }
+            }
+            popularAdapter.setData(joinData.plus(freeData))
         })
     }
 }
