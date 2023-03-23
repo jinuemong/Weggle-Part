@@ -4,18 +4,22 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.LocusId
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
-import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.ProductManager
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemCommentAdapter
@@ -27,8 +31,6 @@ import com.puresoftware.bottomnavigationappbar.Weggler.Unit.MessageFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getTimeText
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.isVideo
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentDetailCommunityPostingBinding
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import java.text.DecimalFormat
 
 //type : MainFragment에서 왔다면 setMainViewVisibility (뷰 감추기 )
@@ -42,12 +44,12 @@ class DetailCommunityPostingFragment : Fragment() {
     private lateinit var commentAdapter: ItemCommentAdapter
     private lateinit var communityComment: CommunityCommentManager
     private lateinit var communityPost: CommunityManagerWithReview
-    private lateinit var callback:OnBackPressedCallback
+    private lateinit var callback: OnBackPressedCallback
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
         wegglerApp = mainActivity.masterApp
-        callback = object : OnBackPressedCallback(true){
+        callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 mainActivity.goBackFragment(this@DetailCommunityPostingFragment)
                 if (type == "main") {
@@ -55,7 +57,7 @@ class DetailCommunityPostingFragment : Fragment() {
                 }
             }
         }
-        requireActivity().onBackPressedDispatcher.addCallback(this,callback)
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,7 +65,7 @@ class DetailCommunityPostingFragment : Fragment() {
         arguments?.let {
             reviewId = it.getInt("reviewId", -1)
             type = it.getString("type", null)
-            if (type=="main"){ //main에서 왔다면 뷰 숨기기
+            if (type == "main") { //main에서 왔다면 뷰 숨기기
                 mainActivity.setMainViewVisibility(false)
             }
         }
@@ -104,20 +106,23 @@ class DetailCommunityPostingFragment : Fragment() {
                         setType1()
                         setNotRe() // 프로덕트는 이미지 x
                     } else {
+                        // 프리토크
                         setType2()
-                        //비디오인지 이미지인지 판별
-                        if (isVideo(posting.resource) == null) {
-                            setNotRe()
-                        } else {
-                            if (isVideo(posting.resource) == true) {
+                        when (isVideo(posting.resource)) {
+                            true -> {
+                                //video
                                 setVideo()
-                                binding.videoView.setVideoPath(posting.resource)
-
-                            } else {
+                                videoPlaySetting(posting)
+                            }
+                            false -> {
+                                //image
                                 setImage()
                                 Glide.with(mainActivity)
                                     .load(posting.resource)
                                     .into(binding.imageView)
+                            }
+                            else -> {
+                                setNotRe() // null
                             }
                         }
                     }
@@ -131,9 +136,9 @@ class DetailCommunityPostingFragment : Fragment() {
                     }
 
                     //product 구분
-                    if (posting.body.jointProductId>=0){
+                    if (posting.body.jointProductId >= 0) {
                         setJointProduct(posting.body.jointProductId)
-                    }else{
+                    } else {
                         binding.groupBuyProduct.visibility = View.GONE
                     }
 
@@ -144,7 +149,7 @@ class DetailCommunityPostingFragment : Fragment() {
                     val messageBox = MessageFragment.newInstance("존재하지 않는 게시물 입니다. $message")
                     messageBox.show(mainActivity.fragmentManager!!, null)
                     messageBox.apply {
-                        setItemClickListener(object :MessageFragment.OnItemClickListener{
+                        setItemClickListener(object : MessageFragment.OnItemClickListener {
                             override fun onItemClick() {
                                 mainActivity.goBackFragment(this@DetailCommunityPostingFragment)
                             }
@@ -176,10 +181,10 @@ class DetailCommunityPostingFragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun setJointProduct(productId: Int){
+    private fun setJointProduct(productId: Int) {
         ProductManager(mainActivity.masterApp)
-            .getProductFromProductId(productId, paramFun = {item,_->
-                if (item!=null){
+            .getProductFromProductId(productId, paramFun = { item, _ ->
+                if (item != null) {
                     //view visible 세팅
                     binding.groupBuyProduct.visibility = View.VISIBLE
 
@@ -197,13 +202,13 @@ class DetailCommunityPostingFragment : Fragment() {
                     binding.groupBuyProduct.setOnClickListener {
                         //프로덕트 뷰로 이동
                     }
-                }else{
+                } else {
                     binding.groupBuyProduct.visibility = View.GONE
                 }
             })
     }
 
-    private fun initComment(reviewId: Int){
+    private fun initComment(reviewId: Int) {
         commentAdapter = ItemCommentAdapter(mainActivity, arrayListOf())
         binding.commentView.commentList.adapter = commentAdapter
 
@@ -218,6 +223,49 @@ class DetailCommunityPostingFragment : Fragment() {
                 }
             })
     }
+
+    private fun videoPlaySetting(posting: ReviewInCommunity) {
+        binding.videoView.apply {
+            layoutParams = binding.videoContainer.layoutParams
+            setVideoURI(Uri.parse(posting.resource))
+            setMediaController(null)
+
+            //썸네일 넣기
+            getThumbnail(posting.thumbnail)
+
+            setOnClickListener {
+                binding.videoView.setBackgroundResource(0)
+                if (this.isPlaying) {
+                    binding.playButton.visibility = View.VISIBLE
+                    pause()
+                } else {
+                    binding.playButton.visibility = View.GONE
+                    start()
+                }
+            }
+            setOnCompletionListener {
+                binding.playButton.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    //back ground 이미지로 썸네일 넣기
+    private fun getThumbnail(path: String) {
+        Glide.with(mainActivity)
+            .load(path)
+            .into(object : CustomTarget<Drawable>() {
+                override fun onResourceReady(
+                    resource: Drawable,
+                    transition: Transition<in Drawable>?
+                ) {
+                    val layout = binding.videoView
+                    layout.background = resource
+                }
+
+                override fun onLoadCleared(placeholder: Drawable?) {}
+            })
+    }
+
     private fun addComment() {
         binding.commentEdit.apply {
             if (text.toString() != "") {
@@ -246,9 +294,10 @@ class DetailCommunityPostingFragment : Fragment() {
     }
 
     // Like or UnLike
-    private fun commitLike(){
+    private fun commitLike() {
 
     }
+
     private fun setType1() {
         binding.type1.visibility = View.VISIBLE
         binding.type2.visibility = View.GONE
@@ -260,18 +309,18 @@ class DetailCommunityPostingFragment : Fragment() {
     }
 
     private fun setImage() {
-        binding.imageView.visibility = View.VISIBLE
-        binding.videoView.visibility = View.GONE
+        binding.imageContainer.visibility = View.VISIBLE
+        binding.videoContainer.visibility = View.GONE
     }
 
     private fun setVideo() {
-        binding.videoView.visibility = View.VISIBLE
-        binding.imageView.visibility = View.GONE
+        binding.videoContainer.visibility = View.VISIBLE
+        binding.imageContainer.visibility = View.GONE
     }
 
     private fun setNotRe() {
-        binding.videoView.visibility = View.GONE
-        binding.imageView.visibility = View.GONE
+        binding.videoContainer.visibility = View.GONE
+        binding.imageContainer.visibility = View.GONE
     }
 
     companion object {

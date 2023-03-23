@@ -3,15 +3,19 @@ package com.puresoftware.bottomnavigationappbar.Weggler.ViewModel
 import android.app.Activity
 import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Build
 import android.util.Base64
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.MultiCommunityDataBody
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.BodyReviewForCommunityPOST
+import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getFilePath
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getImageFilePath
+import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getVideoFilePath
 import kotlinx.coroutines.launch
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaType
@@ -32,6 +36,7 @@ import java.lang.Exception
 //Multi Part 형식 (이미지 + body)으로 보낼 때 필요
 
 class MultiPartViewModel: ViewModel(){
+    @RequiresApi(Build.VERSION_CODES.Q)
     fun uploadCommunityFreeTalk(productId:Int, multiCommunityData: MultiCommunityDataBody, filePath : Uri?,
                                 activity: Activity, paramFunc:(ReviewInCommunity?,String?)->Unit){
         viewModelScope.launch {
@@ -39,17 +44,29 @@ class MultiPartViewModel: ViewModel(){
 
                 val body = BodyReviewForCommunityPOST(multiCommunityData)
 
-                //이미지 처리
+                // 비디오 데이터라면 비디오로 변환 or image
                 val multipartFile : MultipartBody.Part? = if (filePath!=null) {
-                    val path = getImageFilePath(activity, filePath)
-                    val file = File(path)
-                    val imageRequestBody = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
-                    //이미지 데이터 생성
-                    MultipartBody.Part.createFormData(
-                        "multipartFile",
-                        file.name,
-                        imageRequestBody
-                    )
+                    if (filePath.toString().contains("video")){
+                        val path = getVideoFilePath(activity,filePath)
+                        val file = File(path)
+                        val videoRequestBody = file.asRequestBody("video/mp4".toMediaTypeOrNull())
+                        // 비디오 데이터 생성
+                        MultipartBody.Part.createFormData(
+                            "multipartFile",
+                            file.name,
+                            videoRequestBody
+                        )
+                    }else {
+                        val path = getImageFilePath(activity, filePath)
+                        val file = File(path)
+                        val imageRequestBody = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+                        //이미지 데이터 생성
+                        MultipartBody.Part.createFormData(
+                            "multipartFile",
+                            file.name,
+                            imageRequestBody
+                        )
+                    }
 
                 }else{ null } //이미지가 없다면 null 처리
 

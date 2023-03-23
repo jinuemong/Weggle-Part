@@ -3,6 +3,7 @@ package com.puresoftware.bottomnavigationappbar.SideMenu
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.UserManager
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -55,8 +56,8 @@ class SettingFragment : Fragment() {
         binding.logout.setOnClickListener {
             // 로그아웃
             UserManager(mainActivity.masterApp)
-                .userLogout(paramFun = { success,error->
-                    if (success!=null){
+                .userLogout(paramFun = { _,error->
+                    if (error==null){
                         //토큰 데이터 삭제 후 이동
                         val sp  =mainActivity.getSharedPreferences("login_sp",Context.MODE_PRIVATE)
                         val editor = sp.edit()
@@ -68,7 +69,8 @@ class SettingFragment : Fragment() {
                         intent.putExtra("logout",true)
                         startActivity(intent)
                     }else{
-                        getLogoutMessage(error)
+                        Log.d("error",error.toString())
+                        getLogoutMessage()
                     }
                 })
         }
@@ -107,8 +109,8 @@ class SettingFragment : Fragment() {
     }
 
 
-    private fun getLogoutMessage(message:String?){
-        val messageBox = MessageFragment.newInstance("로그아웃 할 수 없습니다. 앱을 종료 하시겠습니까? ${message.toString()}")
+    private fun getLogoutMessage(){
+        val messageBox = MessageFragment.newInstance("로그아웃 실패\n앱을 종료 하시겠습니까?")
         messageBox.show(mainActivity.fragmentManager!!, null)
         messageBox.apply {
             setItemClickListener(object : MessageFragment.OnItemClickListener{

@@ -1,12 +1,5 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.Adapter
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.puresoftware.bottomnavigationappbar.MainActivity
-import com.puresoftware.bottomnavigationappbar.MyAccount.Model.Profile
-import com.puresoftware.bottomnavigationappbar.databinding.ItemMiniProfileBinding
 //
 //class ItemMiniProfileAdapter(
 //    itemList : ArrayList<Profile>,

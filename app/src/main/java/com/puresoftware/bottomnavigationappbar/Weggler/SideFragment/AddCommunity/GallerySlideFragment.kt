@@ -16,6 +16,7 @@ import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.SelectPicAdapter
+import com.puresoftware.bottomnavigationappbar.Weggler.Unit.isVideo
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentGallerySlideBinding
 
 class GallerySlideFragment : Fragment() {
@@ -48,6 +49,8 @@ class GallerySlideFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setImageView()
+
         //권한 설정 리스너 선언
         readGalleryListener = object :PermissionListener{
 
@@ -60,14 +63,35 @@ class GallerySlideFragment : Fragment() {
                 binding.imageRecycler.adapter = adapter.apply {
                     setOnItemClickListener(object : SelectPicAdapter.OnItemClickListener{
                         override fun onItemClick(imageUri: Uri?) {
-                            super.onItemClick(imageUri)
                             currentUri = imageUri
                             if(currentUri==null){
                                 binding.selectImage.setImageResource(0)
                             }else {
-                                Glide.with(mainActivity)
-                                    .load(currentUri)
-                                    .into(binding.selectImage)
+                                if (currentUri.toString().contains("video")){
+                                    setVideoView()
+                                    binding.selectVideo.apply {
+                                        layoutParams = binding.videoContainer.layoutParams
+                                        setVideoURI(currentUri)
+                                        setMediaController(null)
+                                        setOnClickListener {
+                                            if (this.isPlaying){
+                                                binding.playButton.visibility = View.VISIBLE
+                                                pause()
+                                            }else {
+                                                binding.playButton.visibility = View.GONE
+                                                start()
+                                            }
+                                        }
+                                        setOnCompletionListener {
+                                            binding.playButton.visibility = View.VISIBLE
+                                        }
+                                    }
+                                }else {
+                                    setImageView()
+                                    Glide.with(mainActivity)
+                                        .load(currentUri)
+                                        .into(binding.selectImage)
+                                }
                             }
                         }
                     })
@@ -100,7 +124,9 @@ class GallerySlideFragment : Fragment() {
     private fun openFileList(): List<Uri> {
         val image = getAllShownImagesPath()
         val video = getAllShownVideosPath()
-        return image.plus(video)
+        val totalData = image.plus(video)
+        totalData.sortedBy { it }
+        return totalData
     }
     @SuppressLint("Recycle")
     private fun getAllShownImagesPath(): ArrayList<Uri>{
@@ -165,5 +191,15 @@ class GallerySlideFragment : Fragment() {
         binding.uploadButton.setOnClickListener {
             onItemClickListener?.onItemClick(currentUri)
         }
+    }
+
+    private fun setImageView(){
+        binding.selectImage.visibility = View.VISIBLE
+        binding.videoContainer.visibility = View.GONE
+    }
+
+    private fun setVideoView(){
+        binding.videoContainer.visibility = View.VISIBLE
+        binding.selectImage.visibility = View.GONE
     }
 }

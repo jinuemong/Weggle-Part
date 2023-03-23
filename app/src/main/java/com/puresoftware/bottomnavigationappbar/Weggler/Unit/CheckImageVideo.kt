@@ -26,5 +26,5 @@ fun isVideo(url : String?): Boolean?{
             extension == "ASF" || extension == "asf" ||
             extension == "ASX" || extension == "asx" ||
             extension == "DAT" || extension == "dat" ||
-            extension == "RM" || extension == "rm"
+            extension == "RM" || extension == "rm" || extension=="m3u8"
 }

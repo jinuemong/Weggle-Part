@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.Intent
-import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -26,6 +25,7 @@ import com.gun0912.tedpermission.TedPermission
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.MyAccount.Adapter.AdditionalImageAdapter
 import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.ReviewManager
+import com.puresoftware.bottomnavigationappbar.MyAccount.Unit.getVideoTime
 import com.puresoftware.bottomnavigationappbar.MyAccount.ViewModel.AddReviewViewModel
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentVideoReviewBinding
@@ -185,6 +185,14 @@ class UploadReviewFragment : Fragment() {
 
     }
 
+    private fun checkVideoTime():Boolean{
+        val seconds = getVideoTime(activity,videoUrl)
+        Log.d("video seconds : ",seconds.toString())
+        if (seconds in 10..30){
+            return true
+        }
+        return false
+    }
     @RequiresApi(Build.VERSION_CODES.Q)
     private fun setUpListener(){
         binding.selectVideo.setOnClickListener {
@@ -228,25 +236,6 @@ class UploadReviewFragment : Fragment() {
         intent.type = "video/*"
         activityResult.launch(intent)
         setButtonColor()
-    }
-
-    //비디오 시간 체크
-    private fun checkVideoTime(): Boolean{
-        if (videoUrl!=null) {
-            val retriever = MediaMetadataRetriever()
-            retriever.setDataSource(activity,videoUrl)
-            val time  = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)
-            val duration = time!!.toLong()/1000
-            val hours = duration/3600
-            val minutes = (duration -hours*3600)/60
-            val seconds = duration - (hours * 3600 + minutes*60)
-            Log.d("video seconds : ",seconds.toString())
-            if (seconds in 10..30){
-                return true
-            }
-
-        }
-        return false
     }
 
     // 리뷰 등록 가능할 때 버튼 색상 변경

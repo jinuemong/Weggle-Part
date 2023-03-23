@@ -4,7 +4,7 @@ import java.io.Serializable
 
 // 유저의 프로필 (body)
 
-class Profile (
+class UserBody (
     var userComment : String?,
     var userImage : String?,
     var backgroundPic : String?,

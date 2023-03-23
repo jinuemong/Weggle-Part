@@ -101,21 +101,45 @@
                     android:src="@drawable/ic_baseline_more_vert_24" />
             </LinearLayout>
             <!--아래 비디오 뷰 는 수정해야 함-->
-            <VideoView
-                android:id="@+id/video_view"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/video_container"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/top_len_350"
-                android:layout_gravity="center"
                 android:layout_margin="@dimen/margin_10"
-                android:padding="@dimen/margin_5" />
+                android:padding="@dimen/margin_5">
 
-            <ImageView
-                android:id="@+id/image_view"
+                <VideoView
+                    android:id="@+id/video_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center" />
+
+                <ImageView
+                    android:id="@+id/play_button"
+                    android:layout_width="@dimen/item_size_50"
+                    android:layout_height="@dimen/item_size_50"
+                    android:background="@drawable/circle"
+                    android:backgroundTint="@color/line_color_light"
+                    android:src="@drawable/baseline_play_arrow_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/image_container"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/top_len_350"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/margin_10"
-                android:padding="@dimen/margin_5" />
+                android:layout_height="@dimen/top_len_350">
+
+                <ImageView
+                    android:id="@+id/image_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/margin_10"
+                    android:padding="@dimen/margin_5" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/suject_text"
@@ -210,6 +234,7 @@
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/link_view"
                 android:layout_width="match_parent"

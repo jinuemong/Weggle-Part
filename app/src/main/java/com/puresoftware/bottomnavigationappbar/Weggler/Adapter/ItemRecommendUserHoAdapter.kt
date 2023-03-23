@@ -1,13 +1,5 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.Adapter
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.puresoftware.bottomnavigationappbar.MainActivity
-import com.puresoftware.bottomnavigationappbar.MyAccount.Model.Profile
-import com.puresoftware.bottomnavigationappbar.databinding.ItemRecommendUserBoxHoBinding
-
 //추천유저 어댑터 (가로 적립)
 //
 //class ItemRecommendUserHoAdapter(

@@ -2,12 +2,13 @@ package com.puresoftware.bottomnavigationappbar.Weggler.Adapter
 
 import android.annotation.SuppressLint
 import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.puresoftware.bottomnavigationappbar.MainActivity
+import com.puresoftware.bottomnavigationappbar.MyAccount.Unit.getVideoTime
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.databinding.ItemPictureBinding
 
@@ -21,18 +22,26 @@ class SelectPicAdapter(
     private var onItemClickListener :OnItemClickListener?=null
     private var selectedPicNum = -1
     interface OnItemClickListener{
-        fun onItemClick(imageUri: Uri?){
-        }
+        fun onItemClick(imageUri: Uri?)
     }
     fun setOnItemClickListener(listener: OnItemClickListener){
         this.onItemClickListener = listener
     }
     inner class SelectPicViewHolder(private val binding: ItemPictureBinding) :
         RecyclerView.ViewHolder(binding.root) {
-            @SuppressLint("NotifyDataSetChanged")
+            @SuppressLint("NotifyDataSetChanged", "SetTextI18n")
             fun bind(){
                 val item = itemList[absoluteAdapterPosition]
-                Log.d("item",item.toString())
+                if (item.toString().contains("video")){
+                    binding.videoTime.apply {
+                        visibility = View.VISIBLE
+                        text = "00:${getVideoTime(mainActivity,item)}"
+                    }
+                }else{
+                    binding.videoTime.visibility = View.GONE
+                }
+                binding.checkImage.layoutParams = binding.root.layoutParams //크기 변환
+
                 Glide.with(mainActivity)
                     .load(item)
                     .into(binding.checkImage)

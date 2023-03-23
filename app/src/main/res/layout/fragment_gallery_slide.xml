@@ -1,61 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/slide_view"
     android:clickable="true"
     android:focusable="true"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".Weggler.SideFragment.AddCommunity.GallerySlideFragment">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_len_80">
+
         <TextView
             android:id="@+id/cancel_button"
-            android:textSize="@dimen/text_size_20"
-            android:text="취소"
-            android:gravity="center"
-            android:layout_marginStart="@dimen/margin_20"
-            app:layout_constraintStart_toStartOf="parent"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/margin_20"
+            android:gravity="center"
+            android:text="취소"
+            android:textSize="@dimen/text_size_20"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <TextView
             android:id="@+id/upload_button"
-            android:textSize="@dimen/text_size_20"
-            android:text="확인"
-            android:gravity="center"
-            android:layout_marginEnd="@dimen/margin_20"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/margin_20"
+            android:gravity="center"
+            android:text="확인"
+            android:textSize="@dimen/text_size_20"
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <FrameLayout
         android:id="@+id/line"
-        android:background="@color/line_color"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="1dp"
+        android:background="@color/line_color" />
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_len_300">
+
         <ImageView
-            android:layout_gravity="center"
             android:id="@+id/select_image"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/video_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <VideoView
+                android:id="@+id/select_video"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center" />
+            <ImageView
+                android:id="@+id/play_button"
+                android:backgroundTint="@color/line_color_light"
+                android:background="@drawable/circle"
+                android:src="@drawable/baseline_play_arrow_24"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="@dimen/item_size_50"
+                android:layout_height="@dimen/item_size_50"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
+
     <FrameLayout
-        android:background="@color/line_color"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="1dp"
+        android:background="@color/line_color" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/image_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="3"
-        tools:listitem="@layout/item_picture"
-        android:orientation="vertical"
-        />
+        tools:listitem="@layout/item_picture" />
 </LinearLayout>

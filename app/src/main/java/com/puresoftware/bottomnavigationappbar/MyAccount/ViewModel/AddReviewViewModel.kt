@@ -13,7 +13,7 @@ import com.puresoftware.bottomnavigationappbar.MyAccount.Model.BodyReviewForPOST
 import com.puresoftware.bottomnavigationappbar.MyAccount.Model.ReviewBody
 import com.puresoftware.bottomnavigationappbar.MyAccount.Model.ReviewData
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Product
-import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getVideoFilePath
+import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getFilePath
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -84,7 +84,7 @@ class AddReviewViewModel : ViewModel(){
                 val body = BodyReviewForPOST(reviewBody)
 
                 val multipartFile : MultipartBody.Part? = if (filePath!=null){
-                    val path = getVideoFilePath(activity,filePath)
+                    val path = getFilePath(activity,filePath)
                     val file = File(path)
                     val videoRequestBody = file.asRequestBody("video/mp4".toMediaTypeOrNull())
                     MultipartBody.Part.createFormData(
