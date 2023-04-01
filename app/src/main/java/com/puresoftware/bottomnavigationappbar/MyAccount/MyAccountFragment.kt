@@ -10,6 +10,7 @@ import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.MyAccount.AboutReview.AddReviewActivity
+import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.ReviewManager
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.databinding.MyAccountFragmentBinding
 
@@ -62,7 +63,12 @@ class MyAccountFragment : Fragment() {
     }
 
     private fun initView(){
-
+       ReviewManager(mainActivity.masterApp,null)
+           .getReviewListInAccount(paramFunc = { data,_->
+               if (data!=null){
+                   //adapter 연결 
+               }
+           })
     }
 
     private fun setUpListener(){

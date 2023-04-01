@@ -73,7 +73,7 @@ class CommunityManagerWithReview(
             })
     }
 
-    fun getMyCommunityReviewList(paramFunc: (ArrayList<ReviewInCommunity>?, String?) -> Unit){
+    fun getMyReviewList(paramFunc: (ArrayList<ReviewInCommunity>?, String?) -> Unit){
         wApp.service.getMyReviewList()
             .enqueue(object : Callback<ArrayList<ReviewInCommunity>>{
                 override fun onResponse(

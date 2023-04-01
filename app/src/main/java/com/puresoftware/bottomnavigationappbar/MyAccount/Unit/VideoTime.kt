@@ -14,7 +14,7 @@ fun getVideoTime(activity:Activity, videoUrl: Uri?): Long{
         val hours = duration/3600
         val minutes = (duration -hours*3600)/60
         val seconds = duration - (hours * 3600 + minutes*60)
-        return seconds
+        return seconds.toLong()
     }
     return 0
 }

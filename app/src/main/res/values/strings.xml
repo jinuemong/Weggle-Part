@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BottomNavigationAppbar</string>
+    <string name="app_name">WeggleClone</string>
     <string name="kakao_app_key">0760beacf1226c510472abc1da58fd1b</string>
     <!-- video -->
     <string name="whole">전체</string>
