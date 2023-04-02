@@ -1,8 +1,6 @@
 package com.puresoftware.bottomnavigationappbar
 
 
-import android.content.Intent
-import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -23,12 +21,10 @@ import com.puresoftware.bottomnavigationappbar.MyAccount.MyAccountFragment
 import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
 import com.puresoftware.bottomnavigationappbar.SideMenu.SettingFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.ViewModel.CommunityViewModel
-import com.kakao.sdk.user.UserApiClient
-import com.puresoftware.bottomnavigationappbar.MyAccount.login.LoginActivity
+import com.puresoftware.bottomnavigationappbar.MyAccount.ViewModel.MyAccountViewModel
 import com.puresoftware.bottomnavigationappbar.Weggler.WegglerFragment
 import com.puresoftware.bottomnavigationappbar.brands.BrandsFragment
 import com.puresoftware.bottomnavigationappbar.databinding.ActivityMainBinding
-import com.puresoftware.bottomnavigationappbar.databinding.NavigationInnerBinding
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
 
 class MainActivity : AppCompatActivity() {
@@ -50,11 +46,12 @@ class MainActivity : AppCompatActivity() {
     val masterApp = MasterApplication()
     ///////////////////////////////////////
 
-    //weggler////////////////////
+    //viewModel////////////////////
     val communityViewModel: CommunityViewModel by viewModels()
+    val myAccountViewModel : MyAccountViewModel by viewModels()
     /////////////////////////////
 
-    val TAG: String = MainActivity::class.java.simpleName // 태그
+    private val TAG: String = MainActivity::class.java.simpleName // 태그
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

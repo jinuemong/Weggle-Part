@@ -1,4 +1,4 @@
-package com.puresoftware.bottomnavigationappbar.MyAccount.login
+package com.puresoftware.bottomnavigationappbar.MyAccount.login_not_use
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

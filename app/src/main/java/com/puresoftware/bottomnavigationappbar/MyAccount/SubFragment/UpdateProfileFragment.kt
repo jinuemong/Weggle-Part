@@ -1,4 +1,4 @@
-package com.puresoftware.bottomnavigationappbar.MyAccount
+package com.puresoftware.bottomnavigationappbar.MyAccount.SubFragment
 
 import android.content.Context
 import android.os.Bundle
@@ -7,7 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import com.bumptech.glide.Glide
 import com.puresoftware.bottomnavigationappbar.MainActivity
+import com.puresoftware.bottomnavigationappbar.MyAccount.Adapter.KeywordAdapter
+import com.puresoftware.bottomnavigationappbar.MyAccount.Unit.tagList
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentUpdateProfileBinding
 
@@ -49,6 +52,34 @@ class UpdateProfileFragment : Fragment() {
     }
 
     private fun initView(){
+        mainActivity.myAccountViewModel.userProfile?.let {user->
+            user.profile?.let {
+                Glide.with(mainActivity)
+                    .load(user.profile)
+                    .into(binding.userImage)
+            }
+            user.background?.let{
+                Glide.with(mainActivity)
+                    .load(user.background)
+                    .into(binding.userBackImage)
+            }
+
+            binding.typeName.setText(user.name)
+            binding.emailText.text = user.email
+
+            if (user.body?.userComment!=null){
+                binding.typeUserComment.setText(user.body.userComment)
+            }
+            val userKeyword = user.body?.userKeyword?: listOf()
+            binding.tagBox.adapter = KeywordAdapter(mainActivity,userKeyword,"updateProfile")
+                .apply {
+                    setOnItemClickListener(object :KeywordAdapter.OnItemClickListener{
+                        override fun onSelected(item: String) {
+
+                        }
+                    })
+                }
+        }
 
     }
 

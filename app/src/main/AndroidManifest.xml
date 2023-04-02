@@ -22,7 +22,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".MyAccount.login.LoginActivity"
+            android:name=".MyAccount.login_not_use.LoginActivity"
             android:exported="false" >
         </activity>
 

@@ -7,8 +7,9 @@
     <ImageView
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/thumnail_image"
+        app:layout_constraintDimensionRatio="1:1"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/top_len_120"/>
+        android:layout_height="0dp"/>
     <ImageView
         android:backgroundTint="@color/line_color_light"
         android:background="@drawable/circle"

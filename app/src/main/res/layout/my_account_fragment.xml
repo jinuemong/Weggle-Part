@@ -37,7 +37,35 @@
                 android:layout_marginTop="@dimen/margin_minus_30"
                 android:src="@drawable/ic_baseline_settings_24" />
 
+            <LinearLayout
+
+                android:layout_marginTop="@dimen/margin_minus_50"
+                android:layout_marginEnd="@dimen/margin_10"
+                android:layout_gravity="end"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/item_size_40">
+                <ImageView
+                    android:id="@+id/youtube_url"
+                    android:layout_margin="@dimen/margin_5"
+                    android:src="@drawable/youtube"
+                    android:layout_width="@dimen/item_size_25"
+                    android:layout_height="@dimen/item_size_25"/>
+                <ImageView
+                    android:id="@+id/blog_url"
+                    android:layout_margin="@dimen/margin_5"
+                    android:src="@drawable/blog_log"
+                    android:layout_width="@dimen/item_size_25"
+                    android:layout_height="@dimen/item_size_25"/>
+                <ImageView
+                    android:id="@+id/instagram_url"
+                    android:layout_margin="@dimen/margin_5"
+                    android:src="@drawable/instagram_log"
+                    android:layout_width="@dimen/item_size_25"
+                    android:layout_height="@dimen/item_size_25"/>
+            </LinearLayout>
             <TextView
+                android:id="@id/user_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_20"
@@ -48,6 +76,7 @@
                 tools:text="user name " />
 
             <TextView
+                android:id="@+id/user_comment"
                 android:layout_width="@dimen/top_len_300"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_20"

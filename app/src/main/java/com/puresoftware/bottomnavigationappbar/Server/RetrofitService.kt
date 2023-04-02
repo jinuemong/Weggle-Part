@@ -3,6 +3,7 @@ package com.puresoftware.bottomnavigationappbar.Server
 import com.puresoftware.bottomnavigationappbar.MyAccount.Model.BodyReviewForPOST
 import com.puresoftware.bottomnavigationappbar.MyAccount.Model.ReviewData
 import com.puresoftware.bottomnavigationappbar.MyAccount.Model.User
+import com.puresoftware.bottomnavigationappbar.MyAccount.Model.UserBody
 import com.puresoftware.bottomnavigationappbar.Server.TokenManager.Token
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.*
 import okhttp3.MultipartBody
@@ -38,14 +39,22 @@ interface RetrofitService {
     ):Call<User>
 
     //유저 수정
-    @Multipart
     @PATCH("users")
+    @FormUrlEncoded
     fun updateUser(
-        @Part email : String,
-        @Part password: String?,
-        @Part newPassword : String?,
-        @PartMap body: HashMap<String, RequestBody>?
-    )
+        @Field("email") email : String?,
+        @Field("password") password: String?,
+        @Field("newPassword") newPassword : String?,
+        @Field("body") userBody :UserBody?,
+    ):Call<User>
+
+    //유저 이미지 수정
+    @Multipart
+    @PATCH("userProfile")
+    fun updateUserImage(
+        @Part profile : MultipartBody.Part?,
+        @Part background : MultipartBody.Part?
+    ):Call<User>
     ///////////////////////////////////////////
 
     // 프로덱트 관련 /////////////////////////////
