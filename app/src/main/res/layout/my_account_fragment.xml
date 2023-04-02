@@ -166,7 +166,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/margin_20"
-                android:visibility="gone" />
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constrainedHeight="true"
+                app:spanCount="3"
+                tools:listitem="@layout/item_feed_thumnail" />
 
             <LinearLayout
                 android:id="@+id/no_posting_view"
@@ -198,6 +201,7 @@
                 android:layout_height="@dimen/top_len_100" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/my_account_write_button"
         android:layout_width="wrap_content"

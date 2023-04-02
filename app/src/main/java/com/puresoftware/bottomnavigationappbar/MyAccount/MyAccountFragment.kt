@@ -10,7 +10,10 @@ import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.MyAccount.AboutReview.AddReviewActivity
+import com.puresoftware.bottomnavigationappbar.MyAccount.AboutReview.DetailReviewFragment
+import com.puresoftware.bottomnavigationappbar.MyAccount.Adapter.MyFeedReviewAdapter
 import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.ReviewManager
+import com.puresoftware.bottomnavigationappbar.MyAccount.Model.ReviewData
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.databinding.MyAccountFragmentBinding
 
@@ -66,7 +69,25 @@ class MyAccountFragment : Fragment() {
        ReviewManager(mainActivity.masterApp,null)
            .getReviewListInAccount(paramFunc = { data,_->
                if (data!=null){
-                   //adapter 연결 
+                   binding.postingNum.text = data.size.toString()
+                   //adapter 연결
+                   binding.noPostingView.visibility = View.GONE
+                   binding.postingList.apply {
+                       visibility = View.VISIBLE
+                       adapter = MyFeedReviewAdapter(mainActivity,data).apply {
+                           setOnItemClickListener(object :MyFeedReviewAdapter.OnItemClickListener{
+                               override fun itemClick(review: ReviewData) {
+                                   mainActivity.setMainViewVisibility(false)
+                                   mainActivity.changeFragment(DetailReviewFragment.newInstance(review.reviewId))
+                               }
+
+                           })
+                       }
+                   }
+
+               }else{
+                   binding.noPostingView.visibility = View.VISIBLE
+                   binding.postingList.visibility = View.GONE
                }
            })
     }

@@ -3,6 +3,8 @@ package com.puresoftware.bottomnavigationappbar.Weggler.Manager
 import android.app.Activity
 import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.MultiCommunityDataBody
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
 import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
@@ -16,7 +18,7 @@ class CommunityManagerWithReview(
 ){
 
     fun getCommunityReviewList(productId : Int,paramFunc : (ArrayList<ReviewInCommunity>?,String?) -> Unit){
-        wApp.service.getReViews(productId)
+        wApp.service.getCommunityReViews(productId)
             .enqueue(object : Callback<ArrayList<ReviewInCommunity>>{
                 override fun onResponse(
                     call: Call<ArrayList<ReviewInCommunity>>,
@@ -38,6 +40,7 @@ class CommunityManagerWithReview(
     }
 
     //MultiPart로 데이터 추가
+    @RequiresApi(Build.VERSION_CODES.Q)
     fun addCommunityReviewTypeFree(productId: Int, multiCommunityData: MultiCommunityDataBody, file: Uri?,
                                    activity: Activity, paramFunc: (ReviewInCommunity?,String?) -> Unit){
         MultiPartViewModel().uploadCommunityFreeTalk(productId,multiCommunityData,
@@ -74,7 +77,7 @@ class CommunityManagerWithReview(
     }
 
     fun getMyReviewList(paramFunc: (ArrayList<ReviewInCommunity>?, String?) -> Unit){
-        wApp.service.getMyReviewList()
+        wApp.service.getMyCommunityReviewList()
             .enqueue(object : Callback<ArrayList<ReviewInCommunity>>{
                 override fun onResponse(
                     call: Call<ArrayList<ReviewInCommunity>>,

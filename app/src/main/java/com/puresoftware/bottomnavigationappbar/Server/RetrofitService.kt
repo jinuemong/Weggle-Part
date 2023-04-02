@@ -84,7 +84,7 @@ interface RetrofitService {
 
     //리뷰 얻기
     @GET("products/{productId}/reviewsByCreateTime")
-    fun getReViews(
+    fun getCommunityReViews(
         @Path("productId") productId : Int,
     ): Call<ArrayList<ReviewInCommunity>>
 
@@ -114,9 +114,10 @@ interface RetrofitService {
 
     //내 리뷰 조회
     @GET("reviewsByUser")
-    fun getMyReviewList() : Call<ArrayList<ReviewInCommunity>>
+    fun getMyReviewList() : Call<ArrayList<ReviewData>>
 
-
+    @GET("products/5/reviewsByUser")
+    fun getMyCommunityReviewList() : Call<ArrayList<ReviewInCommunity>>
 
     //내 댓글 조회
     @GET("commentByUser")
@@ -142,10 +143,17 @@ interface RetrofitService {
         @Body body : BodyComment,
     ) : Call<Comment>
 
+    // 리뷰 아이디로 커뮤니티 리뷰 얻기
     @GET("reviews/{reviewId}")
     fun getCommunityReviewFromId(
         @Path("reviewId")reviewId: Int,
     ):Call<ReviewInCommunity>
+
+    // 리뷰 아이디로 어카운트 리뷰 얻기
+    @GET("reviews/{reviewId}")
+    fun getAccountReviewFromId(
+        @Path("reviewId")reviewId : Int,
+    ): Call<ReviewData>
 
     // like or unlike
     @PUT("reviews/{reviewId}")

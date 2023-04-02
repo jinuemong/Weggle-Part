@@ -31,12 +31,12 @@ class ReviewManager(
         })
     }
 
-    fun getReviewListInAccount(paramFunc: (ArrayList<ReviewInCommunity>?, String?) -> Unit){
+    fun getReviewListInAccount(paramFunc: (ArrayList<ReviewData>?, String?) -> Unit){
         masterApp.service.getMyReviewList()
-            .enqueue(object : Callback<ArrayList<ReviewInCommunity>> {
+            .enqueue(object : Callback<ArrayList<ReviewData>> {
                 override fun onResponse(
-                    call: Call<ArrayList<ReviewInCommunity>>,
-                    response: Response<ArrayList<ReviewInCommunity>>
+                    call: Call<ArrayList<ReviewData>>,
+                    response: Response<ArrayList<ReviewData>>
                 ) {
                     if(response.isSuccessful){
                         if (response.body()?.size==0){
@@ -49,7 +49,25 @@ class ReviewManager(
                     }
                 }
 
-                override fun onFailure(call: Call<ArrayList<ReviewInCommunity>>, t: Throwable) {
+                override fun onFailure(call: Call<ArrayList<ReviewData>>, t: Throwable) {
+                    paramFunc(null,"error")
+                }
+
+            })
+    }
+
+    fun getDetailReview(reviewId : Int, paramFunc: (ReviewData?, String?) -> Unit){
+        masterApp.service.getAccountReviewFromId(reviewId)
+            .enqueue(object : Callback<ReviewData>{
+                override fun onResponse(call: Call<ReviewData>, response: Response<ReviewData>) {
+                    if (response.isSuccessful){
+                        paramFunc(response.body(),null)
+                    }else{
+                        paramFunc(null,response.errorBody()!!.string())
+                    }
+                }
+
+                override fun onFailure(call: Call<ReviewData>, t: Throwable) {
                     paramFunc(null,"error")
                 }
 

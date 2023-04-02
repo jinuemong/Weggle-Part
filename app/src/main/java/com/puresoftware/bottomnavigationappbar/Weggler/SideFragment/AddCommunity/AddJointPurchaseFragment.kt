@@ -68,7 +68,7 @@ class AddJointPurchaseFragment : Fragment() {
                 .getProductFromProductId(jointProductId, paramFun = {item,_->
                     if (item!=null){
                         //view visible 세팅
-                        binding.groupBuyProduct.visibility = View.VISIBLE
+                        binding.groupBuyProduct.root.visibility = View.VISIBLE
                         setButtonColor()
 
                         item.subjectFiles[0].let {
@@ -96,7 +96,7 @@ class AddJointPurchaseFragment : Fragment() {
     }
 
     private fun initView(){
-        binding.groupBuyProduct.visibility = View.INVISIBLE
+        binding.groupBuyProduct.root.visibility = View.INVISIBLE
         setButtonColor()
         binding.typSubject.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}

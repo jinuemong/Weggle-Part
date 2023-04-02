@@ -1,17 +1,22 @@
 package com.puresoftware.bottomnavigationappbar.MyAccount.Adapter
 
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.core.view.setPadding
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.MyAccount.Model.ReviewData
 import com.puresoftware.bottomnavigationappbar.databinding.ItemFeedThumnailBinding
 
-class MyFeedAdapter (
+class MyFeedReviewAdapter (
     private val mainActivity: MainActivity,
     dataList : ArrayList<ReviewData>
-,):RecyclerView.Adapter<MyFeedAdapter.ViewHolder>(){
+,):RecyclerView.Adapter<MyFeedReviewAdapter.ViewHolder>(){
     private lateinit var binding: ItemFeedThumnailBinding
     private var onItemClickListener : OnItemClickListener? = null
 
@@ -29,9 +34,20 @@ class MyFeedAdapter (
         :RecyclerView.ViewHolder(binding.root){
             fun bind(){
                 val item = dataSet[absoluteAdapterPosition]
+
                 Glide.with(mainActivity)
                     .load(item.thumbnail)
-                    .into(binding.thumnailImage)
+                    .into(object : CustomTarget<Drawable>() {
+                        override fun onResourceReady(
+                            resource: Drawable,
+                            transition: Transition<in Drawable>?
+                        ) {
+                            val layout = binding.root
+                            layout.background = resource
+                        }
+
+                        override fun onLoadCleared(placeholder: Drawable?) {}
+                    })
 
                 binding.root.setOnClickListener {
                     onItemClickListener?.itemClick(item)

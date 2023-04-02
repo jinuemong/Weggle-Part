@@ -35,7 +35,7 @@
 
         <include
             android:id="@+id/recommend_posting"
-            layout="@layout/item_feed_posting"
+            layout="@layout/item_review"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_10" />

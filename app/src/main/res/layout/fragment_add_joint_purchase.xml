@@ -144,14 +144,13 @@
                 android:textSize="@dimen/text_size_17" />
         </LinearLayout>
 
-        <LinearLayout
+        <include
             android:id="@+id/group_buy_product"
             android:layout_marginTop="@dimen/margin_20"
             android:background="@drawable/round_border"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="@dimen/margin_10">
+            layout="@layout/item_product_ho_view">
 
             <ImageView
                 android:id="@+id/product_image"
@@ -216,12 +215,7 @@
                         tools:text="99,999원" />
                 </LinearLayout>
             </LinearLayout>
-            <ImageView
-                android:id="@+id/check_box"
-                android:layout_gravity="bottom"
-                android:layout_width="@dimen/item_size_30"
-                android:layout_height="@dimen/item_size_30"/>
-        </LinearLayout>
+        </include>
 
         <TextView
             android:id="@+id/upload_button"
