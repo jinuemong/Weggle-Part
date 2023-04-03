@@ -2,8 +2,17 @@ package com.puresoftware.bottomnavigationappbar.MyAccount.Adapter
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.os.Build
+import android.print.PrintAttributes.Margins
+import android.text.Layout
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+import android.widget.GridLayout
+import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
+import androidx.core.view.setPadding
 import androidx.recyclerview.widget.RecyclerView
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.MyAccount.Unit.tagList
@@ -13,7 +22,7 @@ import com.puresoftware.bottomnavigationappbar.databinding.ItemTagBinding
 
 class KeywordAdapter(
     private val activity:Activity,
-    dataList : List<String>,
+    dataList : ArrayList<String>,
     private val type : String
 ):RecyclerView.Adapter<KeywordAdapter.ViewHolder>() {
     private lateinit var binding:ItemTagBinding
@@ -26,28 +35,32 @@ class KeywordAdapter(
         }
     }
 
-    private var onItemClickListener : OnItemClickListener? = null
-    interface OnItemClickListener{
-        fun onSelected(item:String)
-    }
-
-    fun setOnItemClickListener(listener: OnItemClickListener){
-        this.onItemClickListener = listener
-    }
     inner class ViewHolder(val binding: ItemTagBinding)
         :RecyclerView.ViewHolder(binding.root){
+            @RequiresApi(Build.VERSION_CODES.M)
             fun bind(){
+
+                binding.root.layoutParams = ViewGroup.LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
+
                 val item = dataSet[absoluteAdapterPosition]
                 binding.tagText.text = item
 
+                //이미지 색상 선택
+                if (selectTagList.contains(item)){
+                    binding.setCheck()
+                }else{
+                    binding.unCheck()
+                }
+
                 if (type!="userProfile") {
                     binding.root.setOnClickListener {
-                        if (selectTagList.contains(item)) {
-                            selectTagList.plus(item)
-                            binding.setCheck()
-                        } else {
-                            selectTagList.minus(item)
+                        val index = selectTagList.indexOf(item)
+                        if (index!=-1) {
+                            selectTagList.removeAt(index)
                             binding.unCheck()
+                        } else {
+                            selectTagList.add(item)
+                            binding.setCheck()
                         }
                     }
                 }
@@ -55,23 +68,32 @@ class KeywordAdapter(
         }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KeywordAdapter.ViewHolder {
         binding = ItemTagBinding.inflate(LayoutInflater.from(activity),parent,false)
+
         return ViewHolder(binding)
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind()
     }
 
     override fun getItemCount(): Int  = dataSet.size
 
-    @SuppressLint("ResourceAsColor")
-    private fun ItemTagBinding.setCheck() {
-        tagText.setBackgroundColor(R.color.my_selected_back)
-        tagText.setTextColor(R.color.my_selected_text)
+    fun getSelectedList() : ArrayList<String>{
+        return this.selectTagList
     }
-    @SuppressLint("ResourceAsColor")
+    @RequiresApi(Build.VERSION_CODES.M)
+    @SuppressLint("ResourceAsColor", "ResourceType")
+    private fun ItemTagBinding.setCheck() {
+        tagText.setTextAppearance(R.style.selectText)
+        tagText.setBackgroundResource(R.drawable.round_border_2)
+        tagText.setPadding(15)
+    }
+    @RequiresApi(Build.VERSION_CODES.M)
+    @SuppressLint("ResourceAsColor", "ResourceType")
     private fun ItemTagBinding.unCheck() {
-        tagText.setBackgroundColor(R.color.white)
-        tagText.setTextColor(R.color.line_color)
+        tagText.setTextAppearance(R.style.unSelectText)
+        tagText.setBackgroundResource(R.drawable.round_border)
+        tagText.setPadding(15)
     }
 }

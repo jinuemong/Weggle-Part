@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:clickable="true"
     android:focusable="true"
+    android:id="@+id/frame_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    app:umanoOverlay="true"
+    app:umanoPanelHeight="0dp"
     android:background="@color/white"
+    tools:context=".MyAccount.SubFragment.UpdateProfileFragment">
+
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -58,7 +68,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:id="@+id/change_back_button"
+                    android:id="@+id/select_background"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -79,6 +89,7 @@
                 android:src="@drawable/ic_iconmonstr_user_circle_thin" />
 
             <TextView
+                android:id="@+id/select_profile"
                 android:background="@drawable/round_border_plus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -184,7 +195,7 @@
                 android:layout_marginTop="@dimen/margin_5"
                 android:layout_marginEnd="@dimen/margin_20"
                 android:layout_marginBottom="@dimen/margin_20"
-                tools:text="0/50" />
+                android:text="0/50" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -198,9 +209,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_20"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="4"
-                tools:itemCount="6"
+                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                android:orientation="horizontal"
+                app:spanCount="2"
                 tools:listitem="@layout/item_tag" />
 
             <LinearLayout
@@ -301,3 +312,9 @@
     </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/slide_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>

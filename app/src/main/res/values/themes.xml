@@ -77,6 +77,14 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/community__my_color</item>
         <item name="android:gravity">center</item>
+    </style>r
+
+    <style name="selectText" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/my_selected_text</item>
+    </style>
+
+    <style name="unSelectText" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/line_color_dark</item>
     </style>
 
 </resources>

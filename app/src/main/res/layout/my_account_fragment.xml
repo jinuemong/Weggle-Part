@@ -38,7 +38,6 @@
                 android:src="@drawable/ic_baseline_settings_24" />
 
             <LinearLayout
-
                 android:layout_marginTop="@dimen/margin_minus_50"
                 android:layout_marginEnd="@dimen/margin_10"
                 android:layout_gravity="end"
@@ -46,18 +45,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/item_size_40">
                 <ImageView
+                    android:visibility="invisible"
                     android:id="@+id/youtube_url"
                     android:layout_margin="@dimen/margin_5"
                     android:src="@drawable/youtube"
                     android:layout_width="@dimen/item_size_25"
                     android:layout_height="@dimen/item_size_25"/>
                 <ImageView
+                    android:visibility="invisible"
                     android:id="@+id/blog_url"
                     android:layout_margin="@dimen/margin_5"
                     android:src="@drawable/blog_log"
                     android:layout_width="@dimen/item_size_25"
                     android:layout_height="@dimen/item_size_25"/>
                 <ImageView
+                    android:visibility="invisible"
                     android:id="@+id/instagram_url"
                     android:layout_margin="@dimen/margin_5"
                     android:src="@drawable/instagram_log"
@@ -87,12 +89,11 @@
                 android:id="@+id/tag_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_20"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="4"
-                tools:itemCount="6"
+                android:layout_margin="@dimen/margin_20"
+                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                android:orientation="horizontal"
+                app:spanCount="2"
                 tools:listitem="@layout/item_tag" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
