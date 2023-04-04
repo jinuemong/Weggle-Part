@@ -3,21 +3,25 @@
    - MyAccount 기능 구현
    - 로그인 인증 기능 구현 
 
-# 이름
-
+## Project Name
+   - Weggle
    
-# 목적
+## Purpose
+   - 팀 프로젝트 개발 
 
-# 주제
+## Subject
+   - 인기 앱 Weggle 기능 구현 
+   
+## Main Function
 
-# 주요 기능
-
-# 추가 기능
-
-
-# 미구현
-
+## Additional Function
  
-# 기간
+## Period
+   - 2022.12 ~ 
+   
+## Environment
 
-# 개발 환경
+   - Android, Kotlin, Spring
+   
+## Personnel 
+   - 3명
