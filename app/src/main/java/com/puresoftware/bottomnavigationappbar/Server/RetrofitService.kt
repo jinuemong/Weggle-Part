@@ -1,9 +1,6 @@
 package com.puresoftware.bottomnavigationappbar.Server
 
-import com.puresoftware.bottomnavigationappbar.MyAccount.Model.BodyReviewForPOST
-import com.puresoftware.bottomnavigationappbar.MyAccount.Model.ReviewData
-import com.puresoftware.bottomnavigationappbar.MyAccount.Model.User
-import com.puresoftware.bottomnavigationappbar.MyAccount.Model.UserBody
+import com.puresoftware.bottomnavigationappbar.MyAccount.Model.*
 import com.puresoftware.bottomnavigationappbar.Server.TokenManager.Token
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.*
 import okhttp3.MultipartBody
@@ -40,12 +37,12 @@ interface RetrofitService {
 
     //유저 수정
     @PATCH("users")
-    @FormUrlEncoded
     fun updateUser(
-        @Field("email") email : String?,
-        @Field("password") password: String?,
-        @Field("newPassword") newPassword : String?,
-        @Field("body") userBody :UserBody?,
+        @Body requestBody: UserPatch
+//        @Body email : String?,
+//        @Body password: String?,
+//        @Body newPassword : String?,
+//        @Body body : UserBody?,
     ):Call<User>
 
     //유저 이미지 수정

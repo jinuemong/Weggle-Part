@@ -3,6 +3,7 @@ package com.puresoftware.bottomnavigationappbar.MyAccount.Manager
 import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
 import com.puresoftware.bottomnavigationappbar.MyAccount.Model.User
 import com.puresoftware.bottomnavigationappbar.MyAccount.Model.UserBody
+import com.puresoftware.bottomnavigationappbar.MyAccount.Model.UserPatch
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -67,10 +68,11 @@ class UserManager(
 
     fun updateUserInfo(email:String?,PW:String?,newPW:String?,body:UserBody?
                        ,paramFun: (User?, error: String?) -> Unit){
-        masterApp.service.updateUser(email,PW,newPW,body)
+        masterApp.service.updateUser(UserPatch(email,PW,newPW,body))
             .enqueue(object : Callback<User>{
                 override fun onResponse(call: Call<User>, response: Response<User>) {
                     if (response.isSuccessful){
+
                         paramFun(response.body(),null)
                     }else{
                         paramFun(null,response.errorBody()!!.string())

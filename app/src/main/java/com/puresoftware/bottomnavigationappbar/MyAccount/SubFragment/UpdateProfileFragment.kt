@@ -10,10 +10,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import com.bumptech.glide.Glide
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.MyAccount.Adapter.KeywordAdapter
+import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.UserManager
+import com.puresoftware.bottomnavigationappbar.MyAccount.Model.UserBody
+import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.AddCommunity.GallerySlideFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentUpdateProfileBinding
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
@@ -28,10 +32,6 @@ class UpdateProfileFragment : Fragment() {
     private lateinit var keywordAdapter: KeywordAdapter
 
     private var gallerySlideFragment : GallerySlideFragment? = null
-
-    // new Data
-    private var newProfileImage : Uri? = null
-    private var newBackgroundImage : Uri? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -51,18 +51,18 @@ class UpdateProfileFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("CommitTransaction")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         gallerySlideFragment = GallerySlideFragment()
-            .apply {
-                setOnItemClickListener(object : GallerySlideFragment.OnItemClickListener{
-                    override fun onItemClick(imageUri: Uri?) {
-                        setSlide()
-                        if ()
-                    }
-                })
-            }
+        //갤러리 뷰 변경
+        gallerySlideFragment?.let {fragment->
+            mainActivity.fragmentManager!!
+                .beginTransaction()
+                .replace(R.id.slide_layout,fragment)
+                .commit()
+        }
         initView()
         setUpListener()
     }
@@ -114,14 +114,43 @@ class UpdateProfileFragment : Fragment() {
             backFragment()
         }
 
+        //프로필 선택
         binding.selectProfile.setOnClickListener {
-            setSlide()
+            gallerySlideFragment?.apply {
+                setOnItemClickListener(object : GallerySlideFragment.OnItemClickListener{
+                    override fun onItemClick(imageUri: Uri?) {
+                        setSlide() //클릭 시 닫기
+                        mainActivity.myAccountViewModel.newProfileImage = imageUri
+                        imageUri?.let {
+                            Glide.with(mainActivity)
+                                .load(it)
+                                .into(binding.userImage)
+                        }
+                    }
+                })
+            }
+            setSlide() //클릭 시 열기
         }
 
+        // 배경 선택
         binding.selectBackground.setOnClickListener {
-            setSlide()
+            gallerySlideFragment?.apply {
+                setOnItemClickListener(object : GallerySlideFragment.OnItemClickListener{
+                    override fun onItemClick(imageUri: Uri?) {
+                        setSlide() //클릭 시 닫기
+                        mainActivity.myAccountViewModel.newBackgroundImage = imageUri
+                        imageUri?.let {
+                            Glide.with(mainActivity)
+                                .load(it)
+                                .into(binding.userBackImage)
+                        }
+                    }
+                })
+            }
+            setSlide() //클릭 시 열기
         }
 
+        //글자 수 카운팅
         binding.typeUserComment.addTextChangedListener(object : TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -130,6 +159,79 @@ class UpdateProfileFragment : Fragment() {
                 binding.commentNum.text = "${p0.toString().length}/50"
             }
         })
+
+        // 수정
+        binding.commitButton.setOnClickListener {
+            mainActivity.myAccountViewModel.apply {
+                if(this.newProfileImage!=null && this.newBackgroundImage!=null){
+                    this.updateUserImages(mainActivity, paramFunc = { data,message->
+                        if (data!=null){ this.userProfile = data }
+                        else{
+                            Toast.makeText(mainActivity,"error:$message"
+                                ,Toast.LENGTH_LONG).show()
+                        }
+                    })
+                }
+                if (binding.typeName.text.length in 2..10) {
+                    UserManager(mainActivity.masterApp)
+                        .updateUserInfo(
+                            userProfile!!.email, null, null,
+                            UserBody(getComment(),getKeyword(),
+                            getInstagramUrl(),getBlogUrl(),getYoutubeUrl()),
+                        paramFun = {data,message->
+                            if (data!=null){ this.userProfile = data }
+                            else{
+                                Toast.makeText(mainActivity,"error:$message"
+                                    ,Toast.LENGTH_LONG).show()
+                            }
+                        })
+                }else{
+                    Toast.makeText(mainActivity,"user name error"
+                        ,Toast.LENGTH_LONG).show()
+                }
+
+                Thread.sleep(500)
+                backFragment()
+            }
+        }
+    }
+
+    private fun getComment() : String?{
+        return if(binding.typeUserComment.text.toString()==""){
+            null
+        }else{
+            binding.typeUserComment.text.toString()
+        }
+    }
+
+    private fun getKeyword() : ArrayList<String>?{
+        val keywordList = keywordAdapter.getSelectedList()
+        return if(keywordList.size==0){null}
+        else keywordList
+    }
+
+    private fun getInstagramUrl():String?{
+        return if(binding.instagramUrl.text.toString()==""){
+            null
+        }else{
+            binding.instagramUrl.text.toString()
+        }
+    }
+
+    private fun getBlogUrl():String?{
+        return if(binding.blogUrl.text.toString()==""){
+            null
+        }else{
+            binding.blogUrl.text.toString()
+        }
+    }
+
+    private fun getYoutubeUrl():String?{
+        return if(binding.youtubeUrl.text.toString()==""){
+            null
+        }else{
+            binding.youtubeUrl.text.toString()
+        }
     }
 
     private fun setSlide(){
@@ -141,6 +243,10 @@ class UpdateProfileFragment : Fragment() {
         }
     }
     private fun backFragment(){
+        mainActivity.myAccountViewModel.apply {
+            newProfileImage = null
+            newBackgroundImage = null
+        }
         mainActivity.goBackFragment(this@UpdateProfileFragment)
         mainActivity.setMainViewVisibility(true)
     }

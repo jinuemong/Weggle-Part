@@ -6,13 +6,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.MyAccount.Model.User
+import com.puresoftware.bottomnavigationappbar.MyAccount.Model.UserBody
+import com.puresoftware.bottomnavigationappbar.MyAccount.Model.UserPatch
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getFilePath
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getImageFilePath
 import kotlinx.coroutines.launch
 import okhttp3.Call
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.mozilla.javascript.tools.jsc.Main
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,6 +28,46 @@ class MyAccountViewModel : ViewModel(){
     var newBackgroundImage : Uri? = null
     var newProfileImage : Uri? = null
 
+//    fun updateUserProfile(activity: Activity,email:String?,PW:String?,newPW:String?,body: UserBody?
+//                          ,paramFun: (User?, error: String?) -> Unit){
+//        viewModelScope.launch {
+//            try {
+////                val emailRequestBody :RequestBody = email.toString().toPlainRequestBody()
+////                val pwRequestBody : RequestBody = PW.toString().toPlainRequestBody()
+////                val newPwRequestBody : RequestBody = newPW.toString().toPlainRequestBody()
+////                val bodyRequestBody : RequestBody = body.toString().toPlainRequestBody()
+////
+////                val textHashMap = hashMapOf<String,RequestBody>()
+////                textHashMap["email"] = emailRequestBody
+////                textHashMap["password"] = pwRequestBody
+////                textHashMap["newPassword"] = newPwRequestBody
+////                textHashMap["body"] = bodyRequestBody
+//                val userPath = UserPatch(email,PW,newPW,body)
+//                val requestBody : RequestBody = userPath.toString().toPlainRequestBody()
+//                (activity as MainActivity).masterApp.service
+//                    .updateUser(requestBody)
+//                    .enqueue(object : Callback<User>{
+//                        override fun onResponse(
+//                            call: retrofit2.Call<User>,
+//                            response: Response<User>
+//                        ) {
+//                            if (response.isSuccessful){
+//                                paramFun(response.body(),null)
+//                            }else{
+//                                paramFun(null,response.errorBody()!!.string())
+//                            }
+//                        }
+//
+//                        override fun onFailure(call: retrofit2.Call<User>, t: Throwable) {
+//                            paramFun(null,"error : $t")
+//                        }
+//
+//                    })
+//            }catch (e:Exception){
+//                paramFun(null,"error:$e")
+//            }
+//        }
+//    }
     fun updateUserImages(activity: Activity,paramFunc : (User?,String?)->Unit){
         viewModelScope.launch {
             try {
@@ -77,4 +121,9 @@ class MyAccountViewModel : ViewModel(){
             }
         }
     }
+
+    //string 을 plain Text Request로 바꿔주는 확장 함수  : l2hyunwoo(저작권)
+    private fun String?.toPlainRequestBody () =
+        requireNotNull(this).toRequestBody("text/plain".toMediaTypeOrNull())
+
 }

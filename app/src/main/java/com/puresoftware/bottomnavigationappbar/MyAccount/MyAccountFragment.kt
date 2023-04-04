@@ -116,6 +116,11 @@ class MyAccountFragment : Fragment() {
                             .load(user.profile)
                             .into(binding.userImage)
                     }
+                    user.background?.let {
+                        Glide.with(mainActivity)
+                            .load(user.background)
+                            .into(binding.backImage)
+                    }
                     binding.userName.text = user.name
                     user.body?.userComment?.let {
                         binding.userComment.text = it
