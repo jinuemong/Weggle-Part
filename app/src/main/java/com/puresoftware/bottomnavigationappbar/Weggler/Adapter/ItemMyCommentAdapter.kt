@@ -35,19 +35,19 @@ class ItemMyCommentAdapter (
             fun hold(){
                 val item = dataList[absoluteAdapterPosition]
 
-                if (item.commentPost!=null) {
-                    val review = item.commentPost!!
-                    if(review.body.type==1){
-                        binding.type2.visibility = View.GONE
-                    }else{
-                        binding.type1.visibility = View.GONE
-                    }
-                    binding.contentText.text =
-                        "'${review.body.subject}' 게시글에 댓글을 남겼습니다."
-                    Glide.with(mainActivity)
-                        .load(review.thumbnail)
-                        .into(binding.mainImage)
+
+                val review = item.reviewInfo.body
+                if (review.type == 1) {
+                    binding.type2.visibility = View.GONE
+                } else {
+                    binding.type1.visibility = View.GONE
                 }
+                binding.contentText.text =
+                    "'${review.subject}' 게시글에 댓글을 남겼습니다."
+//                Glide.with(mainActivity)
+//                    .load(review.thumbnail)
+//                    .into(binding.mainImage)
+
 
 
 
@@ -55,7 +55,7 @@ class ItemMyCommentAdapter (
                 binding.comment.text = item.body
 
                 binding.root.setOnClickListener {
-                    onItemClickListener?.itemClick(item.reviewId)
+                    onItemClickListener?.itemClick(item.reviewInfo.id)
                 }
             }
     }

@@ -72,6 +72,7 @@ class UpdateProfileFragment : Fragment() {
         _binding = null
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initView(){
         mainActivity.myAccountViewModel.userProfile?.let {user->
             user.profile?.let {
@@ -90,6 +91,7 @@ class UpdateProfileFragment : Fragment() {
 
             if (user.body?.userComment!=null){
                 binding.typeUserComment.setText(user.body.userComment)
+                binding.commentNum.text = "${user.body.userComment.toString().length}/50"
             }
             val userKeyword = user.body?.userKeyword?: arrayListOf()
             keywordAdapter = KeywordAdapter(mainActivity,userKeyword,"updateProfile")
@@ -175,7 +177,7 @@ class UpdateProfileFragment : Fragment() {
                 if (binding.typeName.text.length in 2..10) {
                     UserManager(mainActivity.masterApp)
                         .updateUserInfo(
-                            userProfile!!.email, null, null,
+                            null, null, null,
                             UserBody(getComment(),getKeyword(),
                             getInstagramUrl(),getBlogUrl(),getYoutubeUrl()),
                         paramFun = {data,message->

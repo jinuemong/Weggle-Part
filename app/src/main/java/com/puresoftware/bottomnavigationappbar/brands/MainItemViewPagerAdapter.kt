@@ -33,8 +33,6 @@ class MainItemViewPagerAdapter(private val listData: ArrayList<MainViewPagerData
     override fun onBindViewHolder(holder: ViewHolderPage, position: Int) {
         val viewHolder: ViewHolderPage = holder
         viewHolder.onBind(listData[position % listData.size])
-
-        Log.i("asdf","position ${position % listData.size}")
     }
 
     override fun getItemCount(): Int = Int.MAX_VALUE

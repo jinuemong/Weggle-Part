@@ -16,3 +16,9 @@ class ReviewInCommunity (
     val createTime : String,
     val updateTime : String,
 ):Serializable
+
+
+class ReviewInComment(
+    val id :Int,
+    val body : MultiCommunityDataBody,
+)
