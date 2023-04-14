@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.puresoftware.bottomnavigationappbar.MainActivity
+import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.*
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getTimeText
 import com.puresoftware.bottomnavigationappbar.databinding.ItemCommunitySmallFreeBinding
@@ -100,6 +101,14 @@ class ItemCommunitySmallAdapterTotal(
                     .into(mainImage)
                 likeNum.text = data.likeCount.toString()
                 commendNum.text = data.commentCount.toString()
+
+                //좋아요 표시
+                if (data.userLike){
+                    onLike()
+                }else{
+                    offLike()
+                }
+
                 //클릭 이벤트
                 root.setOnClickListener {
                     onItemClickListener?.onItemClick(data)
@@ -121,6 +130,13 @@ class ItemCommunitySmallAdapterTotal(
                     .into(mainImage)
                 likeNum.text = data.likeCount.toString()
                 commentNum.text = data.commentCount.toString()
+
+                //좋아요 표시
+                if (data.userLike){
+                    onLike()
+                }else{
+                    offLike()
+                }
 
                 //클릭 이벤트
                 root.setOnClickListener {
@@ -145,6 +161,12 @@ class ItemCommunitySmallAdapterTotal(
         dataSet = dataList
         notifyDataSetChanged()
     }
-
-
+    private fun ItemCommunitySmallFreeBinding.onLike() =
+        likeImage.setImageResource(R.drawable.ic_baseline_favorite_24_red)
+    private fun ItemCommunitySmallFreeBinding.offLike() =
+        likeImage.setImageResource(R.drawable.ic_baseline_favorite_24)
+    private fun ItemCommunitySmallJointBinding.onLike() =
+        likeImage.setImageResource(R.drawable.ic_baseline_favorite_24_red)
+    private fun ItemCommunitySmallJointBinding.offLike() =
+        likeImage.setImageResource(R.drawable.ic_baseline_favorite_24)
 }

@@ -22,6 +22,7 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.ProductManager
+import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemCommentAdapter
 import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
 import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityCommentManager
@@ -101,6 +102,8 @@ class DetailCommunityPostingFragment : Fragment() {
                     binding.contentText.text = posting.body.text
                     binding.createTime.text = getTimeText(posting.createTime)
                     binding.likeNum.text = posting.likeCount.toString()
+                    //좋아요 표시
+                    setReviewLike(posting.userLike)
 
                     if (posting.body.type == 1) {
                         setType1()
@@ -178,6 +181,15 @@ class DetailCommunityPostingFragment : Fragment() {
         binding.postComment.setOnClickListener {
             addComment()
         }
+
+        //리뷰 좋아요
+        binding.likeImage.setOnClickListener {
+            reviewLike(posting)
+        }
+        binding.likeNum.setOnClickListener {
+            reviewLike(posting)
+        }
+
     }
 
     @SuppressLint("SetTextI18n")
@@ -211,6 +223,19 @@ class DetailCommunityPostingFragment : Fragment() {
     private fun initComment(reviewId: Int) {
         commentAdapter = ItemCommentAdapter(mainActivity, arrayListOf())
         binding.commentView.commentList.adapter = commentAdapter
+                //클릭 이벤트 적용
+            .apply {
+                setOnItemClickListener(object : ItemCommentAdapter.OnItemClickListener{
+                    override fun userClick(userId: String) {
+                        // go profile
+                    }
+
+                    override fun likeClick(commentId: Int, like: Boolean) {
+                        commentLike(commentId,like)
+                    }
+
+                })
+            }
 
         communityComment.getReviewCommentList(
             reviewId,
@@ -294,9 +319,37 @@ class DetailCommunityPostingFragment : Fragment() {
     }
 
     // Like or UnLike
-    private fun commitLike() {
-
+    private fun reviewLike(posting :ReviewInCommunity) {
+        posting.userLike = !posting.userLike
+        if (posting.userLike){
+            posting.userLike = true
+            posting.likeCount+=1
+        }else{
+            posting.userLike = false
+            posting.likeCount-=1
+        }
+        binding.likeNum.text = posting.likeCount.toString()
+        communityPost.reviewLike(posting.reviewId,posting.userLike, paramFunc = {
+            if (it){
+                setReviewLike(posting.userLike)
+                mainActivity.communityViewModel.updateMyPostingData(reviewId,posting)
+            }
+        })
     }
+
+    //댓글 좋아요 /취소
+    private fun commentLike(commentId:Int,boolean: Boolean){
+        communityComment.commentLike(commentId,boolean, paramFunc = {})
+    }
+
+    private fun setReviewLike(boolean: Boolean){
+        if (boolean){
+            binding.likeImage.setImageResource(R.drawable.ic_baseline_favorite_24_red)
+        }else{
+            binding.likeImage.setImageResource(R.drawable.ic_baseline_favorite_24)
+        }
+    }
+
 
     private fun setType1() {
         binding.type1.visibility = View.VISIBLE

@@ -32,6 +32,7 @@ class TotalFragment() : Fragment() {
         fm = mainActivity.supportFragmentManager
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -54,7 +55,7 @@ class TotalFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         postingAdapter  =ItemCommunitySmallAdapterTotal(mainActivity, arrayListOf())
-        commentAdapter =ItemMyCommentAdapter(mainActivity, arrayListOf())
+        commentAdapter =ItemMyCommentAdapter(mainActivity, arrayListOf(),3)
 
 
         // 게시물 데이터 설정 (옵저버로 관찰)

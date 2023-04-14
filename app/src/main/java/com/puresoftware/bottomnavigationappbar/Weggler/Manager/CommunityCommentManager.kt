@@ -67,4 +67,21 @@ class CommunityCommentManager(
 
             })
     }
+
+    //댓글 좋아요
+    fun commentLike(commentId:Int,like:Boolean,paramFunc: (Boolean) -> Unit){
+        wApp.service.putCommentLike(commentId, like)
+            .enqueue(object :Callback<String>{
+                override fun onResponse(call: Call<String>, response: Response<String>) {
+                    if (response.isSuccessful){
+                        paramFunc(true)
+                    }else{
+                        paramFunc(false)
+                    }
+                }
+                override fun onFailure(call: Call<String>, t: Throwable) {
+                    paramFunc(false)
+                }
+            })
+    }
 }

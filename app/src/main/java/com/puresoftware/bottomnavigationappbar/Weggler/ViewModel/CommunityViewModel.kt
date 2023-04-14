@@ -1,5 +1,6 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.ViewModel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Comment
@@ -66,9 +67,10 @@ class CommunityViewModel :ViewModel(){
     }
 
     //내 포스팅 데이터 수정
-    fun updateMyPostingData(currentData:ReviewInCommunity, newData:ReviewInCommunity){
-        val index = myPostingLiveData.value?.indexOf(currentData)
-        if (index != null) {
+    fun updateMyPostingData(reviewId : Int, newData:ReviewInCommunity){
+        val data = myPostingLiveData.value?.find { it.reviewId == reviewId }
+        val index = myPostingLiveData.value?.indexOf(data)
+        if (data!=null && index!=null && index!=-1){
             myPostingLiveData.value?.set(index,newData)
         }
     }

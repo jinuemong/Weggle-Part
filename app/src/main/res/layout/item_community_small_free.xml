@@ -69,6 +69,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/like_image"
             android:layout_width="@dimen/item_size_25"
             android:layout_height="@dimen/item_size_25"
             android:src="@drawable/ic_baseline_favorite_24" />

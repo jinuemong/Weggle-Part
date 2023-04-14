@@ -12,6 +12,7 @@ class ReviewInCommunity (
     var resource : String="", //자동
     var body : MultiCommunityDataBody,
     var likeCount : Int = 0,
+    var userLike : Boolean,
     var commentCount : Int = 0,
     val createTime : String,
     val updateTime : String,

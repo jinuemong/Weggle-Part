@@ -6,9 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.puresoftware.bottomnavigationappbar.MainActivity
+import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.type_free
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getTimeText
+import com.puresoftware.bottomnavigationappbar.databinding.ItemCommentBinding
 import com.puresoftware.bottomnavigationappbar.databinding.ItemCommunitySmallFreeBinding
 import java.util.*
 import kotlin.collections.ArrayList
@@ -62,6 +64,12 @@ class ItemCommunitySmallAdapterFree(
                 freeBinding.likeNum.text = data.likeCount.toString()
                 freeBinding.commentNum.text = data.commentCount.toString()
 
+                //좋아요 표시
+                if (data.userLike){
+                    freeBinding.onLike()
+                }else{
+                    freeBinding.offLike()
+                }
 
                 //클릭 이벤트
                 freeBinding.root.setOnClickListener {
@@ -78,5 +86,10 @@ class ItemCommunitySmallAdapterFree(
         dataList = data
         notifyDataSetChanged()
     }
+
+    private fun ItemCommunitySmallFreeBinding.onLike() =
+        likeImage.setImageResource(R.drawable.ic_baseline_favorite_24_red)
+    private fun ItemCommunitySmallFreeBinding.offLike() =
+        likeImage.setImageResource(R.drawable.ic_baseline_favorite_24)
 
 }

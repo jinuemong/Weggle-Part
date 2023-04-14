@@ -51,7 +51,7 @@ class JointPurchaseFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         postingAdapter = ItemCommunitySmallAdapterJoint(mainActivity, arrayListOf())
-        commentAdapter = ItemMyCommentAdapter(mainActivity, arrayListOf())
+        commentAdapter = ItemMyCommentAdapter(mainActivity, arrayListOf(),1)
 
 
         // 게시물 데이터 설정 (옵저버로 관찰)

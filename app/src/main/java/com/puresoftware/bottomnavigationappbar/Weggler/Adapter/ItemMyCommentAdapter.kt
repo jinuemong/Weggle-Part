@@ -7,15 +7,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.puresoftware.bottomnavigationappbar.MainActivity
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.Comment
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.Product
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.*
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getTimeText
 import com.puresoftware.bottomnavigationappbar.databinding.ItemMyTabCommentBinding
 
 class ItemMyCommentAdapter (
     private val mainActivity: MainActivity,
     dataSet : ArrayList<Comment>,
+    private val type : Int,
 ):RecyclerView.Adapter<ItemMyCommentAdapter.ViewHolder>(){
     lateinit var binding : ItemMyTabCommentBinding
     private var dataList = dataSet
@@ -33,29 +32,31 @@ class ItemMyCommentAdapter (
         :RecyclerView.ViewHolder(binding.root){
             @SuppressLint("SetTextI18n")
             fun hold(){
+
                 val item = dataList[absoluteAdapterPosition]
-
-
-                val review = item.reviewInfo.body
-                if (review.type == 1) {
-                    binding.type2.visibility = View.GONE
-                } else {
-                    binding.type1.visibility = View.GONE
-                }
-                binding.contentText.text =
-                    "'${review.subject}' 게시글에 댓글을 남겼습니다."
+                if (type==item.reviewInfo.body.type || type== type_all) {
+                    val review = item.reviewInfo.body
+                    if (review.type == 1) {
+                        binding.type2.visibility = View.GONE
+                    } else {
+                        binding.type1.visibility = View.GONE
+                    }
+                    binding.contentText.text =
+                        "'${review.subject}' 게시글에 댓글을 남겼습니다."
 //                Glide.with(mainActivity)
 //                    .load(review.thumbnail)
 //                    .into(binding.mainImage)
 
 
+                    binding.timeText.text = getTimeText(item.createTime)
+                    binding.comment.text = item.body
 
-
-                binding.timeText.text = getTimeText(item.createTime)
-                binding.comment.text = item.body
-
-                binding.root.setOnClickListener {
-                    onItemClickListener?.itemClick(item.reviewInfo.id)
+                    binding.root.setOnClickListener {
+                        onItemClickListener?.itemClick(item.reviewInfo.id)
+                    }
+                }else{
+                    binding.root.visibility = View.GONE
+                    binding.root.layoutParams.height = 0
                 }
             }
     }

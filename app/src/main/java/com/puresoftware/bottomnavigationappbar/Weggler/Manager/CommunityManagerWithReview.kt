@@ -121,4 +121,22 @@ class CommunityManagerWithReview(
 
             })
     }
+
+    //좋아요 추가
+    fun reviewLike(reviewId: Int,like:Boolean,paramFunc: (Boolean) -> Unit){
+        wApp.service.putReviewLike(reviewId,like)
+            .enqueue(object :Callback<String>{
+                override fun onResponse(call: Call<String>, response: Response<String>) {
+                    if (response.isSuccessful){
+                        paramFunc(true)
+                    }else{
+                        paramFunc(false)
+                    }
+                }
+                override fun onFailure(call: Call<String>, t: Throwable) {
+                    paramFunc(false)
+                }
+
+            })
+    }
 }

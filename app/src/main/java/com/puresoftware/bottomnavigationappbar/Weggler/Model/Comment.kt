@@ -9,6 +9,7 @@ class Comment(
     var userId: String,
     var body: String,
     var likeCount : Int = 0,
+    var userLike : Boolean,
     var createTime: String,
     var updateTime: String,
 //    var commentPost : ReviewInCommunity?,
