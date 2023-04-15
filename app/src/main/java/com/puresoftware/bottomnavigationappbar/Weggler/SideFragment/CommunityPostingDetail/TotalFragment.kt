@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import com.puresoftware.bottomnavigationappbar.MainActivity
+import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemCommunitySmallAdapterFree
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemCommunitySmallAdapterTotal
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemMyCommentAdapter
@@ -32,7 +33,9 @@ class TotalFragment() : Fragment() {
         fm = mainActivity.supportFragmentManager
     }
 
-
+    override fun onResume() {
+        super.onResume()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -56,8 +59,6 @@ class TotalFragment() : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         postingAdapter  =ItemCommunitySmallAdapterTotal(mainActivity, arrayListOf())
         commentAdapter =ItemMyCommentAdapter(mainActivity, arrayListOf(),3)
-
-
         // 게시물 데이터 설정 (옵저버로 관찰)
         mainActivity.communityViewModel.apply {
             // 메인 포스팅
@@ -97,9 +98,14 @@ class TotalFragment() : Fragment() {
                 }
             }
         }
-
     }
 
+    fun initView(){
+        Log.d("initMainView","~~")
+        if (selectPosition == "Main Posting"){
+            postingAdapter.setData(mainActivity.communityViewModel.communityLiveData.value!!)
+        }
+    }
     private fun setPostingAdapterListener(){
         postingAdapter.apply {
             setOnItemClickListener(object : ItemCommunitySmallAdapterTotal.OnItemClickListener{

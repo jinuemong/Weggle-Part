@@ -1,6 +1,7 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.Adapter
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -104,9 +105,9 @@ class ItemCommunitySmallAdapterTotal(
 
                 //좋아요 표시
                 if (data.userLike){
-                    onLike()
+                    onJointLike()
                 }else{
-                    offLike()
+                    offJointLike()
                 }
 
                 //클릭 이벤트
@@ -133,9 +134,11 @@ class ItemCommunitySmallAdapterTotal(
 
                 //좋아요 표시
                 if (data.userLike){
-                    onLike()
+                    onFreeLike()
+                    Log.d("데이터 확인합니다",data.userLike.toString()+","+data.body.text)
                 }else{
-                    offLike()
+                    offFreeLike()
+                    Log.d("데이터 확인합니다",data.userLike.toString()+","+data.body.text)
                 }
 
                 //클릭 이벤트
@@ -161,12 +164,12 @@ class ItemCommunitySmallAdapterTotal(
         dataSet = dataList
         notifyDataSetChanged()
     }
-    private fun ItemCommunitySmallFreeBinding.onLike() =
+    private fun ItemCommunitySmallFreeBinding.onFreeLike() =
         likeImage.setImageResource(R.drawable.ic_baseline_favorite_24_red)
-    private fun ItemCommunitySmallFreeBinding.offLike() =
+    private fun ItemCommunitySmallFreeBinding.offFreeLike() =
         likeImage.setImageResource(R.drawable.ic_baseline_favorite_24)
-    private fun ItemCommunitySmallJointBinding.onLike() =
+    private fun ItemCommunitySmallJointBinding.onJointLike() =
         likeImage.setImageResource(R.drawable.ic_baseline_favorite_24_red)
-    private fun ItemCommunitySmallJointBinding.offLike() =
+    private fun ItemCommunitySmallJointBinding.offJointLike() =
         likeImage.setImageResource(R.drawable.ic_baseline_favorite_24)
 }

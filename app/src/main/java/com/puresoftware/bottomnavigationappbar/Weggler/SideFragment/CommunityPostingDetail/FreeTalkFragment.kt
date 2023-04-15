@@ -53,6 +53,10 @@ class FreeTalkFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
+    }
+
+    fun initView(){
         postingAdapter  =ItemCommunitySmallAdapterFree(mainActivity, arrayListOf())
         commentAdapter =ItemMyCommentAdapter(mainActivity, arrayListOf(),2)
 
@@ -97,7 +101,6 @@ class FreeTalkFragment(
             }
         }
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

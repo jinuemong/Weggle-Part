@@ -50,7 +50,6 @@ class CommunityFragment : Fragment() {
         binding.addButton.setOnClickListener {
 
             val popupMenu = PopupMenu(context,it)
-
             mainActivity.menuInflater.inflate(R.menu.pop_up_in_community,popupMenu.menu)
             popupMenu.show()
             popupMenu.setOnMenuItemClickListener {
@@ -81,11 +80,13 @@ class CommunityFragment : Fragment() {
 
 
     private fun initView() {
-
-        //하단 뷰 설정
-        mainActivity.fragmentManager!!.beginTransaction()
-            .replace(R.id.total_com_list_container,TotalFragment.newInstance("Main Posting"))
+        mainActivity.fragmentManager!!.beginTransaction().replace(R.id.total_com_list_container,
+            TotalFragment.newInstance("Main Posting"),"total")
             .commit()
+        //하단 뷰 설정
+//        mainActivity.fragmentManager!!.beginTransaction()
+//            .replace(R.id.total_com_list_container,TotalFragment.newInstance("Main Posting"))
+//            .commit()
 
         //클릭 리스너 (뷰가 그려진 후에 호출)
         setUpListener()

@@ -27,6 +27,7 @@ import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemCommentAdapte
 import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
 import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityCommentManager
 import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityManagerWithReview
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.Comment
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.MessageFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getTimeText
@@ -163,11 +164,16 @@ class DetailCommunityPostingFragment : Fragment() {
         }
     }
 
+    @SuppressLint("DetachAndAttachSameFragment")
     private fun setUpListener(posting: ReviewInCommunity) {
         binding.backButton.setOnClickListener {
             mainActivity.goBackFragment(this@DetailCommunityPostingFragment)
             if (type == "main") {
                 mainActivity.setMainViewVisibility(true)
+                val frag = mainActivity.fragmentManager!!.findFragmentByTag("total")
+                try {
+                    (frag as TotalFragment).initView()
+                }catch (_:Exception){}
             }
         }
 
@@ -233,6 +239,8 @@ class DetailCommunityPostingFragment : Fragment() {
                     override fun likeClick(commentId: Int, like: Boolean) {
                         commentLike(commentId,like)
                     }
+
+                    override fun addSubComment(comment: Comment) {}
 
                 })
             }
@@ -328,11 +336,11 @@ class DetailCommunityPostingFragment : Fragment() {
             posting.userLike = false
             posting.likeCount-=1
         }
+        mainActivity.communityViewModel.updateMyPostingData(reviewId,posting)
         binding.likeNum.text = posting.likeCount.toString()
         communityPost.reviewLike(posting.reviewId,posting.userLike, paramFunc = {
             if (it){
                 setReviewLike(posting.userLike)
-                mainActivity.communityViewModel.updateMyPostingData(reviewId,posting)
             }
         })
     }

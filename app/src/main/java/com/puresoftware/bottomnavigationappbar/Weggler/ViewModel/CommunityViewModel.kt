@@ -68,10 +68,13 @@ class CommunityViewModel :ViewModel(){
 
     //내 포스팅 데이터 수정
     fun updateMyPostingData(reviewId : Int, newData:ReviewInCommunity){
-        val data = myPostingLiveData.value?.find { it.reviewId == reviewId }
-        val index = myPostingLiveData.value?.indexOf(data)
+        val data = communityLiveData.value?.find { it.reviewId == reviewId }
+        val index = communityLiveData.value?.indexOf(data)
         if (data!=null && index!=null && index!=-1){
-            myPostingLiveData.value?.set(index,newData)
+            communityLiveData.value?.set(index,newData)
+            val data2 = communityLiveData.value?.find { it.reviewId == reviewId }
+            Log.d("update",data2!!.userLike.toString())
+            Log.d("update",data2!!.likeCount.toString())
         }
     }
 

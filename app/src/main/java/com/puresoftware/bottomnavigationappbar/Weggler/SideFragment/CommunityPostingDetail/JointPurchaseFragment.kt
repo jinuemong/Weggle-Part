@@ -50,6 +50,10 @@ class JointPurchaseFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
+    }
+
+    fun initView(){
         postingAdapter = ItemCommunitySmallAdapterJoint(mainActivity, arrayListOf())
         commentAdapter = ItemMyCommentAdapter(mainActivity, arrayListOf(),1)
 
@@ -94,9 +98,7 @@ class JointPurchaseFragment() : Fragment() {
                 }
             }
         }
-
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -107,10 +109,7 @@ class JointPurchaseFragment() : Fragment() {
             setOnItemClickListener(object : ItemCommunitySmallAdapterJoint.OnItemClickListener {
                 override fun onItemClick(item: ReviewInCommunity) {
                     mainActivity.changeFragment(
-                        DetailCommunityPostingFragment.newInstance(
-                            item.reviewId,
-                            "sub"
-                        )
+                        DetailCommunityPostingFragment.newInstance(item.reviewId, "sub")
                     )
                 }
 
