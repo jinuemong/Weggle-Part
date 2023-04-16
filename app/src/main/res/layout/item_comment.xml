@@ -1,87 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/white"
     android:clickable="true"
     android:focusable="true"
-    android:layout_marginTop="@dimen/margin_10"
-    android:layout_marginBottom="@dimen/margin_10"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/user_image"
-        android:layout_width="@dimen/item_size_50"
-        android:layout_height="@dimen/item_size_50"
-        android:layout_margin="@dimen/margin_10"
-        android:background="@drawable/circle"
-        android:src="@drawable/ic_baseline_person_outline_24" />
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_margin="@dimen/margin_10"
-        android:layout_width="@dimen/top_len_230"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/user_name"
-            android:text="username"
-            android:textStyle="bold"
-            android:textSize="@dimen/text_size_17"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/text"
-            android:maxLines="5"
-            android:ellipsize="end"
-            tools:text="text"
-            android:textSize="@dimen/text_size_17"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_marginBottom="@dimen/margin_10"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/user_image"
+            android:layout_width="@dimen/item_size_50"
+            android:layout_height="@dimen/item_size_50"
+            android:layout_margin="@dimen/margin_10"
+            android:background="@drawable/circle"
+            android:src="@drawable/ic_baseline_person_outline_24" />
+
         <LinearLayout
-            android:layout_marginTop="@dimen/margin_5"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="@dimen/top_len_230"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_10"
+            android:orientation="vertical">
 
             <TextView
-                android:lines="1"
+                android:id="@+id/user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="username"
+                android:textSize="@dimen/text_size_17"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:id="@+id/time_text"
-                tools:text="30년 전 "
-                android:textSize="@dimen/text_size_12"
-                android:layout_width="@dimen/item_size_60"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:lines="1"
-                android:ellipsize="end"
-                android:id="@+id/like_num"
-                android:text="좋아요 x개"
-                android:textSize="@dimen/text_size_12"
-                android:layout_marginStart="@dimen/margin_2"
-                android:layout_width="@dimen/top_len_70"
-                android:layout_height="wrap_content"/>
+                android:maxLines="5"
+                android:textSize="@dimen/text_size_17"
+                tools:text="text" />
 
-            <TextView
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_5"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-                android:id="@+id/re_comment"
-                android:textSize="@dimen/text_size_12"
-                android:text="답글 달기"
-                android:layout_marginStart="@dimen/margin_2"
-                android:layout_width="@dimen/top_len_70"
-                android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/time_text"
+                    android:layout_width="@dimen/item_size_60"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:textSize="@dimen/text_size_12"
+                    tools:text="30년 전 " />
+
+                <TextView
+                    android:id="@+id/like_num"
+                    android:layout_width="@dimen/top_len_70"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_2"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="좋아요 x개"
+                    android:textSize="@dimen/text_size_12" />
+
+                <TextView
+
+                    android:id="@+id/re_comment"
+                    android:layout_width="@dimen/top_len_70"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_2"
+                    android:text="답글 달기"
+                    android:textSize="@dimen/text_size_12" />
+            </LinearLayout>
         </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/like_comment"
+            android:layout_width="@dimen/item_size_25"
+            android:layout_height="@dimen/item_size_25"
+            android:layout_margin="@dimen/margin_20"
+            android:src="@drawable/ic_baseline_favorite_border_24" />
     </LinearLayout>
-    <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
-    <ImageView
-        android:layout_margin="@dimen/margin_20"
-        android:id="@+id/like_comment"
-        android:layout_width="@dimen/item_size_25"
-        android:layout_height="@dimen/item_size_25"
-        android:src="@drawable/ic_baseline_favorite_border_24"/>
+    <LinearLayout
+        android:id="@+id/child_box"
+        android:orientation="vertical"
+        android:layout_marginStart="@dimen/item_size_50"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.recyclerview.widget.RecyclerView
+            tools:listitem="@layout/item_child_comment"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:id="@+id/child_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/child_comment"
+            tools:text="- 댓글 n개 보기"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 </LinearLayout>

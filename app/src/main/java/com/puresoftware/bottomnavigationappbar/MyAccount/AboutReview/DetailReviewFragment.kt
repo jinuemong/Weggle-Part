@@ -81,6 +81,10 @@ class DetailReviewFragment : Fragment() {
                         likeNum.text = data.likeCount.toString()
                         commentNum.text = data.commentCount.toString()
                         bodyText.text = data.body.reviewText
+//                        userName.text = data.userInfo.id
+//                        Glide.with(mainActivity)
+//                            .load(data.userInfo.profileFile)
+//                            .into(userImage)
 
                     }
 

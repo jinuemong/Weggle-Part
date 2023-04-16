@@ -9,9 +9,11 @@ class Comment(
     var userId: String,
     var body: String,
     var likeCount : Int = 0,
+    val parentCommentId : Int,
     var userLike : Boolean,
     var createTime: String,
     var updateTime: String,
 //    var commentPost : ReviewInCommunity?,
     // 어떤 리뷰의 댓글인지 구분용
 ) : Serializable
+

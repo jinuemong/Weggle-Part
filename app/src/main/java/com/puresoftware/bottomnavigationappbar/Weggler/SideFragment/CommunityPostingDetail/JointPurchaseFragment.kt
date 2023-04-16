@@ -50,10 +50,6 @@ class JointPurchaseFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView()
-    }
-
-    fun initView(){
         postingAdapter = ItemCommunitySmallAdapterJoint(mainActivity, arrayListOf())
         commentAdapter = ItemMyCommentAdapter(mainActivity, arrayListOf(),1)
 
@@ -95,6 +91,25 @@ class JointPurchaseFragment() : Fragment() {
                     myCommentLiveData.observe(mainActivity, Observer {
                         commentAdapter.setData(it)
                     })
+                }
+            }
+        }
+    }
+    fun initView() {
+        Log.d("initMainView", "~~")
+        mainActivity.communityViewModel.apply {
+            when (selectPosition) {
+                "Main Posting" -> {
+                    postingAdapter.setData(communityLiveData.value!!)
+                }
+                "Popular Posting" -> {
+                    postingAdapter.setData(popularPostingLiveData.value!!)
+                }
+                "My Posting" -> {
+                    postingAdapter.setData(myPostingLiveData.value!!)
+                }
+                "My Comment" -> {
+                    commentAdapter.setData(myCommentLiveData.value!!)
                 }
             }
         }

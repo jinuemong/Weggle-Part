@@ -1,6 +1,5 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.ViewModel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Comment
@@ -67,14 +66,25 @@ class CommunityViewModel :ViewModel(){
     }
 
     //내 포스팅 데이터 수정
-    fun updateMyPostingData(reviewId : Int, newData:ReviewInCommunity){
-        val data = communityLiveData.value?.find { it.reviewId == reviewId }
-        val index = communityLiveData.value?.indexOf(data)
-        if (data!=null && index!=null && index!=-1){
-            communityLiveData.value?.set(index,newData)
-            val data2 = communityLiveData.value?.find { it.reviewId == reviewId }
-            Log.d("update",data2!!.userLike.toString())
-            Log.d("update",data2!!.likeCount.toString())
+    fun updateCommunityData(reviewId : Int, newData:ReviewInCommunity){
+        val mainData = communityLiveData.value?.find { it.reviewId == reviewId }
+        val mainIndex = communityLiveData.value?.indexOf(mainData)
+        if (mainData!=null && mainIndex!=null && mainIndex!=-1){
+            communityLiveData.value?.set(mainIndex,newData)
+        }
+        val popularData = popularPostingLiveData.value?.find { it.reviewId==reviewId }
+        val popularIndex = popularPostingLiveData.value?.indexOf(popularData)
+        if (popularData!=null && popularIndex!=null && popularIndex!=-1){
+            popularPostingLiveData.value?.set(popularIndex,newData)
+        }
+
+    }
+
+    fun updateMyPosting(reviewId:Int,newData: ReviewInCommunity){
+        val myData = myPostingLiveData.value?.find{it.reviewId == reviewId}
+        val myIndex = myPostingLiveData.value?.indexOf(myData)
+        if (myData!=null && myIndex!=null && myIndex!=-1){
+            myPostingLiveData.value?.set(myIndex,newData)
         }
     }
 

@@ -90,10 +90,10 @@ class ItemCommentAdapter (
         notifyDataSetChanged()
     }
 
-    fun addData(comment:Comment) :String{
+    fun addData(comment:Comment) :Int{
         itemSet.add(comment)
         notifyItemInserted(itemCount-1)
-        return itemCount.toString()
+        return itemCount
     }
 
     fun delData(){
