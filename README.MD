@@ -2,6 +2,7 @@
    - Weggler 기능 구현
    - MyAccount 기능 구현
    - 로그인 인증 기능 구현 
+   - Side Menu 기능 구혀 
 
 ## Project Name
    - Weggle
