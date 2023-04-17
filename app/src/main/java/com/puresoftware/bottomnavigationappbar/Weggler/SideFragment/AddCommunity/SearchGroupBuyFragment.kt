@@ -11,11 +11,8 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.ProductManager
-import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.ReviewManager
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemProductDetailAdapter
-import com.puresoftware.bottomnavigationappbar.Weggler.Model.Product
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentSearchGroupBuyBinding
-import org.w3c.dom.Text
 
 
 class SearchGroupBuyFragment : Fragment() {
@@ -82,14 +79,14 @@ class SearchGroupBuyFragment : Fragment() {
             ProductManager(mainActivity.masterApp)
                 .searchProduct(p0, paramFun = {newData,_->
                     if (newData!=null){
-                        adapter.setData(newData,p0)
+                        adapter.setSearchData(newData,p0)
                     }else{
-                        adapter.setData(ArrayList(),"text")
+                        adapter.setSearchData(ArrayList(),"text")
                     }
 
                 })
         }else{
-            adapter.setData(ArrayList(),"text")
+            adapter.setSearchData(ArrayList(),"text")
         }
 
     }

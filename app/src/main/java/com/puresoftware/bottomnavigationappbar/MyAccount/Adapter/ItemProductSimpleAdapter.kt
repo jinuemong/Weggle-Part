@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Product
+import com.puresoftware.bottomnavigationappbar.databinding.ItemMiniProductTypeDetailBinding
 import com.puresoftware.bottomnavigationappbar.databinding.ItemMiniProductTypeSimpleBinding
 import java.text.DecimalFormat
 
@@ -16,7 +17,6 @@ class ItemProductSimpleAdapter(
 ) : RecyclerView.Adapter<ItemProductSimpleAdapter.ViewHolder>(){
     private var itemList = ArrayList<Product>()
     private lateinit var binding : ItemMiniProductTypeSimpleBinding
-
     private var onItemClickListener : OnItemClickListener?= null
     interface OnItemClickListener{
         fun itemClick(product: Product)

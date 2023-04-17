@@ -55,6 +55,8 @@ class ItemProductDetailAdapter(
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
                     binding.name.text = spannableString
+                }else{
+                    binding.name.text = item.name
                 }
 
                 if (type=="no category"){binding.category.visibility = View.GONE}
@@ -84,9 +86,10 @@ class ItemProductDetailAdapter(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(data : ArrayList<Product>,typeText:String){
+    fun setSearchData(data : ArrayList<Product>, typeText:String){
         changeText = typeText
         itemList = data
         notifyDataSetChanged()
     }
+
 }

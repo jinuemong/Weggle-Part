@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".SideMenu.RewardGuideFragment">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/back_button"
+            android:src="@drawable/ic_baseline_close_24"
+            android:layout_margin="@dimen/margin_10"
+            android:layout_gravity="end"
+            android:layout_width="@dimen/item_size_30"
+            android:layout_height="@dimen/item_size_30"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/image_list"
+            tools:listitem="@layout/item_pic"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/find_button"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:backgroundTint="@color/my_selected_text"
+            android:background="@drawable/round_border_stroke"
+            android:padding="@dimen/margin_15"
+            android:gravity="center"
+            android:text="리뷰 올릴 상품을 찾아보세요!"
+            android:layout_margin="@dimen/margin_30"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:background="@color/line_color_light"
+            android:padding="@dimen/margin_20"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textStyle="bold"
+                android:textColor="@color/line_color_dark"
+                android:text="유의사항"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:textSize="@dimen/text_size_12"
+                android:layout_marginTop="@dimen/margin_10"
+                android:textStyle="bold"
+                android:textColor="@color/line_color_dark"
+                android:text="- 리워드 환급신청 후 취소는 불가능합니다.
+    \n- 리워드는 만 원 단위로 환급신청이 가능힙니다.
+    \n- 환급 신청은 전월 말일까지 가능하며, 신청한 금액은 매월 \n   10일에 입금됩니다.
+    \n- 리워드 적립의 기준은 구매확정을 기준으로 합니다."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

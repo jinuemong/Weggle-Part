@@ -6,6 +6,7 @@
     <dimen name="design_bottom_navigation_active_text_size" tools:override="true">40sp</dimen>
     <dimen name="margin_minus_30">-30dp</dimen>
     <dimen name="margin_minus_50">-50dp</dimen>
+    <dimen name="margin_minus_100">-100dp</dimen>
     <dimen name="margin_2">2dp</dimen>
     <dimen name="margin_3">3dp</dimen>
     <dimen name="margin_5">5dp</dimen>
