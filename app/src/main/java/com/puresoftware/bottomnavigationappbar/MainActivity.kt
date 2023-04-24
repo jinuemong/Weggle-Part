@@ -220,7 +220,7 @@ class MainActivity : AppCompatActivity() {
         if(stack==1) {
             setSubFragment()
         }
-    }
+        }
 
 
     // side View

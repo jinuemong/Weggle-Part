@@ -87,11 +87,12 @@ interface RetrofitService {
 
     //리뷰 관련////////////////////////////
 
-    //리뷰 얻기
-    @GET("products/{productId}/reviewsByCreateTime")
+    //리뷰 얻기 (시간 순 )
+    @GET("products/{productId}/reviews")
     fun getCommunityReViews(
         @Path("productId") productId : Int,
-    ): Call<ArrayList<ReviewInCommunity>>
+        @Query(value = "sort", encoded = true) sort: List<String>?,
+    ): Call<ReviewListInCommunity>
 
     //리뷰 추가 -커뮤니티
     @Multipart
@@ -173,5 +174,10 @@ interface RetrofitService {
         @Path("commentId")commentId: Int,
         @Query(value = "like") like : Boolean,
     ):Call<String>
-    /////////////////////////////////////////////
+    /////////////////////////////////////////////'
+
+
+    // user ranking
+    @GET("reviewsByUserRank")
+    fun getUserRanking() : Call<ArrayList<RankingUser>>
 }

@@ -121,7 +121,7 @@ class WegglerFragment : Fragment() {
 
                     if (message2==null){
                         if (data != null) {
-                            mainActivity.communityViewModel.setCommunityData(data)
+                            mainActivity.communityViewModel.setCommunityData(data.content)
                         }
                     }else{
                         Toast.makeText(mainActivity, message2, Toast.LENGTH_SHORT).show()

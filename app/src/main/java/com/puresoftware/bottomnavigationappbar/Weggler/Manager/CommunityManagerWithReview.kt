@@ -8,6 +8,8 @@ import androidx.annotation.RequiresApi
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.MultiCommunityDataBody
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
 import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.RankingUser
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewListInCommunity
 import com.puresoftware.bottomnavigationappbar.Weggler.ViewModel.MultiPartViewModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -17,12 +19,14 @@ class CommunityManagerWithReview(
     private val wApp : MasterApplication
 ){
 
-    fun getCommunityReviewList(productId : Int,paramFunc : (ArrayList<ReviewInCommunity>?,String?) -> Unit){
-        wApp.service.getCommunityReViews(productId)
-            .enqueue(object : Callback<ArrayList<ReviewInCommunity>>{
+    //리뷰 시간 순
+    fun getCommunityReviewList(productId : Int,paramFunc : (ReviewListInCommunity?,String?) -> Unit){
+
+        wApp.service.getCommunityReViews(productId, listOf("reviewId,DESC"))
+            .enqueue(object : Callback<ReviewListInCommunity>{
                 override fun onResponse(
-                    call: Call<ArrayList<ReviewInCommunity>>,
-                    response: Response<ArrayList<ReviewInCommunity>>
+                    call: Call<ReviewListInCommunity>,
+                    response: Response<ReviewListInCommunity>
                 ) {
                     if (response.isSuccessful){
                         paramFunc(response.body(),null)
@@ -32,7 +36,7 @@ class CommunityManagerWithReview(
 
                 }
 
-                override fun onFailure(call: Call<ArrayList<ReviewInCommunity>>, t: Throwable) {
+                override fun onFailure(call: Call<ReviewListInCommunity>, t: Throwable) {
                     paramFunc(null,"error")
                 }
 
@@ -135,6 +139,28 @@ class CommunityManagerWithReview(
                 }
                 override fun onFailure(call: Call<String>, t: Throwable) {
                     paramFunc(false)
+                }
+
+            })
+    }
+
+    //랭킹 리스트 가져오기
+    fun getRankingUsers(paramFunc: (ArrayList<RankingUser>?, String?) -> Unit){
+        wApp.service.getUserRanking()
+            .enqueue(object : Callback<ArrayList<RankingUser>>{
+                override fun onResponse(
+                    call: Call<ArrayList<RankingUser>>,
+                    response: Response<ArrayList<RankingUser>>
+                ) {
+                    if (response.isSuccessful){
+                        paramFunc(response.body(),null)
+                    }else{
+                        paramFunc(null,response.errorBody()!!.string())
+                    }
+                }
+
+                override fun onFailure(call: Call<ArrayList<RankingUser>>, t: Throwable) {
+                    paramFunc(null,"error")
                 }
 
             })

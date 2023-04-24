@@ -13,7 +13,13 @@ fun getTimeText(createTime: String): String {
     val today = Calendar.getInstance().time.time
     return if (timeString != null) {
         val calDate = (today - timeString)
-        if ((calDate / (60 * 60 * 24 * 1000)) >= 1) { //1일 이상
+        if ((calDate / (60 * 60 * 24 * 1000)) >= 365){ //일 년 이상
+            ((calDate / (60 * 60 * 24 * 1000)) / 365).toInt().toString() + " 년 전"
+        }
+        else if ((calDate / (60 * 60 * 24 * 1000)) >= 31){ //한 달 이상
+            ((calDate / (60 * 60 * 24 * 1000)) / 31).toInt().toString() + " 개월 전"
+        }
+        else if ((calDate / (60 * 60 * 24 * 1000)) >= 1) { //1일 이상
             (calDate / (60 * 60 * 24 * 1000)).toInt().toString() + " 일 전"
         } else if ((calDate / (60 * 60 * 1000)) >= 1) { //1시간 이상
             (calDate / (60 * 60 * 1000)).toInt().toString() + " 시간 전"

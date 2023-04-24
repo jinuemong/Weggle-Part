@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.R
+import com.puresoftware.bottomnavigationappbar.SideMenu.Adapter.RewardGuideImageAdapter
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentRewardGuideBinding
 
 
@@ -24,7 +25,11 @@ class RewardGuideFragment : Fragment() {
         mainActivity = context as MainActivity
         callback =object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
-                mainActivity.setSubFragment()
+                if (viewStack==1){
+                    mainActivity.setSubFragment()
+                }else{
+                    mainActivity.goBackFragment(this@RewardGuideFragment)
+                }
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(this,callback)
@@ -58,10 +63,19 @@ class RewardGuideFragment : Fragment() {
         "http://kooru.be/dev/image/7ccbe7b4ce67c5ab501896ee42b7f782.png",
         "http://kooru.be/dev/image/de03ef3c8cbee8c12df1d8e481c92255.png"
         )
+
+        binding.imageList.adapter = RewardGuideImageAdapter(mainActivity,imageList)
+
         binding.backButton.setOnClickListener {
             if (viewStack==1){
                 mainActivity.setSubFragment()
+            }else{
+                mainActivity.goBackFragment(this@RewardGuideFragment)
             }
+        }
+        binding.findButton.setOnClickListener {
+            mainActivity.setSubFragment()
+            mainActivity.drawerLayout.close()
         }
     }
 

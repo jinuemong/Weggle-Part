@@ -12,6 +12,7 @@ import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.puresoftware.bottomnavigationappbar.MainActivity
+import com.puresoftware.bottomnavigationappbar.MyAccount.AboutChallenge.AddChallengeActivity
 import com.puresoftware.bottomnavigationappbar.MyAccount.AboutReview.AddReviewActivity
 import com.puresoftware.bottomnavigationappbar.MyAccount.AboutReview.DetailReviewFragment
 import com.puresoftware.bottomnavigationappbar.MyAccount.Adapter.KeywordAdapter

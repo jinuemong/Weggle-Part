@@ -62,26 +62,31 @@
                     android:layout_height="@dimen/item_size_17"
                     android:src="@drawable/ic_baseline_favorite_24" />
                 <TextView
+                    android:layout_marginStart="@dimen/margin_2"
                     android:id="@+id/ranking_like_num"
                     android:textSize="@dimen/text_size_12"
                     android:gravity="center"
                     tools:text="999999개"
-                    android:layout_marginStart="@dimen/margin_2"
-                    android:layout_width="@dimen/top_len_70"
+                    android:lines="1"
+                    android:ellipsize="end"
+                    android:layout_width="wrap_content"
                     android:layout_height="@dimen/item_size_20"/>
                 <ImageView
                     android:layout_marginStart="@dimen/margin_5"
                     android:src="@drawable/ic_baseline_play_arrow_24"
                     android:layout_width="@dimen/item_size_20"
                     android:layout_height="@dimen/item_size_20"/>
+
                 <TextView
-                    android:id="@+id/ranking_play_num"
-                    android:textSize="@dimen/text_size_12"
-                    android:gravity="center"
-                    tools:text="999999회"
                     android:layout_marginStart="@dimen/margin_2"
-                    android:layout_width="@dimen/top_len_70"
-                    android:layout_height="@dimen/item_size_20"/>
+                    android:id="@+id/ranking_play_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/item_size_20"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:ellipsize="end"
+                    android:textSize="@dimen/text_size_12"
+                    tools:text="999999회" />
             </LinearLayout>
         </LinearLayout>
         <View

@@ -42,6 +42,8 @@ class RewardListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
+        setUpListener()
     }
 
     private fun initView(){
@@ -49,7 +51,13 @@ class RewardListFragment : Fragment() {
     }
 
     private fun setUpListener(){
+        binding.rewardGuide.setOnClickListener {
+            mainActivity.setSubFragmentView(RewardGuideFragment.newInstance(2),2)
+        }
 
+        binding.backButton.setOnClickListener {
+            mainActivity.setSubFragment()
+        }
     }
 
 

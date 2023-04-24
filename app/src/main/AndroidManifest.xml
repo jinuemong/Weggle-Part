@@ -27,7 +27,7 @@
         </activity>
 
         <activity
-            android:name=".MyAccount.AddChallengeActivity"
+            android:name=".MyAccount.AboutChallenge.AddChallengeActivity"
             android:exported="false"/>
         <activity
             android:name=".MyAccount.AboutReview.AddReviewActivity"

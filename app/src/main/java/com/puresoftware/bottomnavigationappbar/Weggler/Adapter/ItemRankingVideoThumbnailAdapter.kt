@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.puresoftware.bottomnavigationappbar.MainActivity
+import com.puresoftware.bottomnavigationappbar.MyAccount.Model.ReviewData
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
 import com.puresoftware.bottomnavigationappbar.databinding.ItemRankingVideoThumbnailBinding
 import org.mozilla.javascript.ast.ReturnStatement
 
@@ -12,7 +14,7 @@ import org.mozilla.javascript.ast.ReturnStatement
 
 class ItemRankingVideoThumbnailAdapter(
     private val mainActivity: MainActivity,
-    private val dataList : ArrayList<String>,
+    private val dataList : ArrayList<ReviewData>,
 
 ):RecyclerView.Adapter<ItemRankingVideoThumbnailAdapter.ThumbnailViewHolder>() {
     private lateinit var binding: ItemRankingVideoThumbnailBinding

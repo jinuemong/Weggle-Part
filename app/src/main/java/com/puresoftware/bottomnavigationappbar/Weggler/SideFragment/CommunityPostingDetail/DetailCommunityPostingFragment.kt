@@ -147,6 +147,7 @@ class DetailCommunityPostingFragment : Fragment() {
                     //product 구분
                     if (posting.body.jointProductId >= 0) {
                         setJointProduct(posting.body.jointProductId)
+
                     } else {
                         binding.groupBuyProduct.visibility = View.GONE
                     }
