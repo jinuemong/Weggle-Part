@@ -64,13 +64,6 @@ class ItemCommunitySmallAdapterFree(
                 freeBinding.likeNum.text = data.likeCount.toString()
                 freeBinding.commentNum.text = data.commentCount.toString()
 
-                //좋아요 표시
-                if (data.userLike){
-                    freeBinding.onLike()
-                }else{
-                    freeBinding.offLike()
-                }
-
                 //클릭 이벤트
                 freeBinding.root.setOnClickListener {
                     onItemClickListener?.onItemClick(data)
@@ -87,9 +80,5 @@ class ItemCommunitySmallAdapterFree(
         notifyDataSetChanged()
     }
 
-    private fun ItemCommunitySmallFreeBinding.onLike() =
-        likeImage.setImageResource(R.drawable.ic_baseline_favorite_24_red)
-    private fun ItemCommunitySmallFreeBinding.offLike() =
-        likeImage.setImageResource(R.drawable.ic_baseline_favorite_24)
 
 }

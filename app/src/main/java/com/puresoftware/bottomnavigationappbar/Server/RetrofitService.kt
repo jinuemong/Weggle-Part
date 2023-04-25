@@ -83,6 +83,12 @@ interface RetrofitService {
     fun getProductFromId(
         @Path("productId") productId : Int,
     ): Call<Product>
+
+    //프로덕트 리스트 조회
+    @GET("productByIds")
+    fun getProductListFromIds(
+        @Query(value = "productIds", encoded = true) productIds : ArrayList<Int>
+    ): Call<ArrayList<Product>>
     ///////////////////////////////////
 
     //리뷰 관련////////////////////////////
@@ -180,4 +186,26 @@ interface RetrofitService {
     // user ranking
     @GET("reviewsByUserRank")
     fun getUserRanking() : Call<ArrayList<RankingUser>>
+
+    // user 기반 review 조회
+    @GET("users/{userId}/reviewsByUser")
+    fun getUserReviews(
+        @Path("userId") userId:String,
+    ) : Call<ArrayList<ReviewData>>
+
+    // Relation 관련
+
+    //get followers
+    @GET("followers")
+    fun getMyFollowerList() : Call<ArrayList<FollowData>>
+
+    //get followings
+    @GET("followings")
+    fun getMyFollowingList() : Call<ArrayList<FollowData>>
+
+    //user following
+    @POST("followings/{followingId}")
+    fun postFollowingUser(
+        
+    ) : Call<String>
 }

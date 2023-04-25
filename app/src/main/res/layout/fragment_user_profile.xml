@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context=".MyAccount.UserProfileFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -14,12 +17,24 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/back_image"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/top_len_350"
-                android:background="@color/my_selected_back" />
+                android:layout_height="@dimen/top_len_350">
+                <ImageView
+                    android:id="@+id/back_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/my_selected_back" />
+                <ImageView
+                    android:layout_margin="@dimen/margin_20"
+                    android:id="@+id/back_button"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:src="@drawable/ic_baseline_arrow_back_ios_24"
+                    android:layout_width="@dimen/item_size_30"
+                    android:layout_height="@dimen/item_size_30"
+                    app:tint="@color/white" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/user_image"
@@ -38,34 +53,38 @@
                 android:src="@drawable/ic_baseline_settings_24" />
 
             <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/item_size_40"
+                android:layout_gravity="end"
                 android:layout_marginTop="@dimen/margin_minus_50"
                 android:layout_marginEnd="@dimen/margin_10"
-                android:layout_gravity="end"
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/item_size_40">
+                android:orientation="horizontal">
+
                 <ImageView
-                    android:visibility="invisible"
                     android:id="@+id/youtube_url"
+                    android:layout_width="@dimen/item_size_25"
+                    android:layout_height="@dimen/item_size_25"
                     android:layout_margin="@dimen/margin_5"
                     android:src="@drawable/youtube"
-                    android:layout_width="@dimen/item_size_25"
-                    android:layout_height="@dimen/item_size_25"/>
+                    android:visibility="invisible" />
+
                 <ImageView
-                    android:visibility="invisible"
                     android:id="@+id/blog_url"
+                    android:layout_width="@dimen/item_size_25"
+                    android:layout_height="@dimen/item_size_25"
                     android:layout_margin="@dimen/margin_5"
                     android:src="@drawable/blog_log"
-                    android:layout_width="@dimen/item_size_25"
-                    android:layout_height="@dimen/item_size_25"/>
+                    android:visibility="invisible" />
+
                 <ImageView
-                    android:visibility="invisible"
                     android:id="@+id/instagram_url"
+                    android:layout_width="@dimen/item_size_25"
+                    android:layout_height="@dimen/item_size_25"
                     android:layout_margin="@dimen/margin_5"
                     android:src="@drawable/instagram_log"
-                    android:layout_width="@dimen/item_size_25"
-                    android:layout_height="@dimen/item_size_25"/>
+                    android:visibility="invisible" />
             </LinearLayout>
+
             <TextView
                 android:id="@id/user_name"
                 android:layout_width="match_parent"
@@ -91,10 +110,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_20"
                 android:layout_marginEnd="@dimen/margin_20"
-                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
                 android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
                 app:spanCount="2"
                 tools:listitem="@layout/item_tag" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -192,6 +212,18 @@
 
             </LinearLayout>
 
+            <TextView
+                android:background="@drawable/round_border"
+                android:textSize="@dimen/text_size_17"
+                android:textStyle="bold"
+                android:layout_marginStart="@dimen/margin_20"
+                android:layout_marginEnd="@dimen/margin_20"
+                android:paddingTop="@dimen/margin_10"
+                android:paddingBottom="@dimen/margin_10"
+                android:gravity="center"
+                tools:text="팔로우"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/posting_list"
                 android:layout_width="match_parent"
@@ -232,16 +264,4 @@
                 android:layout_height="@dimen/top_len_100" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/my_account_write_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="80dp"
-        android:backgroundTint="@color/black"
-        android:src="@drawable/ic_pencil"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@null" />
 </androidx.constraintlayout.widget.ConstraintLayout>

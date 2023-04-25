@@ -8,6 +8,7 @@ import com.puresoftware.bottomnavigationappbar.MyAccount.Model.ReviewData
 import com.puresoftware.bottomnavigationappbar.MyAccount.ViewModel.AddReviewViewModel
 import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.MultiCommunityDataBody
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.Product
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
 import retrofit2.Call
 import retrofit2.Callback
@@ -73,4 +74,26 @@ class ReviewManager(
 
             })
     }
+
+    fun getUserReviewData(userId:String,paramFunc: (ArrayList<ReviewData>?, String?) -> Unit){
+        masterApp.service.getUserReviews(userId)
+            .enqueue(object : Callback<ArrayList<ReviewData>>{
+                override fun onResponse(
+                    call: Call<ArrayList<ReviewData>>,
+                    response: Response<ArrayList<ReviewData>>
+                ) {
+                    if (response.isSuccessful){
+                        paramFunc(response.body(),null)
+                    }else{
+                        paramFunc(null,response.errorBody()!!.string())
+                    }
+                }
+
+                override fun onFailure(call: Call<ArrayList<ReviewData>>, t: Throwable) {
+                    paramFunc(null,"error")
+                }
+
+            })
+    }
+
 }

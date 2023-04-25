@@ -1,12 +1,13 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.Model
 
+import com.puresoftware.bottomnavigationappbar.MyAccount.Model.UserInfo
 import java.io.Serializable
 
 // 리뷰에 커맨트 달기
 class Comment(
     val commentId: Int,
     var reviewInfo: ReviewInComment,
-    var userId: String,
+    var userInfo: UserInfo?,
     var body: String,
     var likeCount : Int = 0,
     val parentCommentId : Int,

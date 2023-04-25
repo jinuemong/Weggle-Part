@@ -78,34 +78,8 @@ class MyAccountFragment : Fragment() {
     }
 
     private fun initView() {
-        //리뷰 리스트 불러오기
-        ReviewManager(mainActivity.masterApp, null)
-            .getReviewListInAccount(paramFunc = { data, _ ->
-                if (data != null) {
-                    binding.postingNum.text = data.size.toString()
-                    //adapter 연결
-                    binding.noPostingView.visibility = View.GONE
-                    binding.postingList.apply {
-                        visibility = View.VISIBLE
-                        adapter = MyFeedReviewAdapter(mainActivity, data).apply {
-                            setOnItemClickListener(object :
-                                MyFeedReviewAdapter.OnItemClickListener {
-                                override fun itemClick(review: ReviewData) {
-                                    mainActivity.setMainViewVisibility(false)
-                                    mainActivity.changeFragment(DetailReviewFragment
-                                        .newInstance(review.reviewId)
-                                    )
-                                }
-                            })
-                        }
-                    }
 
-                } else {
-                    binding.noPostingView.visibility = View.VISIBLE
-                    binding.postingList.visibility = View.GONE
-                }
-            })
-
+        // 유저 정보 불러오기
         UserManager(mainActivity.masterApp)
             .getUser { user, _ ->
                 if (user != null) {
@@ -148,6 +122,34 @@ class MyAccountFragment : Fragment() {
                     user.body?.userKeyword?.let {
                         binding.tagBox.adapter = KeywordAdapter(mainActivity,it,"userProfile")
                     }
+
+                    // 유저 조회로 리뷰 리스트 얻기
+                    ReviewManager(mainActivity.masterApp,null)
+                        .getUserReviewData(user.name, paramFunc = {data,_->
+                            if (data != null && data.size>0) {
+                                binding.postingNum.text = data.size.toString()
+                                //adapter 연결
+                                binding.noPostingView.visibility = View.GONE
+                                binding.postingList.apply {
+                                    visibility = View.VISIBLE
+                                    adapter = MyFeedReviewAdapter(mainActivity, data).apply {
+                                        setOnItemClickListener(object :
+                                            MyFeedReviewAdapter.OnItemClickListener {
+                                            override fun itemClick(review: ReviewData) {
+                                                mainActivity.setMainViewVisibility(false)
+                                                mainActivity.changeFragment(DetailReviewFragment
+                                                    .newInstance(review.reviewId)
+                                                )
+                                            }
+                                        })
+                                    }
+                                }
+
+                            } else {
+                                binding.noPostingView.visibility = View.VISIBLE
+                                binding.postingList.visibility = View.GONE
+                            }
+                        })
                 }
             }
 

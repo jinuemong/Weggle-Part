@@ -5,7 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.puresoftware.bottomnavigationappbar.MainActivity
+import com.puresoftware.bottomnavigationappbar.MyAccount.Model.User
+import com.puresoftware.bottomnavigationappbar.MyAccount.Model.UserInfo
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Comment
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getTimeText
@@ -20,7 +23,7 @@ class ItemCommentAdapter (
 
     private var onItemClickListener : OnItemClickListener?= null
     interface OnItemClickListener{
-        fun userClick(userId : String)
+        fun userClick(userInfo : UserInfo)
         fun likeClick(commentId : Int, like:Boolean)
         //답글
         fun addSubComment(comment:Comment)
@@ -46,10 +49,16 @@ class ItemCommentAdapter (
                     binding.offLike()
                 }
 
-                //유저 프로필 보기
-                binding.userImage.setOnClickListener {
-                    //User image click
-                    onItemClickListener?.userClick(data.userId)
+                data.userInfo?.let{user->
+                    binding.userName.text = user.id
+                    Glide.with(mainActivity)
+                        .load(user.profileFile)
+                        .into(binding.userImage)
+                    //유저 프로필 보기
+                    binding.userImage.setOnClickListener {
+                        //User image click
+                        onItemClickListener?.userClick(user)
+                    }
                 }
 
                 // 좋아요 기능 추가

@@ -12,12 +12,15 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.puresoftware.bottomnavigationappbar.MainActivity
+import com.puresoftware.bottomnavigationappbar.MyAccount.Adapter.ItemProductHoAdapter
+import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.ProductManager
 import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.ReviewManager
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.MessageFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentDetailReviewBinding
 import org.mozilla.javascript.tools.jsc.Main
 
+// 리뷰 상세보기
 class DetailReviewFragment : Fragment() {
     private var reviewId = -1
     private lateinit var mainActivity: MainActivity
@@ -81,10 +84,18 @@ class DetailReviewFragment : Fragment() {
                         likeNum.text = data.likeCount.toString()
                         commentNum.text = data.commentCount.toString()
                         bodyText.text = data.body.reviewText
-//                        userName.text = data.userInfo.id
-//                        Glide.with(mainActivity)
-//                            .load(data.userInfo.profileFile)
-//                            .into(userImage)
+                        data.userInfo?.let { user->
+                            userName.text = user.id
+                            Glide.with(mainActivity)
+                                .load(user.profileFile)
+                                .into(userImage)
+                        }
+
+                        // 하단 프로덕트 리스트에 리뷰 남긴 프로덕트 추가
+                        var productList= arrayListOf<Int>()
+                        if (data.body.additionalProduct!=null) productList=data.body.additionalProduct!!
+                        productList.add(0,data.productId)
+                        setProductList(productList)
 
                     }
 
@@ -117,6 +128,15 @@ class DetailReviewFragment : Fragment() {
 
         binding.reviewBox.likeNum.setOnClickListener { setLikeReview() }
         binding.reviewBox.likeImage.setOnClickListener { setLikeReview() }
+    }
+
+    private fun setProductList(productList: ArrayList<Int>){
+        ProductManager(mainActivity.masterApp)
+            .getAdditionalProductList(productList, paramFunc = { dataSet,_->
+                if(dataSet!=null){
+                    binding.reviewBox.productListView.adapter = ItemProductHoAdapter(mainActivity,dataSet)
+                }
+            })
     }
 
     private fun getThumbnail(path: String) {

@@ -25,8 +25,10 @@ import java.lang.reflect.Field
 
 class MyAccountViewModel : ViewModel(){
     var userProfile : User? = null
+
     var newBackgroundImage : Uri? = null
     var newProfileImage : Uri? = null
+    var exploreProfile : User? = null
 
 //    fun updateUserProfile(activity: Activity,email:String?,PW:String?,newPW:String?,body: UserBody?
 //                          ,paramFun: (User?, error: String?) -> Unit){

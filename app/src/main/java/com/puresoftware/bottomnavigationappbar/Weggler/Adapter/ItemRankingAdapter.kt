@@ -24,6 +24,9 @@ class ItemRankingAdapter(
     private var onItemClickListener : OnItemClickListener? = null
     interface OnItemClickListener{
         fun getList(user : UserInfo,paramFunc : (ArrayList<ReviewData>)->Unit)
+        fun viewReview(reviewData: ReviewData)
+
+        fun getUserProfile(user:UserInfo)
     }
 
     fun setOnItemClickListener(listener: OnItemClickListener){
@@ -63,6 +66,11 @@ class ItemRankingAdapter(
                     }
 
                 }
+
+                // 유저 프로필 보기
+                binding.rankingUserImage.setOnClickListener {
+                    onItemClickListener?.getUserProfile(rankingUser.userInfo)
+                }
             }
         }
 
@@ -80,6 +88,14 @@ class ItemRankingAdapter(
 
     fun ItemRankingBinding.setThumbnailData(dataList: ArrayList<ReviewData>){
         thumbnailRecycler.adapter = ItemRankingVideoThumbnailAdapter(mainActivity,dataList)
+            .apply {
+                setOnItemClickListener(object :ItemRankingVideoThumbnailAdapter.OnItemClickListener{
+                    override fun itemClick(review: ReviewData) {
+                        onItemClickListener?.viewReview(review)
+                    }
+
+                })
+            }
     }
 
 }

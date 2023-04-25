@@ -61,12 +61,7 @@ class ItemCommunitySmallAdapterJoint(
                 jointBinding.likeNum.text = data.likeCount.toString()
                 jointBinding.commendNum.text = data.commentCount.toString()
 
-                //좋아요 표시
-                if (data.userLike){
-                    jointBinding.onLike()
-                }else{
-                    jointBinding.offLike()
-                }
+
 
                 //클릭 이벤트
                 jointBinding.root.setOnClickListener {
@@ -84,8 +79,4 @@ class ItemCommunitySmallAdapterJoint(
         notifyDataSetChanged()
     }
 
-    private fun ItemCommunitySmallJointBinding.onLike() =
-        likeImage.setImageResource(R.drawable.ic_baseline_favorite_24_red)
-    private fun ItemCommunitySmallJointBinding.offLike() =
-        likeImage.setImageResource(R.drawable.ic_baseline_favorite_24)
 }

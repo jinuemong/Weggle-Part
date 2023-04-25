@@ -3,7 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/group_buy_product"
-    android:layout_width="match_parent"
+    android:layout_width="@dimen/top_len_350"
     android:layout_height="wrap_content"
     android:background="@drawable/round_border"
     android:orientation="horizontal"
@@ -29,7 +29,7 @@
             android:layout_marginBottom="@dimen/margin_2"
             android:ellipsize="end"
             android:lines="1"
-            android:textSize="@dimen/text_size_15"
+            android:textSize="@dimen/text_size_12"
             tools:text="company" />
 
         <TextView
@@ -40,8 +40,7 @@
             android:ellipsize="end"
             android:lines="1"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size_17"
-            android:textStyle="bold"
+            android:textSize="@dimen/text_size_15"
             tools:text="product name" />
 
 
@@ -68,7 +67,6 @@
                 android:layout_marginStart="@dimen/margin_5"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_15"
-                android:textStyle="bold"
                 tools:text="99,999원" />
         </LinearLayout>
     </LinearLayout>

@@ -58,7 +58,7 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/user_image"
                     android:layout_width="@dimen/item_size_50"
                     android:layout_height="@dimen/item_size_50"
@@ -322,7 +322,7 @@
             </LinearLayout>
 
             <include
-                android:id="@+id/comment_view"
+                android:id="@+id/comment_list_view"
                 layout="@layout/comment_list_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

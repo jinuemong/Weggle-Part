@@ -1,9 +1,13 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.Adapter
 
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.MyAccount.Model.ReviewData
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
@@ -18,14 +22,38 @@ class ItemRankingVideoThumbnailAdapter(
 
 ):RecyclerView.Adapter<ItemRankingVideoThumbnailAdapter.ThumbnailViewHolder>() {
     private lateinit var binding: ItemRankingVideoThumbnailBinding
-
+    private var onItemClickListener : OnItemClickListener? = null
+    interface OnItemClickListener{
+        fun itemClick(review : ReviewData)
+    }
+    fun setOnItemClickListener(listener: OnItemClickListener){
+        this.onItemClickListener = listener
+    }
     inner class ThumbnailViewHolder(private val binding: ItemRankingVideoThumbnailBinding)
         :RecyclerView.ViewHolder(binding.root){
             fun bind(){
-                val image  = dataList[absoluteAdapterPosition]
-                Glide.with(mainActivity)
-                    .load(image)
-                    .into(binding.thumbnailImage)
+                val item = dataList[absoluteAdapterPosition]
+
+                try {
+                    Glide.with(mainActivity)
+                        .load(item.thumbnail)
+                        .into(object : CustomTarget<Drawable>() {
+                            override fun onResourceReady(
+                                resource: Drawable,
+                                transition: Transition<in Drawable>?
+                            ) {
+                                val layout = binding.root
+                                layout.background = resource
+                            }
+
+                            override fun onLoadCleared(placeholder: Drawable?) {}
+                        })
+                }catch (e:Exception){
+                    binding.root.visibility = View.GONE
+                }
+                binding.root.setOnClickListener {
+                    onItemClickListener?.itemClick(item)
+                }
             }
         }
 

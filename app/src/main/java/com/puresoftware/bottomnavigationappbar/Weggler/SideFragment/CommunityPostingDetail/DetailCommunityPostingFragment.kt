@@ -19,6 +19,8 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.ProductManager
+import com.puresoftware.bottomnavigationappbar.MyAccount.Model.UserInfo
+import com.puresoftware.bottomnavigationappbar.MyAccount.UserProfileFragment
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemCommentAdapter
 import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
@@ -29,6 +31,7 @@ import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.MessageFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getTimeText
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.isVideo
+import com.puresoftware.bottomnavigationappbar.databinding.CommentListViewBinding
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentDetailCommunityPostingBinding
 import java.text.DecimalFormat
 
@@ -39,6 +42,7 @@ class DetailCommunityPostingFragment : Fragment() {
     private var type: String? = null
     private var _binding: FragmentDetailCommunityPostingBinding? = null
     private val binding get() = _binding!!
+
     private lateinit var mainActivity: MainActivity
     private lateinit var wegglerApp: MasterApplication
     private lateinit var commentAdapter: ItemCommentAdapter
@@ -88,6 +92,7 @@ class DetailCommunityPostingFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         communityComment = CommunityCommentManager(wegglerApp)
         communityPost = CommunityManagerWithReview(wegglerApp)
         initView()
@@ -103,10 +108,17 @@ class DetailCommunityPostingFragment : Fragment() {
                     binding.createTime.text = getTimeText(posting.createTime)
                     binding.likeNum.text = posting.likeCount.toString()
 
-//                    binding.userName.text = posting.userInfo.id
-//                    Glide.with(mainActivity)
-//                        .load(posting.userInfo.profileFile)
-//                        .into(binding.userImage)
+                    //유저 정보 얻기
+                    posting.userInfo?.let {user->
+                        binding.userName.text = user.id
+                        Glide.with(mainActivity)
+                            .load(user.profileFile)
+                            .into(binding.userImage)
+                        binding.userImage.setOnClickListener {
+                            // go profile
+                            mainActivity.changeFragment(UserProfileFragment.newInstance(user.id,"sub"))
+                        }
+                    }
 
                     //좋아요 표시
                     setReviewLike(posting.userLike)
@@ -248,19 +260,23 @@ class DetailCommunityPostingFragment : Fragment() {
 
     private fun initComment(reviewId: Int) {
         commentAdapter = ItemCommentAdapter(mainActivity, arrayListOf())
-        binding.commentView.commentList.adapter = commentAdapter
-                //클릭 이벤트 적용
+        binding.commentListView.commentList.adapter = commentAdapter
+            //클릭 이벤트 적용
             .apply {
-                setOnItemClickListener(object : ItemCommentAdapter.OnItemClickListener{
-                    override fun userClick(userId: String) {
+                setOnItemClickListener(object : ItemCommentAdapter.OnItemClickListener {
+
+                    override fun userClick(userInfo: UserInfo) {
                         // go profile
+                        mainActivity.changeFragment(UserProfileFragment.newInstance(userInfo.id,"sub"))
                     }
 
                     override fun likeClick(commentId: Int, like: Boolean) {
-                        commentLike(commentId,like)
+                        commentLike(commentId, like)
                     }
 
-                    override fun addSubComment(comment: Comment) {}
+                    override fun addSubComment(comment: Comment) {
+                        //답글 달기
+                    }
 
                 })
             }

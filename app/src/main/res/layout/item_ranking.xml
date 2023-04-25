@@ -30,7 +30,7 @@
                 android:src="@drawable/ic_iconmonstr_crown_2"
                 android:layout_width="@dimen/item_size_17"
                 android:layout_height="@dimen/item_size_17"/>
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/ranking_user_image"
                 android:layout_margin="@dimen/margin_10"
                 android:background="@drawable/circle"

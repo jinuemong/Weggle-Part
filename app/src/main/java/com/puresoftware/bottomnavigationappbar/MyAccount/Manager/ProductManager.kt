@@ -48,4 +48,25 @@ class ProductManager(
 
             })
     }
+
+    fun getAdditionalProductList(dataList : ArrayList<Int>,paramFunc: (ArrayList<Product>?, String?) -> Unit){
+        masterApp.service.getProductListFromIds(dataList)
+            .enqueue(object : Callback<ArrayList<Product>>{
+                override fun onResponse(
+                    call: Call<ArrayList<Product>>,
+                    response: Response<ArrayList<Product>>
+                ) {
+                    if (response.isSuccessful){
+                        paramFunc(response.body(),null)
+                    }else{
+                        paramFunc(null,response.errorBody()!!.string())
+                    }
+                }
+
+                override fun onFailure(call: Call<ArrayList<Product>>, t: Throwable) {
+                    paramFunc(null,"error")
+                }
+
+            })
+    }
 }
