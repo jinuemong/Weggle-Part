@@ -38,13 +38,11 @@
         app:tabTextAppearance="@style/tab_text">
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_follower"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="팔로워" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_following"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="팔로잉" />
@@ -54,22 +52,8 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/line_color" />
-
-    <EditText
-        android:hint="  검색"
-        android:drawableStart="@drawable/ic_baseline_search_24"
-        android:paddingStart="@dimen/margin_10"
-        android:backgroundTint="@color/line_color_light"
-        android:background="@drawable/round_border"
-        android:layout_margin="@dimen/margin_10"
+    <FrameLayout
+        android:id="@+id/follow_container"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/item_size_50"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_margin="@dimen/margin_10"
-        android:id="@+id/follow_user_list"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_follow_user_data"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+        android:layout_height="match_parent"/>
 </LinearLayout>

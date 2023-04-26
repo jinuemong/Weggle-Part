@@ -9,8 +9,10 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import com.google.android.material.tabs.TabLayout
 import com.puresoftware.bottomnavigationappbar.MainActivity
+import com.puresoftware.bottomnavigationappbar.MyAccount.Adapter.ItemFollowAdapter
 import com.puresoftware.bottomnavigationappbar.MyAccount.Model.FollowData
 import com.puresoftware.bottomnavigationappbar.R
+import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPostingDetail.TotalFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentFollowDataBinding
 
 class FollowDataFragment : Fragment() {
@@ -21,7 +23,8 @@ class FollowDataFragment : Fragment() {
     private var mainType = ""
     private lateinit var mainActivity: MainActivity
     private lateinit var callback: OnBackPressedCallback
-
+    private lateinit var followerFragment : FollowListFragment
+    private lateinit var followingFragment : FollowListFragment
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
@@ -56,15 +59,37 @@ class FollowDataFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        followerFragment = FollowListFragment.newInstance(userId,0)
+        followingFragment = FollowListFragment.newInstance(userId,1)
+
+        //초기 세팅
+        if (viewType==0){
+            // follower
+            mainActivity.fragmentManager!!.beginTransaction()
+                .replace(R.id.follow_container, followerFragment)
+                .commit()
+        }else if(viewType==1) {
+            // following
+            mainActivity.fragmentManager!!.beginTransaction()
+                .replace(R.id.follow_container, followingFragment)
+                .commit()
+        }
+
+        //탭
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when(tab!!.position){
                     0->{
                         // follower
-
+                        mainActivity.fragmentManager!!.beginTransaction()
+                            .replace(R.id.follow_container, followerFragment)
+                            .commit()
                     }
                     1->{
                         // following
+                        mainActivity.fragmentManager!!.beginTransaction()
+                            .replace(R.id.follow_container, followingFragment)
+                            .commit()
                     }
                 }
             }
@@ -75,16 +100,14 @@ class FollowDataFragment : Fragment() {
 
         })
 
-        if (viewType==0){
-            binding.tabLayout.setScrollPosition(0,0f,false)
-        }else if(viewType==1){
-            binding.tabLayout.setScrollPosition(1,1f,false)
+        binding.backButton.setOnClickListener {
+            mainActivity.goBackFragment(this@FollowDataFragment)
+            if (mainType == "main") {
+                mainActivity.setMainViewVisibility(true)
+            }
         }
     }
 
-    private fun setData(data:ArrayList<FollowData>){
-
-    }
 
     companion object {
 

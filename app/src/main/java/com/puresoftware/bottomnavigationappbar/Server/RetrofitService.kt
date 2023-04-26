@@ -28,6 +28,11 @@ interface RetrofitService {
     @GET("users")
     fun getUserInfo() : Call<User>
 
+    //유저 이름으로 유저 검색
+    @GET("users/{userId}")
+    fun searchUser(
+        @Path("userId") userId: String
+    ) : Call<User>
     //유저 삭제
     @DELETE("users")
     fun deleteUser(

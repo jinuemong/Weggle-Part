@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.MyAccount.AboutChallenge.AddChallengeActivity
+import com.puresoftware.bottomnavigationappbar.MyAccount.AboutRelation.FollowDataFragment
 import com.puresoftware.bottomnavigationappbar.MyAccount.AboutReview.AddReviewActivity
 import com.puresoftware.bottomnavigationappbar.MyAccount.AboutReview.DetailReviewFragment
 import com.puresoftware.bottomnavigationappbar.MyAccount.Adapter.KeywordAdapter
@@ -22,6 +23,8 @@ import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.RelationManager
 import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.ReviewManager
 import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.UserManager
 import com.puresoftware.bottomnavigationappbar.MyAccount.Model.ReviewData
+import com.puresoftware.bottomnavigationappbar.MyAccount.Model.User
+import com.puresoftware.bottomnavigationappbar.MyAccount.Model.UserInfo
 import com.puresoftware.bottomnavigationappbar.MyAccount.SubFragment.UpdateProfileFragment
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.databinding.MyAccountFragmentBinding
@@ -76,7 +79,7 @@ class MyAccountFragment : Fragment() {
         }
 
         initView()
-        setUpListener()
+
     }
 
     private fun initView() {
@@ -170,15 +173,24 @@ class MyAccountFragment : Fragment() {
                                     Observer { binding.followingNum.text = data.size.toString() })
                             }
                         })
+                    setUpListener(user)
                 }
             }
 
     }
 
-    private fun setUpListener() {
+    private fun setUpListener(user: User) {
         binding.userImage.setOnClickListener {
             mainActivity.setMainViewVisibility(false)
             mainActivity.changeFragment(UpdateProfileFragment())
+        }
+
+        binding.followerBox.setOnClickListener {
+            mainActivity.changeFragment(FollowDataFragment.newInstance(user.name ,0,"sub"))
+        }
+
+        binding.followingBox.setOnClickListener {
+            mainActivity.changeFragment(FollowDataFragment.newInstance(user.name ,1,"sub"))
         }
     }
 

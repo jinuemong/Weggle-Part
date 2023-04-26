@@ -85,4 +85,22 @@ class UserManager(
 
             })
     }
+
+    fun searchUserFromUserId(userId:String,paramFun: (User?, error: String?) -> Unit){
+        masterApp.service.searchUser(userId)
+            .enqueue(object : Callback<User>{
+                override fun onResponse(call: Call<User>, response: Response<User>) {
+                    if (response.isSuccessful){
+                        paramFun(response.body(),null)
+                    }else{
+                        paramFun(null,response.errorBody()!!.string())
+                    }
+                }
+
+                override fun onFailure(call: Call<User>, t: Throwable) {
+                    paramFun(null,"error")
+                }
+
+            })
+    }
 }

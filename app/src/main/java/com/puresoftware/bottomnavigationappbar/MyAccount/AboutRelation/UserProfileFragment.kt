@@ -10,10 +10,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.activity.OnBackPressedCallback
+import com.bumptech.glide.Glide
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.MyAccount.AboutReview.DetailReviewFragment
+import com.puresoftware.bottomnavigationappbar.MyAccount.Adapter.KeywordAdapter
 import com.puresoftware.bottomnavigationappbar.MyAccount.Adapter.MyFeedReviewAdapter
+import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.RelationManager
 import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.ReviewManager
+import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.UserManager
+import com.puresoftware.bottomnavigationappbar.MyAccount.Model.ExploreProfile
 import com.puresoftware.bottomnavigationappbar.MyAccount.Model.ReviewData
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentUserProfileBinding
 
@@ -53,7 +58,7 @@ class UserProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentUserProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -61,12 +66,18 @@ class UserProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         userId?.let { userName ->
-
-            /*// 유저 정보 불러오기 -> 유저 이름으로 불러오기로 수정
             UserManager(mainActivity.masterApp)
-                .getUser { user, _ ->
+                .searchUserFromUserId(userName, paramFun = { user,_ ->
                     if (user != null) {
-                        mainActivity.myAccountViewModel.userProfile = user
+                        // 검색 중인 뷰
+                        RelationManager(mainActivity.masterApp)
+                            .getTargetUserFollowers(userName, paramFunc = {data,_->
+                                if(data!=null) {binding.followerNum.text = data.size.toString()}
+                            })
+                        RelationManager(mainActivity.masterApp)
+                            .getTargetUserFollowings(userName, paramFunc = {data,_->
+                                if(data!=null) {binding.followingNum.text = data.size.toString()}
+                            })
 
                         //유저 정보
                         user.profile?.let {
@@ -106,8 +117,7 @@ class UserProfileFragment : Fragment() {
                             binding.tagBox.adapter = KeywordAdapter(mainActivity,it,"userProfile")
                         }
                     }
-                }*/
-
+                })
 
             // 유저 조회로 리뷰 리스트 얻기
             ReviewManager(mainActivity.masterApp, null)
@@ -142,11 +152,24 @@ class UserProfileFragment : Fragment() {
         setUpListener()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        // 뷰가 삭제되면 검색 데이터 삭제
+    }
     private fun setUpListener(){
         binding.backButton.setOnClickListener {
             mainActivity.goBackFragment(this@UserProfileFragment)
             if (type == "main") {
                 mainActivity.setMainViewVisibility(true)
+            }
+        }
+        userId?.let {userName->
+            binding.followerBox.setOnClickListener {
+                mainActivity.changeFragment(FollowDataFragment.newInstance(userName ,0,"sub"))
+            }
+
+            binding.followingBox.setOnClickListener {
+                mainActivity.changeFragment(FollowDataFragment.newInstance(userName ,1,"sub"))
             }
         }
     }

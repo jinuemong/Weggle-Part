@@ -28,7 +28,6 @@ class MyAccountViewModel : ViewModel(){
     var myFollowings =  MutableLiveData<ArrayList<FollowData>>() // myFollowing
     var newBackgroundImage : Uri? = null //for update profile
     var newProfileImage : Uri? = null // for update profile
-    var exploreProfile : ExploreProfile? = null //current view profile
 
     init {
         myFollowers.value = ArrayList()
