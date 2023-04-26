@@ -20,7 +20,7 @@ import com.bumptech.glide.request.transition.Transition
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.ProductManager
 import com.puresoftware.bottomnavigationappbar.MyAccount.Model.UserInfo
-import com.puresoftware.bottomnavigationappbar.MyAccount.UserProfileFragment
+import com.puresoftware.bottomnavigationappbar.MyAccount.AboutRelation.UserProfileFragment
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemCommentAdapter
 import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
@@ -31,7 +31,6 @@ import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.MessageFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getTimeText
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.isVideo
-import com.puresoftware.bottomnavigationappbar.databinding.CommentListViewBinding
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentDetailCommunityPostingBinding
 import java.text.DecimalFormat
 

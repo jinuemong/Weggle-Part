@@ -203,9 +203,28 @@ interface RetrofitService {
     @GET("followings")
     fun getMyFollowingList() : Call<ArrayList<FollowData>>
 
+    //get view user followers
+    @GET("users/{userId}/followers/")
+    fun getUserFollowerList(
+        @Path("userId")userId: String
+    ):Call<ArrayList<FollowData>>
+
+    //get view user followings
+    @GET("users/{userId}/followings/")
+    fun getUserFollowingList(
+        @Path("userId")userId: String
+    ):Call<ArrayList<FollowData>>
+
     //user following
     @POST("followings/{followingId}")
     fun postFollowingUser(
-        
+        @Path("followingId") followingId : String,
+        @Body body : RequestBody?,
+    ) : Call<String>
+
+    // un following
+    @DELETE("followings/{followingId}")
+    fun delFollowingUser(
+        @Path("followingId") followingId : String,
     ) : Call<String>
 }

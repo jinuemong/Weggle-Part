@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.MyAccount.AboutChallenge.AddChallengeActivity
@@ -17,6 +18,7 @@ import com.puresoftware.bottomnavigationappbar.MyAccount.AboutReview.AddReviewAc
 import com.puresoftware.bottomnavigationappbar.MyAccount.AboutReview.DetailReviewFragment
 import com.puresoftware.bottomnavigationappbar.MyAccount.Adapter.KeywordAdapter
 import com.puresoftware.bottomnavigationappbar.MyAccount.Adapter.MyFeedReviewAdapter
+import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.RelationManager
 import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.ReviewManager
 import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.UserManager
 import com.puresoftware.bottomnavigationappbar.MyAccount.Model.ReviewData
@@ -148,6 +150,24 @@ class MyAccountFragment : Fragment() {
                             } else {
                                 binding.noPostingView.visibility = View.VISIBLE
                                 binding.postingList.visibility = View.GONE
+                            }
+                        })
+
+                    //팔로잉, 팔로워 리스트 얻기
+                    RelationManager(mainActivity.masterApp)
+                        .getMyFollowers(paramFunc = {data,_ ->
+                            if (data!=null){
+                                mainActivity.myAccountViewModel.myFollowers.value=data
+                                mainActivity.myAccountViewModel.myFollowers.observe(mainActivity,
+                                    Observer { binding.followerNum.text = data.size.toString() })
+                            }
+                        })
+                    RelationManager(mainActivity.masterApp)
+                        .getMyFollowings(paramFunc = {data,_->
+                            if (data!=null){
+                                mainActivity.myAccountViewModel.myFollowings.value = data
+                                mainActivity.myAccountViewModel.myFollowings.observe(mainActivity,
+                                    Observer { binding.followingNum.text = data.size.toString() })
                             }
                         })
                 }

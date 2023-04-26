@@ -134,6 +134,7 @@
                     android:background="@color/line_color" />
 
                 <LinearLayout
+                    android:id="@+id/follower_box"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_10"
@@ -166,6 +167,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/following_box"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_10"

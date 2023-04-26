@@ -11,11 +11,10 @@ import com.puresoftware.bottomnavigationappbar.MyAccount.AboutReview.DetailRevie
 import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.ReviewManager
 import com.puresoftware.bottomnavigationappbar.MyAccount.Model.ReviewData
 import com.puresoftware.bottomnavigationappbar.MyAccount.Model.UserInfo
-import com.puresoftware.bottomnavigationappbar.MyAccount.UserProfileFragment
+import com.puresoftware.bottomnavigationappbar.MyAccount.AboutRelation.UserProfileFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemRankingAdapter
 import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityManagerWithReview
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentRankingBinding
-import org.mozilla.javascript.tools.jsc.Main
 
 //랭킹 사용자 리스트 보기
 
