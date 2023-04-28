@@ -25,13 +25,13 @@ interface RetrofitService {
     fun logoutUser():Call<String>
 
     //유저 정보 얻기
-    @GET("users")
+    @GET("loginUser")
     fun getUserInfo() : Call<User>
 
     //유저 이름으로 유저 검색
-    @GET("users/{userId}")
+    @GET("users/{id}")
     fun searchUser(
-        @Path("userId") userId: String
+        @Path("id") userId: String?
     ) : Call<User>
     //유저 삭제
     @DELETE("users")
@@ -224,7 +224,7 @@ interface RetrofitService {
     @POST("followings/{followingId}")
     fun postFollowingUser(
         @Path("followingId") followingId : String,
-        @Body body : RequestBody?,
+        @Body body : RequestBody,
     ) : Call<String>
 
     // un following

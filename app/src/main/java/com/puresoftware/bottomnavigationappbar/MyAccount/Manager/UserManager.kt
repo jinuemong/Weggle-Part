@@ -86,7 +86,7 @@ class UserManager(
             })
     }
 
-    fun searchUserFromUserId(userId:String,paramFun: (User?, error: String?) -> Unit){
+    fun searchUserFromUserId(userId:String?,paramFun: (User?, error: String?) -> Unit){
         masterApp.service.searchUser(userId)
             .enqueue(object : Callback<User>{
                 override fun onResponse(call: Call<User>, response: Response<User>) {

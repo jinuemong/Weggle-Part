@@ -23,6 +23,7 @@ import org.mozilla.javascript.tools.jsc.Main
 // 리뷰 상세보기
 class DetailReviewFragment : Fragment() {
     private var reviewId = -1
+    private var type = ""
     private lateinit var mainActivity: MainActivity
     private lateinit var onBackPressedCallback: OnBackPressedCallback
     private var _binding: FragmentDetailReviewBinding? = null
@@ -42,6 +43,7 @@ class DetailReviewFragment : Fragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
             reviewId = it.getInt("reviewId")
+            type = it.getString("type").toString()
         }
     }
 
@@ -165,10 +167,11 @@ class DetailReviewFragment : Fragment() {
     companion object {
 
         @JvmStatic
-        fun newInstance(reviewId: Int) =
+        fun newInstance(reviewId: Int,type:String) =
             DetailReviewFragment().apply {
                 arguments = Bundle().apply {
                     putInt("reviewId", reviewId)
+                    putString("type",type)
                 }
             }
     }
@@ -176,6 +179,8 @@ class DetailReviewFragment : Fragment() {
     // 뒤로가기 이벤트 처리
     private fun backEvent() {
         mainActivity.goBackFragment(this@DetailReviewFragment)
-        mainActivity.setMainViewVisibility(true)
+        if (type=="main") {
+            mainActivity.setMainViewVisibility(true)
+        }
     }
 }

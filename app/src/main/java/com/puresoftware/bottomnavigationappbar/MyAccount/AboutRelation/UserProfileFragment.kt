@@ -1,9 +1,12 @@
 package com.puresoftware.bottomnavigationappbar.MyAccount.AboutRelation
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,14 +21,18 @@ import com.puresoftware.bottomnavigationappbar.MyAccount.Adapter.MyFeedReviewAda
 import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.RelationManager
 import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.ReviewManager
 import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.UserManager
-import com.puresoftware.bottomnavigationappbar.MyAccount.Model.ExploreProfile
+import com.puresoftware.bottomnavigationappbar.MyAccount.Model.FollowData
 import com.puresoftware.bottomnavigationappbar.MyAccount.Model.ReviewData
+import com.puresoftware.bottomnavigationappbar.MyAccount.Model.User
+import com.puresoftware.bottomnavigationappbar.MyAccount.Model.UserInfo
+import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentUserProfileBinding
 
 
 class UserProfileFragment : Fragment() {
     private var userId: String? = null
     private var type: String? = null
+    private var isFollow = false
     private lateinit var mainActivity: MainActivity
     private var _binding: FragmentUserProfileBinding? = null
     private val binding get() = _binding!!
@@ -116,6 +123,16 @@ class UserProfileFragment : Fragment() {
                         user.body?.userKeyword?.let {
                             binding.tagBox.adapter = KeywordAdapter(mainActivity,it,"userProfile")
                         }
+
+
+                        //팔로잉 상태 확인
+                        if(mainActivity.myAccountViewModel.userProfile?.name==user.name){ //자신인 경우 삭제
+                            binding.followButton.visibility=View.GONE
+                        }else{
+                            setFollowButton(mainActivity.myAccountViewModel.checkUserFollow(user.name))
+                        }
+                        // 데이터 셋 확정 후 클릭 이벤트 설정
+                        setUpListener(user)
                     }
                 })
 
@@ -132,10 +149,9 @@ class UserProfileFragment : Fragment() {
                                 setOnItemClickListener(object :
                                     MyFeedReviewAdapter.OnItemClickListener {
                                     override fun itemClick(review: ReviewData) {
-                                        mainActivity.setMainViewVisibility(false)
                                         mainActivity.changeFragment(
                                             DetailReviewFragment
-                                                .newInstance(review.reviewId)
+                                                .newInstance(review.reviewId,"sub")
                                         )
                                     }
                                 })
@@ -149,29 +165,50 @@ class UserProfileFragment : Fragment() {
                 })
         }
 
-        setUpListener()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        // 뷰가 삭제되면 검색 데이터 삭제
-    }
-    private fun setUpListener(){
+    @SuppressLint("SetTextI18n")
+    private fun setUpListener(user : User){
         binding.backButton.setOnClickListener {
             mainActivity.goBackFragment(this@UserProfileFragment)
             if (type == "main") {
                 mainActivity.setMainViewVisibility(true)
             }
         }
-        userId?.let {userName->
+        user.name.let { userName ->
             binding.followerBox.setOnClickListener {
-                mainActivity.changeFragment(FollowDataFragment.newInstance(userName ,0,"sub"))
+                mainActivity.changeFragment(FollowDataFragment.newInstance(userName, 0, "sub"))
             }
 
             binding.followingBox.setOnClickListener {
-                mainActivity.changeFragment(FollowDataFragment.newInstance(userName ,1,"sub"))
+                mainActivity.changeFragment(FollowDataFragment.newInstance(userName, 1, "sub"))
+            }
+
+            binding.followButton.setOnClickListener {
+                if (isFollow) {
+                    RelationManager(mainActivity.masterApp)
+                        .delFollow(userName, paramFunc = { _ ,err->
+                            if (err == null) { //언 팔로우 성공
+                                setFollowButton(false)
+                                mainActivity.myAccountViewModel.delFollow(userName)
+                                binding.followerNum.text =( binding.followerNum.text.toString().toInt()-1).toString()
+                            }
+                        })
+                } else {
+                    RelationManager(mainActivity.masterApp)
+                        .addFollow(userName, paramFunc = { _ ,err->
+                            if (err == null) { // 팔로우 성공
+                                setFollowButton(true)
+                                val followData = FollowData(null,
+                                    UserInfo(user.name,user.profile,user.background),"","")
+                                mainActivity.myAccountViewModel.addFollow(followData)
+                                binding.followerNum.text =( binding.followerNum.text.toString().toInt()+1).toString()
+                            }
+                        })
+                }
             }
         }
+
     }
 
     private fun onUrl(view: ImageView, url: String) {
@@ -186,6 +223,30 @@ class UserProfileFragment : Fragment() {
         view.visibility = View.GONE
     }
 
+
+    @SuppressLint("SetTextI18n")
+    private fun setFollowButton(boolean: Boolean){
+        if(boolean){ // 팔로우 취소
+            binding.followButton.apply {
+                isFollow = true
+                val paddingList = listOf(paddingLeft,paddingTop,paddingRight,paddingBottom)
+                setTextColor(Color.parseColor("#FF000000"))
+                setBackgroundResource(R.drawable.round_border_stroke)
+                setPadding(paddingList[0],paddingList[1],paddingList[2],paddingList[3])
+                text = "팔로잉"
+            }
+        }else{ // 팔로우 신청
+            binding.followButton.apply {
+                isFollow = false
+                val paddingList = listOf(paddingLeft,paddingTop,paddingRight,paddingBottom)
+                setTextColor(Color.parseColor("#FFFFFFFF"))
+                setBackgroundResource(R.drawable.round_border_selected)
+                setPadding(paddingList[0],paddingList[1],paddingList[2],paddingList[3])
+                text = "팔로우"
+
+            }
+        }
+    }
     companion object {
 
         @JvmStatic

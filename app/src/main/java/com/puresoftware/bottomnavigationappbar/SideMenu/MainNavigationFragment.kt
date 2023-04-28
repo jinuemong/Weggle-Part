@@ -2,6 +2,7 @@ package com.puresoftware.bottomnavigationappbar.SideMenu
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -32,21 +33,16 @@ class MainNavigationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 유저 정보 갱신
-        UserManager(mainActivity.masterApp)
-            .getUser { user, _ ->
-                if (user != null) {
-                    mainActivity.myAccountViewModel.userProfile = user
-
-                    //유저 정보
-                    user.profile?.let {
-                        Glide.with(mainActivity)
-                            .load(user.profile)
-                            .into(binding.userImage)
-                    }
-                    binding.userName.text = user.name
-                }
+        mainActivity.myAccountViewModel.userProfile?.let { user->
+            //유저 정보
+            Log.d("user",user.name)
+            user.profile?.let {
+                Glide.with(mainActivity)
+                    .load(user.profile)
+                    .into(binding.userImage)
             }
+            binding.userName.text = user.name
+        }
 
         setUpListener()
     }

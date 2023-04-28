@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.get
 import com.google.android.material.tabs.TabLayout
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.MyAccount.Adapter.ItemFollowAdapter
@@ -64,16 +65,19 @@ class FollowDataFragment : Fragment() {
 
         //초기 세팅
         if (viewType==0){
+            binding.tabLayout.selectTab(binding.tabLayout.getTabAt(0))
             // follower
             mainActivity.fragmentManager!!.beginTransaction()
                 .replace(R.id.follow_container, followerFragment)
                 .commit()
         }else if(viewType==1) {
+            binding.tabLayout.selectTab(binding.tabLayout.getTabAt(1))
             // following
             mainActivity.fragmentManager!!.beginTransaction()
                 .replace(R.id.follow_container, followingFragment)
                 .commit()
         }
+
 
         //탭
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{

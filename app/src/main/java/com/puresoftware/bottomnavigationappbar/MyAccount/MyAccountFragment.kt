@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -86,7 +87,7 @@ class MyAccountFragment : Fragment() {
 
         // 유저 정보 불러오기
         UserManager(mainActivity.masterApp)
-            .getUser { user, _ ->
+            .getUser(paramFun = { user, _ ->
                 if (user != null) {
                     mainActivity.myAccountViewModel.userProfile = user
 
@@ -143,7 +144,7 @@ class MyAccountFragment : Fragment() {
                                             override fun itemClick(review: ReviewData) {
                                                 mainActivity.setMainViewVisibility(false)
                                                 mainActivity.changeFragment(DetailReviewFragment
-                                                    .newInstance(review.reviewId)
+                                                    .newInstance(review.reviewId,"main")
                                                 )
                                             }
                                         })
@@ -157,25 +158,15 @@ class MyAccountFragment : Fragment() {
                         })
 
                     //팔로잉, 팔로워 리스트 얻기
-                    RelationManager(mainActivity.masterApp)
-                        .getMyFollowers(paramFunc = {data,_ ->
-                            if (data!=null){
-                                mainActivity.myAccountViewModel.myFollowers.value=data
-                                mainActivity.myAccountViewModel.myFollowers.observe(mainActivity,
-                                    Observer { binding.followerNum.text = data.size.toString() })
-                            }
-                        })
-                    RelationManager(mainActivity.masterApp)
-                        .getMyFollowings(paramFunc = {data,_->
-                            if (data!=null){
-                                mainActivity.myAccountViewModel.myFollowings.value = data
-                                mainActivity.myAccountViewModel.myFollowings.observe(mainActivity,
-                                    Observer { binding.followingNum.text = data.size.toString() })
-                            }
-                        })
+                    mainActivity.myAccountViewModel.myFollowers.observe(mainActivity,
+                        Observer { binding.followerNum.text = it.size.toString() })
+
+                    mainActivity.myAccountViewModel.myFollowings.observe(mainActivity,
+                        Observer { binding.followingNum.text = it.size.toString() })
+
                     setUpListener(user)
                 }
-            }
+            })
 
     }
 
@@ -186,11 +177,13 @@ class MyAccountFragment : Fragment() {
         }
 
         binding.followerBox.setOnClickListener {
-            mainActivity.changeFragment(FollowDataFragment.newInstance(user.name ,0,"sub"))
+            mainActivity.setMainViewVisibility(false)
+            mainActivity.changeFragment(FollowDataFragment.newInstance(user.name ,0,"main"))
         }
 
         binding.followingBox.setOnClickListener {
-            mainActivity.changeFragment(FollowDataFragment.newInstance(user.name ,1,"sub"))
+            mainActivity.setMainViewVisibility(false)
+            mainActivity.changeFragment(FollowDataFragment.newInstance(user.name ,1,"main"))
         }
     }
 

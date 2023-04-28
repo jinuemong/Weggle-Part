@@ -34,6 +34,20 @@ class MyAccountViewModel : ViewModel(){
         myFollowings.value = ArrayList()
     }
 
+    fun checkUserFollow(targetId: String): Boolean{
+        // following 데이터가 없으면 null 반납
+        return myFollowings.value?.find {it.userInfo?.id==targetId} != null
+    }
+
+    fun addFollow(followData: FollowData){
+        myFollowings.value?.add(followData)
+    }
+    fun delFollow(targetId: String){
+        myFollowings.value?.let {data->
+            data.remove(data.find { it.userInfo?.id ==targetId})
+        }
+    }
+
     // 유저 프로필 업데이트
     fun updateUserImages(activity: Activity,paramFunc : (User?,String?)->Unit){
         viewModelScope.launch {

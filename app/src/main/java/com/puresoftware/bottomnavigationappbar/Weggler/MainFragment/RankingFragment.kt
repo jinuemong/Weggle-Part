@@ -69,7 +69,7 @@ class RankingFragment : Fragment() {
                                     mainActivity.setMainViewVisibility(false)
                                     mainActivity.changeFragment(
                                         DetailReviewFragment
-                                        .newInstance(reviewData.reviewId)
+                                        .newInstance(reviewData.reviewId,"main")
                                     )
                                 }
 

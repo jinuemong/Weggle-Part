@@ -3,7 +3,7 @@ package com.puresoftware.bottomnavigationappbar.MyAccount.Model
 import java.io.Serializable
 
 class FollowData(
-  val body : String?,
+  val body : Any?,
   var userInfo: UserInfo?,
   val createTime:String,
   val updateTime : String,

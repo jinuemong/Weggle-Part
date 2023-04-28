@@ -20,11 +20,15 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/top_len_350">
+
                 <ImageView
                     android:id="@+id/back_image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/my_selected_back" />
+                    android:background="@color/my_selected_back"
+                    tools:layout_editor_absoluteX="-16dp"
+                    tools:layout_editor_absoluteY="-16dp" />
+
                 <ImageView
                     android:layout_margin="@dimen/margin_20"
                     android:id="@+id/back_button"
@@ -111,7 +115,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_20"
+                android:layout_marginTop="@dimen/margin_20"
+                android:layout_marginStart="@dimen/margin_20"
+                android:layout_marginEnd="@dimen/margin_20"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -208,22 +214,23 @@
             </LinearLayout>
 
             <TextView
-                android:background="@drawable/round_border"
-                android:textSize="@dimen/text_size_17"
-                android:textStyle="bold"
-                android:layout_marginStart="@dimen/margin_20"
-                android:layout_marginEnd="@dimen/margin_20"
+                android:id="@+id/follow_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_20"
+                android:background="@drawable/round_border_stroke"
+                android:gravity="center"
                 android:paddingTop="@dimen/margin_10"
                 android:paddingBottom="@dimen/margin_10"
-                android:gravity="center"
-                tools:text="팔로우"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:textSize="@dimen/text_size_17"
+                tools:text="팔로우" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/posting_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="@dimen/margin_20"
+                android:layout_marginStart="@dimen/margin_20"
+                android:layout_marginEnd="@dimen/margin_20"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constrainedHeight="true"
                 app:spanCount="3"

@@ -23,9 +23,8 @@ class ItemFollowAdapter(
     fun setOnItemClickListener(listener: OnItemClickListener){
         this.onItemClickListener = listener
     }
-    inner class ViewHolder(
-        binding: ItemFollowUserDataBinding
-    ): RecyclerView.ViewHolder(binding.root){
+    inner class ViewHolder(binding: ItemFollowUserDataBinding)
+        : RecyclerView.ViewHolder(binding.root){
         fun bind(){
             val item = itemList[absoluteAdapterPosition]
             item.userInfo?.let { user->
