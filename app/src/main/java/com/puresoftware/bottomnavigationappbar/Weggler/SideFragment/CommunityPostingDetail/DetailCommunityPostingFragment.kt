@@ -37,7 +37,7 @@ import java.text.DecimalFormat
 //type : MainFragment에서 왔다면 setMainViewVisibility (뷰 감추기 )
 class DetailCommunityPostingFragment : Fragment() {
     private var reviewId: Int = -1
-    private var parentComment = true
+    private var parentComment : Int = 0
     private var type: String? = null
     private var _binding: FragmentDetailCommunityPostingBinding? = null
     private val binding get() = _binding!!
@@ -212,11 +212,7 @@ class DetailCommunityPostingFragment : Fragment() {
 
         //comment 추가 버튼
         binding.postComment.setOnClickListener {
-            if (parentComment) {
-                addComment(posting)
-            }else{
-
-            }
+            addComment(posting)
         }
 
         //리뷰 좋아요
@@ -225,6 +221,10 @@ class DetailCommunityPostingFragment : Fragment() {
         }
         binding.likeNum.setOnClickListener {
             reviewLike(posting)
+        }
+
+        binding.childCloseButton.setOnClickListener {
+            cancelChildComment()
         }
 
     }
@@ -273,8 +273,14 @@ class DetailCommunityPostingFragment : Fragment() {
                         commentLike(commentId, like)
                     }
 
+                    @SuppressLint("SetTextI18n")
                     override fun addSubComment(comment: Comment) {
                         //답글 달기
+                        binding.childTextBox.visibility = View.VISIBLE
+                        parentComment = comment.commentId
+                        comment.userInfo?.let {
+                            binding.childText.text = "${it.id}님에게 답글 남기는 중"
+                        }
                     }
 
                 })
@@ -338,11 +344,15 @@ class DetailCommunityPostingFragment : Fragment() {
             if (text.toString() != "") {
                 //comment 추가
                 communityComment.addReviewComment(
-                    reviewId, 0,
+                    reviewId, parentComment,
                     text.toString(),
                     paramFunc = { newData, message ->
                         if (message == null) {
-                            posting.commentCount =  commentAdapter.addData(newData!!)
+                            if (parentComment!=0){ //자식 추가
+                                posting.commentCount = commentAdapter.addChildData(newData!!)
+                            }else { //부모 추가
+                                posting.commentCount = commentAdapter.addData(newData!!)
+                            }
                             binding.commentNum.text = posting.commentCount.toString()
                             mainActivity.communityViewModel.updateCommunityData(reviewId,posting)
                             mainActivity.communityViewModel.updateMyPosting(reviewId,posting)
@@ -355,10 +365,17 @@ class DetailCommunityPostingFragment : Fragment() {
                         }
                     })
             }
+            if (parentComment!=0){ //자식 댓글 추가 상태면 제거
+                cancelChildComment()
+            }
             setText("")
         }
     }
 
+    private fun cancelChildComment(){
+        binding.childTextBox.visibility = View.GONE
+        parentComment = 0
+    }
     private fun delComment() {
 
     }

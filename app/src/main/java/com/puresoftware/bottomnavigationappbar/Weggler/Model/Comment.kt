@@ -10,7 +10,7 @@ class Comment(
     var userInfo: UserInfo?,
     var body: String,
     var likeCount : Int = 0,
-    val parentCommentId : Int,
+    val parentCommentId : Int?,
     var userLike : Boolean,
     var createTime: String,
     var updateTime: String,

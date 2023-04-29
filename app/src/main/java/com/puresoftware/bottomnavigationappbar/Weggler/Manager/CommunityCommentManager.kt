@@ -50,9 +50,9 @@ class CommunityCommentManager(
     }
 
     //댓글 추가하기
-    fun addReviewComment(reviewId: Int, parentCommentId:Int, body:String
+    fun addReviewComment(reviewId: Int, parentCommentId:Int?, body:String
                          ,paramFunc: (Comment?, String?) -> Unit){
-        wApp.service.addReviewComment(reviewId, CommentPost(parentCommentId,body))
+        wApp.service.addReviewComment(reviewId,CommentPost(parentCommentId,body))
             .enqueue(object :Callback<Comment>{
                 override fun onResponse(call: Call<Comment>, response: Response<Comment>) {
                     if (response.isSuccessful){

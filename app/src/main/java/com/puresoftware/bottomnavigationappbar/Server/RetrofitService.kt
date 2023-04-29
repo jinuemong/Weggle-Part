@@ -154,10 +154,13 @@ interface RetrofitService {
     ) : Call<CommentList>
 
     //댓글 추가
+
     @POST("reviews/{reviewId}/comments")
     fun addReviewComment(
         @Path("reviewId")reviewId: Int,
         @Body body : CommentPost,
+//        @Field("parentCommentId") parentCommentId : Int?,
+//        @Field("body") body : String,
     ) : Call<Comment>
 
     // 리뷰 아이디로 커뮤니티 리뷰 얻기
