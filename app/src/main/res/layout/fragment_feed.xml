@@ -25,7 +25,7 @@
             android:layout_margin="@dimen/margin_10"
             android:text="추천게시물"
             android:textStyle="bold"
-            android:textSize="@dimen/text_size_15"
+            android:textSize="@dimen/text_size_17"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <LinearLayout
@@ -33,21 +33,20 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"/>
 
-        <include
+        <FrameLayout
+            android:layout_marginBottom="@dimen/margin_10"
             android:id="@+id/recommend_posting"
-            layout="@layout/item_review"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_10" />
+            android:layout_height="wrap_content" />
 
         <LinearLayout
+            android:layout_marginTop="@dimen/margin_10"
             android:orientation="vertical"
-            android:layout_margin="@dimen/margin_10"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_marginEnd="@dimen/margin_10"
-                android:layout_marginBottom="@dimen/margin_10"
+                android:layout_margin="@dimen/margin_10"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/item_size_40">
                 <TextView
@@ -77,13 +76,13 @@
                 android:orientation="horizontal"
                 tools:listitem="@layout/item_recommend_user_box_ho"/>
 
-<!--            <androidx.recyclerview.widget.RecyclerView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="@dimen/margin_10"-->
-<!--                android:orientation="vertical"-->
-<!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--                tools:listitem="@layout/item_feed_posting" />-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/feed_review_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_review" />
         </LinearLayout>
 
     </LinearLayout>

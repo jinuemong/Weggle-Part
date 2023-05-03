@@ -129,6 +129,10 @@ interface RetrofitService {
         @Path("productId") productId: Int,
     ): Call<ArrayList<ReviewInCommunity>>
 
+    // 팔로우 유저 리뷰 얻기
+    @GET("reviewsByFollowingUser")
+    fun getFollowingUserReviews():Call<ArrayList<ReviewData>>
+
     //내 리뷰 조회
     @GET("reviewsByUser")
     fun getMyReviewList() : Call<ArrayList<ReviewData>>

@@ -55,9 +55,11 @@ class ItemCommentAdapter(
 
                 data.userInfo?.let { user ->
                     binding.userName.text = user.id
-                    Glide.with(mainActivity)
-                        .load(user.profileFile)
-                        .into(binding.userImage)
+                    if (user.profileFile!=null) {
+                        Glide.with(mainActivity)
+                            .load(user.profileFile)
+                            .into(binding.userImage)
+                    }
                     //유저 프로필 보기
                     binding.userImage.setOnClickListener {
                         //User image click

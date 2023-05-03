@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import androidx.annotation.RequiresApi
+import com.puresoftware.bottomnavigationappbar.MyAccount.Model.ReviewData
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.MultiCommunityDataBody
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
 import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
@@ -160,6 +161,28 @@ class CommunityManagerWithReview(
                 }
 
                 override fun onFailure(call: Call<ArrayList<RankingUser>>, t: Throwable) {
+                    paramFunc(null,"error")
+                }
+
+            })
+    }
+
+    //팔로잉 리뷰 리스트 얻기
+    fun getFollowingReviewList(paramFunc: (ArrayList<ReviewData>?, String?) -> Unit){
+        wApp.service.getFollowingUserReviews()
+            .enqueue(object : Callback<ArrayList<ReviewData>>{
+                override fun onResponse(
+                    call: Call<ArrayList<ReviewData>>,
+                    response: Response<ArrayList<ReviewData>>
+                ) {
+                    if (response.isSuccessful){
+                        paramFunc(response.body(),null)
+                    }else{
+                        paramFunc(null,response.errorBody()!!.string())
+                    }
+                }
+
+                override fun onFailure(call: Call<ArrayList<ReviewData>>, t: Throwable) {
                     paramFunc(null,"error")
                 }
 

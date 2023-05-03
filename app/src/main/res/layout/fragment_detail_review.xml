@@ -10,6 +10,7 @@
     android:clickable="true"
     tools:context=".MyAccount.AboutReview.DetailReviewFragment">
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/back_box"
         android:layout_marginTop="@dimen/margin_10"
         android:layout_marginStart="@dimen/margin_10"
         android:padding="@dimen/margin_10"

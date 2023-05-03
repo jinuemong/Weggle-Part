@@ -7,6 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.puresoftware.bottomnavigationappbar.MainActivity
+import com.puresoftware.bottomnavigationappbar.MyAccount.AboutReview.DetailReviewFragment
+import com.puresoftware.bottomnavigationappbar.MyAccount.Adapter.ItemProductHoAdapter
+import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.ProductManager
+import com.puresoftware.bottomnavigationappbar.R
+import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemFeedPostingAdapter
+import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityManagerWithReview
+import com.puresoftware.bottomnavigationappbar.Weggler.Model.Product
 import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityFragment.ShellFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentFeedBinding
 
@@ -32,11 +39,55 @@ class FeedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
         setUpListener()
     }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun initView(){
+        CommunityManagerWithReview(mainActivity.masterApp)
+            .getFollowingReviewList(paramFunc = {dataList,_->
+                if (dataList==null) {
+                    // 모든 리뷰 데이터 가져오기 -> 팔로우 중인 데이터가 없을 때
+                }else{
+                    // 팔로잉 중인 리뷰 데이터
+
+                    //데이터 하나만 우선 추출 -> 상단 프레임 변경
+                    if(dataList.size>0){
+                        mainActivity.fragmentManager!!.beginTransaction()
+                            .replace(R.id.recommend_posting,
+                            DetailReviewFragment.newInstance(dataList[0].reviewId,"feed"))
+                            .commit()
+                        dataList.removeAt(0)
+                    }
+
+                    binding.feedReviewList.adapter= ItemFeedPostingAdapter(mainActivity,dataList)
+                        .apply {
+                            setOnItemClickListener(object : ItemFeedPostingAdapter.OnItemClickListener{
+
+                                // 프로덕트 리스트 불러오기 - > setOnItemClickListener에 등록해서 간편하게 사용
+                                override fun setProductData(
+                                    productList: ArrayList<Int>,
+                                    paramFunc: (ArrayList<Product>) -> Unit
+                                ) {
+                                    ProductManager(mainActivity.masterApp)
+                                        .getAdditionalProductList(productList, paramFunc = { dataSet,_->
+                                            if(dataSet!=null){
+                                                paramFunc(dataSet)
+                                            }else{
+                                                paramFunc(arrayListOf())
+                                            }
+                                        })
+                                }
+
+                            })
+                        }
+
+                }
+            })
     }
 
     private fun setUpListener(){
@@ -47,5 +98,4 @@ class FeedFragment : Fragment() {
             mainActivity.changeFragment(ShellFragment.newInstance("추천 위글러"))
         }
     }
-
 }
