@@ -1,8 +1,12 @@
 package com.puresoftware.bottomnavigationappbar.Server
 
+import com.puresoftware.bottomnavigationappbar.Home.data.PagenationList
+import com.puresoftware.bottomnavigationappbar.Home.data.ReviewInnerData
+import com.puresoftware.bottomnavigationappbar.Home.data.VideoData
 import com.puresoftware.bottomnavigationappbar.MyAccount.Model.*
 import com.puresoftware.bottomnavigationappbar.Server.TokenManager.Token
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.*
+import com.puresoftware.bottomnavigationappbar.brands.data.MetaData
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
@@ -239,4 +243,27 @@ interface RetrofitService {
     fun delFollowingUser(
         @Path("followingId") followingId : String,
     ) : Call<String>
+
+    @GET("product-groups/{name}")
+    fun addGroupProduct(
+        @Path("name")name:String
+    ):Call<VideoData>
+    //카테고리 가져오기
+    @GET("categories/{category}/products")
+    fun  getCategoryProduct(
+        @Path("category") category : String,
+        @Query(value = "page", encoded = true) page: Int?,
+        @Query(value = "size", encoded = true) size: Int?,
+        @Query(value = "sort", encoded = true) sort: List<String>?,
+    ): Call<PagenationList> //여기가 잘못됨
+    //meta 조회
+    @GET("metas/{metaType}")
+    fun getMeta(
+        @Path("metaType")metaType:String
+    ):Call<MetaData>
+
+    @GET("products/{productId}/reviewsByCreateTime")
+    fun getReViewLee(
+        @Path("productId") productId: Int,
+    ): Call<ArrayList<ReviewInnerData>>
 }
