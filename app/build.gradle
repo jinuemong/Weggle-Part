@@ -102,9 +102,7 @@ dependencies {
     //암 복호화
     implementation "androidx.security:security-crypto:1.1.0-alpha01"
 
-    //exoplayer2
-    implementation "com.google.android.exoplayer:exoplayer-hls:2.9.3"
-    implementation "com.google.android.exoplayer:exoplayer-core:2.9.3"
-    implementation "com.google.android.exoplayer:exoplayer-ui:2.9.3"
+    // 카드뷰
+    implementation "androidx.cardview:cardview:1.0.0"
 }
 

@@ -3,6 +3,7 @@ package com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPo
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
@@ -14,6 +15,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
@@ -28,6 +31,8 @@ import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityCommentM
 import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityManagerWithReview
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Comment
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
+import com.puresoftware.bottomnavigationappbar.Weggler.SwipeCardView.SwipeController
+import com.puresoftware.bottomnavigationappbar.Weggler.SwipeCardView.SwipeControllerActions
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.MessageFragment
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.getTimeText
 import com.puresoftware.bottomnavigationappbar.Weggler.Unit.isVideo
@@ -164,6 +169,7 @@ class DetailCommunityPostingFragment : Fragment() {
                     }
 
                     initComment(posting.reviewId)
+                    setSwipe() // del button swipe
                     setUpListener(posting)
                 } else {
                     // 존재하지 않는 경우
@@ -378,6 +384,26 @@ class DetailCommunityPostingFragment : Fragment() {
     }
     private fun delComment() {
 
+    }
+    // del comment swipe
+    private fun setSwipe(){
+        val swipeController = SwipeController()
+        swipeController.apply {
+            setButtonActionListener(object : SwipeControllerActions{
+                override fun onRightClicked(position: Int) {
+                    commentAdapter.delData(position)
+                }
+            })
+        }
+        // 스와이프 터치 리스너를 등록
+        val itemTouchHelper = ItemTouchHelper(swipeController)
+        itemTouchHelper.attachToRecyclerView(binding.commentListView.commentList)
+        // 버튼ㅇ르 그려주는 동작
+        binding.commentListView.commentList.addItemDecoration(object : RecyclerView.ItemDecoration(){
+            override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
+                swipeController.onDraw(c)
+            }
+        })
     }
 
     // Like or UnLike

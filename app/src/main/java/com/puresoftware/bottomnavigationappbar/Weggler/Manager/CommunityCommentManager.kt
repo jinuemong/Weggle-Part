@@ -85,4 +85,22 @@ class CommunityCommentManager(
                 }
             })
     }
+
+    fun delComment(commentId: Int,reviewId: Int,paramFunc: (Int?,String?) -> Unit){
+        wApp.service.deleteComment(reviewId, commentId)
+            .enqueue(object : Callback<Int>{
+                override fun onResponse(call: Call<Int>, response: Response<Int>) {
+                    if (response.isSuccessful){
+                        paramFunc(response.body(),null)
+                    }else{
+                        paramFunc(null,response.errorBody().toString())
+                    }
+                }
+
+                override fun onFailure(call: Call<Int>, t: Throwable) {
+                    paramFunc(null,"error")
+                }
+
+            })
+    }
 }

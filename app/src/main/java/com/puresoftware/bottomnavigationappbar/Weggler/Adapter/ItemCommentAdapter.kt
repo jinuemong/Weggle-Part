@@ -133,6 +133,7 @@ class ItemCommentAdapter(
     fun addData(comment: Comment): Int {
         itemSet.add(comment)
         notifyItemInserted(itemCount - 1)
+        notifyItemRangeChanged(0,itemCount)
         return itemCount
     }
 
@@ -140,10 +141,13 @@ class ItemCommentAdapter(
     fun addChildData(comment:Comment): Int{
         itemSet.add(comment)
         notifyDataSetChanged()
+        notifyItemRangeChanged(0,itemCount)
         return itemCount
     }
 
-    fun delData() {
-
+    fun delData(position: Int) {
+        itemSet.removeAt(position)
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position,itemCount)
     }
 }
