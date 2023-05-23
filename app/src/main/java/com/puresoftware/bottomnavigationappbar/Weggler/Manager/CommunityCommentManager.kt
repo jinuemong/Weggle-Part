@@ -32,7 +32,7 @@ class CommunityCommentManager(
 
     //리뷰 아이디로 댓글 가져오기
     fun getReviewCommentList(reviewId : Int,paramFunc: (ArrayList<Comment>?, String?) -> Unit){
-        wApp.service.getReviewCommentList(reviewId,null,null,null)
+        wApp.service.getReviewCommentList(reviewId,null,1000,null)
             .enqueue(object : Callback<CommentList>{
                 override fun onResponse(call: Call<CommentList>, response: Response<CommentList>) {
                     if (response.isSuccessful){

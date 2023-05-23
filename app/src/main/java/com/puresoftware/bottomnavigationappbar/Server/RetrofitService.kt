@@ -153,7 +153,7 @@ interface RetrofitService {
     fun getReviewCommentList(
         @Path("reviewId")reviewId : Int,
         @Query(value = "page", encoded = true) page: Int?,
-        @Query(value = "size", encoded = true) size: Int?,
+        @Query(value = "size", encoded = true) size: Int,
         @Query(value = "sort", encoded = true) sort: List<String>?,
     ) : Call<CommentList>
 

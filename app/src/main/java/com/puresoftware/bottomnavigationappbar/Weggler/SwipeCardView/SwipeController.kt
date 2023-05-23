@@ -19,7 +19,7 @@ class SwipeController : ItemTouchHelper.Callback() {
     private var swipeBack : Boolean = false
     // 현재 버튼 상태
     private var buttonShowedState : ButtonsState = ButtonsState.GONE
-    private val buttonWidth : Float = 300F
+    private val buttonWidth : Float = 200F
     private var buttonInstance : RectF? = null //동적 버튼
     // 액션 이벤트
     private var buttonActions : SwipeControllerActions? = null
@@ -199,9 +199,14 @@ class SwipeController : ItemTouchHelper.Callback() {
         p.color = Color.RED
         c.drawRoundRect(rightButton,corners,corners,p)
         drawText(c,rightButton,p)
+
+        buttonInstance = null
+        if (buttonShowedState == ButtonsState.RIGHT_VISIBLE){
+            buttonInstance = rightButton
+        }
     }
     private fun drawText(c:Canvas,button:RectF,paint: Paint){
-        val textSize = 60F
+        val textSize = 30F
         paint.color = Color.WHITE
         paint.isAntiAlias = true
         paint.textSize = textSize
@@ -209,6 +214,8 @@ class SwipeController : ItemTouchHelper.Callback() {
         // 중앙 위치에 텍스트 그리기
         c.drawText("DELETE",button.centerX()-(textWidth/2),button.centerY()+(textSize/2),paint)
     }
+
+
 
     fun onDraw(c:Canvas){
         currentItemViewHolder?.let { drawButtons(c,it) }

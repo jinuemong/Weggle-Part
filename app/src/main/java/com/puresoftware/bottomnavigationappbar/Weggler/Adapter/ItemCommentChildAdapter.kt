@@ -16,7 +16,7 @@ import com.puresoftware.bottomnavigationappbar.databinding.ItemCommentBinding
 
 class ItemCommentChildAdapter (
     private val mainActivity: MainActivity,
-    var itemList : List<Comment>,
+    var itemList : ArrayList<Comment>,
 ) : RecyclerView.Adapter<ItemCommentChildAdapter.ViewHolder>(){
     private lateinit var binding: ItemChildCommentBinding
     private var onItemClickListener : OnItemClickListener?= null
@@ -91,4 +91,14 @@ class ItemCommentChildAdapter (
         likeComment.setImageResource(R.drawable.ic_baseline_favorite_24_red)
     private fun ItemChildCommentBinding.offLike() =
         likeComment.setImageResource(R.drawable.ic_baseline_favorite_24)
+
+    fun delData(position: Int,userId:String?) {
+        // 내가 쓴 댓글만 삭제 가능
+        if (itemList[position].userInfo?.id==userId && userId!=null) {
+            itemList.removeAt(position)
+            notifyItemRemoved(position)
+            notifyItemRangeChanged(position, itemCount)
+        }
+    }
+
 }
