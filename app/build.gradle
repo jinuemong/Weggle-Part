@@ -104,5 +104,12 @@ dependencies {
 
     // 카드뷰
     implementation "androidx.cardview:cardview:1.0.0"
+
+    // ExoPlayer v2
+    implementation 'com.google.android.exoplayer:exoplayer:2.9.6'
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.9.6'
+    implementation 'com.google.android.exoplayer:exoplayer-dash:2.9.6'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.9.6'
+
 }
 
