@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Weggler.AboutChallenge.ChallengeGuideFragment">
+
+    <LinearLayout
+        android:paddingTop="@dimen/margin_10"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/subject"
+            android:layout_margin="@dimen/margin_10"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_20"
+            android:text="~와 함께하는 ~ 챌린지"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:textSize="@dimen/text_size_17"
+            android:id="@+id/content"
+            android:layout_margin="@dimen/margin_10"
+            android:text="~~~~를 구매해서 ~ 해보자."
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:background="@color/line_color_light"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_marginBottom="@dimen/margin_10"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_10"/>
+
+        <TextView
+            android:layout_margin="@dimen/margin_10"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_20"
+            android:text="예시 영상"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:background="@drawable/round_border_background"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/margin_20"
+            android:layout_width="@dimen/top_len_350"
+            android:layout_height="@dimen/top_len_350">
+            <VideoView
+                android:id="@+id/guid_video"
+                android:background="@drawable/round_border_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <ImageView
+                android:id="@+id/play_button"
+                 android:padding="@dimen/margin_5"
+                android:background="@drawable/circle"
+                android:src="@drawable/ic_baseline_play_arrow_24"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="@dimen/top_len_70"
+                android:layout_height="@dimen/top_len_70"/>
+            <ImageView
+                android:id="@+id/zoom_button"
+                android:src="@drawable/baseline_aspect_ratio_24"
+                android:layout_margin="@dimen/margin_20"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="@dimen/item_size_40"
+                android:layout_height="@dimen/item_size_40"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:background="@color/line_color_light"
+            android:layout_marginBottom="@dimen/margin_10"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_10"/>
+
+        <TextView
+            android:layout_margin="@dimen/margin_10"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_20"
+            android:text="참여방법"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_margin="@dimen/margin_10"
+            android:textSize="@dimen/text_size_17"
+            android:textStyle="bold"
+            android:text = "01.xxxxxx \n02.xxxxxxx\n03.xxxxx"
+            android:maxLines="4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:background="@color/line_color_light"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_marginBottom="@dimen/margin_10"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_10"/>
+
+        <TextView
+            android:layout_margin="@dimen/margin_10"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_20"
+            android:text="당첨되는 꿀팁!"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_margin="@dimen/margin_10"
+            android:textSize="@dimen/text_size_17"
+            android:textStyle="bold"
+            android:text = "01.xxxxxx \n02.xxxxxxx\n03.xxxxx"
+            android:maxLines="4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:background="@color/line_color_light"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_marginBottom="@dimen/margin_10"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_10"/>
+
+        <TextView
+            android:layout_margin="@dimen/margin_10"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_20"
+            android:text="진행기간"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_margin="@dimen/margin_10"
+            android:textSize="@dimen/text_size_17"
+            android:textStyle="bold"
+            android:text = "xxxx.xx.xx ~ xxxx.xx.xx"
+            android:maxLines="4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:background="@color/line_color_light"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_marginBottom="@dimen/margin_10"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_10"/>
+
+        <TextView
+            android:layout_margin="@dimen/margin_10"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_20"
+            android:text="결과 발표"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_margin="@dimen/margin_10"
+            android:textSize="@dimen/text_size_17"
+            android:textStyle="bold"
+            android:text = "xxxx.xx.xx"
+            android:maxLines="4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:background="@color/line_color_light"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_marginBottom="@dimen/margin_10"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_10"/>
+
+        <TextView
+            android:layout_margin="@dimen/margin_10"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_20"
+            android:text="포인트 지급 안내"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_margin="@dimen/margin_10"
+            android:textSize="@dimen/text_size_17"
+            android:textStyle="bold"
+            android:text = "01.xxxxxx \n02.xxxxxxx\n03.xxxxx"
+            android:maxLines="4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:background="@color/line_color_light"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_marginBottom="@dimen/margin_10"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_10"/>
+
+        <TextView
+            android:layout_margin="@dimen/margin_10"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_20"
+            android:text="참여 시 주의 사항"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_margin="@dimen/margin_10"
+            android:textSize="@dimen/text_size_17"
+            android:textStyle="bold"
+            android:text = "01.xxxxxx \n02.xxxxxxx\n03.xxxxx"
+            android:maxLines="4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:background="@color/line_color_light"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_size_50"/>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

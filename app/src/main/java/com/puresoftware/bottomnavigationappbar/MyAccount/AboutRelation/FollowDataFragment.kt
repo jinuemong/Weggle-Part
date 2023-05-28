@@ -7,13 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
-import androidx.core.view.get
 import com.google.android.material.tabs.TabLayout
 import com.puresoftware.bottomnavigationappbar.MainActivity
-import com.puresoftware.bottomnavigationappbar.MyAccount.Adapter.ItemFollowAdapter
-import com.puresoftware.bottomnavigationappbar.MyAccount.Model.FollowData
 import com.puresoftware.bottomnavigationappbar.R
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPostingDetail.TotalFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentFollowDataBinding
 
 class FollowDataFragment : Fragment() {

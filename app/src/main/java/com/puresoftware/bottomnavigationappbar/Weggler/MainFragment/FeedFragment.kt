@@ -8,13 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.puresoftware.bottomnavigationappbar.MainActivity
 import com.puresoftware.bottomnavigationappbar.MyAccount.AboutReview.DetailReviewFragment
-import com.puresoftware.bottomnavigationappbar.MyAccount.Adapter.ItemProductHoAdapter
 import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.ProductManager
 import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemFeedPostingAdapter
 import com.puresoftware.bottomnavigationappbar.Weggler.Manager.CommunityManagerWithReview
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.Product
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityFragment.ShellFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.AboutCommunity.CommunityFragment.ShellFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentFeedBinding
 
 // 리뷰 데이터들 불러오기

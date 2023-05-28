@@ -11,9 +11,9 @@ import com.puresoftware.bottomnavigationappbar.R
 import com.puresoftware.bottomnavigationappbar.Weggler.Adapter.ItemPopularPostingTabAdapter
 import com.puresoftware.bottomnavigationappbar.Server.MasterApplication
 import com.puresoftware.bottomnavigationappbar.Weggler.Model.ReviewInCommunity
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPostingDetail.TotalFragment
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityFragment.ShellFragment
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.CommunityPostingDetail.DetailCommunityPostingFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.AboutCommunity.CommunityPostingDetail.TotalFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.AboutCommunity.CommunityFragment.ShellFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.AboutCommunity.CommunityPostingDetail.DetailCommunityPostingFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentCommunityBinding
 
 //커뮤니티 게시판 : 공동 구매 , 프리 토크 구현

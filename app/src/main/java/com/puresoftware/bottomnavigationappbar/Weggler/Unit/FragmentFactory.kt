@@ -1,10 +1,5 @@
 package com.puresoftware.bottomnavigationappbar.Weggler.Unit
 
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentFactory
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.AddCommunity.GallerySlideFragment
-import com.sothree.slidinguppanel.SlidingUpPanelLayout
-
 
 //// 빈 쌩성자를 작성하는 코드
 //class GalleryFragmentFactory(private val mainFrame:SlidingUpPanelLayout): FragmentFactory() {

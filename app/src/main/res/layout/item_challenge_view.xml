@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:padding="@dimen/margin_10"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@drawable/round_border_background"
+        android:layout_width="@dimen/top_len_350"
+        android:layout_height="@dimen/top_len_350">
+        <ImageView
+            android:id="@+id/challenge_image"
+            android:background="@drawable/round_border_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/challenge_end_message"
+            android:rotation="-20"
+            android:textStyle="bold"
+            android:textColor="@color/select_tab_color"
+            android:textSize="@dimen/text_size_20"
+            android:gravity="center"
+            android:text="종료"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/circle_challenge"
+            android:layout_width="@dimen/top_len_100"
+            android:layout_height="@dimen/top_len_100"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/n_text"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_20"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/margin_30"
+        tools:text = "위글 제n차"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/product_name"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_25"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/margin_10"
+        tools:text = "상품의 이름 텍스트 뷰 "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/challenge_day"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_20"
+        android:layout_marginTop="@dimen/margin_10"
+        tools:text = "xxxx.xx.xx ~ xxxx.xx.xx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:padding="@dimen/margin_10"
+        android:background="@drawable/round_border_stroke"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_20"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/margin_20"
+        tools:text = "챌린지 확인"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

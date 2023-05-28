@@ -8,7 +8,7 @@
     android:background="@color/white"
     android:clickable="true"
     android:focusable="true"
-    tools:context=".Weggler.SideFragment.AddCommunity.AddFreeTalkFragment">
+    tools:context=".Weggler.AboutCommunity.AddCommunity.AddFreeTalkFragment">
 
 
     <LinearLayout

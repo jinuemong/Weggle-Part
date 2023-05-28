@@ -63,10 +63,10 @@
     <string name="add_review_product">추가 리뷰 상품</string>
 
     <!--  fragment_product_detail-->
-    <string name = "deliver">NULL</string>
-    <string name = "ordinary_deliver">NULL</string>
-    <string name = "benefit">NULL</string>
-    <string name = "reward">NULL</string>
+    <string name="deliver">NULL</string>
+    <string name="ordinary_deliver">NULL</string>
+    <string name="benefit">NULL</string>
+    <string name="reward">NULL</string>
 
     <!--home_include_recyclerview_item -->
     <string name="percentage">NULL</string>

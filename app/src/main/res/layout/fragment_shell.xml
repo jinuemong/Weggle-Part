@@ -13,7 +13,7 @@
     app:umanoPanelHeight="0dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Weggler.SideFragment.CommunityFragment.ShellFragment">
+    tools:context=".Weggler.AboutCommunity.CommunityFragment.ShellFragment">
 
     <LinearLayout
         android:id="@+id/main_layout_in_shell"

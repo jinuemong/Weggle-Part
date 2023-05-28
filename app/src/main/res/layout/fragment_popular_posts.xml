@@ -4,5 +4,5 @@
     android:id="@+id/details_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Weggler.SideFragment.CommunityFragment.PopularPostsFragment">
+    tools:context=".Weggler.AboutCommunity.CommunityFragment.PopularPostsFragment">
 </FrameLayout>

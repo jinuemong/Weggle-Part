@@ -18,7 +18,7 @@ import com.puresoftware.bottomnavigationappbar.MyAccount.Adapter.KeywordAdapter
 import com.puresoftware.bottomnavigationappbar.MyAccount.Manager.UserManager
 import com.puresoftware.bottomnavigationappbar.MyAccount.Model.UserBody
 import com.puresoftware.bottomnavigationappbar.R
-import com.puresoftware.bottomnavigationappbar.Weggler.SideFragment.AddCommunity.GallerySlideFragment
+import com.puresoftware.bottomnavigationappbar.Weggler.AboutCommunity.AddCommunity.GallerySlideFragment
 import com.puresoftware.bottomnavigationappbar.databinding.FragmentUpdateProfileBinding
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
 
